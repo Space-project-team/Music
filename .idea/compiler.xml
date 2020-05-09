@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="music-rpc" />
+        <module name="music-manager" />
+        <module name="music-common" />
+        <module name="music-sso" />
+        <module name="music-portal" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="music-common" target="1.8" />
+      <module name="music-manager" target="1.8" />
+      <module name="music-parent" target="1.8" />
+      <module name="music-portal" target="1.8" />
+      <module name="music-rpc" target="1.8" />
+      <module name="music-sso" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="music-common" options="-parameters" />
+      <module name="music-manager" options="-parameters" />
+      <module name="music-portal" options="-parameters" />
+      <module name="music-rpc" options="-parameters" />
+      <module name="music-sso" options="-parameters" />
+    </option>
+  </component>
+</project>
