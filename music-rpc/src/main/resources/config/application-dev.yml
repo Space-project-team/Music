@@ -1,0 +1,73 @@
+server:
+  port: 8084
+  servlet:
+    context-path: /music-rpc
+  tomcat:
+    accesslog:
+      buffered: true
+      directory: /home/log/tomcat
+      enabled: true
+      file-date-format: .yyyy-MM-dd
+      pattern: '%t | %{X-Real-IP}i | %b | %B | %H | %l | %m | %p | %q | %r | %s | %S | %u | %U | %v | %D | %T | %{Cookie}i | %{User-Agent}i | %{a}r'
+      prefix: access_log
+      rename-on-rotate: false
+      request-attributes-enabled: false
+      rotate: true
+      suffix: .log
+spring:
+  #数据源
+  application:
+    name: support
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    name: test
+    url: jdbc:mysql://localhost:3306/music?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC
+    username: root
+    password: ""
+    type: com.alibaba.druid.pool.DruidDataSource
+  # redis 缓存
+  redis:
+    timeout: 10000                          # 连接超时时间
+    host: 175.24.16.105                    # Redis服务器地址
+    port: 6379                              # Redis服务器端口
+    database: 0                             # 选择哪个库，默认0库
+    lettuce:
+      pool:
+        max-active: 1024                    # 最大连接数，默认 8
+        max-wait: 10000                     # 最大连接阻塞等待时间，单位毫秒，默认 -1
+        max-idle: 200                       # 最大空闲连接，默认 8
+        min-idle: 5                         # 最小空闲连接，默认 0
+    password: root
+  # Dubbo
+  dubbo:
+    #开启dubbo服务
+    server: true
+    # 提供方应用信息，用于计算依赖关系
+    application:
+      name: rpc-provider
+    # 使用 zookeeper 注册中心暴露服务地址
+    registry:
+      address: zookeeper://175.24.16.105:9100/
+    # 用 dubbo 协议在 20880 端口暴露服务
+    protocol:
+      name: dubbo
+      port: 20881
+    # 扫描需要暴露的服务接口包
+    scan:
+      base-packages: com.music.sso.service
+
+mybatis:
+  mapper-locations: classpath:mapper/*/*.xml
+  type-aliases-package: com.game.www
+  # spring boot集成mybatis的方式打印sql，需要使用的话可以开启
+#  configuration:
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+logging:
+  config: classpath:logback-spring.xml
+
+
+#关闭Elasticsearch健康检查
+management:
+  health:
+    elasticsearch:
+      enabled: false
