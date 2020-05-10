@@ -82,5 +82,14 @@ public class UserController {
 		return webResponse.getWebResponse(statusCode, statusMsg, data);*/
 
 	}
+	/**
+	 * 注册功能
+	 *
+	 * */
+	@RequestMapping(value = "/addUser", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public BaseResult insert(AdminQuery adminQuery,HttpServletRequest request,HttpServletResponse response){
+		return  userService.addUser(adminQuery,request,response);
+	}
 
 }

@@ -6,10 +6,8 @@
 
 package com.music.manager.service.impl;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import com.music.common.result.BaseResult;
+import com.music.common.util.Md5Util;
 import com.music.manager.mapper.UserMapper;
 import com.music.manager.pojo.User;
 import com.music.manager.pojo.UserExample;
@@ -20,6 +18,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.util.Date;
 import java.util.List;
 
 
@@ -50,7 +51,7 @@ public class UserServicelmpl implements UserService {
 		}
 		if(StringUtils.isEmpty(adminQuery.getUser_password())){
 			result = new BaseResult();
-			result.setCode(500);
+			result.setCode(501);
 			result.setMessage("密码不能为空!");
 			return result;
 		}
@@ -64,16 +65,65 @@ public class UserServicelmpl implements UserService {
 		if(!CollectionUtils.isEmpty(users)){
 			//3.1 不为空,在查询密码是否相同
 			User user = users.get(0);
+			adminQuery.setUser_password(Md5Util.getMD5String(adminQuery.getUser_password()));
 			if(adminQuery.getUser_password().equals(user.getUserPassword())){
 				//3.2两次密码相同,该用户存在并信息正确
 				//将user信息存储到session中
 				request.getSession().setAttribute("user",user);
 				return BaseResult.success();
+			}else{
+				result = new BaseResult();
+				result.setCode(503);
+				result.setMessage("密码错误!");
+				return result;
 			}
 		}
 		result = new BaseResult();
-		result.setCode(500);
+		result.setCode(502);
 		result.setMessage("该用户不存在,请先注册!");
+		return result;
+	}
+	/**
+	 * 用户注册
+	 * */
+	@Override
+	public BaseResult addUser(AdminQuery adminQuery,HttpServletRequest request, HttpServletResponse response) {
+		BaseResult result = null;
+		//1.参数判断非空
+		if(StringUtils.isEmpty(adminQuery.getUser_name())){
+			result = new BaseResult();
+			result.setCode(500);
+			result.setMessage("用户名不能为空!");
+			return result;
+		}
+		if(StringUtils.isEmpty(adminQuery.getUser_password())){
+			result = new BaseResult();
+			result.setCode(501);
+			result.setMessage("密码不能为空!");
+			return result;
+		}
+		//创建查询对象
+		UserExample userExample = new UserExample();
+		//添加参数
+		userExample.createCriteria().andUserNameEqualTo(adminQuery.getUser_name());
+		//执行
+		List<User> users = userMapper.selectByExample(userExample);
+		//3.判断返回用户值是否为空
+		if(CollectionUtils.isEmpty(users)){
+			//3.1 为空,则证明改用户名可用
+			User user=new User();
+			user.setUserName(adminQuery.getUser_name());
+			user.setUserPassword(Md5Util.getMD5String(adminQuery.getUser_password()));
+			Date date = new Date();
+			user.setCreateTime(date);
+			userMapper.insertSelective(user);
+			//将user信息存储到session中
+			request.getSession().setAttribute("user",user);
+			return BaseResult.success();
+		}
+		result = new BaseResult();
+		result.setCode(502);
+		result.setMessage("该用户已存在,请重新输入!");
 		return result;
 	}
 }

@@ -18,4 +18,7 @@ public interface UserService {
 
 	//用户登入
     BaseResult login(AdminQuery adminQuery, HttpServletRequest request, HttpServletResponse response);
+
+    //用户注册
+    BaseResult addUser(AdminQuery adminQuery, HttpServletRequest request, HttpServletResponse response);
 }
