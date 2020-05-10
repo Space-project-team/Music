@@ -4,9 +4,11 @@ package com.music.manager.mapper;
 import com.music.manager.pojo.MyMusic;
 import com.music.manager.pojo.MyMusicExample;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository
 public interface MyMusicMapper {
     long countByExample(MyMusicExample example);
 

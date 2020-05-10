@@ -1,0 +1,9 @@
+com\music\common\util\JsonUtil.class
+com\music\common\result\FileResult.class
+com\music\common\util\UUIDUtil.class
+com\music\common\result\BaseResult.class
+com\music\common\util\CookieUtil.class
+com\music\common\eums\BaseResultEnum.class
+com\music\common\result\MusicPageInfo.class
+com\music\common\util\Md5Util.class
+com\music\common\util\RandomUtil.class
