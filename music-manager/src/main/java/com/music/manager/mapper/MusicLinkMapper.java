@@ -4,9 +4,11 @@ package com.music.manager.mapper;
 import com.music.manager.pojo.MusicLink;
 import com.music.manager.pojo.MusicLinkExample;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository
 public interface MusicLinkMapper {
     long countByExample(MusicLinkExample example);
 
