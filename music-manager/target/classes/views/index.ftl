@@ -1,14 +1,13 @@
+<!-- 设置项目根路径全局变量 -->
+<#assign ctx=request.contextPath/>
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>我们敲代码滴不懂音乐</title>
-    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="css/index.css">
-    <link rel="shortcut icon" type="image/x-icon" href="images/logo1.png">
-    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
-    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <#include "head.ftl">
 
 </head>
 <body style="user-select: none">
@@ -29,8 +28,8 @@
                 <form id="test" class="form-horizontal" role="form" action="/user/loginPage" method="post"
                       style="padding-left: 50px;">
                     <div class="form-group">
-                        <img src="images/logo2.png" style="display: block; padding: 20px 151px">
-                        <div class="erweima"><img src="images/二维码2.jpg" style="position: absolute;width: 130px;
+                        <img src="${ctx}/views/images/logo2.png" style="display: block; padding: 20px 151px">
+                        <div class="erweima"><img src="${ctx}/views/images/二维码2.jpg" style="position: absolute;width: 130px;
 						height: 130px;bottom: 136px;right: 31px;">
                             <p style="position: absolute;right: 64px;bottom: 106px;">联系我们</p>
                         </div>
@@ -65,7 +64,7 @@
                             <button class="btn btn-primary" data-dismiss="btn btn-default"
                                     style="background-color: #169af3;padding: 5px 30px">登 &nbsp&nbsp&nbsp&nbsp录
                             </button>
-                            <a href="/register.html" style="float: left;padding-top: 12px;">没有账号？点此注册</a>
+                            <a href="/register.ftl" style="float: left;padding-top: 12px;">没有账号？点此注册</a>
                         </div>
                     </div>
                 </form>
@@ -84,7 +83,7 @@
 <div style="width: 100%;height: 80px; background-color:#fff;position: relative;">
     <div style="position: absolute;bottom: -5px;height: 5px;width: 100%;background-color:#fff;z-index: -1;"></div>
     <div class="search1">
-        <div class="logo1" style="width: 153px; padding: 20.6px 0; display: inline-block;"><img src="images/logo2.png"
+        <div class="logo1" style="width: 153px; padding: 20.6px 0; display: inline-block;"><img src="${ctx}/views/images/logo2.png"
                                                                                                 alt=""><a href="#"></a>
         </div>
         <nav class="navmargin navbar navbar-default" role="navigation">
@@ -113,11 +112,11 @@
             </div>
             <!-- 图标加上搜索框结束 -->
             <div id="col10" class="dengluzhuce">
-                <a class="mymusic" href="/mymusic.html" target="_blank">我的音乐</a>
-                <a class="mymusic" href="/mymusic.html" target="_blank">您是第<span
+                <a class="mymusic" href="/mymusic.ftl" target="_blank">我的音乐</a>
+                <a class="mymusic" href="/mymusic.ftl" target="_blank">您是第<span
                         id="user_number" style="font-size:20px;color:red;text-align:center;padding:0;"> &nbsp</span>位用户</a>
                 <span class="mymusic">|</span>
-                <img id="touxiang" src="images/touxiang.png" width="40px" height="40px"
+                <img id="touxiang" src="${ctx}/views/images/touxiang.png" width="40px" height="40px"
                      style="display: inline-block; width: 40px;height: 40px;border:0;border-radius: 40px;margin-bottom: 5px;">
                 <a id="userName" style="cursor: pointer;" class="mymusic" href="">
                     未登录</a>
@@ -138,26 +137,26 @@
     <div class="big3">
         <ul>
             <li><a class="gudingbeij erjicaidan2" href="#">首页</a></li>
-            <li><a class=" erjicaidan2" href="/bangdan.html">榜单</a></li>
-            <li><a class="erjicaidan2" href="/mv.html">MV</a></li>
+            <li><a class=" erjicaidan2" href="/bangdan.ftl">榜单</a></li>
+            <li><a class="erjicaidan2" href="/mv.ftl">MV</a></li>
             <li class="dropdown">
                 <a class="erjicaidan2" href="#" class="dropdown-toggle" data-toggle="dropdown">
                     更多 <b class="caret"></b>
                 </a>
                 <ul class="dropdown-menu">
-                    <li><a class="erjicaidan" href="/musicRadio.html">电台</a></li>
-                    <li><a class="erjicaidan" href="/songlist.html">歌单</a></li>
-                    <li><a class="erjicaidan" href="/singer.html">歌手</a></li>
+                    <li><a class="erjicaidan" href="/musicRadio.ftl">电台</a></li>
+                    <li><a class="erjicaidan" href="/songlist.ftl">歌单</a></li>
+                    <li><a class="erjicaidan" href="/singer.ftl">歌手</a></li>
                 </ul>
             </li>
         </ul>
         <ul>
-            <li class="youfudong"><a href="/musicSearchTest.html" target="_blank"><span
+            <li class="youfudong"><a href="/musicSearchTest.ftl" target="_blank"><span
                     class="glyphicon glyphicon-search" style="font-size: 14px"> 搜索</span></a></li>
-            <li class="youfudong"><a href="/musician.html" target="_blank"><span
+            <li class="youfudong"><a href="/musician.ftl" target="_blank"><span
                     class="glyphicon glyphicon-headphones" style="font-size: 14px"> 音乐人</span></a></li>
             <li class="youfudong"><span class="glyphicon glyphicon-music" style="font-size: 14px"> 轻语LIVE</span></li>
-            <li class="youfudong"><a href="/QQmusic.html" target="_blank"><span
+            <li class="youfudong"><a href="/QQmusic.ftl" target="_blank"><span
                     class="glyphicon glyphicon-star-empty" style="font-size: 14px"> 在线播放</span></a></li>
         </ul>
     </div>
@@ -326,7 +325,7 @@
         <p class="da">巅 峰 排 行</p>
         <ul>
             <li class="back1">
-                <img src="images/paihang-1.png" width="225.2px" height="500px">
+                <img src="${ctx}/views/images/paihang-1.png" width="225.2px" height="500px">
                 <div class="shang tong">
                     <p class="da1">轻语飙升榜</p>
                     <p style="font-size: 30px;font-weight: bold;	">人气</p>
@@ -342,7 +341,7 @@
                     <a href="#" style="margin-left: 42px">莫文蔚</a>
                 </div>
             </li>
-            <li class="back2"><img src="images/paihan-2.png" width="225.2px" height="500px">
+            <li class="back2"><img src="${ctx}/views/images/paihan-2.png" width="225.2px" height="500px">
                 <div class="shang tong">
                     <p>抖音最火榜</p>
                     <p style="font-size: 30px;font-weight: bold;	">流行</p>
@@ -357,7 +356,7 @@
                     <a class="topline" href="#">4. &nbsp 生如雪花</a>
                     <a href="#" style="margin-left: 42px">马天宇</a></div>
             </li>
-            <li class="back3"><img src="images/paihan-3.jpg" width="225.2px" height="500px">
+            <li class="back3"><img src="${ctx}/views/images/paihan-3.jpg" width="225.2px" height="500px">
                 <div class="shang tong">
                     <p>轻语TOP500</p>
                     <p style="font-size: 30px;font-weight: bold;	">热歌</p>
@@ -372,7 +371,7 @@
                     <a class="topline" href="#">4. &nbsp 冬</a>
                     <a href="#" style="margin-left: 42px">好妹妹</a></div>
             </li>
-            <li class="back4"><img src="images/paihan-4.jpg" width="225.2px" height="500px">
+            <li class="back4"><img src="${ctx}/views/images/paihan-4.jpg" width="225.2px" height="500px">
                 <div class="shang tong">
                     <p>网络红歌榜</p>
                     <p style="font-size: 30px;font-weight: bold;	">新曲</p>
@@ -388,7 +387,7 @@
                     <a class="topline" href="#">4. &nbsp生僻字</a>
                     <a href="#" style="margin-left: 42px">陈珂与</a></div>
             </li>
-            <li class="back5"><img src="images/paihan-5.jpg" width="225.2px" height="500px">
+            <li class="back5"><img src="${ctx}/views/images/paihan-5.jpg" width="225.2px" height="500px">
                 <div class="shang tong">
                     <p>伤感情歌榜</p>
                     <p style="font-size: 30px;font-weight: bold;	">经典</p>
@@ -447,9 +446,9 @@
 
     if ($.cookie("user_name") != undefined && $.cookie("user_name") != "1") {
         $("#userName").text("账号：" + $.cookie("user_name"));
-        $("#userName").attr("href", "/resetpassword.html");
+        $("#userName").attr("href", "/resetpassword.ftl");
         $("#zhuXiao").text("注销");
-        document.getElementById("touxiang").src = "images/touxiang2.jpg";
+        document.getElementById("touxiang").src = "${ctx}/views/images/touxiang2.jpg";
         $("#display1").attr("style", "display:none;");
     }//已在mymusic中注释
 
@@ -529,7 +528,7 @@
                     $.cookie("song_name", data.data.list[i].ml_songName, {expires: 7, path: "/"});
                     $.cookie("song_singer", data.data.list[i].ml_singer, {expires: 7, path: "/"});
                     $.cookie("song_photo", data.data.list[i].ml_photoLink, {expires: 7, path: "/"});
-                    window.open("/QQmusic.html");
+                    window.open("/QQmusic.ftl");
                 }
             }
         },
@@ -550,7 +549,7 @@
                 if (data.statusCode == "200") {
                     var search = document.getElementById("songName").value;
                     $.cookie("song_search", search, {expires: 7, path: "/"});
-                    window.open("/musicSearchTest.html");
+                    window.open("/musicSearchTest.ftl");
                     var str = '';
                     /* data.data.list.length对应respon.map.list.length */
                     for (var i = 0; i < data.data.list.length; i++) {

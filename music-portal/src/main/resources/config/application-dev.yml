@@ -57,8 +57,8 @@ spring:
       base-packages: com.music.sso.service
 
 mybatis:
-  mapper-locations: classpath:mapper/*/*.xml
-  type-aliases-package: com.game.www
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.music.manager.domian
   # spring boot集成mybatis的方式打印sql，需要使用的话可以开启
 #  configuration:
 #    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl

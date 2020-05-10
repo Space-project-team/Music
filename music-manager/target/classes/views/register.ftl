@@ -1,13 +1,14 @@
+<!-- 设置项目根路径全局变量 -->
+<#assign ctx=request.contextPath/>
 <!DOCTYPE html>
 <html>
 
 <head>
     <meta charset="utf-8">
-    <title>test</title>
-    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
-    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="css/register.css">
+    <title>注册</title>
+
+    <#include "head.ftl">
+
 </head>
 
 <body class="gray-bg">
