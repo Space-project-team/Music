@@ -7,8 +7,6 @@
 package com.music.manager.service;
 
 
-import com.music.common.result.IServiceOperations;
-
 public interface IMusicLinkService{
 
 }

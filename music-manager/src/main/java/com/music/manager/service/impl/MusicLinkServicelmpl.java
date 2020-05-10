@@ -6,12 +6,6 @@
 
 package com.music.manager.service.impl;
 
-import java.util.List;
-
-import javax.annotation.Resource;
-
-import com.music.common.result.AbstractService;
-import com.music.common.result.IOperations;
 import com.music.manager.service.IMusicLinkService;
 import org.springframework.stereotype.Service;
 

@@ -6,11 +6,6 @@
 
 package com.music.manager.service;
 
-import com.music.common.result.IServiceOperations;
-
-import java.util.List;
-
-
 
 public interface IMyMusicService {
 

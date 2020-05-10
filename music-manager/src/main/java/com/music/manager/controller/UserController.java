@@ -6,8 +6,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.music.common.result.BaseResult;
 import com.music.manager.service.IMyMusicService;
-import com.music.manager.service.IUserService;
-import com.music.manager.service.impl.UserService;
+import com.music.manager.service.UserService;
+import com.music.manager.service.impl.UserServicelmpl;
 import com.music.manager.vo.AdminQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,14 +27,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class UserController {
 
 
-	@Resource
-	protected IUserService userService;
+	@Autowired
+	protected UserService userService;
 
 	@Resource
 	protected IMyMusicService MyMusicService;
 
 	@Autowired
-	UserService userService2;
+	UserServicelmpl userService2;
 
 	String newName = null;
 

@@ -6,7 +6,7 @@
     <result column="user_name" jdbcType="VARCHAR" property="userName" />
     <result column="user_password" jdbcType="VARCHAR" property="userPassword" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
-  </resultMap>R
+  </resultMap>
   <sql id="Example_Where_Clause">
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">
