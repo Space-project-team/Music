@@ -1,6 +1,6 @@
 /** 
 * 
-* @author linliquan
+* @author linliquan 
 * @data 2018年12月23日 00:03:48  
 */
 
@@ -12,11 +12,14 @@ import javax.annotation.Resource;
 
 import com.music.common.result.AbstractService;
 import com.music.common.result.IOperations;
-import com.music.manager.service.IMyMusicService;
+import com.music.manager.service.IMusicLinkService;
 import org.springframework.stereotype.Service;
 
-@Service("myMusicService")
-public class MyMusicService implements IMyMusicService {
+
+
+@Service("musicLinkService")
+public class MusicLinkServicelmpl implements IMusicLinkService {
+
 
 
 }
