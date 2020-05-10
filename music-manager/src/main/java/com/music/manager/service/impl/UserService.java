@@ -9,8 +9,6 @@ package com.music.manager.service.impl;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import com.github.pagehelper.PageInfo;
 import com.music.common.result.AbstractService;
 import com.music.common.result.BaseResult;
 import com.music.common.result.IOperations;

@@ -21,7 +21,7 @@
 
 		<!-- 是否去除自动生成的注释 true：是 ： false:否 -->
 		<!-- type指定生成注释使用的对象 -->
-		<commentGenerator type="com.music.generator.musicCommentGenerator">
+		<commentGenerator type="com.music.generator.EgoCommentGenerator">
 			<property name="suppressAllComments" value="false"/>
 		</commentGenerator>
 
