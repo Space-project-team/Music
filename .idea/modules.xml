@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/music-generator/music-generator.iml" filepath="$PROJECT_DIR$/music-generator/music-generator.iml" />
+      <module fileurl="file://$PROJECT_DIR$/music-manager/music-manager.iml" filepath="$PROJECT_DIR$/music-manager/music-manager.iml" />
+      <module fileurl="file://$PROJECT_DIR$/music-parent.iml" filepath="$PROJECT_DIR$/music-parent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/music-portal/music-portal.iml" filepath="$PROJECT_DIR$/music-portal/music-portal.iml" />
+      <module fileurl="file://$PROJECT_DIR$/music-rpc/music-rpc.iml" filepath="$PROJECT_DIR$/music-rpc/music-rpc.iml" />
+      <module fileurl="file://$PROJECT_DIR$/springboot-music/ss/ss.iml" filepath="$PROJECT_DIR$/springboot-music/ss/ss.iml" />
+    </modules>
+  </component>
+</project>
