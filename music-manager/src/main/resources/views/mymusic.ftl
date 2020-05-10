@@ -1,17 +1,14 @@
+<!-- 设置项目根路径全局变量 -->
+<#assign ctx=request.contextPath/>
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>我的音乐</title>
-    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/index.css">
-    <link rel="stylesheet" type="text/css" href="css/mymusic.css">
-    <link rel="shortcut icon" type="image/x-icon" href="images/logo1.png">
-    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
-    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script type="text/javascript"
-            src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+
+    <#include "head.ftl">
+
 </head>
 <body style="user-select: none;">
 <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---
@@ -67,7 +64,7 @@
                             <button class="btn btn-primary" data-dismiss="btn btn-default"
                                     style="background-color: #169af3;padding: 5px 30px">登 &nbsp&nbsp&nbsp&nbsp录
                             </button>
-                            <a href="/register.html" style="float: left;padding-top: 12px;">没有账号？点此注册</a>
+                            <a href="/register.ftl" style="float: left;padding-top: 12px;">没有账号？点此注册</a>
                         </div>
                     </div>
                 </form>
@@ -131,29 +128,29 @@
 <nav class="daohanglan">
     <div class="big3">
         <ul>
-            <li><a class=" erjicaidan2" href="/index.html  ">首页</a></li>
-            <li><a class=" erjicaidan2" href="/bangdan.html">榜单</a></li>
-            <li><a class="erjicaidan2" href="/mv.html   ">MV</a></li>
+            <li><a class=" erjicaidan2" href="/index.ftl  ">首页</a></li>
+            <li><a class=" erjicaidan2" href="/bangdan.ftl">榜单</a></li>
+            <li><a class="erjicaidan2" href="/mv.ftl   ">MV</a></li>
             <li class="dropdown">
                 <a class="erjicaidan2" href="#" class="dropdown-toggle" data-toggle="dropdown">
                     更多 <b class="caret"></b>
                 </a>
                 <ul class="dropdown-menu">
-                    <li><a class="erjicaidan" href="/musicRadio.html ">电台</a></li>
-                    <li><a class="erjicaidan" href="/songlist.html  ">歌单</a></li>
-                    <li><a class="erjicaidan" href="/singer.html  ">歌手</a></li>
+                    <li><a class="erjicaidan" href="/musicRadio.ftl ">电台</a></li>
+                    <li><a class="erjicaidan" href="/songlist.ftl  ">歌单</a></li>
+                    <li><a class="erjicaidan" href="/singer.ftl  ">歌手</a></li>
                 </ul>
             </li>
         </ul>
         <ul>
             <li class="youfudong"><a style="padding: 20px 0px" href="playmusic.html"><span
                     class="glyphicon glyphicon-shopping-cart" style="font-size: 14px"> 商城</span></a></li>
-            <li class="youfudong"><a style="padding: 20px 0px" href="/musician.html"><span
+            <li class="youfudong"><a style="padding: 20px 0px" href="/musician.ftl"><span
                     class="glyphicon glyphicon-headphones" style="font-size: 14px"> 音乐人</span></a></li>
             <li class="youfudong"><a style="padding: 20px 0px" href="#"><span class="glyphicon glyphicon-music"
                                                                               style="font-size: 14px"> 轻语LIVE</span></a>
             </li>
-            <li class="youfudong"><a style="padding: 20px 0px" href="/QQmusic.html"><span
+            <li class="youfudong"><a style="padding: 20px 0px" href="/QQmusic.ftl"><span
                     class="glyphicon glyphicon-star-empty" style="font-size: 14px"> 在线播放</span></a></li>
         </ul>
     </div>
@@ -195,7 +192,7 @@
     </div>
     <div class="liebiao">
         <div class="liebiaobar">
-            <a href="/QQmusic.html" class="lbbar" target="_blank">
+            <a href="/QQmusic.ftl" class="lbbar" target="_blank">
                 <span class="glyphicon glyphicon-play">播放全部</span>
             </a>
             <a href="#" class="lbbar" data-stat="">
@@ -315,7 +312,7 @@
                         $.cookie("song_name", data.data.list[j].my_songName, {expires: 7, path: "/"});//   保存后台传入的相关信息和链接进入cookie，在播放页面直接将cookie的值调用出来，
                         $.cookie("song_singer", data.data.list[j].my_singer, {expires: 7, path: "/"});//    然后替换原有的信息和播放路径，完成点击歌曲播放功能
                         $.cookie("song_photo", data.data.list[j].my_photoLink, {expires: 7, path: "/"});//
-                        window.location.href = "/QQmusic.html";//跳转页面
+                        window.location.href = "/QQmusic.ftl";//跳转页面
                     }
 
                     function fn1(j) {

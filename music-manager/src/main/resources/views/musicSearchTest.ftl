@@ -1,18 +1,18 @@
+<!-- 设置项目根路径全局变量 -->
+<#assign ctx=request.contextPath/>
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
     <title>轻语搜索</title>
-    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="css/index.css">
-    <link rel="shortcut icon" type="image/x-icon" href="images/logo1.png">
-    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
-    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <#include "head.ftl">
+
 </head>
 <body style="user-select: none">
 <div class="search1">
     <div class="logo1" style="width: 153px; padding: 20.6px 0; display: inline-block;"><a
-            href="/index.html" target="_blank"><img src="images/logo2.png" alt=""></a>
+            href="/index.ftl" target="_blank"><img src="images/logo2.png" alt=""></a>
     </div>
 
     <nav class="navmargin navbar navbar-default" role="navigation">
@@ -34,7 +34,7 @@
             </form>
         </div>
         <a style="font-size:14px;float: right;margin: 20px"
-           href="/mymusic.html" target="_blank">点击跳转我的音乐...</a>
+           href="/mymusic.ftl" target="_blank">点击跳转我的音乐...</a>
     </nav>
 </div>
 
@@ -132,7 +132,7 @@
                         $.cookie("song_name", data.data.list[j].ml_songName, {expires: 7, path: "/"});
                         $.cookie("song_singer", data.data.list[j].ml_singer, {expires: 7, path: "/"});
                         $.cookie("song_photo", data.data.list[j].ml_photoLink, {expires: 7, path: "/"});
-                        window.location.href = "/QQmusic.html";
+                        window.location.href = "/QQmusic.ftl";
                     }
 
                     function fn1(j) {

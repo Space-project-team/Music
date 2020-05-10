@@ -1,3 +1,5 @@
+<!-- 设置项目根路径全局变量 -->
+<#assign ctx=request.contextPath/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,11 +8,9 @@
     <title>test</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
-	<link href="css/bootstrap.min14ed.css?v=3.3.6" rel="stylesheet">
-    <link href="css/font-awesome.min93e3.css?v=4.4.0" rel="stylesheet">
-    <link href="css/plugins/iCheck/custom.css" rel="stylesheet">
-    <link href="css/animate.min.css" rel="stylesheet">
-    <link href="css/style.min862f.css?v=4.1.0" rel="stylesheet">
+
+    <#include "head.ftl">
+
 </head>
 <body class="gray-bg">
     <div class="wrapper wrapper-content animated fadeInRight">

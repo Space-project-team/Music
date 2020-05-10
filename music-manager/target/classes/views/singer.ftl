@@ -226,22 +226,22 @@
 				<span class="singername">刘德华</span>
 			</div>
 			<div class="singerpn">
-				<a href="#"><img src="images/s2.jpg" alt="薛之谦" class="singerpicture"></a>				
+				<a href="#"><img src="images/s2.jpg" alt="薛之谦" class="singerpicture"></a>
 				<span class="st"><strong>2nd</strong></span>
 				<span class="singername">薛之谦</span>
 			</div>
 			<div class="singerpn">
-				<a href="#"><img src="images/s3.jpg" alt="林俊杰" class="singerpicture"></a>				
+				<a href="#"><img src="images/s3.jpg" alt="林俊杰" class="singerpicture"></a>
 				<span class="st"><strong>3rd</strong></span>
 				<span class="singername">林俊杰</span>
 			</div>
 			<div class="singerpn">
-				<a href="#"><img src="images/s4.jpg" alt="周杰伦" class="singerpicture"></a>				
+				<a href="#"><img src="images/s4.jpg" alt="周杰伦" class="singerpicture"></a>
 				<span class="st"><strong>4th</strong></span>
 				<span class="singername">周杰伦</span>
 			</div>
 			<div class="singerpn">
-				<a href="#"><img src="images/s5.jpg" alt="邓紫棋" class="singerpicture"></a>				
+				<a href="#"><img src="images/s5.jpg" alt="邓紫棋" class="singerpicture"></a>
 				<span class="st"><strong>5th</strong></span>
 				<span class="singername">邓紫棋</span>
 			</div>
@@ -251,17 +251,17 @@
 				<span class="singername">TFBOYS</span>
 			</div>
 			<div class="singerpn">
-				<a href="#"><img src="images/s7.jpg" alt="毛不易" class="singerpicture"></a>				
+				<a href="#"><img src="images/s7.jpg" alt="毛不易" class="singerpicture"></a>
 				<span class="st"><strong>7th</strong></span>
 				<span class="singername">毛不易</span>
 			</div>
 			<div class="singerpn">
-				<a href="#"><img src="images/s8.jpg" alt="张杰" class="singerpicture"></a>			
+				<a href="#"><img src="images/s8.jpg" alt="张杰" class="singerpicture"></a>
 				<span class="st"><strong>8th</strong></span>
 				<span class="singername">张杰</span>
 			</div>
 			<div class="singerpn">
-				<a href="#"><img src="images/s9.jpg" alt="张学友" class="singerpicture"></a>				
+				<a href="#"><img src="images/s9.jpg" alt="张学友" class="singerpicture"></a>
 				<span class="st"><strong>9th</strong></span>
 				<span class="singername">张学友</span>
 			</div>
@@ -286,12 +286,12 @@
 				<span class="singername">王俊凯</span>
 			</div>
 			<div class="singerpn">
-				<a href="#"><img src="images/s14.jpg" alt="半阳" class="singerpicture"></a>				     
+				<a href="#"><img src="images/s14.jpg" alt="半阳" class="singerpicture"></a>
 				<span class="st"><strong>14th</strong></span>
 				<span class="singername">半阳</span>
 			</div>
 			<div class="singerpn">
-				<a href="#"><img src="images/s15.jpg" alt="陈奕迅" class="singerpicture"></a>				
+				<a href="#"><img src="images/s15.jpg" alt="陈奕迅" class="singerpicture"></a>
 				<span class="st"><strong>15th</strong></span>
 				<span class="singername">陈奕迅</span>
 			</div>

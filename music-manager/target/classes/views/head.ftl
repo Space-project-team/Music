@@ -15,7 +15,7 @@
 <link rel="stylesheet" type="text/css" href="${ctx}/css/singer.css">
 <link rel="stylesheet" type="text/css" href="${ctx}/css/songlist.css">
 
-<link rel="shortcut icon" type="image/x-icon" href="${ctx}/images/logo1.png">
+<link rel="shortcut icon" type="image/x-icon" href="${ctx}/views/images/logo1.png">
 <link rel="stylesheet" href="${ctx}/css/index.css">
 <link rel="stylesheet" href="${ctx}/css/register.css">
 

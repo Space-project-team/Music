@@ -1,3 +1,5 @@
+<!-- 设置项目根路径全局变量 -->
+<#assign ctx=request.contextPath/>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,19 +7,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Bootstrap -->
     <title>轻语音乐</title>
-    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/jquery.mCustomScrollbar.css">
-    <link rel="stylesheet" href="css/index1.css">
-    <link rel="shortcut icon" type="image/x-icon" href="images/logo1.png">
-    <script src="js/jquery.min.js"></script>
-    <script src="js/jquery.cookie.js"></script>
-    <script src="js/jquery.mCustomScrollbar.js"></script>
-    <script src="js/player.js"></script>
+
+    <#include "head.ftl">
+
 </head>
 
 <body style="user-select: none;">
 <div class="header">
-    <h1 class="logo"><a href="/index.html"></a></h1>
+    <h1 class="logo"><a href="/index.ftl"></a></h1>
     <ul class="register">
         <li></li>
         <li>设置</li>

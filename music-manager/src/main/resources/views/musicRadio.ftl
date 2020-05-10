@@ -1,15 +1,14 @@
+<!-- 设置项目根路径全局变量 -->
+<#assign ctx=request.contextPath/>
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>轻语电台</title>
-    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="css/musicRadio.css">
-    <link rel="shortcut icon" type="image/x-icon" href="images/logo1.png">
-    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
-    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="css/index.css">
+
+    <#include "head.ftl">
+
 </head>
 <body>
 <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---
@@ -65,7 +64,7 @@
                             <button class="btn btn-primary" data-dismiss="btn btn-default"
                                     style="background-color: #169af3;padding: 5px 30px">登 &nbsp&nbsp&nbsp&nbsp录
                             </button>
-                            <a href="/register.html" style="float: left;padding-top: 12px;">没有账号？点此注册</a>
+                            <a href="/register.ftl" style="float: left;padding-top: 12px;">没有账号？点此注册</a>
                         </div>
                     </div>
                 </form>
@@ -106,7 +105,7 @@
             </div>
             <!-- 图标加上搜索框结束 -->
             <div id="col10" class="dengluzhuce">
-                <a class="mymusic" href="/mymusic.html">我的音乐</a>
+                <a class="mymusic" href="/mymusic.ftl">我的音乐</a>
                 <a class="mymusic" href="/huiyuanzhongxin.html">会员中心</a>
                 <span class="mymusic">|</span>
                 <img id="touxiang" src="images/touxiang.png" width="40px" height="40px"
@@ -129,9 +128,9 @@
 <nav class="daohanglan">
     <div class="big3">
         <ul>
-            <li><a class=" erjicaidan2" href="/index.html">首页</a></li>
-            <li><a class=" erjicaidan2" href="/bangdan.html">榜单</a></li>
-            <li><a class="erjicaidan2" href="/mv.html">MV</a></li>
+            <li><a class=" erjicaidan2" href="/index.ftl">首页</a></li>
+            <li><a class=" erjicaidan2" href="/bangdan.ftl">榜单</a></li>
+            <li><a class="erjicaidan2" href="/mv.ftl">MV</a></li>
             <li class="gudingbeij dropdown">
                 <a style="padding-right: 10px;" class="erjicaidan2" href="#" class="dropdown-toggle"
                    data-toggle="dropdown">
@@ -139,19 +138,19 @@
                 </a>
                 <ul class="dropdown-menu">
                     <li><a class=" erjicaidan" href="#">电台</a></li>
-                    <li><a class="erjicaidan" href="/songlist.html">歌单</a></li>
-                    <li><a class="erjicaidan" href="/singer.html">歌手</a></li>
+                    <li><a class="erjicaidan" href="/songlist.ftl">歌单</a></li>
+                    <li><a class="erjicaidan" href="/singer.ftl">歌手</a></li>
                 </ul>
             </li>
         </ul>
         <ul>
             <li class="youfudong"><a style="padding: 20px 0px" href="playmusic.html"><span
                     class="glyphicon glyphicon-shopping-cart" style="font-size: 14px"> 商城</span></a></li>
-            <li class="youfudong"><a style="padding: 20px 0px" href="/musician.html"><span
+            <li class="youfudong"><a style="padding: 20px 0px" href="/musician.ftl"><span
                     class="glyphicon glyphicon-headphones" style="font-size: 14px"> 音乐人</span></a></li>
             <li class="youfudong"><a style="padding: 20px 0px" href="playmusic.html"><span
                     class="glyphicon glyphicon-music" style="font-size: 14px"> 轻语LIVE</span></a></li>
-            <li class="youfudong"><a style="padding: 20px 0px" href="/QQmusic.html"><span
+            <li class="youfudong"><a style="padding: 20px 0px" href="/QQmusic.ftl"><span
                     class="glyphicon glyphicon-star-empty" style="font-size: 14px"> 在线播放</span></a></li>
         </ul>
     </div>
