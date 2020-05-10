@@ -24,5 +24,8 @@ public interface UserService {
     BaseResult addUser(AdminQuery adminQuery, HttpServletRequest request, HttpServletResponse response);
 
     //修改密码
-    BaseResult EditUser(User user,String newPassword, HttpServletRequest request, HttpServletResponse response);
+    BaseResult EditUser(String newPassword, HttpServletRequest request, HttpServletResponse response);
+
+    //用户注销
+    BaseResult layOut(HttpServletRequest request, HttpServletResponse response);
 }

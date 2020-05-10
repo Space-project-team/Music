@@ -59,8 +59,8 @@ public class UserController {
 	@RequestMapping(value = "/resetUserPassword", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public BaseResult resetUserPassword(String newPassword,HttpServletRequest request,HttpServletResponse response) {
-		User user=(User)request.getSession().getAttribute("user");
-		return userService.EditUser(user,newPassword,request,response);
+
+		return userService.EditUser(newPassword,request,response);
 		/*
 		Object data = null;
 		String statusMsg = "";
@@ -89,5 +89,12 @@ public class UserController {
 	public BaseResult insert(AdminQuery adminQuery,HttpServletRequest request,HttpServletResponse response){
 		return  userService.addUser(adminQuery,request,response);
 	}
-
+	/**
+	 * 注销功能
+	 * */
+	@RequestMapping(value = "/layOut", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public BaseResult layOut(HttpServletRequest request,HttpServletResponse response){
+		return  userService.layOut(request,response);
+	}
 }

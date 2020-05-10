@@ -128,8 +128,9 @@ public class UserServicelmpl implements UserService {
 	}
 
 	@Override
-	public BaseResult EditUser(User user,String newPassword, HttpServletRequest request, HttpServletResponse response) {
+	public BaseResult EditUser(String newPassword, HttpServletRequest request, HttpServletResponse response) {
 		BaseResult result = null;
+		User user=(User)request.getSession().getAttribute("user");
 		if(user==null){
 			result = new BaseResult();
 			result.setCode(502);
@@ -146,6 +147,21 @@ public class UserServicelmpl implements UserService {
 		}
 		user.setUserPassword(Md5Util.getMD5String(newPassword));
 		userMapper.updateByPrimaryKey(user);
+		return BaseResult.success();
+	}
+
+	@Override
+	public BaseResult layOut(HttpServletRequest request, HttpServletResponse response) {
+		BaseResult result = null;
+		User user=(User)request.getSession().getAttribute("user");
+		if(user==null){
+			result = new BaseResult();
+			result.setCode(502);
+			result.setMessage("请先登录!");
+			return result;
+		}
+		//清除session
+		request.getSession().removeAttribute("user");
 		return BaseResult.success();
 	}
 }
