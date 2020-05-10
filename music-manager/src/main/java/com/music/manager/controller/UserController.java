@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.music.common.result.BaseResult;
+import com.music.manager.pojo.User;
 import com.music.manager.service.IMyMusicService;
 import com.music.manager.service.UserService;
 import com.music.manager.service.impl.UserServicelmpl;
@@ -57,12 +58,9 @@ public class UserController {
 	 */
 	@RequestMapping(value = "/resetUserPassword", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
-	public BaseResult resetUserPassword(AdminQuery adminQuery) {
-
-
-
-
-		return null;
+	public BaseResult resetUserPassword(String newPassword,HttpServletRequest request,HttpServletResponse response) {
+		User user=(User)request.getSession().getAttribute("user");
+		return userService.EditUser(user,newPassword,request,response);
 		/*
 		Object data = null;
 		String statusMsg = "";
@@ -81,6 +79,15 @@ public class UserController {
 
 		return webResponse.getWebResponse(statusCode, statusMsg, data);*/
 
+	}
+	/**
+	 * 注册功能
+	 *
+	 * */
+	@RequestMapping(value = "/addUser", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public BaseResult insert(AdminQuery adminQuery,HttpServletRequest request,HttpServletResponse response){
+		return  userService.addUser(adminQuery,request,response);
 	}
 
 }
