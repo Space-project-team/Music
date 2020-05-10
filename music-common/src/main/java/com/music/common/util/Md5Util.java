@@ -58,7 +58,6 @@ public class Md5Util {
         }
         return resultString;
     }
-    //不加盐加密
     public static String getMD5String(String str) {
         try {
             // 生成一个MD5加密计算摘要
