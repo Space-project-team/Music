@@ -3,6 +3,7 @@ package com.music.manager.controller;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+
 import com.music.common.result.BaseResult;
 import com.music.common.result.MusicPageInfo;
 import com.music.manager.pojo.MusicLink;
@@ -40,7 +41,7 @@ public class MusicLinkController {
 	 */
 	@RequestMapping(value = "/getMusicLinkList",method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
 	@ResponseBody
-	public MusicPageInfo<MusicLink> getMusicLink(Integer pageNum,Integer pageSize){
+	public MusicPageInfo<MusicLink> getMusicLink(Integer pageNum, Integer pageSize){
 		return musicLinkService.getMusicList(pageNum,pageSize);
 	}
 
