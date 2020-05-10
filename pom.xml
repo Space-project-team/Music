@@ -22,6 +22,7 @@
         <module>music-rpc</module>
         <module>music-manager</module>
         <module>music-common</module>
+        <module>music-generator</module>
     </modules>
 
 

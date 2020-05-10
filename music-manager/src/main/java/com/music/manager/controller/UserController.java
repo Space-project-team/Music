@@ -11,11 +11,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.music.common.result.BaseResult;
+import com.music.common.util.CookieUtil;
 import com.music.manager.common.WebResponse;
 import com.music.manager.domain.User;
 import com.music.manager.service.IMyMusicService;
 import com.music.manager.service.IUserService;
 import com.music.manager.service.impl.UserService;
+import com.music.manager.vo.AdminQuery;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -51,72 +54,32 @@ public class UserController {
 
 	String newName = null;
 
-	// 登录功能
+	/**
+	 * 登入功能
+	 * @param adminQuery
+	 * @return
+	 */
 	@RequestMapping(value = "/loginPage", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
-	public WebResponse loginCon(HttpServletRequest request, HttpSession session) {
-		// 取参数的方法，对应登录表单中的用户名name="user_name"
-		String user_name = request.getParameter("user_name");
-		String user_password = request.getParameter("user_password");
+	public BaseResult loginCon(AdminQuery adminQuery,HttpServletRequest request,HttpServletResponse response) {
 
-		// 调用mapper层的登录的方法，从数据库中匹配用户名和密码，并放回用户名
-		String tname = userService2.login(user_name, user_password);
-
-		String user_Id = userService2.getUserById(user_name, user_password);
-		// newUserId = user_Id; //修改密码用的
-		int userId = 0;
-		try {
-			// 判断字符串是否是数字，并且抛出异常
-			// boolean NotisNum
-			// =(user_Id.equals(null)||user_Id.equals("")||user_Id.equals("null"));
-			boolean NotisNum = (user_Id.equals("null"));
-			// System.out.println(NotisNum);
-			if (!NotisNum) {
-				userId = Integer.parseInt(user_Id);
-			}
-		} catch (Exception e) {
-
-		}
-//	   
-		session.setAttribute("tname", tname);
-		session.setAttribute("userId", userId);
-		Object data = null;
-		String statusMsg = "";
-		Integer statusCode = 200;
-		Map<String, String> paramMap = new HashMap<String, String>();
-		paramMap.put("user_name", user_name);
-		paramMap.put("user_password", user_password);
-		data = paramMap;
-
-		User user = new User();
-		user.setUser_id(userId);
-		System.out.println("登录的id:" + user.getUser_id());
-		System.out.println("登录的用户名:" + session.getAttribute(tname));
-		System.out.println("前端，用户名：" + user_name + " 密码：" + user_password);
-		System.out.println("根据前端在数据库中查找到的用户名：" + tname + " 用户的id:" + userId);
-
-		// 用户名和密码匹配不成功，则返回的用户名为空
-		if (tname == null) {
-			System.out.println("用户不存在");
-			System.out.println();
-			statusMsg = "用户或密码错误！";
-			statusCode = 201;
-			return webResponse.getWebResponse(statusCode, statusMsg, data);
-		} else {
-			statusCode = 200;
-			webResponse.setStatusCode(statusCode);
-			System.out.println("状态码：" + webResponse.getStatusCode());
-			System.out.println("登录成功了");
-			System.out.println();
-			return webResponse.getWebResponseUserId(statusCode, statusMsg, data, userId);
-		}
+		return  userService.login(adminQuery,request,response);
 	}
 
-	// 更改密码 更改密码 更改密码
+
+	/**
+	 * 更改密码 更改密码 更改密码
+	 * @return
+	 */
 	@RequestMapping(value = "/resetUserPassword", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
-	public WebResponse resetUserPassword(HttpServletRequest request, HttpSession session) {
+	public BaseResult resetUserPassword(AdminQuery adminQuery) {
 
+
+
+
+		return null;
+		/*
 		Object data = null;
 		String statusMsg = "";
 		Integer statusCode = 200;
@@ -132,11 +95,14 @@ public class UserController {
 
 		}
 
-		return webResponse.getWebResponse(statusCode, statusMsg, data);
+		return webResponse.getWebResponse(statusCode, statusMsg, data);*/
 
 	}
 
-	// 用户注册
+	/**
+	 * 用户注册
+	 * @return
+	 */
 	@RequestMapping(value = "/addOrEditUser", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public WebResponse addOrEditTest(HttpServletRequest request, HttpServletResponse response, HttpSession session,

@@ -49,10 +49,9 @@ user_id,user_name,user_password</sql>
 
 	</update>
 	
-	<select id="getUserByName" parameterType="String" resultMap="baseResultMap">
-		select
-		user_name
-		from ${tableName} 
+	<select id="getUserByName" parameterType="java.lang.String" resultType="com.music.manager.domain.User">
+		select *
+		from user
 		where user_name = #{userName}
 	</select>
 	

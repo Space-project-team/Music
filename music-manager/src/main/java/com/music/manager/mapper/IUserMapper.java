@@ -42,5 +42,6 @@ public interface IUserMapper extends IOperations<User, User> {
 	@Select("select user_name from user where user_name=#{user_name}")
 	public String rearchUserName(@Param("user_name") String user_name);
 
-
+	//根据用户名查询用户信息
+    User getUserByName(String userName);
 }
