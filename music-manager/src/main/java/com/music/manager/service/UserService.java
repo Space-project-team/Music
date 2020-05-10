@@ -8,6 +8,7 @@ package com.music.manager.service;
 
 
 import com.music.common.result.BaseResult;
+import com.music.manager.pojo.User;
 import com.music.manager.vo.AdminQuery;
 
 import javax.servlet.http.HttpServletRequest;
@@ -21,4 +22,7 @@ public interface UserService {
 
     //用户注册
     BaseResult addUser(AdminQuery adminQuery, HttpServletRequest request, HttpServletResponse response);
+
+    //修改密码
+    BaseResult EditUser(User user,String newPassword, HttpServletRequest request, HttpServletResponse response);
 }

@@ -126,4 +126,26 @@ public class UserServicelmpl implements UserService {
 		result.setMessage("该用户已存在,请重新输入!");
 		return result;
 	}
+
+	@Override
+	public BaseResult EditUser(User user,String newPassword, HttpServletRequest request, HttpServletResponse response) {
+		BaseResult result = null;
+		if(user==null){
+			result = new BaseResult();
+			result.setCode(502);
+			result.setMessage("请先登录!");
+			return result;
+		}
+		//不需要验证旧密码登录
+		//1.参数判断非空
+		if(StringUtils.isEmpty(newPassword)){
+			result = new BaseResult();
+			result.setCode(501);
+			result.setMessage("新密码不能为空!");
+			return result;
+		}
+		user.setUserPassword(Md5Util.getMD5String(newPassword));
+		userMapper.updateByPrimaryKey(user);
+		return BaseResult.success();
+	}
 }
