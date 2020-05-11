@@ -23,8 +23,8 @@
         <module>music-manager</module>
         <module>music-common</module>
         <module>music-generator</module>
-    </modules>
 
+    </modules>
 
     <!--
 	   集中定义依赖组件版本号，但不引入，

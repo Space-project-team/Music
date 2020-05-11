@@ -12,6 +12,7 @@
         <module name="music-portal" />
         <module name="music-rpc" />
         <module name="music-common" />
+        <module name="music-sso" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
