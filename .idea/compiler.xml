@@ -22,6 +22,7 @@
       <module name="music-portal" target="1.8" />
       <module name="music-rpc" target="1.8" />
       <module name="music-sso" target="1.8" />
+      <module name="musicsso" target="1.8" />
       <module name="ss" target="1.8" />
     </bytecodeTargetLevel>
   </component>
@@ -34,6 +35,7 @@
       <module name="music-portal" options="-parameters" />
       <module name="music-rpc" options="-parameters" />
       <module name="music-sso" options="-parameters" />
+      <module name="musicsso" options="-parameters" />
       <module name="ss" options="-parameters" />
     </option>
   </component>
