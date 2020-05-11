@@ -27,8 +27,8 @@
 			<div class="modal-body" style="position: relative;">
 				<form id="test" class="form-horizontal" role="form" action="/user/loginPage" method="post" style="padding-left: 50px;">
 					<div class="form-group">
-						<img src="images/logo2.png" style="display: block; padding: 20px 151px">
-						<div class="erweima"><img src="images/二维码2.jpg" style="position: absolute;width: 130px;
+						<img src="${ctx}/images/logo2.png" style="display: block; padding: 20px 151px">
+						<div class="erweima"><img src="${ctx}/images/二维码2.jpg" style="position: absolute;width: 130px;
 						height: 130px;bottom: 136px;right: 31px;">
 							<p style="position: absolute;right: 64px;bottom: 106px;">联系我们</p>
 						</div>
@@ -80,7 +80,7 @@
 <div style="width: 100%;height: 80px; background-color:#fff;position: relative;">
 	<div style="position: absolute;bottom: -5px;height: 5px;width: 100%;background-color:#fff;z-index: -1;"></div>
 	<div class="search1">
-		<div class="logo1" style="width: 153px; padding: 20.6px 0; display: inline-block;"><img src="images/logo2.png" alt=""><a href=""></a></div>
+		<div class="logo1" style="width: 153px; padding: 20.6px 0; display: inline-block;"><img src="${ctx}/images/logo2.png" alt=""><a href=""></a></div>
 		<nav class="navmargin navbar navbar-default" role="navigation">
 			<div class="shurukuang" style="padding: 20.6px 30px;">
 				<form class="bs-example" role="form" action="#" method="get">
@@ -103,7 +103,7 @@
 				<a class="mymusic" href="#">我的音乐</a>
 				<a class="mymusic" href="#">会员中心</a>
 				<span class="mymusic">|</span>
-				<img id="touxiang" src="images/touxiang.png" width="40px" height="40px" style="display: inline-block; width: 40px;height: 40px;border:0;border-radius: 40px;margin-bottom: 5px;">
+				<img id="touxiang" src="${ctx}/images/touxiang.png" width="40px" height="40px" style="display: inline-block; width: 40px;height: 40px;border:0;border-radius: 40px;margin-bottom: 5px;">
 				<a id="userName" style="cursor: pointer;" class="mymusic" href="#">
 					未登录</a>
 				<a id="zhuXiao" onclick="zhuXiao();location.reload();" href="#">
@@ -166,22 +166,22 @@
 				<!--图片容器-->
 				<div class="carousel-inner">
 					<div class="item active">
-						<img src="images/20181220183028993287.jpg"/>
+						<img src="${ctx}/images/20181220183028993287.jpg"/>
 					</div>
 					<div class="item">
-						<img src="images/20181221091753971511.jpg"/>
+						<img src="${ctx}/images/20181221091753971511.jpg"/>
 					</div>
 					<div class="item">
-						<img src="images/20181222101158401137.jpg"/>
+						<img src="${ctx}/images/20181222101158401137.jpg"/>
 					</div>
 					<div class="item">
-						<img src="images/20181223120755381554.jpg"/>
+						<img src="${ctx}/images/20181223120755381554.jpg"/>
 					</div>
 					<div class="item">
-						<img src="images/20181224161040624077.jpg"/>
+						<img src="${ctx}/images/20181224161040624077.jpg"/>
 					</div>
 					<div class="item">
-						<img src="images/20181225111542828545.jpg"/>
+						<img src="${ctx}/images/20181225111542828545.jpg"/>
 					</div>
 				</div>
 			</div>
@@ -214,33 +214,33 @@
 
 		<div class="kanmv tab-content" id="mv">
 			<div class=" tab-pane fade in active" id="xinge">
-				<div class="mmvv"><a href="#"><img src="images/q1.jpg" alt="mv" class="mvpicture"></a><span class="mvname">潘粤明-冒牌卧底</span></div>
-				<div class="mmvv"><a href="#"><img src="images/q2.jpg" alt="mv" class="mvpicture"></a><span class="mvname">于文文-其实其实（浮生六记LIVE版）</span></div>
-				<div class="mmvv"><a href="#"><img src="images/q3.jpg" alt="mv" class="mvpicture"></a><span class="mvname">陈楚生-有没有曾告诉你</span></div>
-				<div class="mmvv"><a href="#"><img src="images/q4.jpg" alt="mv" class="mvpicture"></a><span class="mvname">TWICE-What is Love?(练习室版）</span></div>
-				<div class="mmvv"><a href="#"><img src="images/q5.jpg" alt="mv" class="mvpicture"></a><span class="mvname">华语群星-点亮心中的梦</span></div>
-				<div class="mmvv"><a href="#"><img src="images/q6.jpg" alt="mv" class="mvpicture"></a><span class="mvname">五月天-什么歌</span></div>
-				<div class="mmvv"><a href="#"><img src="images/q7.jpg" alt="mv" class="mvpicture"></a><span class="mvname">林俊杰-知足</span></div>
-				<div class="mmvv"><a href="#"><img src="images/q8.jpg" alt="mv" class="mvpicture"></a><span class="mvname">林俊杰-可惜没有如果</span></div>
-				<div class="mmvv"><a href="#"><img src="images/q9.jpg" alt="mv" class="mvpicture"></a><span class="mvname">薛之谦-怪咖（歌词版）</span></div>
-				<div class="mmvv"><a href="#"><img src="images/q10.jpeg" alt="mv" class="mvpicture"></a><span class="mvname">胡彦斌-高手</span></div>
-				<div class="mmvv"><a href="#"><img src="images/w1.jpg" alt="mv" class="mvpicture"></a><span class="mvname">白安-离开后</span></div>
-				<div class="mmvv"><a href="#"><img src="images/w2.jpg" alt="mv" class="mvpicture"></a><span class="mvname">KU古曜威-MyLove一起去旅行</span></div>
-				<div class="mmvv"><a href="#"><img src="images/q15.jpeg" alt="mv" class="mvpicture"></a><span class="mvname">冷雪儿-浪子回头</span></div>
-				<div class="mmvv"><a href="#"><img src="images/w4.jpg" alt="mv" class="mvpicture"></a><span class="mvname">朱剑飞-孤独的牧羊人</span></div>
-				<div class="mmvv"><a href="#"><img src="images/w5.jpg" alt="mv" class="mvpicture"></a><span class="mvname">朱兴东-熬夜成瘾</span></div>
-				<div class="mmvv"><a href="#"><img src="images/w6.jpg" alt="mv" class="mvpicture"></a><span class="mvname">海超-话随风 人如梦</span></div>
-				<div class="mmvv"><a href="#"><img src="images/w7.jpg" alt="mv" class="mvpicture"></a><span class="mvname">印子月-有没有一种可能</span></div>
-				<div class="mmvv"><a href="#"><img src="images/q18.jpg" alt="mv" class="mvpicture"></a><span class="mvname">孙露-离别的秋天</span></div>
-				<div class="mmvv"><a href="#"><img src="images/q20.jpeg" alt="mv" class="mvpicture"></a><span class="mvname">蓝琪儿-爱火</span></div>
-				<div class="mmvv"><a href="#"><img src="images/w8.jpg" alt="mv" class="mvpicture"></a><span class="mvname">李行亮-愿得一人心</span></div>
+				<div class="mmvv"><a href="#"><img src="${ctx}/images/q1.jpg" alt="mv" class="mvpicture"></a><span class="mvname">潘粤明-冒牌卧底</span></div>
+				<div class="mmvv"><a href="#"><img src="${ctx}/images/q2.jpg" alt="mv" class="mvpicture"></a><span class="mvname">于文文-其实其实（浮生六记LIVE版）</span></div>
+				<div class="mmvv"><a href="#"><img src="${ctx}/images/q3.jpg" alt="mv" class="mvpicture"></a><span class="mvname">陈楚生-有没有曾告诉你</span></div>
+				<div class="mmvv"><a href="#"><img src="${ctx}/images/q4.jpg" alt="mv" class="mvpicture"></a><span class="mvname">TWICE-What is Love?(练习室版）</span></div>
+				<div class="mmvv"><a href="#"><img src="${ctx}/images/q5.jpg" alt="mv" class="mvpicture"></a><span class="mvname">华语群星-点亮心中的梦</span></div>
+				<div class="mmvv"><a href="#"><img src="${ctx}/images/q6.jpg" alt="mv" class="mvpicture"></a><span class="mvname">五月天-什么歌</span></div>
+				<div class="mmvv"><a href="#"><img src="${ctx}/images/q7.jpg" alt="mv" class="mvpicture"></a><span class="mvname">林俊杰-知足</span></div>
+				<div class="mmvv"><a href="#"><img src="${ctx}/images/q8.jpg" alt="mv" class="mvpicture"></a><span class="mvname">林俊杰-可惜没有如果</span></div>
+				<div class="mmvv"><a href="#"><img src="${ctx}/images/q9.jpg" alt="mv" class="mvpicture"></a><span class="mvname">薛之谦-怪咖（歌词版）</span></div>
+				<div class="mmvv"><a href="#"><img src="${ctx}/images/q10.jpeg" alt="mv" class="mvpicture"></a><span class="mvname">胡彦斌-高手</span></div>
+				<div class="mmvv"><a href="#"><img src="${ctx}/images/w1.jpg" alt="mv" class="mvpicture"></a><span class="mvname">白安-离开后</span></div>
+				<div class="mmvv"><a href="#"><img src="${ctx}/images/w2.jpg" alt="mv" class="mvpicture"></a><span class="mvname">KU古曜威-MyLove一起去旅行</span></div>
+				<div class="mmvv"><a href="#"><img src="${ctx}/images/q15.jpeg" alt="mv" class="mvpicture"></a><span class="mvname">冷雪儿-浪子回头</span></div>
+				<div class="mmvv"><a href="#"><img src="${ctx}/images/w4.jpg" alt="mv" class="mvpicture"></a><span class="mvname">朱剑飞-孤独的牧羊人</span></div>
+				<div class="mmvv"><a href="#"><img src="${ctx}/images/w5.jpg" alt="mv" class="mvpicture"></a><span class="mvname">朱兴东-熬夜成瘾</span></div>
+				<div class="mmvv"><a href="#"><img src="${ctx}/images/w6.jpg" alt="mv" class="mvpicture"></a><span class="mvname">海超-话随风 人如梦</span></div>
+				<div class="mmvv"><a href="#"><img src="${ctx}/images/w7.jpg" alt="mv" class="mvpicture"></a><span class="mvname">印子月-有没有一种可能</span></div>
+				<div class="mmvv"><a href="#"><img src="${ctx}/images/q18.jpg" alt="mv" class="mvpicture"></a><span class="mvname">孙露-离别的秋天</span></div>
+				<div class="mmvv"><a href="#"><img src="${ctx}/images/q20.jpeg" alt="mv" class="mvpicture"></a><span class="mvname">蓝琪儿-爱火</span></div>
+				<div class="mmvv"><a href="#"><img src="${ctx}/images/w8.jpg" alt="mv" class="mvpicture"></a><span class="mvname">李行亮-愿得一人心</span></div>
 
 
 				<!--<script>
                     for (var i=0; i<20; i++)
                       {
-                          var button = '<div class="mmvv"><a href="#"><img src="images/mv.jpg" alt="mv" class="mvpicture"></a><span class="mvname">吴亦凡-从此以后</span></div>
-                          <div class="mmvv"><a href="#"><img src="images/mv.jpg" alt="mv" class="mvpicture"></a><span class="mvname">吴亦凡-从此以后</span></div>';
+                          var button = '<div class="mmvv"><a href="#"><img src="${ctx}/images/mv.jpg" alt="mv" class="mvpicture"></a><span class="mvname">吴亦凡-从此以后</span></div>
+                          <div class="mmvv"><a href="#"><img src="${ctx}/images/mv.jpg" alt="mv" class="mvpicture"></a><span class="mvname">吴亦凡-从此以后</span></div>';
                         document.getElementById("mv").innerHTML += button;
 
                       }
@@ -288,7 +288,7 @@
         $("#zhuXiao").text("注销");
 
 
-        document.getElementById("touxiang").src="images/touxiang2.jpg";
+        document.getElementById("touxiang").src="${ctx}/images/touxiang2.jpg";
         $("#display1").attr("style","display:none;");
     }
 

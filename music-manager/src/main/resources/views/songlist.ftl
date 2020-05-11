@@ -26,8 +26,8 @@
 			<div class="modal-body" style="position: relative;">
 				<form id="test" class="form-horizontal" role="form" action="/user/loginPage" method="post" style="padding-left: 50px;">
 					<div class="form-group">
-						<img src="images/logo2.png" style="display: block; padding: 20px 151px">
-						<div class="erweima"><img src="images/二维码2.jpg" style="position: absolute;width: 130px;
+						<img src="${ctx}/images/logo2.png" style="display: block; padding: 20px 151px">
+						<div class="erweima"><img src="${ctx}/images/二维码2.jpg" style="position: absolute;width: 130px;
 						height: 130px;bottom: 136px;right: 31px;">
 							<p style="position: absolute;right: 64px;bottom: 106px;">联系我们</p>
 						</div>
@@ -79,7 +79,7 @@
 <div style="width: 100%;height: 80px; background-color:#fff;position: relative;">
 	<div style="position: absolute;bottom: -5px;height: 5px;width: 100%;background-color:#fff;z-index: -1;"></div>
 	<div class="search1">
-		<div class="logo1" style="width: 153px; padding: 20.6px 0; display: inline-block;"><img src="images/logo2.png" alt=""><a href=""></a></div>
+		<div class="logo1" style="width: 153px; padding: 20.6px 0; display: inline-block;"><img src="${ctx}/images/logo2.png" alt=""><a href=""></a></div>
 		<nav class="navmargin navbar navbar-default" role="navigation">
 			<div class="shurukuang" style="padding: 20.6px 30px;">
 				<form class="bs-example" role="form" action="#" method="get">
@@ -102,7 +102,7 @@
 				<a class="mymusic" href="/mymusic.ftl  ">我的音乐</a>
 				<a class="mymusic" href="/huiyuanzhongxin.html ">会员中心</a>
 				<span class="mymusic">|</span>
-				<img id="touxiang" src="images/touxiang.png" width="40px" height="40px" style="display: inline-block; width: 40px;height: 40px;border:0;border-radius: 40px;margin-bottom: 5px;">
+				<img id="touxiang" src="${ctx}/images/touxiang.png" width="40px" height="40px" style="display: inline-block; width: 40px;height: 40px;border:0;border-radius: 40px;margin-bottom: 5px;">
 				<a id="userName" style="cursor: pointer;" class="mymusic" href="#">
 					未登录</a>
 				<a id="zhuXiao" onclick="zhuXiao();location.reload();" href="#">
@@ -160,7 +160,7 @@
 			
 			<div class="tab-pane fade in active" id="tuijian">
 				<div class="gedan_tuijian">
-					<img src="images/gedan_1.jpg" class="gedanpicture">
+					<img src="${ctx}/images/gedan_1.jpg" class="gedanpicture">
 					<div class="gedanfont">
 						<span class="gedanfonthover"><a href="#">新年愿望：来一场甜蜜的暴击吧！</a><span class="spanright">制作人：OPPO</span></span>
 						<div class="gedanjieshao">
@@ -175,7 +175,7 @@
 					</div>
 				</div>
 				<div class="gedan_tuijian">
-					<img src="images/15.jpg" class="gedanpicture">
+					<img src="${ctx}/images/15.jpg" class="gedanpicture">
 					<div class="gedanfont">
 						<span class="gedanfonthover"><a href="#">烦躁的世界里做个清静的人</a><span class="spanright">制作人：烦了</span></span>
 						<div class="gedanjieshao">
@@ -190,7 +190,7 @@
 					</div>
 				</div>
 				<div class="gedan_tuijian">
-					<img src="images/26.jpg" class="gedanpicture">
+					<img src="${ctx}/images/26.jpg" class="gedanpicture">
 					<div class="gedanfont">
 						<span class="gedanfonthover"><a href="#">每周推荐歌曲</a><span class="spanright">制作人：轻语号歌单君</span></span>
 						<div class="gedanjieshao">
@@ -205,7 +205,7 @@
 					</div>
 				</div>
 				<div class="gedan_tuijian">
-					<img src="images/29.jpg" class="gedanpicture">
+					<img src="${ctx}/images/29.jpg" class="gedanpicture">
 					<div class="gedanfont">
 						<span class="gedanfonthover"><a href="#">怀旧花园：记忆中的那台欧美留声机</a><span class="spanright">制作人：正小守</span></span>
 						<div class="gedanjieshao">
@@ -220,7 +220,7 @@
 					</div>
 				</div>
 				<div class="gedan_tuijian">
-					<img src="images/34.jpg" class="gedanpicture">
+					<img src="${ctx}/images/34.jpg" class="gedanpicture">
 					<div class="gedanfont">
 						<span class="gedanfonthover"><a href="#">慕寒：远山长慕，寒鸦声渡</a><span class="spanright">制作人：千金大小姐M</span></span>
 						<div class="gedanjieshao">
@@ -240,7 +240,7 @@
 			<!--最热标签页-->
 			<div class="tab-pane fade" id="zuire">
 				<div class="gedan_tuijian">
-					<img src="images/39.jpg" class="gedanpicture">
+					<img src="${ctx}/images/39.jpg" class="gedanpicture">
 					<div class="gedanfont">
 						<span class="gedanfonthover"><a href="#">我愿用十年，换你一句好久不见</a><span class="spanright">制作人：念安娜</span></span>
 						<div class="gedanjieshao">
@@ -261,7 +261,7 @@
 					</div>
 				</div>
 				<div class="gedan_tuijian">
-					<img src="images/29.jpg" class="gedanpicture">
+					<img src="${ctx}/images/29.jpg" class="gedanpicture">
 					<div class="gedanfont">
 						<span class="gedanfonthover"><a href="#">元旦心愿屋：2019，请对我好一点</a><span class="spanright">制作人：歌单小编</span></span>
 						<div class="gedanjieshao">
@@ -276,7 +276,7 @@
 					</div>
 				</div>
 				<div class="gedan_tuijian">
-					<img src="images/30.jpg" class="gedanpicture">
+					<img src="${ctx}/images/30.jpg" class="gedanpicture">
 					<div class="gedanfont">
 						<span class="gedanfonthover"><a href="#">小编每日精选：原创古风</a><span class="spanright">制作人：小龙</span></span>
 						<div class="gedanjieshao">
@@ -291,7 +291,7 @@
 					</div>
 				</div>
 				<div class="gedan_tuijian">
-					<img src="images/32.jpg" class="gedanpicture">
+					<img src="${ctx}/images/32.jpg" class="gedanpicture">
 					<div class="gedanfont">
 						<span class="gedanfonthover"><a href="#">清晨时分:适合早读时听的纯音乐</a><span class="spanright">制作人：安</span></span>
 						<div class="gedanjieshao">
@@ -306,7 +306,7 @@
 					</div>
 				</div>
 				<div class="gedan_tuijian">
-					<img src="images/38.jpg" class="gedanpicture">
+					<img src="${ctx}/images/38.jpg" class="gedanpicture">
 					<div class="gedanfont">
 						<span class="gedanfonthover"><a href="#">粤语经典：岁月留情，回味浪漫</a><span class="spanright">制作人：Sea-En</span></span>
 						<div class="gedanjieshao">
@@ -328,7 +328,7 @@
 			
 			<div class="tab-pane fade" id="recang">
 				<div class="gedan_tuijian">
-					<img src="images/gedan_3.jpg" class="gedanpicture">
+					<img src="${ctx}/images/gedan_3.jpg" class="gedanpicture">
 					<div class="gedanfont">
 						<span class="gedanfonthover"><a href="#">古风现场：穿越千年的直播盛宴</a><span class="spanright">制作人：元萧</span></span>
 						<div class="gedanjieshao">
@@ -347,7 +347,7 @@
 					</div>
 				</div>
 				<div class="gedan_tuijian">
-					<img src="images/gedan_3.jpg" class="gedanpicture">
+					<img src="${ctx}/images/gedan_3.jpg" class="gedanpicture">
 					<div class="gedanfont">
 						<span class="gedanfonthover"><a href="#">古风现场：穿越千年的直播盛宴</a><span class="spanright">制作人：元萧</span></span>
 						<div class="gedanjieshao">
@@ -366,7 +366,7 @@
 					</div>
 				</div>
 				<div class="gedan_tuijian">
-					<img src="images/gedan_3.jpg" class="gedanpicture">
+					<img src="${ctx}/images/gedan_3.jpg" class="gedanpicture">
 					<div class="gedanfont">
 						<span class="gedanfonthover"><a href="#">古风现场：穿越千年的直播盛宴</a><span class="spanright">制作人：元萧</span></span>
 						<div class="gedanjieshao">
@@ -385,7 +385,7 @@
 					</div>
 				</div>
 				<div class="gedan_tuijian">
-					<img src="images/gedan_3.jpg" class="gedanpicture">
+					<img src="${ctx}/images/gedan_3.jpg" class="gedanpicture">
 					<div class="gedanfont">
 						<span class="gedanfonthover"><a href="#">古风现场：穿越千年的直播盛宴</a><span class="spanright">制作人：元萧</span></span>
 						<div class="gedanjieshao">
@@ -404,7 +404,7 @@
 					</div>
 				</div>
 				<div class="gedan_tuijian">
-					<img src="images/gedan_3.jpg" class="gedanpicture">
+					<img src="${ctx}/images/gedan_3.jpg" class="gedanpicture">
 					<div class="gedanfont">
 						<span class="gedanfonthover"><a href="#">古风现场：穿越千年的直播盛宴</a><span class="spanright">制作人：元萧</span></span>
 						<div class="gedanjieshao">
@@ -428,7 +428,7 @@
 			
 			<div class="tab-pane fade" id="biaosheng">
 				<div class="gedan_tuijian">
-					<img src="images/gedan_4.jpg" class="gedanpicture">
+					<img src="${ctx}/images/gedan_4.jpg" class="gedanpicture">
 					<div class="gedanfont">
 						<span class="gedanfonthover"><a href="#">烦躁的世界里做个清静的人</a><span class="spanright">制作人：烦了</span></span>
 						<div class="gedanjieshao">
@@ -443,7 +443,7 @@
 					</div>
 				</div>
 				<div class="gedan_tuijian">
-					<img src="images/gedan_4.jpg" class="gedanpicture">
+					<img src="${ctx}/images/gedan_4.jpg" class="gedanpicture">
 					<div class="gedanfont">
 						<span class="gedanfonthover"><a href="#">烦躁的世界里做个清静的人</a><span class="spanright">制作人：烦了</span></span>
 						<div class="gedanjieshao">
@@ -458,7 +458,7 @@
 					</div>
 				</div>
 				<div class="gedan_tuijian">
-					<img src="images/gedan_4.jpg" class="gedanpicture">
+					<img src="${ctx}/images/gedan_4.jpg" class="gedanpicture">
 					<div class="gedanfont">
 						<span class="gedanfonthover"><a href="#">烦躁的世界里做个清静的人</a><span class="spanright">制作人：烦了</span></span>
 						<div class="gedanjieshao">
@@ -473,7 +473,7 @@
 					</div>
 				</div>
 				<div class="gedan_tuijian">
-					<img src="images/gedan_4.jpg" class="gedanpicture">
+					<img src="${ctx}/images/gedan_4.jpg" class="gedanpicture">
 					<div class="gedanfont">
 						<span class="gedanfonthover"><a href="#">烦躁的世界里做个清静的人</a><span class="spanright">制作人：烦了</span></span>
 						<div class="gedanjieshao">
@@ -488,7 +488,7 @@
 					</div>
 				</div>
 				<div class="gedan_tuijian">
-					<img src="images/gedan_4.jpg" class="gedanpicture">
+					<img src="${ctx}/images/gedan_4.jpg" class="gedanpicture">
 					<div class="gedanfont">
 						<span class="gedanfonthover"><a href="#">烦躁的世界里做个清静的人</a><span class="spanright">制作人：烦了</span></span>
 						<div class="gedanjieshao">
@@ -544,7 +544,7 @@
         $("#zhuXiao").text("注销");
 
 
-        document.getElementById("touxiang").src="images/touxiang2.jpg";
+        document.getElementById("touxiang").src="${ctx}/images/touxiang2.jpg";
         $("#display1").attr("style","display:none;");
     }
 

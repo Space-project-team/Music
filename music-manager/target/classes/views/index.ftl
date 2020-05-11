@@ -28,8 +28,8 @@
                 <form id="test" class="form-horizontal" role="form" action="/user/loginPage" method="post"
                       style="padding-left: 50px;">
                     <div class="form-group">
-                        <img src="images/logo2.png" style="display: block; padding: 20px 151px">
-                        <div class="erweima"><img src="images/二维码2.jpg" style="position: absolute;width: 130px;
+                        <img src="${ctx}/images/logo2.png" style="display: block; padding: 20px 151px">
+                        <div class="erweima"><img src="${ctx}/images/二维码2.jpg" style="position: absolute;width: 130px;
 						height: 130px;bottom: 136px;right: 31px;">
                             <p style="position: absolute;right: 64px;bottom: 106px;">联系我们</p>
                         </div>
@@ -83,7 +83,7 @@
 <div style="width: 100%;height: 80px; background-color:#fff;position: relative;">
     <div style="position: absolute;bottom: -5px;height: 5px;width: 100%;background-color:#fff;z-index: -1;"></div>
     <div class="search1">
-        <div class="logo1" style="width: 153px; padding: 20.6px 0; display: inline-block;"><img src="images/logo2.png"
+        <div class="logo1" style="width: 153px; padding: 20.6px 0; display: inline-block;"><img src="${ctx}/images/logo2.png"
                                                                                                 alt=""><a href="#"></a>
         </div>
         <nav class="navmargin navbar navbar-default" role="navigation">
@@ -116,7 +116,7 @@
                 <a class="mymusic" href="/mymusic.ftl" target="_blank">您是第<span
                         id="user_number" style="font-size:20px;color:red;text-align:center;padding:0;"> &nbsp</span>位用户</a>
                 <span class="mymusic">|</span>
-                <img id="touxiang" src="images/touxiang.png" width="40px" height="40px"
+                <img id="touxiang" src="${ctx}/images/touxiang.png" width="40px" height="40px"
                      style="display: inline-block; width: 40px;height: 40px;border:0;border-radius: 40px;margin-bottom: 5px;">
                 <a id="userName" style="cursor: pointer;" class="mymusic" href="">
                     未登录</a>
@@ -325,7 +325,7 @@
         <p class="da">巅 峰 排 行</p>
         <ul>
             <li class="back1">
-                <img src="images/paihang-1.png" width="225.2px" height="500px">
+                <img src="${ctx}/images/paihang-1.png" width="225.2px" height="500px">
                 <div class="shang tong">
                     <p class="da1">轻语飙升榜</p>
                     <p style="font-size: 30px;font-weight: bold;	">人气</p>
@@ -341,7 +341,7 @@
                     <a href="#" style="margin-left: 42px">莫文蔚</a>
                 </div>
             </li>
-            <li class="back2"><img src="images/paihan-2.png" width="225.2px" height="500px">
+            <li class="back2"><img src="${ctx}/images/paihan-2.png" width="225.2px" height="500px">
                 <div class="shang tong">
                     <p>抖音最火榜</p>
                     <p style="font-size: 30px;font-weight: bold;	">流行</p>
@@ -356,7 +356,7 @@
                     <a class="topline" href="#">4. &nbsp 生如雪花</a>
                     <a href="#" style="margin-left: 42px">马天宇</a></div>
             </li>
-            <li class="back3"><img src="images/paihan-3.jpg" width="225.2px" height="500px">
+            <li class="back3"><img src="${ctx}/images/paihan-3.jpg" width="225.2px" height="500px">
                 <div class="shang tong">
                     <p>轻语TOP500</p>
                     <p style="font-size: 30px;font-weight: bold;	">热歌</p>
@@ -371,7 +371,7 @@
                     <a class="topline" href="#">4. &nbsp 冬</a>
                     <a href="#" style="margin-left: 42px">好妹妹</a></div>
             </li>
-            <li class="back4"><img src="images/paihan-4.jpg" width="225.2px" height="500px">
+            <li class="back4"><img src="${ctx}/images/paihan-4.jpg" width="225.2px" height="500px">
                 <div class="shang tong">
                     <p>网络红歌榜</p>
                     <p style="font-size: 30px;font-weight: bold;	">新曲</p>
@@ -387,7 +387,7 @@
                     <a class="topline" href="#">4. &nbsp生僻字</a>
                     <a href="#" style="margin-left: 42px">陈珂与</a></div>
             </li>
-            <li class="back5"><img src="images/paihan-5.jpg" width="225.2px" height="500px">
+            <li class="back5"><img src="${ctx}/${ctx}/images/paihan-5.jpg" width="225.2px" height="500px">
                 <div class="shang tong">
                     <p>伤感情歌榜</p>
                     <p style="font-size: 30px;font-weight: bold;	">经典</p>
@@ -448,7 +448,7 @@
         $("#userName").text("账号：" + $.cookie("user_name"));
         $("#userName").attr("href", "/resetpassword.ftl");
         $("#zhuXiao").text("注销");
-        document.getElementById("touxiang").src = "images/touxiang2.jpg";
+        document.getElementById("touxiang").src = "${ctx}/images/touxiang2.jpg";
         $("#display1").attr("style", "display:none;");
     }//已在mymusic中注释
 

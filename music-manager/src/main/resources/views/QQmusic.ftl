@@ -46,7 +46,7 @@
         <div class="content_right">
             <div class="song_info" style="margin: 100px">
                 <a href="javascript:;" class="song_info_pic">
-                    <img class="song_img" src="images/2.jpg" alt="" width="200px" height="200px">
+                    <img class="song_img" src="${ctx}/images/2.jpg" alt="" width="200px" height="200px">
                 </a>
                 <div class="song_info_name ">歌曲名称：
                     <a class="songName" href="javascript:;">
@@ -99,7 +99,7 @@
     </div>
 </div>
 <div class="mask_bg">
-    <img class="song_img" src="images/touxiang2.jpg" alt="" width="100%" height="100%">
+    <img class="song_img" src="${ctx}/images/touxiang2.jpg" alt="" width="100%" height="100%">
 </div>
 <div class="mask"></div>
 <audio id="audio" src=""></audio>

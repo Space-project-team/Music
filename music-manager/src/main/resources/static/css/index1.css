@@ -33,7 +33,7 @@ ul{
     display: inline-block;
     width: 200px;
     height: 45px;
-    background: url("../../views/images/logo2.png") no-repeat 0 5px;
+    background: url("../images/logo2.png") no-repeat 0 5px;
 }
 .header .register{
     float: right;
@@ -146,7 +146,7 @@ ul{
     border: 1px solid #fff;
 }
 .content_list .list_checked i{
-    background: url("../../views/images/jlt.jpg") no-repeat -185px -64px;
+    background: url("../images/jlt.jpg") no-repeat -185px -64px;
     background-size: 276px 200px;
 
 }
@@ -209,7 +209,7 @@ ul{
     display: inline-block;
     text-decoration: none;
     color: #fff;
-    background: url("../../views/images/player.png") no-repeat 0 0;
+    background: url("../images/player.png") no-repeat 0 0;
     margin-right: 20px;
     vertical-align: -5px;
 

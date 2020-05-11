@@ -12,7 +12,7 @@
 <body style="user-select: none">
 <div class="search1">
     <div class="logo1" style="width: 153px; padding: 20.6px 0; display: inline-block;"><a
-            href="/index.ftl" target="_blank"><img src="images/logo2.png" alt=""></a>
+            href="/index.ftl" target="_blank"><img src="${ctx}/images/logo2.png" alt=""></a>
     </div>
 
     <nav class="navmargin navbar navbar-default" role="navigation">

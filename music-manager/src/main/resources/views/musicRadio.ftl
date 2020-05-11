@@ -28,8 +28,8 @@
                 <form id="test" class="form-horizontal" role="form" action="/user/loginPage" method="post"
                       style="padding-left: 50px;">
                     <div class="form-group">
-                        <img src="images/logo2.png" style="display: block; padding: 20px 151px">
-                        <div class="erweima"><img src="images/二维码2.jpg" style="position: absolute;width: 130px;
+                        <img src="${ctx}/images/logo2.png" style="display: block; padding: 20px 151px">
+                        <div class="erweima"><img src="${ctx}/images/二维码2.jpg" style="position: absolute;width: 130px;
 						height: 130px;bottom: 136px;right: 31px;">
                             <p style="position: absolute;right: 64px;bottom: 106px;">联系我们</p>
                         </div>
@@ -83,7 +83,7 @@
 <div style="width: 100%;height: 80px; background-color:#fff;position: relative;">
     <div style="position: absolute;bottom: -5px;height: 5px;width: 100%;background-color:#fff;z-index: -1;"></div>
     <div class="search1">
-        <div class="logo1" style="width: 153px; padding: 20.6px 0; display: inline-block;"><img src="images/logo2.png"
+        <div class="logo1" style="width: 153px; padding: 20.6px 0; display: inline-block;"><img src="${ctx}/images/logo2.png"
                                                                                                 alt=""><a href=""></a>
         </div>
         <nav class="navmargin navbar navbar-default" role="navigation">
@@ -108,7 +108,7 @@
                 <a class="mymusic" href="/mymusic.ftl">我的音乐</a>
                 <a class="mymusic" href="/huiyuanzhongxin.html">会员中心</a>
                 <span class="mymusic">|</span>
-                <img id="touxiang" src="images/touxiang.png" width="40px" height="40px"
+                <img id="touxiang" src="${ctx}/images/touxiang.png" width="40px" height="40px"
                      style="display: inline-block; width: 40px;height: 40px;border:0;border-radius: 40px;margin-bottom: 5px;">
                 <a id="userName" style="cursor: pointer;" class="mymusic" href="#">
                     未登录</a>
@@ -190,7 +190,7 @@
             </table>
         </div>
         <div class="header_right">
-            <img src="images/古巨基.png" alt="古巨基" class="player_picture">
+            <img src="${ctx}/images/古巨基.png" alt="古巨基" class="player_picture">
         </div>
     </div>
     <div class="content">
@@ -214,7 +214,7 @@
             <div class="tab-pane fade in active" id="quanbu">
                 <div class="xiaodongxi">
                     <div class="xiaodongxi_img">
-                        <img src="images/图片/f1.jpg" width="32" height="32">
+                        <img src="${ctx}/images/图片/f1.jpg" width="32" height="32">
                     </div>
                     <div class="xiaodongxi_p">
                         <p><a href="#">最爱成名曲</a></p>
@@ -223,7 +223,7 @@
                 </div>
                 <div class="xiaodongxi">
                     <div class="xiaodongxi_img">
-                        <img src="images/图片/f2.jpg" width="32" height="32">
+                        <img src="${ctx}/images/图片/f2.jpg" width="32" height="32">
                     </div>
                     <div class="xiaodongxi_p">
                         <p><a href="#">轻语热歌&nbsp;</a></p>
@@ -232,7 +232,7 @@
                 </div>
                 <div class="xiaodongxi">
                     <div class="xiaodongxi_img">
-                        <img src="images/图片/f3.jpg" width="32" height="32">
+                        <img src="${ctx}/images/图片/f3.jpg" width="32" height="32">
                     </div>
                     <div class="xiaodongxi_p">
                         <p><a href="#">蒙面歌王&nbsp;</a></p>
@@ -241,7 +241,7 @@
                 </div>
                 <div class="xiaodongxi">
                     <div class="xiaodongxi_img">
-                        <img src="images/图片/f4.jpg" width="32" height="32">
+                        <img src="${ctx}/images/图片/f4.jpg" width="32" height="32">
                     </div>
                     <div class="xiaodongxi_p">
                         <p><a href="#">盖世英雄&nbsp;</a></p>
@@ -250,7 +250,7 @@
                 </div>
                 <div class="xiaodongxi">
                     <div class="xiaodongxi_img">
-                        <img src="images/图片/f5.jpg" width="32" height="32">
+                        <img src="${ctx}/images/图片/f5.jpg" width="32" height="32">
                     </div>
                     <div class="xiaodongxi_p">
                         <p><a href="#">一个人&nbsp;</a></p>
@@ -259,7 +259,7 @@
                 </div>
                 <div class="xiaodongxi">
                     <div class="xiaodongxi_img">
-                        <img src="images/图片/f6.jpg" width="32" height="32">
+                        <img src="${ctx}/images/图片/f6.jpg" width="32" height="32">
                     </div>
                     <div class="xiaodongxi_p">
                         <p><a href="#">学习&nbsp;</a></p>
@@ -268,7 +268,7 @@
                 </div>
                 <div class="xiaodongxi">
                     <div class="xiaodongxi_img">
-                        <img src="images/图片/f7.jpg" width="32" height="32">
+                        <img src="${ctx}/images/图片/f7.jpg" width="32" height="32">
                     </div>
                     <div class="xiaodongxi_p">
                         <p><a href="#">聚会暖场&nbsp;</a></p>
@@ -277,7 +277,7 @@
                 </div>
                 <div class="xiaodongxi">
                     <div class="xiaodongxi_img">
-                        <img src="images/图片/f9.jpg" width="32" height="32">
+                        <img src="${ctx}/images/图片/f9.jpg" width="32" height="32">
                     </div>
                     <div class="xiaodongxi_p">
                         <p><a href="#">伤感&nbsp;</a></p>
@@ -286,7 +286,7 @@
                 </div>
                 <div class="xiaodongxi">
                     <div class="xiaodongxi_img">
-                        <img src="images/图片/f10.jpg" width="32" height="32">
+                        <img src="${ctx}/images/图片/f10.jpg" width="32" height="32">
                     </div>
                     <div class="xiaodongxi_p">
                         <p><a href="#">甜蜜&nbsp;</a></p>
@@ -295,7 +295,7 @@
                 </div>
                 <div class="xiaodongxi">
                     <div class="xiaodongxi_img">
-                        <img src="images/图片/f11.jpg" width="32" height="32">
+                        <img src="${ctx}/images/图片/f11.jpg" width="32" height="32">
                     </div>
                     <div class="xiaodongxi_p">
                         <p><a href="#">80后&nbsp;</a></p>
@@ -304,7 +304,7 @@
                 </div>
                 <div class="xiaodongxi">
                     <div class="xiaodongxi_img">
-                        <img src="images/图片/f12.jpg" width="32" height="32">
+                        <img src="${ctx}/images/图片/f12.jpg" width="32" height="32">
                     </div>
                     <div class="xiaodongxi_p">
                         <p><a href="#">90后&nbsp;</a></p>
@@ -313,7 +313,7 @@
                 </div>
                 <div class="xiaodongxi">
                     <div class="xiaodongxi_img">
-                        <img src="images/图片/f13.jpg" width="32" height="32">
+                        <img src="${ctx}/images/图片/f13.jpg" width="32" height="32">
                     </div>
                     <div class="xiaodongxi_p">
                         <p><a href="#">流行&nbsp;</a></p>
@@ -322,7 +322,7 @@
                 </div>
                 <div class="xiaodongxi">
                     <div class="xiaodongxi_img">
-                        <img src="images/图片/f14.jpg" width="32" height="32">
+                        <img src="${ctx}/images/图片/f14.jpg" width="32" height="32">
                     </div>
                     <div class="xiaodongxi_p">
                         <p><a href="#">爵士&nbsp;</a></p>
@@ -331,7 +331,7 @@
                 </div>
                 <div class="xiaodongxi">
                     <div class="xiaodongxi_img">
-                        <img src="images/图片/z13.jpg" width="32" height="32">
+                        <img src="${ctx}/images/图片/z13.jpg" width="32" height="32">
                     </div>
                     <div class="xiaodongxi_p">
                         <p><a href="#">思念&nbsp;</a></p>
@@ -340,7 +340,7 @@
                 </div>
                 <div class="xiaodongxi">
                     <div class="xiaodongxi_img">
-                        <img src="images/图片/z14.jpg" width="32" height="32">
+                        <img src="${ctx}/images/图片/z14.jpg" width="32" height="32">
                     </div>
                     <div class="xiaodongxi_p">
                         <p><a href="#">古风&nbsp;</a></p>
@@ -349,7 +349,7 @@
                 </div>
                 <div class="xiaodongxi">
                     <div class="xiaodongxi_img">
-                        <img src="images/图片/z15.jpg" width="32" height="32">
+                        <img src="${ctx}/images/图片/z15.jpg" width="32" height="32">
                     </div>
                     <div class="xiaodongxi_p">
                         <p><a href="#">国语&nbsp;</a></p>
@@ -358,7 +358,7 @@
                 </div>
                 <div class="xiaodongxi">
                     <div class="xiaodongxi_img">
-                        <img src="images/图片/z16.jpg" width="32" height="32">
+                        <img src="${ctx}/images/图片/z16.jpg" width="32" height="32">
                     </div>
                     <div class="xiaodongxi_p">
                         <p><a href="#">2018跨界歌王&nbsp;</a></p>
@@ -367,7 +367,7 @@
                 </div>
                 <div class="xiaodongxi">
                     <div class="xiaodongxi_img">
-                        <img src="images/图片/z17.jpg" width="32" height="32">
+                        <img src="${ctx}/images/图片/z17.jpg" width="32" height="32">
                     </div>
                     <div class="xiaodongxi_p">
                         <p><a href="#">中文经典&nbsp;</a></p>
@@ -376,7 +376,7 @@
                 </div>
                 <div class="xiaodongxi">
                     <div class="xiaodongxi_img">
-                        <img src="images/图片/z18.jpg" width="32" height="32">
+                        <img src="${ctx}/images/图片/z18.jpg" width="32" height="32">
                     </div>
                     <div class="xiaodongxi_p">
                         <p><a href="#">网络红歌&nbsp;</a></p>
@@ -385,7 +385,7 @@
                 </div>
                 <div class="xiaodongxi">
                     <div class="xiaodongxi_img">
-                        <img src="images/图片/z19.jpg" width="32" height="32">
+                        <img src="${ctx}/images/图片/z19.jpg" width="32" height="32">
                     </div>
                     <div class="xiaodongxi_p">
                         <p><a href="#">中国好声音&nbsp;</a></p>
@@ -394,7 +394,7 @@
                 </div>
                 <div class="xiaodongxi">
                     <div class="xiaodongxi_img">
-                        <img src="images/图片/z21.jpg" width="32" height="32">
+                        <img src="${ctx}/images/图片/z21.jpg" width="32" height="32">
                     </div>
                     <div class="xiaodongxi_p">
                         <p><a href="#">歌手&nbsp;</a></p>
@@ -403,7 +403,7 @@
                 </div>
                 <div class="xiaodongxi">
                     <div class="xiaodongxi_img">
-                        <img src="images/图片/z22.jpg" width="32" height="32">
+                        <img src="${ctx}/images/图片/z22.jpg" width="32" height="32">
                     </div>
                     <div class="xiaodongxi_p">
                         <p><a href="#">梦想的声音&nbsp;</a></p>
@@ -412,7 +412,7 @@
                 </div>
                 <div class="xiaodongxi">
                     <div class="xiaodongxi_img">
-                        <img src="images/z24.jpg" width="32" height="32">
+                        <img src="${ctx}/images/z24.jpg" width="32" height="32">
                     </div>
                     <div class="xiaodongxi_p">
                         <p><a href="#">我是歌手&nbsp;</a></p>
@@ -421,7 +421,7 @@
                 </div>
                 <div class="xiaodongxi">
                     <div class="xiaodongxi_img">
-                        <img src="images/图片/z25.jpg" width="32" height="32">
+                        <img src="${ctx}/images/图片/z25.jpg" width="32" height="32">
                     </div>
                     <div class="xiaodongxi_p">
                         <p><a href="#">最爱成名曲&nbsp;</a></p>
@@ -430,7 +430,7 @@
                 </div>
                 <div class="xiaodongxi">
                     <div class="xiaodongxi_img">
-                        <img src="images/图片/z26.jpg" width="32" height="32">
+                        <img src="${ctx}/images/图片/z26.jpg" width="32" height="32">
                     </div>
                     <div class="xiaodongxi_p">
                         <p><a href="#">KTV必点曲&nbsp;</a></p>
@@ -439,7 +439,7 @@
                 </div>
                 <div class="xiaodongxi">
                     <div class="xiaodongxi_img">
-                        <img src="images/1.jpg" width="32" height="32">
+                        <img src="${ctx}/images/1.jpg" width="32" height="32">
                     </div>
                     <div class="xiaodongxi_p">
                         <p><a href="#">幻月之城&nbsp;</a></p>
@@ -448,7 +448,7 @@
                 </div>
                 <div class="xiaodongxi">
                     <div class="xiaodongxi_img">
-                        <img src="images/2.jpg" width="32" height="32">
+                        <img src="${ctx}/images/2.jpg" width="32" height="32">
                     </div>
                     <div class="xiaodongxi_p">
                         <p><a href="#">天籁之战&nbsp;</a></p>
@@ -457,7 +457,7 @@
                 </div>
                 <div class="xiaodongxi">
                     <div class="xiaodongxi_img">
-                        <img src="images/15.jpg" width="32" height="32">
+                        <img src="${ctx}/images/15.jpg" width="32" height="32">
                     </div>
                     <div class="xiaodongxi_p">
                         <p><a href="#">中国新歌曲&nbsp;</a></p>
@@ -466,7 +466,7 @@
                 </div>
                 <div class="xiaodongxi">
                     <div class="xiaodongxi_img">
-                        <img src="images/26.jpg" width="32" height="32">
+                        <img src="${ctx}/images/26.jpg" width="32" height="32">
                     </div>
                     <div class="xiaodongxi_p">
                         <p><a href="#">蒙面唱将猜猜猜&nbsp;</a></p>
@@ -475,7 +475,7 @@
                 </div>
                 <div class="xiaodongxi">
                     <div class="xiaodongxi_img">
-                        <img src="images/27.jpg" width="32" height="32">
+                        <img src="${ctx}/images/27.jpg" width="32" height="32">
                     </div>
                     <div class="xiaodongxi_p">
                         <p><a href="#">轻音乐&nbsp;</a></p>
@@ -490,7 +490,7 @@
         <div class="tab-pane fade" id="zhuti">
             <div class="xiaodongxi">
                 <div class="xiaodongxi_img">
-                    <img src="images/016.jpg" width="32" height="32">
+                    <img src="${ctx}/images/list16.jpg" width="32" height="32">
                 </div>
                 <div class="xiaodongxi_p">
                     <p><a href="#">轻音乐</a></p>
@@ -499,7 +499,7 @@
             </div>
             <div class="xiaodongxi">
                 <div class="xiaodongxi_img">
-                    <img src="images/017.jpg" width="32" height="32">
+                    <img src="${ctx}/images/list7.jpg" width="32" height="32">
                 </div>
                 <div class="xiaodongxi_p">
                     <p><a href="#">轻音乐&nbsp;</a></p>
@@ -508,7 +508,7 @@
             </div>
             <div class="xiaodongxi">
                 <div class="xiaodongxi_img">
-                    <img src="images/018.jpg" width="32" height="32">
+                    <img src="${ctx}/images/list8.jpg" width="32" height="32">
                 </div>
                 <div class="xiaodongxi_p">
                     <p><a href="#">轻音乐&nbsp;</a></p>
@@ -522,7 +522,7 @@
         <div class="tab-pane fade" id="fengge">
             <div class="xiaodongxi">
                 <div class="xiaodongxi_img">
-                    <img src="images/025.jpg" width="32" height="32">
+                    <img src="${ctx}/images/list38.jpg" width="32" height="32">
                 </div>
                 <div class="xiaodongxi_p">
                     <p><a href="#">老情歌</a></p>
@@ -531,7 +531,7 @@
             </div>
             <div class="xiaodongxi">
                 <div class="xiaodongxi_img">
-                    <img src="images/061.jpg" width="32" height="32">
+                    <img src="${ctx}/images/list33.jpg" width="32" height="32">
                 </div>
                 <div class="xiaodongxi_p">
                     <p><a href="#">发烧女声&nbsp;</a></p>
@@ -540,7 +540,7 @@
             </div>
             <div class="xiaodongxi">
                 <div class="xiaodongxi_img">
-                    <img src="images/100.jpg" width="32" height="32">
+                    <img src="${ctx}/images/list40.jpg" width="32" height="32">
                 </div>
                 <div class="xiaodongxi_p">
                     <p><a href="#">驾驶&nbsp;</a></p>
@@ -554,7 +554,7 @@
         <div class="tab-pane fade" id="yuyan">
             <div class="xiaodongxi">
                 <div class="xiaodongxi_img">
-                    <img src="images/101.jpg" width="32" height="32">
+                    <img src="${ctx}/images/list1.jpg" width="32" height="32">
                 </div>
                 <div class="xiaodongxi_p">
                     <p><a href="#">散步</a></p>
@@ -563,7 +563,7 @@
             </div>
             <div class="xiaodongxi">
                 <div class="xiaodongxi_img">
-                    <img src="images/102.jpg" width="32" height="32">
+                    <img src="${ctx}/images/list35.jpg" width="32" height="32">
                 </div>
                 <div class="xiaodongxi_p">
                     <p><a href="#">由你音乐榜&nbsp;</a></p>
@@ -572,7 +572,7 @@
             </div>
             <div class="xiaodongxi">
                 <div class="xiaodongxi_img">
-                    <img src="images/103.jpg" width="32" height="32">
+                    <img src="${ctx}/images/list26.jpg" width="32" height="32">
                 </div>
                 <div class="xiaodongxi_p">
                     <p><a href="#">工作&nbsp;</a></p>
@@ -604,7 +604,7 @@
     if ($.cookie("user_name") != undefined && $.cookie("user_name") != "1") {
         $("#userName").text("账号：" + $.cookie("user_name"));
         $("#zhuXiao").text("注销");
-        document.getElementById("touxiang").src = "images/touxiang2.jpg";
+        document.getElementById("touxiang").src = "${ctx}/images/touxiang2.jpg";
         $("#display1").attr("style", "display:none;");
     }
 

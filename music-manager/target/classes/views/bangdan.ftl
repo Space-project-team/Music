@@ -24,8 +24,8 @@
                 <form id="test" class="form-horizontal" role="form" action="/user/loginPage" method="post"
                       style="padding-left: 50px;">
                     <div class="form-group">
-                        <img src="images/logo2.png" style="display: block; padding: 20px 151px">
-                        <div class="erweima"><img src="images/二维码2.jpg" style="position: absolute;width: 130px;
+                        <img src="${ctx}/images/logo2.png" style="display: block; padding: 20px 151px">
+                        <div class="erweima"><img src="${ctx}/images/二维码2.jpg" style="position: absolute;width: 130px;
 						height: 130px;bottom: 136px;right: 31px;">
                             <p style="position: absolute;right: 64px;bottom: 106px;">联系我们</p>s
                         </div>
@@ -80,7 +80,7 @@
     <div style="position: absolute;bottom: -5px;height: 5px;width: 100%;background-color:#fff;z-index: -1;"></div>
     <div class="search1">
         <div class="logo1" style="width: 153px; padding: 20.6px 0; display: inline-block;"><a
-                href="/index.ftl"><img src="images/logo2.png" alt=""></a>
+                href="/index.ftl"><img src="${ctx}/images/logo2.png" alt=""></a>
         </div>
         <nav class="navmargin navbar navbar-default" role="navigation">
             <div class="shurukuang" style="padding: 20.6px 30px;">
@@ -108,7 +108,7 @@
                 <a class="mymusic" href="/mymusic.ftl" target="_blank">您是第<span
                         id="user_number" style="font-size:20px;color:red;text-align:center;padding:0;"> &nbsp</span>位用户</a>
                 <span class="mymusic">|</span>
-                <img id="touxiang" src="images/touxiang.png" width="40px" height="40px" style="display: inline-block;
+                <img id="touxiang" src="${ctx}/images/touxiang.png" width="40px" height="40px" style="display: inline-block;
                 width: 40px;height: 40px;border:0;border-radius: 40px;margin-bottom: 5px;">
                 <a id="userName" style="cursor: pointer;" class="mymusic" href="#">
                     未登录</a>
@@ -358,7 +358,7 @@
     if ($.cookie("user_name") != undefined && $.cookie("user_name") != "1") {
         $("#userName").text("账号：" + $.cookie("user_name"));
         $("#zhuXiao").text("注销");
-        document.getElementById("touxiang").src = "images/touxiang2.jpg";
+        document.getElementById("touxiang").src = "${ctx}/images/touxiang2.jpg";
         $("#display1").attr("style", "display:none;");
     }//已在mymusic中注释
     $('#test').validate({

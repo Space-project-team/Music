@@ -28,8 +28,8 @@
                 <form id="test" class="form-horizontal" role="form" action="/user/loginPage" method="post"
                       style="padding-left: 50px;">
                     <div class="form-group">
-                        <img src="images/logo2.png" style="display: block; padding: 20px 151px">
-                        <div class="erweima"><img src="images/二维码2.jpg" style="position: absolute;width: 130px;
+                        <img src="${ctx}/images/logo2.png" style="display: block; padding: 20px 151px">
+                        <div class="erweima"><img src="${ctx}/images/二维码2.jpg" style="position: absolute;width: 130px;
 						height: 130px;bottom: 136px;right: 31px;">
                             <p style="position: absolute;right: 64px;bottom: 106px;">联系我们</p>
                         </div>
@@ -83,7 +83,7 @@
 <div style="width: 100%;height: 80px; background-color:#fff;position: relative;">
     <div style="position: absolute;bottom: -5px;height: 5px;width: 100%;background-color:#fff;z-index: -1;"></div>
     <div class="search1">
-        <div class="logo1" style="width: 153px; padding: 20.6px 0; display: inline-block;"><img src="images/logo2.png"
+        <div class="logo1" style="width: 153px; padding: 20.6px 0; display: inline-block;"><img src="${ctx}/images/logo2.png"
                                                                                                 alt=""><a href=""></a>
         </div>
         <nav class="navmargin navbar navbar-default" role="navigation">
@@ -108,7 +108,7 @@
                 <a class="mymusic" href="#">我的音乐</a>
                 <a class="mymusic" href="/huiyuanzhongxin.html ">会员中心</a>
                 <span class="mymusic">|</span>
-                <img id="touxiang" src="images/touxiang.png" width="40px" height="40px"
+                <img id="touxiang" src="${ctx}/images/touxiang.png" width="40px" height="40px"
                      style="display: inline-block; width: 40px;height: 40px;border:0;border-radius: 40px;margin-bottom: 5px;">
                 <a id="userName" style="cursor: pointer;" class="mymusic" href="#">
                     未登录</a>
@@ -161,9 +161,9 @@
 <div class="headerbg">
     <div class="geRenZiLiao">
         <div class="touxiang">
-            <img src="images/gerentouxianag.jpeg" class="img-circle txborder">
+            <img src="${ctx}/images/gerentouxianag.jpeg" class="img-circle txborder">
         </div>
-        <h3 class="mingzijuzhong"><span><img src="images/huiyuan.png" alt="会员" width="auto" height="30px"></span></h3>
+        <h3 class="mingzijuzhong"><span><img src="${ctx}/images/huiyuan.png" alt="会员" width="auto" height="30px"></span></h3>
         <ul class="gzfs">
             <li class="guanzhu">
                 <strong class="gznumber">66</strong>
@@ -253,7 +253,7 @@
         $("#userName").text("账号：" + $.cookie("user_name"));//将未登录3个字替换为用户名
         $("#zhuXiao").text("注销");//将注销加在用户名后方
         $(".mingzijuzhong").text("用户: " + $.cookie("user_name"));//替换大头像下面的用户名
-        document.getElementById("touxiang").src = "images/touxiang2.jpg";//替换原始头像
+        document.getElementById("touxiang").src = "${ctx}/images/touxiang2.jpg";//替换原始头像
         $("#display1").attr("style", "display:none;");//隐藏登录按钮
     }
 

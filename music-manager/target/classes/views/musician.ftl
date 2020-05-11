@@ -26,8 +26,8 @@
 			<div class="modal-body" style="position: relative;">
 				<form id="test" class="form-horizontal" role="form" action="/user/loginPage" method="post" style="padding-left: 50px;">
 					<div class="form-group">
-						<img src="images/logo2.png" style="display: block; padding: 20px 151px">
-						<div class="erweima"><img src="images/二维码2.jpg" style="position: absolute;width: 130px;
+						<img src="${ctx}/images/logo2.png" style="display: block; padding: 20px 151px">
+						<div class="erweima"><img src="${ctx}/images/二维码2.jpg" style="position: absolute;width: 130px;
 						height: 130px;bottom: 136px;right: 31px;">
 							<p style="position: absolute;right: 64px;bottom: 106px;">联系我们</p>
 						</div>
@@ -79,7 +79,7 @@
 <div style="width: 100%;height: 80px; background-color:#fff;position: relative;">
 	<div style="position: absolute;bottom: -5px;height: 5px;width: 100%;background-color:#fff;z-index: -1;"></div>
 	<div class="search1">
-		<div class="logo1" style="width: 153px; padding: 20.6px 0; display: inline-block;"><img src="images/logo2.png" alt=""><a href=""></a></div>
+		<div class="logo1" style="width: 153px; padding: 20.6px 0; display: inline-block;"><img src="${ctx}/images/logo2.png" alt=""><a href=""></a></div>
 		<nav class="navmargin navbar navbar-default" role="navigation">
 			<div class="shurukuang" style="padding: 20.6px 30px;">
 				<form class="bs-example" role="form" action="#" method="get">
@@ -102,7 +102,7 @@
 				<a class="mymusic" href="/mymusic.html>我的音乐"</a>
 				<a class="mymusic" href="/huiyuanzhongxin.html">会员中心</a>
 				<span class="mymusic">|</span>
-				<img id="touxiang" src="images/touxiang.png" width="40px" height="40px" style="display: inline-block; width: 40px;height: 40px;border:0;border-radius: 40px;margin-bottom: 5px;">
+				<img id="touxiang" src="${ctx}/images/touxiang.png" width="40px" height="40px" style="display: inline-block; width: 40px;height: 40px;border:0;border-radius: 40px;margin-bottom: 5px;">
 				<a id="userName" style="cursor: pointer;" class="mymusic" href="#">
 					未登录</a>
 				<a id="zhuXiao" onclick="zhuXiao();location.reload();" href="#">
@@ -146,7 +146,7 @@
 
 <div class="warp">
 	<div class="yinyueren-top">
-			<a href="#"><img class="picture" src="images/y1.jpg"></a>
+			<a href="#"><img class="picture" src="${ctx}/images/y1.jpg"></a>
 	</div>
 	<div class="con">
 		<h2>了解轻语音乐人</h2>
@@ -155,39 +155,39 @@
 		<h4>如何加入轻语音乐人</h4>
 		<p>需要音乐本人申请（经纪人、公司负责人或经音乐人授权使用作品的申请人，请在提交时附注说明）</p>
 		<div class="don">
-   			<img src="images/1234.png">
+   			<img src="${ctx}/images/1234.png">
 		</div>
 	</div>
 	<div class="eon">
 		<h2>轻语音乐为您提供的</h2>
 		<ul>	
 			<li>
-				<img src="images/音乐.png">
+				<img src="${ctx}/images/音乐.png">
 				<h4>音乐盛典 万众瞩目</h4>
 				<p>一年一度的轻音乐亚洲盛典会产生专属于音乐人的奖项，轻语音乐人有机会参与盛典演出</p>
 			</li>
 			<li>
-				<img src="images/耳机.png">
+				<img src="${ctx}/images/耳机.png">
 				<h4>海量用户 大范围曝光</h4>
 				<p>您的作品将进入轻语正版曲库，并渗透到全系列产品中，让4亿用户听到您的声音</p>
 			</li>
 			<li>
-				<img src="images/书本.png">
+				<img src="${ctx}/images/书本.png">
 				<h4>精美周刊 专业点评</h4>
 				<p>由专业乐评人每周评选出10首音乐人作品，并做成音乐周刊在轻语进行推荐</p>
 			</li>
 		    <li>
-				<img src="images/旗帜.png">
+				<img src="${ctx}/images/旗帜.png">
 				<h4>权威榜单 众望所归</h4>
 				<p>排行榜每周发布一次音乐人专属榜单，好音乐用数据说话</p>
 			</li>
 			<li>
-				<img src="images/拍摄.png">
+				<img src="${ctx}/images/拍摄.png">
 				<h4>明星专访 MV拍摄</h4>
 				<p>音乐人将有机会获得轻语明星专访，量身打造音乐MV的机会</p>
 			</li>
 			<li>
-				<img src="images/录音.png">
+				<img src="${ctx}/images/录音.png">
 				<h4>签约歌手 炫酷直播</h4>
 				<p>成为繁星签约歌手，与粉丝零距离互动，开启线上万人演唱会直播</p>
 			</li>
@@ -238,7 +238,7 @@
         $("#zhuXiao").text("注销");
 
 
-        document.getElementById("touxiang").src="images/touxiang2.jpg";
+        document.getElementById("touxiang").src="${ctx}/images/touxiang2.jpg";
         $("#display1").attr("style","display:none;");
     }
 

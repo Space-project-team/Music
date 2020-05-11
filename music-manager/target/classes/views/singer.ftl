@@ -26,8 +26,8 @@
 			<div class="modal-body" style="position: relative;">
 				<form id="test" class="form-horizontal" role="form" action="/user/loginPage" method="post" style="padding-left: 50px;">
 					<div class="form-group">
-						<img src="images/logo2.png" style="display: block; padding: 20px 151px">
-						<div class="erweima"><img src="images/二维码2.jpg" style="position: absolute;width: 130px;
+						<img src="${ctx}/images/logo2.png" style="display: block; padding: 20px 151px">
+						<div class="erweima"><img src="${ctx}/images/二维码2.jpg" style="position: absolute;width: 130px;
 						height: 130px;bottom: 136px;right: 31px;">
 							<p style="position: absolute;right: 64px;bottom: 106px;">联系我们</p>
 						</div>
@@ -79,7 +79,7 @@
 <div style="width: 100%;height: 80px; background-color:#fff;position: relative;">
 	<div style="position: absolute;bottom: -5px;height: 5px;width: 100%;background-color:#fff;z-index: -1;"></div>
 	<div class="search1">
-		<div class="logo1" style="width: 153px; padding: 20.6px 0; display: inline-block;"><img src="images/logo2.png" alt=""><a href=""></a></div>
+		<div class="logo1" style="width: 153px; padding: 20.6px 0; display: inline-block;"><img src="${ctx}/images/logo2.png" alt=""><a href=""></a></div>
 		<nav class="navmargin navbar navbar-default" role="navigation">
 			<div class="shurukuang" style="padding: 20.6px 30px;">
 				<form class="bs-example" role="form" action="#" method="get">
@@ -102,7 +102,7 @@
 				<a class="mymusic" href="/mymusic.ftl  ">我的音乐</a>
 				<a class="mymusic" href="/huiyuanzhongxin.html ">会员中心</a>
 				<span class="mymusic">|</span>
-				<img id="touxiang" src="images/touxiang.png" width="40px" height="40px" style="display: inline-block; width: 40px;height: 40px;border:0;border-radius: 40px;margin-bottom: 5px;">
+				<img id="touxiang" src="${ctx}/images/touxiang.png" width="40px" height="40px" style="display: inline-block; width: 40px;height: 40px;border:0;border-radius: 40px;margin-bottom: 5px;">
 				<a id="userName" style="cursor: pointer;" class="mymusic" href="#">
 					未登录</a>
 				<a id="zhuXiao" onclick="zhuXiao();location.reload();" href="#">
@@ -221,92 +221,92 @@
 		</div>
 		<div class="zhong">
 			<div class="singerpn">
-				<a href="#"><img src="images/s1.jpg" alt="刘德华" class="singerpicture"></a>
+				<a href="#"><img src="${ctx}/images/s1.jpg" alt="刘德华" class="singerpicture"></a>
 				<span class="st"><strong>1st</strong></span>
 				<span class="singername">刘德华</span>
 			</div>
 			<div class="singerpn">
-				<a href="#"><img src="images/s2.jpg" alt="薛之谦" class="singerpicture"></a>
+				<a href="#"><img src="${ctx}/images/s2.jpg" alt="薛之谦" class="singerpicture"></a>
 				<span class="st"><strong>2nd</strong></span>
 				<span class="singername">薛之谦</span>
 			</div>
 			<div class="singerpn">
-				<a href="#"><img src="images/s3.jpg" alt="林俊杰" class="singerpicture"></a>
+				<a href="#"><img src="${ctx}/images/s3.jpg" alt="林俊杰" class="singerpicture"></a>
 				<span class="st"><strong>3rd</strong></span>
 				<span class="singername">林俊杰</span>
 			</div>
 			<div class="singerpn">
-				<a href="#"><img src="images/s4.jpg" alt="周杰伦" class="singerpicture"></a>
+				<a href="#"><img src="${ctx}/images/s4.jpg" alt="周杰伦" class="singerpicture"></a>
 				<span class="st"><strong>4th</strong></span>
 				<span class="singername">周杰伦</span>
 			</div>
 			<div class="singerpn">
-				<a href="#"><img src="images/s5.jpg" alt="邓紫棋" class="singerpicture"></a>
+				<a href="#"><img src="${ctx}/images/s5.jpg" alt="邓紫棋" class="singerpicture"></a>
 				<span class="st"><strong>5th</strong></span>
 				<span class="singername">邓紫棋</span>
 			</div>
 			<div class="singerpn">
-				<a href="#"><img src="images/s6.jpg" alt="TFBOYS" class="singerpicture"></a>
+				<a href="#"><img src="${ctx}/images/s6.jpg" alt="TFBOYS" class="singerpicture"></a>
 				<span class="st"><strong>6th</strong></span>
 				<span class="singername">TFBOYS</span>
 			</div>
 			<div class="singerpn">
-				<a href="#"><img src="images/s7.jpg" alt="毛不易" class="singerpicture"></a>
+				<a href="#"><img src="${ctx}/images/s7.jpg" alt="毛不易" class="singerpicture"></a>
 				<span class="st"><strong>7th</strong></span>
 				<span class="singername">毛不易</span>
 			</div>
 			<div class="singerpn">
-				<a href="#"><img src="images/s8.jpg" alt="张杰" class="singerpicture"></a>
+				<a href="#"><img src="${ctx}/images/s8.jpg" alt="张杰" class="singerpicture"></a>
 				<span class="st"><strong>8th</strong></span>
 				<span class="singername">张杰</span>
 			</div>
 			<div class="singerpn">
-				<a href="#"><img src="images/s9.jpg" alt="张学友" class="singerpicture"></a>
+				<a href="#"><img src="${ctx}/images/s9.jpg" alt="张学友" class="singerpicture"></a>
 				<span class="st"><strong>9th</strong></span>
 				<span class="singername">张学友</span>
 			</div>
 			<div class="singerpn">
-				<a href="#"><img src="images/s10.jpg" alt="易烊千玺" class="singerpicture"></a>
+				<a href="#"><img src="${ctx}/images/s10.jpg" alt="易烊千玺" class="singerpicture"></a>
 				<span class="st"><strong>10th</strong></span>
 				<span class="singername">易烊千玺</span>
 			</div>
 			<div class="singerpn">
-				<a href="#"><img src="images/s11.jpg" alt="刀郎" class="singerpicture">
+				<a href="#"><img src="${ctx}/images/s11.jpg" alt="刀郎" class="singerpicture">
 				</a>				<span class="st"><strong>11th</strong></span>
 				<span class="singername">刀郎</span>
 			</div>
 			<div class="singerpn">
-				<a href="#"><img src="images/s12.jpg" alt="李荣浩" class="singerpicture"></a>
+				<a href="#"><img src="${ctx}/images/s12.jpg" alt="李荣浩" class="singerpicture"></a>
 				<span class="st"><strong>12th</strong></span>
 				<span class="singername">李荣浩</span>
 			</div>
 			<div class="singerpn">
-				<a href="#"><img src="images/s13.jpg" alt="王俊凯" class="singerpicture"></a>
+				<a href="#"><img src="${ctx}/images/s13.jpg" alt="王俊凯" class="singerpicture"></a>
 				<span class="st"><strong>13th</strong></span>
 				<span class="singername">王俊凯</span>
 			</div>
 			<div class="singerpn">
-				<a href="#"><img src="images/s14.jpg" alt="半阳" class="singerpicture"></a>
+				<a href="#"><img src="${ctx}/images/s14.jpg" alt="半阳" class="singerpicture"></a>
 				<span class="st"><strong>14th</strong></span>
 				<span class="singername">半阳</span>
 			</div>
 			<div class="singerpn">
-				<a href="#"><img src="images/s15.jpg" alt="陈奕迅" class="singerpicture"></a>
+				<a href="#"><img src="${ctx}/images/s15.jpg" alt="陈奕迅" class="singerpicture"></a>
 				<span class="st"><strong>15th</strong></span>
 				<span class="singername">陈奕迅</span>
 			</div>
 			<div class="singerpn">
-				<a href="#"><img src="images/s16.jpg" alt="蔡徐坤" class="singerpicture"></a>
+				<a href="#"><img src="${ctx}/images/s16.jpg" alt="蔡徐坤" class="singerpicture"></a>
 				<span class="st"><strong>16th</strong></span>
 				<span class="singername">蔡徐坤</span>
 			</div>
 			<div class="singerpn">
-				<a href="#"><img src="images/s17.jpg" alt="华晨宇" class="singerpicture"></a>
+				<a href="#"><img src="${ctx}/images/s17.jpg" alt="华晨宇" class="singerpicture"></a>
 				<span class="st"><strong>17th</strong></span>
 				<span class="singername">华晨宇</span>
 			</div>
 			<div class="singerpn">
-				<a href="#"><img src="images/s18.jpg" alt="陈立农" class="singerpicture"></a>
+				<a href="#"><img src="${ctx}/images/s18.jpg" alt="陈立农" class="singerpicture"></a>
 				<span class="st"><strong>18th</strong></span>
 				<span class="singername">陈立农</span>
 			</div>
@@ -315,44 +315,44 @@
 			<table class="table">
 				<tbody>
 					<tr class="active">
-						<td>19 <img src="images/下降.png"> <a href="#">庄心妍</a></td>
-						<td>27 <img src="images/下降.png"> <a href="#">白小白</a></td>
-						<td>35 <img src="images/下降.png"> <a href="#">冷漠</a></td>
+						<td>19 <img src="${ctx}/images/下降.png"> <a href="#">庄心妍</a></td>
+						<td>27 <img src="${ctx}/images/下降.png"> <a href="#">白小白</a></td>
+						<td>35 <img src="${ctx}/images/下降.png"> <a href="#">冷漠</a></td>
 					</tr>
 					<tr class="success">
-						<td>20 <img src="images/上升.png"> <a href="#">凤凰传奇</a></td>
-						<td>28 <img src="images/上升.png"> <a href="#">周华健</a></td>
-						<td>36 <img src="images/下降.png"> <a href="#">Alan Walker</a></td>
+						<td>20 <img src="${ctx}/images/上升.png"> <a href="#">凤凰传奇</a></td>
+						<td>28 <img src="${ctx}/images/上升.png"> <a href="#">周华健</a></td>
+						<td>36 <img src="${ctx}/images/下降.png"> <a href="#">Alan Walker</a></td>
 					</tr>
 					<tr  class="warning">
-						<td>21 <img src="images/下降.png"> <a href="#">黄家驹</a></td>
-						<td>29 <img src="images/下降.png"> <a href="#">汪苏泷</a></td>
-						<td>37 <img src="images/上升.png"> <a href="#">张艺兴</a></td>
+						<td>21 <img src="${ctx}/images/下降.png"> <a href="#">黄家驹</a></td>
+						<td>29 <img src="${ctx}/images/下降.png"> <a href="#">汪苏泷</a></td>
+						<td>37 <img src="${ctx}/images/上升.png"> <a href="#">张艺兴</a></td>
 					</tr>
 					<tr  class="danger">
-						<td>22 <img src="images/下降.png"> <a href="#">花姐</a></td>
-						<td>30 <img src="images/上升.png"> <a href="#">火箭少女101</a></td>
-						<td>38 <img src="images/上升.png"> <a href="#">张靓颖</a></td>
+						<td>22 <img src="${ctx}/images/下降.png"> <a href="#">花姐</a></td>
+						<td>30 <img src="${ctx}/images/上升.png"> <a href="#">火箭少女101</a></td>
+						<td>38 <img src="${ctx}/images/上升.png"> <a href="#">张靓颖</a></td>
 					</tr>
 					<tr class="active">
-						<td>23 <img src="images/上升.png"> <a href="#">许嵩</a></td>
-						<td>31 <img src="images/上升.png"> <a href="#">王杰</a></td>
-						<td>39 <img src="images/上升.png"> <a href="#">艾辰</a></td>
+						<td>23 <img src="${ctx}/images/上升.png"> <a href="#">许嵩</a></td>
+						<td>31 <img src="${ctx}/images/上升.png"> <a href="#">王杰</a></td>
+						<td>39 <img src="${ctx}/images/上升.png"> <a href="#">艾辰</a></td>
 					</tr>
 					<tr class="success">
-						<td>24 <img src="images/上升.png"> <a href="#">王源</a></td>
-						<td>32 <img src="images/上升.png"> <a href="#">卓依婷</a></td>
-						<td>40 <img src="images/下降.png"> <a href="#">虎二</a></td>
+						<td>24 <img src="${ctx}/images/上升.png"> <a href="#">王源</a></td>
+						<td>32 <img src="${ctx}/images/上升.png"> <a href="#">卓依婷</a></td>
+						<td>40 <img src="${ctx}/images/下降.png"> <a href="#">虎二</a></td>
 					</tr>
 					<tr  class="warning">
-						<td>25 <img src="images/下降.png"> <a href="#">郑源</a></td>
-						<td>33 <img src="images/上升.png"> <a href="#">鹿晗</a></td>
-						<td>41 <img src="images/下降.png"> <a href="#">邓丽君</a></td>
+						<td>25 <img src="${ctx}/images/下降.png"> <a href="#">郑源</a></td>
+						<td>33 <img src="${ctx}/images/上升.png"> <a href="#">鹿晗</a></td>
+						<td>41 <img src="${ctx}/images/下降.png"> <a href="#">邓丽君</a></td>
 					</tr>
 					<tr  class="danger">
-						<td>26 <img src="images/上升.png"> <a href="#">张宇</a></td>
-						<td>34 <img src="images/上升.png"> <a href="#">孙露</a></td>
-						<td>42 <img src="images/下降.png"> <a href="#">张韶涵</a></td>
+						<td>26 <img src="${ctx}/images/上升.png"> <a href="#">张宇</a></td>
+						<td>34 <img src="${ctx}/images/上升.png"> <a href="#">孙露</a></td>
+						<td>42 <img src="${ctx}/images/下降.png"> <a href="#">张韶涵</a></td>
 					</tr>
 				</tbody>
 			</table>
@@ -415,7 +415,7 @@
         $("#zhuXiao").text("注销");
 
 
-        document.getElementById("touxiang").src="images/touxiang2.jpg";
+        document.getElementById("touxiang").src="${ctx}/images/touxiang2.jpg";
         $("#display1").attr("style","display:none;");
     }
 
