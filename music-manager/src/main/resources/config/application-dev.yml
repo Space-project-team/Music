@@ -102,6 +102,9 @@ mybatis:
 
 #存储音乐列表
 musicLink.list: musicLink
+# Redis Key
+# myMusic列表 key
+mymusic.list.key: mymusic:list
 
 #关闭Elasticsearch健康检查
 management:
