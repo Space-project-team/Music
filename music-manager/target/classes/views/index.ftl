@@ -64,7 +64,7 @@
                             <button class="btn btn-primary" data-dismiss="btn btn-default"
                                     style="background-color: #169af3;padding: 5px 30px">登 &nbsp&nbsp&nbsp&nbsp录
                             </button>
-                            <a href="/register.ftl" style="float: left;padding-top: 12px;">没有账号？点此注册</a>
+                            <a href="${ctx}/register" style="float: left;padding-top: 12px;">没有账号？点此注册</a>
                         </div>
                     </div>
                 </form>
@@ -112,8 +112,8 @@
             </div>
             <!-- 图标加上搜索框结束 -->
             <div id="col10" class="dengluzhuce">
-                <a class="mymusic" href="/mymusic.ftl" target="_blank">我的音乐</a>
-                <a class="mymusic" href="/mymusic.ftl" target="_blank">您是第<span
+                <a class="mymusic" href="${ctx}/mymusic" target="_blank">我的音乐</a>
+                <a class="mymusic" href="${ctx}/mymusic" target="_blank">您是第<span
                         id="user_number" style="font-size:20px;color:red;text-align:center;padding:0;"> &nbsp</span>位用户</a>
                 <span class="mymusic">|</span>
                 <img id="touxiang" src="${ctx}/images/touxiang.png" width="40px" height="40px"
@@ -137,26 +137,26 @@
     <div class="big3">
         <ul>
             <li><a class="gudingbeij erjicaidan2" href="#">首页</a></li>
-            <li><a class=" erjicaidan2" href="/bangdan.ftl">榜单</a></li>
-            <li><a class="erjicaidan2" href="/mv.ftl">MV</a></li>
+            <li><a class=" erjicaidan2" href="${ctx}/bangdan">榜单</a></li>
+            <li><a class="erjicaidan2" href="${ctx}/mv">MV</a></li>
             <li class="dropdown">
                 <a class="erjicaidan2" href="#" class="dropdown-toggle" data-toggle="dropdown">
                     更多 <b class="caret"></b>
                 </a>
                 <ul class="dropdown-menu">
-                    <li><a class="erjicaidan" href="/musicRadio.ftl">电台</a></li>
-                    <li><a class="erjicaidan" href="/songlist.ftl">歌单</a></li>
-                    <li><a class="erjicaidan" href="/singer.ftl">歌手</a></li>
+                    <li><a class="erjicaidan" href="${ctx}/musicRadio">电台</a></li>
+                    <li><a class="erjicaidan" href="${ctx}/songlist">歌单</a></li>
+                    <li><a class="erjicaidan" href="${ctx}/singer">歌手</a></li>
                 </ul>
             </li>
         </ul>
         <ul>
-            <li class="youfudong"><a href="/musicSearchTest.ftl" target="_blank"><span
+            <li class="youfudong"><a href="${ctx}/musicSearchTest" target="_blank"><span
                     class="glyphicon glyphicon-search" style="font-size: 14px"> 搜索</span></a></li>
-            <li class="youfudong"><a href="/musician.ftl" target="_blank"><span
+            <li class="youfudong"><a href="${ctx}/musician" target="_blank"><span
                     class="glyphicon glyphicon-headphones" style="font-size: 14px"> 音乐人</span></a></li>
             <li class="youfudong"><span class="glyphicon glyphicon-music" style="font-size: 14px"> 轻语LIVE</span></li>
-            <li class="youfudong"><a href="/QQmusic.ftl" target="_blank"><span
+            <li class="youfudong"><a href="${ctx}/QQmusic" target="_blank"><span
                     class="glyphicon glyphicon-star-empty" style="font-size: 14px"> 在线播放</span></a></li>
         </ul>
     </div>
@@ -446,7 +446,7 @@
 
     if ($.cookie("user_name") != undefined && $.cookie("user_name") != "1") {
         $("#userName").text("账号：" + $.cookie("user_name"));
-        $("#userName").attr("href", "/resetpassword.ftl");
+        $("#userName").attr("href", "${ctx}/resetpassword");
         $("#zhuXiao").text("注销");
         document.getElementById("touxiang").src = "${ctx}/images/touxiang2.jpg";
         $("#display1").attr("style", "display:none;");
@@ -528,7 +528,7 @@
                     $.cookie("song_name", data.data.list[i].ml_songName, {expires: 7, path: "/"});
                     $.cookie("song_singer", data.data.list[i].ml_singer, {expires: 7, path: "/"});
                     $.cookie("song_photo", data.data.list[i].ml_photoLink, {expires: 7, path: "/"});
-                    window.open("/QQmusic.ftl");
+                    window.open("${ctx}/QQmusic");
                 }
             }
         },
@@ -549,7 +549,7 @@
                 if (data.statusCode == "200") {
                     var search = document.getElementById("songName").value;
                     $.cookie("song_search", search, {expires: 7, path: "/"});
-                    window.open("/musicSearchTest.ftl");
+                    window.open("${ctx}/musicSearchTest");
                     var str = '';
                     /* data.data.list.length对应respon.map.list.length */
                     for (var i = 0; i < data.data.list.length; i++) {

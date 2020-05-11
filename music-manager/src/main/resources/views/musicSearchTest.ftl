@@ -12,7 +12,7 @@
 <body style="user-select: none">
 <div class="search1">
     <div class="logo1" style="width: 153px; padding: 20.6px 0; display: inline-block;"><a
-            href="/index.ftl" target="_blank"><img src="${ctx}/images/logo2.png" alt=""></a>
+            href="${ctx}/index" target="_blank"><img src="${ctx}/images/logo2.png" alt=""></a>
     </div>
 
     <nav class="navmargin navbar navbar-default" role="navigation">
@@ -34,7 +34,7 @@
             </form>
         </div>
         <a style="font-size:14px;float: right;margin: 20px"
-           href="/mymusic.ftl" target="_blank">点击跳转我的音乐...</a>
+           href="${ctx}/mymusic" target="_blank">点击跳转我的音乐...</a>
     </nav>
 </div>
 
@@ -132,7 +132,7 @@
                         $.cookie("song_name", data.data.list[j].ml_songName, {expires: 7, path: "/"});
                         $.cookie("song_singer", data.data.list[j].ml_singer, {expires: 7, path: "/"});
                         $.cookie("song_photo", data.data.list[j].ml_photoLink, {expires: 7, path: "/"});
-                        window.location.href = "/QQmusic.ftl";
+                        window.location.href = "${ctx}/QQmusic";
                     }
 
                     function fn1(j) {

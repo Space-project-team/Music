@@ -60,7 +60,7 @@
                             <button class="btn btn-primary" data-dismiss="btn btn-default"
                                     style="background-color: #169af3;padding: 5px 30px">登 &nbsp&nbsp&nbsp&nbsp录
                             </button>
-                            <a href="/register.ftl" style="float: left;padding-top: 12px;">没有账号？点此注册</a>
+                            <a href="${ctx}/register" style="float: left;padding-top: 12px;">没有账号？点此注册</a>
                         </div>
                     </div>
                 </form>
@@ -80,7 +80,7 @@
     <div style="position: absolute;bottom: -5px;height: 5px;width: 100%;background-color:#fff;z-index: -1;"></div>
     <div class="search1">
         <div class="logo1" style="width: 153px; padding: 20.6px 0; display: inline-block;"><a
-                href="/index.ftl"><img src="${ctx}/images/logo2.png" alt=""></a>
+                href="${ctx}/index"><img src="${ctx}/images/logo2.png" alt=""></a>
         </div>
         <nav class="navmargin navbar navbar-default" role="navigation">
             <div class="shurukuang" style="padding: 20.6px 30px;">
@@ -104,8 +104,8 @@
             </div>
             <!-- 图标加上搜索框结束 -->
             <div id="col10" class="dengluzhuce">
-                <a class="mymusic" href="/mymusic.ftl" target="_blank">我的音乐</a>
-                <a class="mymusic" href="/mymusic.ftl" target="_blank">您是第<span
+                <a class="mymusic" href="${ctx}/mymusic" target="_blank">我的音乐</a>
+                <a class="mymusic" href="${ctx}/mymusic" target="_blank">您是第<span
                         id="user_number" style="font-size:20px;color:red;text-align:center;padding:0;"> &nbsp</span>位用户</a>
                 <span class="mymusic">|</span>
                 <img id="touxiang" src="${ctx}/images/touxiang.png" width="40px" height="40px" style="display: inline-block;
@@ -128,29 +128,29 @@
 <nav class="daohanglan">
     <div class="big3">
         <ul>
-            <li><a class=" erjicaidan2" href="/index.ftl">首页</a></li>
+            <li><a class=" erjicaidan2" href="${ctx}/index">首页</a></li>
             <li><a class="gudingbeij erjicaidan2" href="#">榜单</a></li>
-            <li><a class="erjicaidan2" href="/mv.ftl" target="_blank">MV</a></li>
+            <li><a class="erjicaidan2" href="${ctx}/mv" target="_blank">MV</a></li>
             <li class="dropdown">
                 <a class="erjicaidan2" href="#" class="dropdown-toggle" data-toggle="dropdown">
                     更多 <b class="caret"></b>
                 </a>
                 <ul class="dropdown-menu">
-                    <li><a class="erjicaidan" href="/musicRadio.ftl" target="_blank">电台</a>
+                    <li><a class="erjicaidan" href="${ctx}/musicRadio" target="_blank">电台</a>
                     </li>
-                    <li><a class="erjicaidan" href="/songlist.ftl" target="_blank">歌单</a>
+                    <li><a class="erjicaidan" href="${ctx}/songlist" target="_blank">歌单</a>
                     </li>
-                    <li><a class="erjicaidan" href="/singer.ftl" target="_blank">歌手</a></li>
+                    <li><a class="erjicaidan" href="${ctx}/singer" target="_blank">歌手</a></li>
                 </ul>
             </li>
         </ul>
         <ul>
-            <li class="youfudong"><a href="/musicSearchTest.ftl" target="_blank">
+            <li class="youfudong"><a href="${ctx}/musicSearchTest" target="_blank">
                 <span class="glyphicon glyphicon-search" style="font-size: 14px"> 搜索</span></a></li>
-            <li class="youfudong"><a href="/musician.ftl" target="_blank">
+            <li class="youfudong"><a href="${ctx}/musician" target="_blank">
                 <span class="glyphicon glyphicon-headphones" style="font-size: 14px"> 音乐人</span></a></li>
             <li class="youfudong"><span class="glyphicon glyphicon-music" style="font-size: 14px"> 轻语LIVE</span></li>
-            <li class="youfudong"><a href="/QQmusic.ftl" target="_blank">
+            <li class="youfudong"><a href="${ctx}/QQmusic" target="_blank">
 
                 <span class="glyphicon glyphicon-star-empty" style="font-size: 14px"> 在线播放</span></a></li>
         </ul>
@@ -339,7 +339,7 @@
                         $.cookie("song_name", data.data.list[j].ml_songName, {expires: 7, path: "/"});
                         $.cookie("song_singer", data.data.list[j].ml_singer, {expires: 7, path: "/"});
                         $.cookie("song_photo", data.data.list[j].ml_photoLink, {expires: 7, path: "/"});
-                        window.location.href = "/QQmusic.ftl";
+                        window.location.href = "${ctx}/QQmusic";
                     }
 
                     function fn1(j) {
@@ -398,7 +398,7 @@
 
     //下方为时钟
     $("#search1").click(function () {
-        window.open("/musicSearchTest.ftl");//给登录按钮一个超链接
+        window.open("${ctx}/musicSearchTest");//给登录按钮一个超链接
     });
     var clock = new Vue({
         el: '#clock',

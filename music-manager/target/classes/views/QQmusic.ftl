@@ -14,7 +14,7 @@
 
 <body style="user-select: none;">
 <div class="header">
-    <h1 class="logo"><a href="/index.ftl"></a></h1>
+    <h1 class="logo"><a href="${ctx}/index"></a></h1>
     <ul class="register">
         <li></li>
         <li>设置</li>

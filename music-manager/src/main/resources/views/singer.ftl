@@ -60,7 +60,7 @@
 					<div class="form-group">
 						<div class="modal-footer">
 							<button  class="btn btn-primary" data-dismiss="btn btn-default" style="background-color: #169af3;padding: 5px 30px">登 &nbsp&nbsp&nbsp&nbsp录</button>
-							<a href="/register.ftl" style="float: left;padding-top: 12px;">没有账号？点此注册</a>
+							<a href="${ctx}/register" style="float: left;padding-top: 12px;">没有账号？点此注册</a>
 						</div>
 					</div>
 				</form>
@@ -99,7 +99,7 @@
 			</div>
 			<!-- 图标加上搜索框结束 -->
 			<div id="col10" class="dengluzhuce">
-				<a class="mymusic" href="/mymusic.ftl  ">我的音乐</a>
+				<a class="mymusic" href="${ctx}/mymusic  ">我的音乐</a>
 				<a class="mymusic" href="/huiyuanzhongxin.html ">会员中心</a>
 				<span class="mymusic">|</span>
 				<img id="touxiang" src="${ctx}/images/touxiang.png" width="40px" height="40px" style="display: inline-block; width: 40px;height: 40px;border:0;border-radius: 40px;margin-bottom: 5px;">
@@ -120,25 +120,25 @@
 <nav class="daohanglan">
 	<div class="big3">
 		<ul>
-			<li><a class=" erjicaidan2" href="/index.ftl  ">首页</a></li>
-			<li><a class=" erjicaidan2" href="/bangdan.ftl">榜单</a></li>
-			<li><a class="erjicaidan2" href="/mv.ftl   ">MV</a></li>
+			<li><a class=" erjicaidan2" href="${ctx}/index  ">首页</a></li>
+			<li><a class=" erjicaidan2" href="${ctx}/bangdan">榜单</a></li>
+			<li><a class="erjicaidan2" href="${ctx}/mv   ">MV</a></li>
 			<li class="dropdown">
 				<a class="gudingbeij erjicaidan2" href="#" class="dropdown-toggle" data-toggle="dropdown">
 					更多 <b class="caret"></b>
 				</a>
 				<ul class="dropdown-menu">
-					<li><a class="erjicaidan" href="/musicRadio.ftl  ">电台</a></li>
-					<li><a class="erjicaidan" href="/songlist.ftl  ">歌单</a></li>
+					<li><a class="erjicaidan" href="${ctx}/musicRadio  ">电台</a></li>
+					<li><a class="erjicaidan" href="${ctx}/songlist  ">歌单</a></li>
 					<li><a class="erjicaidan" href="#">歌手</a></li>
 				</ul>
 			</li>
 		</ul>
 		<ul>
 			<li class="youfudong"><a style="padding: 20px 0px" href="playmusic.html"><span class="glyphicon glyphicon-shopping-cart" style="font-size: 14px"> 商城</span></a> </li>
-			<li class="youfudong"><a style="padding: 20px 0px" href="/musician.ftl"><span class="glyphicon glyphicon-headphones" style="font-size: 14px"> 音乐人</span></a> </li>
+			<li class="youfudong"><a style="padding: 20px 0px" href="${ctx}/musician"><span class="glyphicon glyphicon-headphones" style="font-size: 14px"> 音乐人</span></a> </li>
 			<li class="youfudong"><a style="padding: 20px 0px" href="playmusic.html"><span class="glyphicon glyphicon-music" style="font-size: 14px"> 轻语LIVE</span></a> </li>
-			<li class="youfudong"><a style="padding: 20px 0px" href="/QQmusic.ftl"><span class="glyphicon glyphicon-star-empty" style="font-size: 14px"> 在线播放</span></a></li>
+			<li class="youfudong"><a style="padding: 20px 0px" href="${ctx}/QQmusic"><span class="glyphicon glyphicon-star-empty" style="font-size: 14px"> 在线播放</span></a></li>
 		</ul>
 	</div>
 	</div>

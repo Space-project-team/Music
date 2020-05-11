@@ -5,6 +5,7 @@
 *
 *
 * */
+
 function pageTools(curtpage, tpage) {
     var options = {
         bootstrapMajorVersion: 3, //版本
@@ -47,7 +48,7 @@ function addToDB(url, data) {
         data: data,
         success: function (data) {//webspond
             if (data.statusCode == "200") {
-                window.location.href = "/index.ftl";
+                window.location.href = "/index";
                 alert("注册成功，点击跳转主页");
                 //location.reload();
             } else {
@@ -74,7 +75,7 @@ function setPassWord(url, data) {                   //url和data为参数，在�
         data: data,
         success: function (data) {
             if (data.statusCode == "200") {
-                window.location.href = "/index.ftl";// 跳转到指定页面
+                window.location.href = "/index";// 跳转到指定页面
                 alert("修改密码成功，请重新登录！"); // 弹窗
             } else {
                 alert("add error!" + data.statusMsg);
