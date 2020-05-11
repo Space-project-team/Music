@@ -23,7 +23,7 @@
         <module>music-manager</module>
         <module>music-common</module>
         <module>music-generator</module>
-
+        <module>music-sso</module>
     </modules>
 
     <!--
