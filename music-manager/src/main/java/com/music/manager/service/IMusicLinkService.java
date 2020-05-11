@@ -14,7 +14,7 @@ import com.music.manager.pojo.User;
 
 public interface IMusicLinkService{
     //获取所有音乐
-    MusicPageInfo<MusicLink> getMusicList(Integer pageNum,Integer pageSize);
+    BaseResult getMusicList(Integer pageNum,Integer pageSize);
 
     //歌曲搜索功能
     BaseResult getMusicByMusicName(String songName);

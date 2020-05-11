@@ -8,7 +8,6 @@ package com.music.manager.service;
 
 
 import com.music.common.result.BaseResult;
-import com.music.manager.pojo.User;
 import com.music.manager.vo.AdminQuery;
 
 import javax.servlet.http.HttpServletRequest;

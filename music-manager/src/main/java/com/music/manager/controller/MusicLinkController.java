@@ -41,7 +41,7 @@ public class MusicLinkController {
 	 */
 	@RequestMapping(value = "/getMusicLinkList",method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
 	@ResponseBody
-	public MusicPageInfo<MusicLink> getMusicLink(Integer pageNum, Integer pageSize){
+	public BaseResult getMusicLink(Integer pageNum, Integer pageSize){
 		return musicLinkService.getMusicList(pageNum,pageSize);
 	}
 
@@ -62,4 +62,5 @@ public class MusicLinkController {
 		User user = (User) request.getSession().getAttribute("user");
 		return  musicLinkService.addMusicCollect(user,songName,mid);
 	}
+
 }

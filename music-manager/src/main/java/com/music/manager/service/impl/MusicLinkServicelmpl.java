@@ -9,19 +9,18 @@ package com.music.manager.service.impl;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.music.common.result.BaseResult;
-import com.music.common.result.MusicPageInfo;
+import com.music.common.util.JsonUtil;
 import com.music.manager.mapper.MusicLinkMapper;
 import com.music.manager.mapper.MyMusicMapper;
 import com.music.manager.pojo.*;
 import com.music.manager.service.IMusicLinkService;
-import com.music.manager.vo.MusicLinkQuery;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 
@@ -34,20 +33,38 @@ public class MusicLinkServicelmpl implements IMusicLinkService {
     @Autowired
     private MyMusicMapper myMusicMapper;
 
+    @Autowired
+    private RedisTemplate<String,String> redisTemplate;
+
+    @Value(value = "${musicLink.list}")
+    private String musicLinkList;
+
     /**
      * 获取所有音乐
      * @return
      */
     @Override
-    public MusicPageInfo<MusicLink> getMusicList(Integer pageNum,Integer pageSize) {
-        MusicPageInfo pageInfo = new MusicPageInfo(pageNum,pageSize);
+    public BaseResult getMusicList(Integer pageNum,Integer pageSize) {
+        PageHelper.startPage(pageNum,pageSize);
+        //获取redis对象
+        ValueOperations<String, String> valueOperations = redisTemplate.opsForValue();
+        //查看redis中是否存在musiclink缓存
+        String mlStr = valueOperations.get(musicLinkList);
+        if(!StringUtils.isEmpty(mlStr)){
+            //存在缓存,使用缓存记录
+            PageInfo pageInfo = JsonUtil.jsonStr2Object(mlStr, PageInfo.class);
+            return BaseResult.success(pageInfo);
+        }
+        //不存在缓存,从数据库中查询所有音乐,在放入缓存中
         List<MusicLink> musicLinks = musicLinkMapper.selectByExample(new MusicLinkExample());
         if(!CollectionUtils.isEmpty(musicLinks)){
             //将集合存入分页工具
-            pageInfo.setResult(musicLinks);
-            return pageInfo;
+            PageInfo<MusicLink> page = new PageInfo<>(musicLinks);
+            //将list存入缓存中
+            valueOperations.set(musicLinkList,JsonUtil.object2JsonStr(page));
+            return BaseResult.success(page);
         }
-        return pageInfo;
+        return BaseResult.error();
     }
 
     /**

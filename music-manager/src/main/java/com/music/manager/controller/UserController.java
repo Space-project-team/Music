@@ -4,8 +4,8 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
 import com.music.common.result.BaseResult;
-import com.music.manager.pojo.User;
 import com.music.manager.service.IMyMusicService;
 import com.music.manager.service.UserService;
 import com.music.manager.service.impl.UserServicelmpl;
@@ -46,7 +46,7 @@ public class UserController {
 	 */
 	@RequestMapping(value = "/loginPage", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
-	public BaseResult loginCon(AdminQuery adminQuery,HttpServletRequest request,HttpServletResponse response) {
+	public BaseResult loginCon(AdminQuery adminQuery, HttpServletRequest request, HttpServletResponse response) {
 
 		return  userService.login(adminQuery,request,response);
 	}
