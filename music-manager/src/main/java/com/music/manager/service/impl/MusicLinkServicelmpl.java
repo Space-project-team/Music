@@ -12,6 +12,7 @@ import com.music.common.result.BaseResult;
 import com.music.common.util.JsonUtil;
 import com.music.manager.mapper.MusicLinkMapper;
 import com.music.manager.mapper.MyMusicMapper;
+import com.music.manager.mapper.SongMapper;
 import com.music.manager.pojo.*;
 import com.music.manager.service.IMusicLinkService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,15 +37,24 @@ public class MusicLinkServicelmpl implements IMusicLinkService {
     @Autowired
     private RedisTemplate<String,String> redisTemplate;
 
+    @Autowired
+    private SongMapper songMapper;
+
     @Value(value = "${musicLink.list}")
     private String musicLinkList;
 
+    @Value(value = "${TOPLink_50}")
+    private String TOPLink;
     /**
      * 获取所有音乐
      * @return
      */
     @Override
     public BaseResult getMusicList(Integer pageNum,Integer pageSize) {
+        if(StringUtils.isEmpty(pageNum)||StringUtils.isEmpty(pageSize)){
+            pageNum = 1;
+            pageSize = 30;
+        }
         PageHelper.startPage(pageNum,pageSize);
         //获取redis对象
         ValueOperations<String, String> valueOperations = redisTemplate.opsForValue();
@@ -148,6 +158,46 @@ public class MusicLinkServicelmpl implements IMusicLinkService {
             return BaseResult.error();
         }
         return BaseResult.error();
+    }
+
+    /**
+     * 获取TOP-50歌曲
+     * @param pageNum
+     * @param pageSize
+     * @return
+     */
+    @Override
+    public BaseResult getTOPLink(Integer pageNum, Integer pageSize) {
+        BaseResult result = null;
+        if(StringUtils.isEmpty(pageNum)||StringUtils.isEmpty(pageSize)){
+            pageNum = 1;
+            pageSize = 30;
+        }
+        //设置分页
+        PageHelper.startPage(pageNum,pageSize);
+        //根据点击数来判断歌曲火热程度,在进行升序
+        SongExample songExample = new SongExample();
+        //根据人气值来排序
+        songExample.setOrderByClause("'votes' ASC");
+        //获取到排序后的歌曲
+        List<Song> songList = songMapper.selectByExample(songExample);
+        //放入到缓存中
+        //判断是否缓存中有数据
+        ValueOperations<String, String> operations = redisTemplate.opsForValue();
+        //获取缓存中的json字符串
+        String topLink_50 = operations.get("TOPLink_50");
+        //判断是否为空
+        if(!StringUtils.isEmpty(topLink_50)){
+            //不为空,有值
+            //将该json转换分页对象
+            PageInfo pageInfo = JsonUtil.jsonStr2Object(topLink_50, PageInfo.class);
+            result = new BaseResult();
+            result.setPageInfo(pageInfo);
+            result.setCode(200);
+            return result;
+        }
+
+        return null;
     }
 
 }
