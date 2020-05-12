@@ -10,10 +10,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.music.common.result.BaseResult;
 import com.music.common.util.JsonUtil;
-import com.music.manager.mapper.MusicLinkMapper;
-import com.music.manager.mapper.MyMusicMapper;
-import com.music.manager.mapper.SingerMapper;
-import com.music.manager.mapper.SongMapper;
+import com.music.manager.mapper.*;
 import com.music.manager.pojo.*;
 import com.music.manager.service.IMusicLinkService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,6 +39,8 @@ public class MusicLinkServicelmpl implements IMusicLinkService{
     private SingerMapper singerMapper;
     @Autowired
     private SongMapper songMapper;
+    @Autowired
+    private LanguageMapper languageMapper;
 
     @Value(value = "${musicLink.list}")
     private String musicLinkList;
@@ -218,7 +217,50 @@ public class MusicLinkServicelmpl implements IMusicLinkService{
         return BaseResult.error();
     }
 
-
+    /**
+     *
+     * @param pageNum
+     * @param pageSize
+     * @return
+     */
+    @Override
+    public BaseResult getNetworkMusic(Integer pageNum, Integer pageSize) {
+        if(StringUtils.isEmpty(pageNum)||StringUtils.isEmpty(pageSize)){
+            pageNum = 1;
+            pageSize = 50;
+        }
+        //设置分页数
+        PageHelper.startPage(pageNum,pageSize);
+        //创建查询对象
+        LanguageExample languageExample = new LanguageExample();
+        languageExample.createCriteria().andLanguagenameEqualTo("网络歌曲");
+        List<Language> languages = languageMapper.selectByExample(languageExample);
+        //判断非空
+        if(!CollectionUtils.isEmpty(languages)){
+            //获取language对象
+            Language language = languages.get(0);
+            //创建查对象
+            SongExample songExample = new SongExample();
+            SongExample.Criteria criteria = songExample.createCriteria();
+            //设置歌曲风格id
+            criteria.andTypeidEqualTo(language.getLanguageid());
+            //设置字段排序
+            songExample.setOrderByClause("votes DESC");
+            List<Song> songs = songMapper.selectByExample(songExample);
+            //判断是否为空
+            if(!CollectionUtils.isEmpty(songs)){
+                //不空
+                for (Song song :songs){
+                    //根据歌手id拿取到歌手名，并设置到song中
+                    Singer singer = singerMapper.selectByPrimaryKey(song.getSingerid());
+                    //将歌手的名字放入
+                    song.setSingerid(singer.getSingername());
+                }
+                return BaseResult.success(new PageInfo<>(songs));
+            }
+        }
+        return BaseResult.error();
+    }
 
 
 }

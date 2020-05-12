@@ -14,7 +14,7 @@ function getModuleMusic(url,pageNum,pageSize) {
                 for (var i = 0; i < data.pageInfo.list.length; i++) {
                     var a = i + 1;
                     str += '<tr>'
-                        + '<td class="number111"  style="padding: 14px;border-bottom: 1px solid #eee; width: 100px;text-align: center;">' + ((pageNum - 1) * 10 + a) + '</td>'
+                        + '<td class="number111"  style="padding: 14px;border-bottom: 1px solid #eee; width: 100px;text-align: center;">' + ((data.pageInfo.pageNum- 1) * 10 + a) + '</td>'
                         + '<td  style="padding: 14px;border-bottom: 1px solid #eee;width: 600px;text-align: center;"><a class=sName' + i + ' href="#">' + data.pageInfo.list[i].songname + '</a>' +
                         '<span class="glyphicon glyphicon-heart" id=sFav' + i + ' style="color: #eee;float: right;"></span></td>'
                         + '<td style="padding: 14px;border-bottom: 1px solid #eee;width: 300px;text-align: center;"><a href="#">' + data.pageInfo.list[i].singerid + '</a></td>'

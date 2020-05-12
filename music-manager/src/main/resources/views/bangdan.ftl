@@ -178,8 +178,8 @@
                 <div class="panel-body">
                     <a href="">轻语音乐榜</a>
                     <a href="">飙升榜单</a>
-                    <a href="javascript:void(0)" onclick="getModuleMusic('TOPLink',1,50)">TOP50榜单</a>
-                    <a href="javascript:void(0)" >网络音乐榜</a>
+                    <a href="javascript:void(0)" onclick="getModuleMusic('TOPLink')">TOP50榜单</a>
+                    <a href="javascript:void(0)" onclick="getModuleMusic('NetworkMusic')">网络音乐榜</a>
                     <a href="javascript:void(0)" >电影音乐榜</a>
                     <a href="javascript:void(0)" >DJ热歌榜</a>
                     <a href="javascript:void(0)" >欧美新歌榜</a>

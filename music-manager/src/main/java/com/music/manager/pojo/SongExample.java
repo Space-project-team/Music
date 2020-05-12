@@ -538,6 +538,76 @@ public class SongExample {
             addCriterion("photoImage not between", value1, value2, "photoimage");
             return (Criteria) this;
         }
+
+        public Criteria andTypeidIsNull() {
+            addCriterion("TypeID is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeidIsNotNull() {
+            addCriterion("TypeID is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeidEqualTo(String value) {
+            addCriterion("TypeID =", value, "typeid");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeidNotEqualTo(String value) {
+            addCriterion("TypeID <>", value, "typeid");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeidGreaterThan(String value) {
+            addCriterion("TypeID >", value, "typeid");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeidGreaterThanOrEqualTo(String value) {
+            addCriterion("TypeID >=", value, "typeid");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeidLessThan(String value) {
+            addCriterion("TypeID <", value, "typeid");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeidLessThanOrEqualTo(String value) {
+            addCriterion("TypeID <=", value, "typeid");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeidLike(String value) {
+            addCriterion("TypeID like", value, "typeid");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeidNotLike(String value) {
+            addCriterion("TypeID not like", value, "typeid");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeidIn(List<String> values) {
+            addCriterion("TypeID in", values, "typeid");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeidNotIn(List<String> values) {
+            addCriterion("TypeID not in", values, "typeid");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeidBetween(String value1, String value2) {
+            addCriterion("TypeID between", value1, value2, "typeid");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeidNotBetween(String value1, String value2) {
+            addCriterion("TypeID not between", value1, value2, "typeid");
+            return (Criteria) this;
+        }
     }
 
     /**

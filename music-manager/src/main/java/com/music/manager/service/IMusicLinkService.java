@@ -22,4 +22,6 @@ public interface IMusicLinkService{
     BaseResult addMusicCollect(User user, String songName,Integer mid);
     //获取top前50歌曲
     BaseResult getTOPLink(Integer pageNum, Integer pageSize);
+    //获取网络歌曲
+    BaseResult getNetworkMusic(Integer pageNum, Integer pageSize);
 }

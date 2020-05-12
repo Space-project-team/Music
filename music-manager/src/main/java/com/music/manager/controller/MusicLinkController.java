@@ -68,9 +68,27 @@ public class MusicLinkController {
 	}
 
 
+	/**
+	 * TOP-50 排行榜
+	 * @param pageNum
+	 * @param pageSize
+	 * @return
+	 */
 	@RequestMapping(value = "TOPLink",method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public BaseResult TOPLink(Integer pageNum,Integer pageSize){
 		return musicLinkService.getTOPLink(pageNum,pageSize);
+	}
+
+	/**
+	 * 获取网络歌曲排行榜
+	 * @param pageNum
+	 * @param pageSize
+	 * @return
+	 */
+	@RequestMapping(value = "NetworkMusic",method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public BaseResult NetworkMusic(Integer pageNum,Integer pageSize){
+		return musicLinkService.getNetworkMusic(pageNum,pageSize);
 	}
 }

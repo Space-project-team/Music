@@ -8,6 +8,7 @@
     <result column="votes" jdbcType="VARCHAR" property="votes" />
     <result column="songFile" jdbcType="VARCHAR" property="songfile" />
     <result column="photoImage" jdbcType="VARCHAR" property="photoimage" />
+    <result column="TypeID" jdbcType="VARCHAR" property="typeid" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -68,7 +69,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    songID, songName, singerID, votes, songFile, photoImage
+    songID, songName, singerID, votes, songFile, photoImage, TypeID
   </sql>
   <select id="selectByExample" parameterType="com.music.manager.pojo.SongExample" resultMap="BaseResultMap">
     select
@@ -102,11 +103,11 @@
   </delete>
   <insert id="insert" parameterType="com.music.manager.pojo.Song">
     insert into song (songID, songName, singerID, 
-      votes, songFile, photoImage
-      )
+      votes, songFile, photoImage, 
+      TypeID)
     values (#{songid,jdbcType=VARCHAR}, #{songname,jdbcType=VARCHAR}, #{singerid,jdbcType=VARCHAR}, 
-      #{votes,jdbcType=VARCHAR}, #{songfile,jdbcType=VARCHAR}, #{photoimage,jdbcType=VARCHAR}
-      )
+      #{votes,jdbcType=VARCHAR}, #{songfile,jdbcType=VARCHAR}, #{photoimage,jdbcType=VARCHAR}, 
+      #{typeid,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.music.manager.pojo.Song">
     insert into song
@@ -129,6 +130,9 @@
       <if test="photoimage != null">
         photoImage,
       </if>
+      <if test="typeid != null">
+        TypeID,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="songid != null">
@@ -148,6 +152,9 @@
       </if>
       <if test="photoimage != null">
         #{photoimage,jdbcType=VARCHAR},
+      </if>
+      <if test="typeid != null">
+        #{typeid,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -178,6 +185,9 @@
       <if test="record.photoimage != null">
         photoImage = #{record.photoimage,jdbcType=VARCHAR},
       </if>
+      <if test="record.typeid != null">
+        TypeID = #{record.typeid,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -190,7 +200,8 @@
       singerID = #{record.singerid,jdbcType=VARCHAR},
       votes = #{record.votes,jdbcType=VARCHAR},
       songFile = #{record.songfile,jdbcType=VARCHAR},
-      photoImage = #{record.photoimage,jdbcType=VARCHAR}
+      photoImage = #{record.photoimage,jdbcType=VARCHAR},
+      TypeID = #{record.typeid,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -213,6 +224,9 @@
       <if test="photoimage != null">
         photoImage = #{photoimage,jdbcType=VARCHAR},
       </if>
+      <if test="typeid != null">
+        TypeID = #{typeid,jdbcType=VARCHAR},
+      </if>
     </set>
     where songID = #{songid,jdbcType=VARCHAR}
   </update>
@@ -222,7 +236,8 @@
       singerID = #{singerid,jdbcType=VARCHAR},
       votes = #{votes,jdbcType=VARCHAR},
       songFile = #{songfile,jdbcType=VARCHAR},
-      photoImage = #{photoimage,jdbcType=VARCHAR}
+      photoImage = #{photoimage,jdbcType=VARCHAR},
+      TypeID = #{typeid,jdbcType=VARCHAR}
     where songID = #{songid,jdbcType=VARCHAR}
   </update>
 </mapper>

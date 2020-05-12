@@ -39,6 +39,11 @@ public class Song implements Serializable {
     private String photoimage;
 
     /**
+     * 歌曲风格
+     */
+    private String typeid;
+
+    /**
      * song
      */
     private static final long serialVersionUID = 1L;
@@ -91,6 +96,14 @@ public class Song implements Serializable {
         this.photoimage = photoimage == null ? null : photoimage.trim();
     }
 
+    public String getTypeid() {
+        return typeid;
+    }
+
+    public void setTypeid(String typeid) {
+        this.typeid = typeid == null ? null : typeid.trim();
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -103,6 +116,7 @@ public class Song implements Serializable {
         sb.append(", votes=").append(votes);
         sb.append(", songfile=").append(songfile);
         sb.append(", photoimage=").append(photoimage);
+        sb.append(", typeid=").append(typeid);
         sb.append("]");
         return sb.toString();
     }
