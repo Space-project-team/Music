@@ -171,16 +171,15 @@
             </div>
             <div id="collapseOne" class="panel-collapse collapse in">
                 <div class="panel-body">
-                    <a href="">轻语音乐榜</a>
-                    <a href="">飙升榜单</a>
-                    <a href="">TOP50榜单</a>
-                    <a href="">网络音乐榜</a>
-                    <a href="">电影音乐榜</a>
-                    <a href="">DJ热歌榜</a>
-                    <a href="">欧美新歌榜</a>
-                    <a href="">中国梦之声榜</a>
-                    <a href="">国风美少年榜</a>
-                    <a href="">粤语新歌榜</a>
+                    <a href="javascript:void(0);"   onclick="getList(1,30)">轻语音乐榜</a>
+                    <a href="javascript:void(0);" onclick="getModuleMusic('getList',1,30)">飙升榜单</a>
+                    <a href="javascript:void(0);" onclick="getModuleMusic('TOP-Link',1,50)">TOP50榜单</a>
+                    <a href="javascript:void(0);" onclick=>网络音乐榜</a>
+                    <a href="javascript:void(0);" onclick=>电影音乐榜</a>
+                    <a href="javascript:void(0);" onclick=>DJ热歌榜</a>
+                    <a href="javascript:void(0);" onclick=>中国梦之声榜</a>
+                    <a href="javascript:void(0);" onclick=>国风美少年榜</a>
+                    <a href="javascript:void(0);" onclick=>粤语新歌榜</a>
                 </div>
             </div>
         </div>
@@ -195,16 +194,7 @@
             </div>
             <div id="collapseTwo" class="panel-collapse collapse">
                 <div class="panel-body">
-                    <a href="">轻语音乐榜</a>
-                    <a href="">飙升榜单</a>
-                    <a href="">TOP50榜单</a>
-                    <a href="">网络音乐榜</a>
-                    <a href="">电影音乐榜</a>
-                    <a href="">DJ热歌榜</a>
-                    <a href="">欧美新歌榜</a>
-                    <a href="">中国梦之声榜</a>
-                    <a href="">国风美少年榜</a>
-                    <a href="">粤语新歌榜</a>
+                    <a href="">轻语音乐欧美热歌榜</a>
                 </div>
             </div>
         </div>
@@ -219,16 +209,7 @@
             </div>
             <div id="collapseThree" class="panel-collapse collapse">
                 <div class="panel-body">
-                    <a href="">轻语音乐榜</a>
-                    <a href="">飙升榜单</a>
-                    <a href="">TOP50榜单</a>
-                    <a href="">网络音乐榜</a>
-                    <a href="">电影音乐榜</a>
-                    <a href="">DJ热歌榜</a>
-                    <a href="">欧美新歌榜</a>
-                    <a href="">中国梦之声榜</a>
-                    <a href="">国风美少年榜</a>
-                    <a href="">粤语新歌榜</a>
+                    <a href="">轻语音乐新歌榜</a>
                 </div>
             </div>
         </div>
@@ -243,16 +224,7 @@
             </div>
             <div id="collapseFour" class="panel-collapse collapse">
                 <div class="panel-body">
-                    <a href="">轻语音乐榜</a>
-                    <a href="">飙升榜单</a>
-                    <a href="">TOP50榜单</a>
-                    <a href="">网络音乐榜</a>
-                    <a href="">电影音乐榜</a>
-                    <a href="">DJ热歌榜</a>
-                    <a href="">欧美新歌榜</a>
-                    <a href="">中国梦之声榜</a>
-                    <a href="">国风美少年榜</a>
-                    <a href="">粤语新歌榜</a>
+                    <a href="">轻语音乐歌手榜</a>
                 </div>
             </div>
         </div>
@@ -279,9 +251,7 @@
 <audio id="audio" src=""></audio>
 
     <!--榜单下面的分页，有bug，点击后会导致收藏音乐重复跳出弹框，暂时不用分页功能！ -->
-<!--<div style="position: relative;bottom: 0;left: 50%;" class="col-sm-12">-->
-    <!--<ul id="pagintor"></ul>-->
-<!--</div>-->
+
 
 <script src="js/jquery.min.js?v=2.1.4"></script>
 <script src="js/bootstrap-paginator.min.js"></script>
@@ -289,30 +259,34 @@
 <script src="js/tools.js"></script>
 <script src="js/jquery.cookie.js"></script>
 <script type="text/javascript" src="js/vue.min.js"></script>
+<script src="js/bangdan.js"></script>
 <script type="text/javascript">
+
     $(document).ready(function () {
-        pageTools(1, 30);//tools里的方法
-        getList(1);
+/*        pageTools(1,30);*/
+        getList(1,30);
     });
-    $("#user_number").html($.cookie("user_id"));
-    function getList(pageNo) {
-        test
+
+    function getList(pageNum,pageSize) {
         $.ajax({
-            url: "musicLink/getMusicLinkList",
-            type: "POST",
-            data: "pageNo=" + pageNo,
+            url: "http://localhost:9091/music-manager/musicLink/getMusicLinkList",
+            type: "GET",
+            data: {
+                pageNum:pageNum,
+                pageSize:pageSize
+            },
             success: function (data) {
-                if (data.statusCode == "200") {
+                console.log(data);
+                if (data.code == 200) {
                     var str = '';
-                    for (var i = 0; i < data.data.list.length; i++) {
+                    for (var i = 0; i < data.pageInfo.list.length; i++) {
+                        console.log(data.pageInfo.list[i].mlSongname);
                         var a = i + 1;
-
-
                         str += '<tr>'
-                            + '<td class="number111"  style="padding: 14px;border-bottom: 1px solid #eee; width: 100px;text-align: center;">' + ((pageNo - 1) * 10 + a) + '</td>'
-                            + '<td  style="padding: 14px;border-bottom: 1px solid #eee;width: 600px;text-align: center;"><a class=sName' + i + ' href="#">' + data.data.list[i].ml_songName + '</a>' +
+                            + '<td class="number111"  style="padding: 14px;border-bottom: 1px solid #eee; width: 100px;text-align: center;">' + ((pageNum - 1) * 10 + a) + '</td>'
+                            + '<td  style="padding: 14px;border-bottom: 1px solid #eee;width: 600px;text-align: center;"><a class=sName' + i + ' href="#">' + data.pageInfo.list[i].mlSongname + '</a>' +
                             '<span class="glyphicon glyphicon-heart" id=sFav' + i + ' style="color: #eee;float: right;"></span></td>'
-                            + '<td style="padding: 14px;border-bottom: 1px solid #eee;width: 300px;text-align: center;"><a href="#">' + data.data.list[i].ml_singer + '</a></td>'
+                            + '<td style="padding: 14px;border-bottom: 1px solid #eee;width: 300px;text-align: center;"><a href="#">' + data.pageInfo.list[i].mlSinger + '</a></td>'
                             + '</tr>';
 
                         function dd(i) {
@@ -334,18 +308,18 @@
                     }
 
                     function fn(j) {
-                        console.log(data.data.list[j].ml_id);
-                        $.cookie("song_link", data.data.list[j].ml_songLink, {expires: 7, path: "/"});
-                        $.cookie("song_name", data.data.list[j].ml_songName, {expires: 7, path: "/"});
-                        $.cookie("song_singer", data.data.list[j].ml_singer, {expires: 7, path: "/"});
-                        $.cookie("song_photo", data.data.list[j].ml_photoLink, {expires: 7, path: "/"});
+                        console.log(data.pageInfo.list[j].mlId);
+                        $.cookie("song_link", data.pageInfo.list[j].mlSonglink, {expires: 7, path: "/"});
+                        $.cookie("song_name", data.pageInfo.list[j].mlSongname, {expires: 7, path: "/"});
+                        $.cookie("song_singer", data.pageInfo.list[j].mlSinger, {expires: 7, path: "/"});
+                        $.cookie("song_photo", data.pageInfo.list[j].mlPhotolink, {expires: 7, path: "/"});
                         window.location.href = "${ctx}/QQmusic";
                     }
 
                     function fn1(j) {
-                        console.log(data.data.list[j].ml_id);
-                        $.cookie("song_id", data.data.list[j].ml_id, {expires: 7, path: "/"});
-                        $.cookie("song_name", data.data.list[j].ml_songName, {expires: 7, path: "/"});
+                        console.log(data.data.list[j].mlId);
+                        $.cookie("song_id", data.data.list[j].mlId, {expires: 7, path: "/"});
+                        $.cookie("song_name", data.data.list[j].mlSongname, {expires: 7, path: "/"});
                     }
                 }
                 $("table tbody").html(str);
@@ -354,7 +328,10 @@
                 alert(JSON.stringify(data));
             }
         })
-    }//已在mymusic中注释
+    }
+
+    $("#user_number").html($.cookie("user_id"));
+    //已在mymusic中注释
     if ($.cookie("user_name") != undefined && $.cookie("user_name") != "1") {
         $("#userName").text("账号：" + $.cookie("user_name"));
         $("#zhuXiao").text("注销");
@@ -369,8 +346,8 @@
     function fav(j) {
         $.ajax({
             async: false,
-            url: "/musicLink/addMusicCollect",
-            type: "post",
+            url: "http://localhost:9091/music-manager/musicLink/addMusicCollect",
+            type: "GET",
             data: {
                 "songName": $.cookie("song_name"),
                 "song_id": $.cookie("song_id"),

@@ -26,7 +26,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 
 @Controller 
-@RequestMapping("/musicLink")
+@RequestMapping("musicLink")
 public class MusicLinkController {
 
 
@@ -41,12 +41,14 @@ public class MusicLinkController {
 	 */
 	@RequestMapping(value = "/getMusicLinkList",method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
 	@ResponseBody
-	public BaseResult getMusicLink(Integer pageNum, Integer pageSize){
-		return musicLinkService.getMusicList(pageNum,pageSize);
+	public BaseResult getMusicLink(Integer pageNum, Integer pageSize,HttpServletRequest request){
+		BaseResult result = musicLinkService.getMusicList(pageNum, pageSize);
+		request.getSession().setAttribute("MusicList",result.getPageInfo());
+		return result;
 	}
 
 	// 歌曲搜索功能
-	@RequestMapping(value = "/getSongRearch",method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+	@RequestMapping(value = "/getSongRearch",method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public BaseResult getMusicByMusicName(String songName){
 		return  musicLinkService.getMusicByMusicName(songName);
@@ -56,11 +58,17 @@ public class MusicLinkController {
 	 * 歌曲收藏
 	 * @return
 	 */
-	@RequestMapping(value = "/addMusicCollect",method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+	@RequestMapping(value = "/addMusicCollect",method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public BaseResult  addMusicCollect(HttpServletRequest request,String songName,Integer mid){
 		User user = (User) request.getSession().getAttribute("user");
 		return  musicLinkService.addMusicCollect(user,songName,mid);
 	}
 
+
+	@RequestMapping(value = "TOP-Link",method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public BaseResult TOPLink(Integer pageNum,Integer pageSize){
+		return musicLinkService.getTOPLink(pageNum,pageSize);
+	}
 }
