@@ -101,7 +101,11 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.music.manager.pojo.MyMusic">
+    <delete id="deleteByMidAndUid" parameterType="java.lang.Integer">
+        delete from mymusic
+        where my_id=#{mid} and user_id=#{uid}
+    </delete>
+    <insert id="insert" parameterType="com.music.manager.pojo.MyMusic">
     insert into mymusic (my_id, my_songName, my_singer, 
       my_songLink, my_lyricLink, my_photoLink, 
       user_id)
@@ -164,7 +168,12 @@
       <include refid="Example_Where_Clause" />
     </if>
   </select>
-  <update id="updateByExampleSelective" parameterType="map">
+    <select id="selectByUserName" parameterType="java.lang.String" resultType="java.lang.Integer">
+        select user_id
+        from user
+        where user_name=#{userName}
+    </select>
+    <update id="updateByExampleSelective" parameterType="map">
     update mymusic
     <set>
       <if test="record.myId != null">

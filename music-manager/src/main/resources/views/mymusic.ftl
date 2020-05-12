@@ -259,7 +259,7 @@
                                                    最后 页脚
 
 --><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---->
-<script src="${ctx}/js/jquery.min.js?v=2.1.4"></script>
+<script src="${ctx}/js/jquery.min.js"></script>
 <script src="${ctx}/js/bootstrap-paginator.min.js"></script>
 <script src="${ctx}/js/jquery.validate.min.js"></script>
 <script src="${ctx}/js/tools.js"></script>
@@ -317,7 +317,7 @@
             url: "${ctx}/myMusic/getMyMusicList",      //后台获取整个数据库方法的地址
             type: "POST",
             data: {
-                uid: $.cookie("user_id"),
+                userName: $.cookie("user_name"),
                 pageNum: page,
                 pageSize:5,
             },
@@ -370,10 +370,10 @@
 
                     $("table tbody").html(str);
 
-                   /* //获取分页模板
+                    //获取分页模板
                     var pageTemp = doT.template($("#pageTemplate").text());
                     //填充数据
-                    $("#pageContent").html(pageTemp(data.pageInfo));*/
+                    $("#pageContent").html(pageTemp(data.pageInfo));
 
                 } else {   //如果后台返回202则提示歌曲已收藏
                     alert("您还没有收藏歌曲哦，快去列表收藏吧！");
@@ -392,10 +392,11 @@
             type: "post",//post请求方式
             data: {
                 mid: $.cookie("ml_id"),//传入歌曲id
-                uid: $.cookie("user_id"),//传入用户id
+                userName: $.cookie("user_name"),//传入用户名
             },
             success: function (data) {//webspond
-                if (data.code == "200") {
+                console.log(data);
+                if (data.code==200) {
                     window.location.reload();//刷新页面
                     alert("已成功从收藏列表移除");//提示删除成功
 

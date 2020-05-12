@@ -379,10 +379,8 @@
             url: "${ctx}/musicLink/addMusicCollect",
             type: "post",
             data: {
-                "songName": $.cookie("song_name"),
-                "song_id": $.cookie("song_id"),
-                "user_name": $.cookie("user_name"),
-                "user_password": $.cookie("user_password"),
+                songName: $.cookie("song_name"),
+                mid: $.cookie("song_id")
             },
             success: function (data) {//webspond
                 if (data.code == "200") {
