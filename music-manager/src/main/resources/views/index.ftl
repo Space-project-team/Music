@@ -14,6 +14,9 @@
     <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 </head>
+<script>
+   var ctx="${ctx}";
+</script>
 <body style="user-select: none">
 <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---
  
@@ -29,7 +32,7 @@
                 <h4 class="modal-title" id="myModalLabel">账号密码登录</h4>
             </div>
             <div class="modal-body" style="position: relative;">
-                <form id="test" class="form-horizontal" role="form" action="/user/loginPage" method="post"
+                <form id="test" class="form-horizontal" role="form" action="${ctx}/user/loginPage" method="post"
                       style="padding-left: 50px;">
                     <div class="form-group">
                         <img src="${ctx}/images/logo2.png" style="display: block; padding: 20px 151px">
@@ -345,7 +348,7 @@
                     <a href="#" style="margin-left: 42px">莫文蔚</a>
                 </div>
             </li>
-            <li class="back2"><img src="${ctx}/images/paihan-2.png" width="225.2px" height="500px">
+            <li class="back2"><img src="/images/paihan-2.png" width="225.2px" height="500px">
                 <div class="shang tong">
                     <p>抖音最火榜</p>
                     <p style="font-size: 30px;font-weight: bold;	">流行</p>

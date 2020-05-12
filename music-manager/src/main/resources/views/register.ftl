@@ -13,7 +13,9 @@
     <link rel="stylesheet" href="${ctx}/css/register.css">
 
 </head>
-
+<script>
+    var ctx="${ctx}";
+</script>
 <body class="gray-bg">
     <div id="nav">
         <div class="nav">
@@ -40,7 +42,7 @@
                             <div class="ibox-title">
                             </div>
                             <div class="ibox-content">
-                                <form id="test" role="form" action="/user/addOrEditUser" method="post">
+                                <form id="test" role="form" action="${ctx}/user/addUser" method="post">
                                     <div class="form-group">
                                         <!-- 表单 -->
                                         <label for="username" class="col-sm-2 control-label">用户名:</label> <!-- 表单 -->
@@ -56,7 +58,7 @@
                                     </div> 
                                     <div class="form-group">
                                         <div class="col-sm-offset-1 col-sm-10">
-                                            <button type="submit" class="btn btn-primary btn-lg" onClick="chkAll();">注册</button>
+                                            <button type="submit" class="btn btn-primary btn-lg" <#--onClick="chkAll();"-->>注册</button>
                                         </div>
                                     </div>
                                 </form>

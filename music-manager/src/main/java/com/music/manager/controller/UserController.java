@@ -58,9 +58,9 @@ public class UserController {
 	 */
 	@RequestMapping(value = "/resetUserPassword", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
-	public BaseResult resetUserPassword(String newPassword,HttpServletRequest request,HttpServletResponse response) {
+	public BaseResult resetUserPassword(String newUser_password,HttpServletRequest request,HttpServletResponse response) {
 
-		return userService.EditUser(newPassword,request,response);
+		return userService.EditUser(newUser_password,request,response);
 		/*
 		Object data = null;
 		String statusMsg = "";
