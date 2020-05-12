@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.music.manager.mapper.LanguageMapper">
+  <resultMap id="BaseResultMap" type="com.music.manager.pojo.Language">
+    <id column="languageID" jdbcType="VARCHAR" property="languageid" />
+    <result column="languageName" jdbcType="VARCHAR" property="languagename" />
+    <result column="typeID" jdbcType="INTEGER" property="typeid" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    languageID, languageName, typeID
+  </sql>
+  <select id="selectByExample" parameterType="com.music.manager.pojo.LanguageExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from language
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from language
+    where languageID = #{languageid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from language
+    where languageID = #{languageid,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.music.manager.pojo.LanguageExample">
+    delete from language
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.music.manager.pojo.Language">
+    insert into language (languageID, languageName, typeID
+      )
+    values (#{languageid,jdbcType=VARCHAR}, #{languagename,jdbcType=VARCHAR}, #{typeid,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.music.manager.pojo.Language">
+    insert into language
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="languageid != null">
+        languageID,
+      </if>
+      <if test="languagename != null">
+        languageName,
+      </if>
+      <if test="typeid != null">
+        typeID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="languageid != null">
+        #{languageid,jdbcType=VARCHAR},
+      </if>
+      <if test="languagename != null">
+        #{languagename,jdbcType=VARCHAR},
+      </if>
+      <if test="typeid != null">
+        #{typeid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.music.manager.pojo.LanguageExample" resultType="java.lang.Long">
+    select count(*) from language
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update language
+    <set>
+      <if test="record.languageid != null">
+        languageID = #{record.languageid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.languagename != null">
+        languageName = #{record.languagename,jdbcType=VARCHAR},
+      </if>
+      <if test="record.typeid != null">
+        typeID = #{record.typeid,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update language
+    set languageID = #{record.languageid,jdbcType=VARCHAR},
+      languageName = #{record.languagename,jdbcType=VARCHAR},
+      typeID = #{record.typeid,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.music.manager.pojo.Language">
+    update language
+    <set>
+      <if test="languagename != null">
+        languageName = #{languagename,jdbcType=VARCHAR},
+      </if>
+      <if test="typeid != null">
+        typeID = #{typeid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where languageID = #{languageid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.music.manager.pojo.Language">
+    update language
+    set languageName = #{languagename,jdbcType=VARCHAR},
+      typeID = #{typeid,jdbcType=INTEGER}
+    where languageID = #{languageid,jdbcType=VARCHAR}
+  </update>
+</mapper>
