@@ -4,9 +4,11 @@ package com.music.manager.mapper;
 import com.music.manager.pojo.Language;
 import com.music.manager.pojo.LanguageExample;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository
 public interface LanguageMapper {
     long countByExample(LanguageExample example);
 

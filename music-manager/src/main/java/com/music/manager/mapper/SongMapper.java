@@ -1,6 +1,5 @@
 package com.music.manager.mapper;
 
-
 import com.music.manager.pojo.Song;
 import com.music.manager.pojo.SongExample;
 import org.apache.ibatis.annotations.Param;
@@ -14,7 +13,7 @@ public interface SongMapper {
 
     int deleteByExample(SongExample example);
 
-    int deleteByPrimaryKey(Integer songid);
+    int deleteByPrimaryKey(String songid);
 
     int insert(Song record);
 
@@ -22,7 +21,7 @@ public interface SongMapper {
 
     List<Song> selectByExample(SongExample example);
 
-    Song selectByPrimaryKey(Integer songid);
+    Song selectByPrimaryKey(String songid);
 
     int updateByExampleSelective(@Param("record") Song record, @Param("example") SongExample example);
 

@@ -1,9 +1,10 @@
 package com.music.manager.pojo;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TypeExample {
+public class TypeExample implements Serializable {
     /**
      * type
      */

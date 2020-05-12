@@ -10,9 +10,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.music.common.result.BaseResult;
 import com.music.common.util.JsonUtil;
-import com.music.manager.mapper.MusicLinkMapper;
-import com.music.manager.mapper.MyMusicMapper;
-import com.music.manager.mapper.SongMapper;
+import com.music.manager.mapper.*;
 import com.music.manager.pojo.*;
 import com.music.manager.service.IMusicLinkService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,11 +21,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
 @Service("musicLinkService")
-public class MusicLinkServicelmpl implements IMusicLinkService {
+public class MusicLinkServicelmpl implements IMusicLinkService{
 
     @Autowired
     private MusicLinkMapper musicLinkMapper;
@@ -36,15 +35,23 @@ public class MusicLinkServicelmpl implements IMusicLinkService {
 
     @Autowired
     private RedisTemplate<String,String> redisTemplate;
-
+    @Autowired
+    private SingerMapper singerMapper;
     @Autowired
     private SongMapper songMapper;
+    @Autowired
+    private LanguageMapper languageMapper;
 
     @Value(value = "${musicLink.list}")
     private String musicLinkList;
 
     @Value(value = "${TOPLink_50}")
     private String TOPLink;
+
+
+
+
+
     /**
      * 获取所有音乐
      * @return
@@ -168,36 +175,92 @@ public class MusicLinkServicelmpl implements IMusicLinkService {
      */
     @Override
     public BaseResult getTOPLink(Integer pageNum, Integer pageSize) {
-        BaseResult result = null;
+        //实时更新数据
+        redisTemplate.delete(TOPLink);
         if(StringUtils.isEmpty(pageNum)||StringUtils.isEmpty(pageSize)){
             pageNum = 1;
-            pageSize = 30;
+            pageSize = 50;
         }
         //设置分页
         PageHelper.startPage(pageNum,pageSize);
-        //根据点击数来判断歌曲火热程度,在进行升序
-        SongExample songExample = new SongExample();
-        //根据人气值来排序
-        songExample.setOrderByClause("'votes' ASC");
-        //获取到排序后的歌曲
-        List<Song> songList = songMapper.selectByExample(songExample);
-        //放入到缓存中
+        BaseResult result = null;
         //判断是否缓存中有数据
         ValueOperations<String, String> operations = redisTemplate.opsForValue();
         //获取缓存中的json字符串
-        String topLink_50 = operations.get("TOPLink_50");
-        //判断是否为空
-        if(!StringUtils.isEmpty(topLink_50)){
-            //不为空,有值
-            //将该json转换分页对象
-            PageInfo pageInfo = JsonUtil.jsonStr2Object(topLink_50, PageInfo.class);
-            result = new BaseResult();
-            result.setPageInfo(pageInfo);
-            result.setCode(200);
-            return result;
+        String str = operations.get(TOPLink);
+        if(!StringUtils.isEmpty(str)){
+            //不为空
+            PageInfo pageInfo = JsonUtil.jsonStr2Object(str, PageInfo.class);
+            //放入返回对象
+            return BaseResult.success(pageInfo);
         }
-
-        return null;
+        //放入到缓存中
+        //根据点击数来判断歌曲火热程度,在进行升序
+        SongExample songExample = new SongExample();
+        //根据人气值来排序
+        songExample.setOrderByClause("votes desc");
+        //获取到排序后的歌曲
+        List<Song> songList = songMapper.selectByExample(songExample);
+        if(!CollectionUtils.isEmpty(songList)){
+            //将查询到的数据存放到缓存中歌手id拿到歌手名
+            for(Song song:songList){
+                Singer singer = singerMapper.selectByPrimaryKey(song.getSingerid());
+                //将歌手的名字放入
+                song.setSingerid(singer.getSingername());
+            }
+            //将集合存入分页工具
+            PageInfo<Song> page = new PageInfo<>(songList);
+            operations.set(TOPLink,JsonUtil.object2JsonStr(page));
+            //遍历所有的歌曲,在根据
+            return BaseResult.success(page);
+        }
+        return BaseResult.error();
     }
+
+    /**
+     *
+     * @param pageNum
+     * @param pageSize
+     * @return
+     */
+    @Override
+    public BaseResult getNetworkMusic(Integer pageNum, Integer pageSize) {
+        if(StringUtils.isEmpty(pageNum)||StringUtils.isEmpty(pageSize)){
+            pageNum = 1;
+            pageSize = 50;
+        }
+        //设置分页数
+        PageHelper.startPage(pageNum,pageSize);
+        //创建查询对象
+        LanguageExample languageExample = new LanguageExample();
+        languageExample.createCriteria().andLanguagenameEqualTo("网络歌曲");
+        List<Language> languages = languageMapper.selectByExample(languageExample);
+        //判断非空
+        if(!CollectionUtils.isEmpty(languages)){
+            //获取language对象
+            Language language = languages.get(0);
+            //创建查对象
+            SongExample songExample = new SongExample();
+            SongExample.Criteria criteria = songExample.createCriteria();
+            //设置歌曲风格id
+            criteria.andTypeidEqualTo(language.getLanguageid());
+            //设置字段排序
+            songExample.setOrderByClause("votes DESC");
+            List<Song> songs = songMapper.selectByExample(songExample);
+            //判断是否为空
+            if(!CollectionUtils.isEmpty(songs)){
+                //不空
+                for (Song song :songs){
+                    //根据歌手id拿取到歌手名，并设置到song中
+                    Singer singer = singerMapper.selectByPrimaryKey(song.getSingerid());
+                    //将歌手的名字放入
+                    song.setSingerid(singer.getSingername());
+                }
+                return BaseResult.success(new PageInfo<>(songs));
+            }
+        }
+        return BaseResult.error();
+    }
+
 
 }

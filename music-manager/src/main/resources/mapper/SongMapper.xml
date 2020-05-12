@@ -2,12 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.music.manager.mapper.SongMapper">
   <resultMap id="BaseResultMap" type="com.music.manager.pojo.Song">
-    <id column="songID" jdbcType="INTEGER" property="songid" />
+    <id column="songID" jdbcType="VARCHAR" property="songid" />
     <result column="songName" jdbcType="VARCHAR" property="songname" />
     <result column="singerID" jdbcType="VARCHAR" property="singerid" />
     <result column="votes" jdbcType="VARCHAR" property="votes" />
     <result column="songFile" jdbcType="VARCHAR" property="songfile" />
     <result column="photoImage" jdbcType="VARCHAR" property="photoimage" />
+    <result column="TypeID" jdbcType="VARCHAR" property="typeid" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -68,7 +69,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    songID, songName, singerID, votes, songFile, photoImage
+    songID, songName, singerID, votes, songFile, photoImage, TypeID
   </sql>
   <select id="selectByExample" parameterType="com.music.manager.pojo.SongExample" resultMap="BaseResultMap">
     select
@@ -84,15 +85,15 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from song
-    where songID = #{songid,jdbcType=INTEGER}
+    where songID = #{songid,jdbcType=VARCHAR}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from song
-    where songID = #{songid,jdbcType=INTEGER}
+    where songID = #{songid,jdbcType=VARCHAR}
   </delete>
   <delete id="deleteByExample" parameterType="com.music.manager.pojo.SongExample">
     delete from song
@@ -102,11 +103,11 @@
   </delete>
   <insert id="insert" parameterType="com.music.manager.pojo.Song">
     insert into song (songID, songName, singerID, 
-      votes, songFile, photoImage
-      )
-    values (#{songid,jdbcType=INTEGER}, #{songname,jdbcType=VARCHAR}, #{singerid,jdbcType=VARCHAR}, 
-      #{votes,jdbcType=VARCHAR}, #{songfile,jdbcType=VARCHAR}, #{photoimage,jdbcType=VARCHAR}
-      )
+      votes, songFile, photoImage, 
+      TypeID)
+    values (#{songid,jdbcType=VARCHAR}, #{songname,jdbcType=VARCHAR}, #{singerid,jdbcType=VARCHAR}, 
+      #{votes,jdbcType=VARCHAR}, #{songfile,jdbcType=VARCHAR}, #{photoimage,jdbcType=VARCHAR}, 
+      #{typeid,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.music.manager.pojo.Song">
     insert into song
@@ -129,10 +130,13 @@
       <if test="photoimage != null">
         photoImage,
       </if>
+      <if test="typeid != null">
+        TypeID,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="songid != null">
-        #{songid,jdbcType=INTEGER},
+        #{songid,jdbcType=VARCHAR},
       </if>
       <if test="songname != null">
         #{songname,jdbcType=VARCHAR},
@@ -149,6 +153,9 @@
       <if test="photoimage != null">
         #{photoimage,jdbcType=VARCHAR},
       </if>
+      <if test="typeid != null">
+        #{typeid,jdbcType=VARCHAR},
+      </if>
     </trim>
   </insert>
   <select id="countByExample" parameterType="com.music.manager.pojo.SongExample" resultType="java.lang.Long">
@@ -161,7 +168,7 @@
     update song
     <set>
       <if test="record.songid != null">
-        songID = #{record.songid,jdbcType=INTEGER},
+        songID = #{record.songid,jdbcType=VARCHAR},
       </if>
       <if test="record.songname != null">
         songName = #{record.songname,jdbcType=VARCHAR},
@@ -178,6 +185,9 @@
       <if test="record.photoimage != null">
         photoImage = #{record.photoimage,jdbcType=VARCHAR},
       </if>
+      <if test="record.typeid != null">
+        TypeID = #{record.typeid,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -185,12 +195,13 @@
   </update>
   <update id="updateByExample" parameterType="map">
     update song
-    set songID = #{record.songid,jdbcType=INTEGER},
+    set songID = #{record.songid,jdbcType=VARCHAR},
       songName = #{record.songname,jdbcType=VARCHAR},
       singerID = #{record.singerid,jdbcType=VARCHAR},
       votes = #{record.votes,jdbcType=VARCHAR},
       songFile = #{record.songfile,jdbcType=VARCHAR},
-      photoImage = #{record.photoimage,jdbcType=VARCHAR}
+      photoImage = #{record.photoimage,jdbcType=VARCHAR},
+      TypeID = #{record.typeid,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -213,8 +224,11 @@
       <if test="photoimage != null">
         photoImage = #{photoimage,jdbcType=VARCHAR},
       </if>
+      <if test="typeid != null">
+        TypeID = #{typeid,jdbcType=VARCHAR},
+      </if>
     </set>
-    where songID = #{songid,jdbcType=INTEGER}
+    where songID = #{songid,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.music.manager.pojo.Song">
     update song
@@ -222,7 +236,8 @@
       singerID = #{singerid,jdbcType=VARCHAR},
       votes = #{votes,jdbcType=VARCHAR},
       songFile = #{songfile,jdbcType=VARCHAR},
-      photoImage = #{photoimage,jdbcType=VARCHAR}
-    where songID = #{songid,jdbcType=INTEGER}
+      photoImage = #{photoimage,jdbcType=VARCHAR},
+      TypeID = #{typeid,jdbcType=VARCHAR}
+    where songID = #{songid,jdbcType=VARCHAR}
   </update>
 </mapper>

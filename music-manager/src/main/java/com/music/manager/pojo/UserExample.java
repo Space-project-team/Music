@@ -1,10 +1,11 @@
 package com.music.manager.pojo;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class UserExample {
+public class UserExample implements Serializable {
     /**
      * m_user
      */

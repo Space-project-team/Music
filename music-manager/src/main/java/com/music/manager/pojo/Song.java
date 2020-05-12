@@ -11,7 +11,7 @@ public class Song implements Serializable {
     /**
      * 歌曲编号
      */
-    private Integer songid;
+    private String songid;
 
     /**
      * 歌曲名称
@@ -39,16 +39,21 @@ public class Song implements Serializable {
     private String photoimage;
 
     /**
+     * 歌曲风格
+     */
+    private String typeid;
+
+    /**
      * song
      */
     private static final long serialVersionUID = 1L;
 
-    public Integer getSongid() {
+    public String getSongid() {
         return songid;
     }
 
-    public void setSongid(Integer songid) {
-        this.songid = songid;
+    public void setSongid(String songid) {
+        this.songid = songid == null ? null : songid.trim();
     }
 
     public String getSongname() {
@@ -91,6 +96,14 @@ public class Song implements Serializable {
         this.photoimage = photoimage == null ? null : photoimage.trim();
     }
 
+    public String getTypeid() {
+        return typeid;
+    }
+
+    public void setTypeid(String typeid) {
+        this.typeid = typeid == null ? null : typeid.trim();
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -103,6 +116,7 @@ public class Song implements Serializable {
         sb.append(", votes=").append(votes);
         sb.append(", songfile=").append(songfile);
         sb.append(", photoimage=").append(photoimage);
+        sb.append(", typeid=").append(typeid);
         sb.append("]");
         return sb.toString();
     }

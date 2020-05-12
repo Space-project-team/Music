@@ -129,52 +129,62 @@ public class SongExample {
             return (Criteria) this;
         }
 
-        public Criteria andSongidEqualTo(Integer value) {
+        public Criteria andSongidEqualTo(String value) {
             addCriterion("songID =", value, "songid");
             return (Criteria) this;
         }
 
-        public Criteria andSongidNotEqualTo(Integer value) {
+        public Criteria andSongidNotEqualTo(String value) {
             addCriterion("songID <>", value, "songid");
             return (Criteria) this;
         }
 
-        public Criteria andSongidGreaterThan(Integer value) {
+        public Criteria andSongidGreaterThan(String value) {
             addCriterion("songID >", value, "songid");
             return (Criteria) this;
         }
 
-        public Criteria andSongidGreaterThanOrEqualTo(Integer value) {
+        public Criteria andSongidGreaterThanOrEqualTo(String value) {
             addCriterion("songID >=", value, "songid");
             return (Criteria) this;
         }
 
-        public Criteria andSongidLessThan(Integer value) {
+        public Criteria andSongidLessThan(String value) {
             addCriterion("songID <", value, "songid");
             return (Criteria) this;
         }
 
-        public Criteria andSongidLessThanOrEqualTo(Integer value) {
+        public Criteria andSongidLessThanOrEqualTo(String value) {
             addCriterion("songID <=", value, "songid");
             return (Criteria) this;
         }
 
-        public Criteria andSongidIn(List<Integer> values) {
+        public Criteria andSongidLike(String value) {
+            addCriterion("songID like", value, "songid");
+            return (Criteria) this;
+        }
+
+        public Criteria andSongidNotLike(String value) {
+            addCriterion("songID not like", value, "songid");
+            return (Criteria) this;
+        }
+
+        public Criteria andSongidIn(List<String> values) {
             addCriterion("songID in", values, "songid");
             return (Criteria) this;
         }
 
-        public Criteria andSongidNotIn(List<Integer> values) {
+        public Criteria andSongidNotIn(List<String> values) {
             addCriterion("songID not in", values, "songid");
             return (Criteria) this;
         }
 
-        public Criteria andSongidBetween(Integer value1, Integer value2) {
+        public Criteria andSongidBetween(String value1, String value2) {
             addCriterion("songID between", value1, value2, "songid");
             return (Criteria) this;
         }
 
-        public Criteria andSongidNotBetween(Integer value1, Integer value2) {
+        public Criteria andSongidNotBetween(String value1, String value2) {
             addCriterion("songID not between", value1, value2, "songid");
             return (Criteria) this;
         }
@@ -526,6 +536,76 @@ public class SongExample {
 
         public Criteria andPhotoimageNotBetween(String value1, String value2) {
             addCriterion("photoImage not between", value1, value2, "photoimage");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeidIsNull() {
+            addCriterion("TypeID is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeidIsNotNull() {
+            addCriterion("TypeID is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeidEqualTo(String value) {
+            addCriterion("TypeID =", value, "typeid");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeidNotEqualTo(String value) {
+            addCriterion("TypeID <>", value, "typeid");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeidGreaterThan(String value) {
+            addCriterion("TypeID >", value, "typeid");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeidGreaterThanOrEqualTo(String value) {
+            addCriterion("TypeID >=", value, "typeid");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeidLessThan(String value) {
+            addCriterion("TypeID <", value, "typeid");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeidLessThanOrEqualTo(String value) {
+            addCriterion("TypeID <=", value, "typeid");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeidLike(String value) {
+            addCriterion("TypeID like", value, "typeid");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeidNotLike(String value) {
+            addCriterion("TypeID not like", value, "typeid");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeidIn(List<String> values) {
+            addCriterion("TypeID in", values, "typeid");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeidNotIn(List<String> values) {
+            addCriterion("TypeID not in", values, "typeid");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeidBetween(String value1, String value2) {
+            addCriterion("TypeID between", value1, value2, "typeid");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeidNotBetween(String value1, String value2) {
+            addCriterion("TypeID not between", value1, value2, "typeid");
             return (Criteria) this;
         }
     }
