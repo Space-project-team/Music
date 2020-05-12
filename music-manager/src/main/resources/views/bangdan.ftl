@@ -13,7 +13,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="${ctx}/images/logo1.png">
     <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
+    <script src="js/bangdan.js"></script>
 
 </head>
 <body style="overflow-x: hidden;user-select: none;">
@@ -178,14 +178,14 @@
                 <div class="panel-body">
                     <a href="">轻语音乐榜</a>
                     <a href="">飙升榜单</a>
-                    <a href="">TOP50榜单</a>
-                    <a href="">网络音乐榜</a>
-                    <a href="">电影音乐榜</a>
-                    <a href="">DJ热歌榜</a>
-                    <a href="">欧美新歌榜</a>
-                    <a href="">中国梦之声榜</a>
-                    <a href="">国风美少年榜</a>
-                    <a href="">粤语新歌榜</a>
+                    <a href="javascript:void(0)" onclick="getModuleMusic('TOPLink',1,50)">TOP50榜单</a>
+                    <a href="javascript:void(0)" >网络音乐榜</a>
+                    <a href="javascript:void(0)" >电影音乐榜</a>
+                    <a href="javascript:void(0)" >DJ热歌榜</a>
+                    <a href="javascript:void(0)" >欧美新歌榜</a>
+                    <a href="javascript:void(0)" >中国梦之声榜</a>
+                    <a href="javascript:void(0)" >国风美少年榜</a>
+                    <a href="javascript:void(0)" >粤语新歌榜</a>
                 </div>
             </div>
         </div>
