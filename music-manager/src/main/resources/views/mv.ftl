@@ -7,7 +7,12 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>轻语MV</title>
 
-	<#include "head.ftl">
+	<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="${ctx}/css/mv.css">
+	<link rel="shortcut icon" type="image/x-icon" href="${ctx}/images/logo1.png">
+	<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+	<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="${ctx}/css/index.css">
 
 
 </head>
@@ -275,11 +280,11 @@
 		</p>
 	</div>
 </div>
-<script src="js/jquery.min.js?v=2.1.4"></script>
-<script src="js/bootstrap-paginator.min.js"></script>
-<script src="js/jquery.validate.min.js"></script>
-<script src="js/tools.js"></script>
-<script src="js/jquery.cookie.js"></script>
+<script src="${ctx}/js/jquery.min.js?v=2.1.4"></script>
+<script src="${ctx}/js/bootstrap-paginator.min.js"></script>
+<script src="${ctx}/js/jquery.validate.min.js"></script>
+<script src="${ctx}/js/tools.js"></script>
+<script src="${ctx}/js/jquery.cookie.js"></script>
 <script type="text/javascript">
 
 

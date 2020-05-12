@@ -7,7 +7,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>我的音乐</title>
 
-    <#include "head.ftl">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="${ctx}/css/index.css">
+    <link rel="stylesheet" type="text/css" href="${ctx}/css/mymusic.css">
+    <link rel="shortcut icon" type="image/x-icon" href="${ctx}/images/logo1.png">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript"
+            src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
 
 </head>
 <body style="user-select: none;">
@@ -241,11 +248,12 @@
                                                    最后 页脚
 
 --><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---->
-<script src="js/jquery.min.js?v=2.1.4"></script>
-<script src="js/bootstrap-paginator.min.js"></script>
-<script src="js/jquery.validate.min.js"></script>
-<script src="js/tools.js"></script>
-<script src="js/jquery.cookie.js"></script>
+<script src="${ctx}/js/jquery.min.js?v=2.1.4"></script>
+<script src="${ctx}/js/bootstrap-paginator.min.js"></script>
+<script src="${ctx}/js/jquery.validate.min.js"></script>
+<script src="${ctx}/js/tools.js"></script>
+<script src="${ctx}/js/jquery.cookie.js"></script>
+<script src="${ctx}/js/doT.min.js"></script>
 <script type="text/javascript">
 
 
@@ -356,5 +364,152 @@
         })
     }
 </script>
+
+<!-- 编写分页模板 -->
+<script type="template" id="pageTemplate">
+    {{ if(it.hasPreviousPage){ }}
+    <li class="paginate_button prev">
+        <a href="javascript:getList2('{{=it.prePage}}');">上一页</a>
+    </li>
+    {{ } }}
+
+    {{ for(var i = 1; i <= it.pages; i++){ }}
+    <li class="paginate_button
+        {{ if(i == it.pageNum){ }}
+        active
+        {{ } }}
+        ">
+        <a href="javascript:getList2('{{=i}}');">{{=i}}</a>
+    </li>
+    {{ } }}
+
+    {{ if(it.hasNextPage){ }}
+    <li class="paginate_button next">
+        <a href="javascript:getList2('{{=it.nextPage}}');">下一页</a>
+    </li>
+    {{ } }}
+</script>
+
+
+
+<script type="text/javascript">
+
+
+    if ($.cookie("user_name") != undefined && $.cookie("user_name") != "1") {//如果用户名不等于1且不等于未定义，则继续执行
+        $("#userName").text("账号：" + $.cookie("user_name"));//将未登录3个字替换为用户名
+        $("#zhuXiao").text("注销");//将注销加在用户名后方
+        $(".mingzijuzhong").text("用户: " + $.cookie("user_name"));//替换大头像下面的用户名
+        document.getElementById("touxiang").src = "${ctx}/images/touxiang2.jpg";//替换原始头像
+        $("#display1").attr("style", "display:none;");//隐藏登录按钮
+    }
+
+    $('#test').validate({
+        submitHandler: function (form) {
+            denglu($('#test').attr("action"), $('#test').serialize());//调用tools文件里的denglu方法，详情见tools
+        }
+    });
+
+    getList2(1);
+    /*
+    * 获取歌曲信息 -分页
+    * */
+    function getList2(page) {
+        $.ajax({
+            url: "${ctx}/myMusic/getMyMusicList",      //后台获取整个数据库方法的地址
+            type: "POST",
+            data: {
+                uid: $.cookie("user_id"),
+                pageNum:page,
+                pageSize:5,
+            },
+            success: function (data) {
+                if (data.code==200) {
+                    var str = '';                                                   //动态生成表格
+                    /* data.data.list.length对应respon.map.list.length */
+                    for (var i = 0; i < data.pageInfo.list.length; i++) {
+                        var a = i + 1;
+
+
+                        str += '<tr>'
+                            + '<td class="number111"  style="padding: 14px;border-bottom: 1px solid #eee; width: 100px;text-align: center;">' + a + '</td>'
+                            + '<td  style="padding: 14px;border-bottom: 1px solid #eee;width: 600px;text-align: center;"><a class=sName' + i + ' href="#">' + data.pageInfo.list[i].mySongname + '</a>' +
+                            '<span class="glyphicon glyphicon-trash" id=sFav' + i + ' style="color: #2c323b;float: right;"></span></td>'
+                            + '<td style="padding: 14px;border-bottom: 1px solid #eee;width: 300px;text-align: center;"><a href="#">' + data.pageInfo.list[i].mySinger + '</a></td>'
+                            + '</tr>';//将动态生成的表格添加到table标签中
+
+                        function play(i) {
+                            $("table").on('click', '.sName' + i, function () {//由于该标签是动态添加的，所以一般的选择器没有办法直接选中，因此需要借用事件委托来完成选择并添加click事件
+                                fn(i);                                          //调用fn方法，方法的作用见后方备注
+                            });
+                        }
+
+                        play(i);          //i的值不能由jq直接调用，所以利用play的方法传值进入
+
+                        function play1(i) {
+                            $("table").on('click', '#sFav' + i, function () {  //i的值不能由jq直接调用，所以利用play的方法传值进入
+                                fn1(i);//调用fn1方法来保存cookie
+                                dle(); //调用del方法删除，该方法为ajax，所以此处嵌套ajax，需定义 async: false,异步执行才不会出错
+                            });
+                        }
+
+                        play1(i);
+                    }
+
+                    function fn(j) {//
+                        $.cookie("song_link", data.pageInfo.list[j].mySonglink, {expires: 7, path: "/"});//
+                        $.cookie("song_name", data.pageInfo.list[j].mySongname, {expires: 7, path: "/"});//   保存后台传入的相关信息和链接进入cookie，在播放页面直接将cookie的值调用出来，
+                        $.cookie("song_singer", data.pageInfo.list[j].mySinger, {expires: 7, path: "/"});//    然后替换原有的信息和播放路径，完成点击歌曲播放功能
+                        $.cookie("song_photo", data.pageInfo.list[j].myPhotolink, {expires: 7, path: "/"});//
+                        window.location.href = "${ctx}/QQmusic";//跳转页面
+                    }
+
+                    function fn1(j) {
+
+                        $.cookie("ml_id", data.pageInfo.list[j].myId, {expires: 7, path: "/"});      //将歌曲id保存下来，点击删除按钮时，将值传入后台，删除数据库
+                    }
+
+
+                    $("table tbody").html(str);
+
+                    //获取分页模板
+                    var pageTemp = doT.template($("#pageTemplate").text());
+                    //填充数据
+                    $("#pageContent").html(pageTemp(data.pageInfo));
+
+                } else {   //如果后台返回202则提示歌曲已收藏
+                    alert("您还没有收藏歌曲哦，快去列表收藏吧！");
+                }
+            },
+            error: function (data) {
+                alert(JSON.stringify(data));//连接失败弹窗
+            }
+        })
+    }
+
+    function dle() {//删除已收藏歌曲的方法
+        $.ajax({
+            async: false,//给ajax嵌套执行，所以需设定false
+            url: "${ctx}/myMusic/deleteMyMusic",//后台地址
+            type: "post",//post请求方式
+            data: {
+                mid: $.cookie("ml_id"),//传入歌曲id
+                uid: $.cookie("user_id"),//传入用户id
+            },
+            success: function (data) {//webspond
+                if (data.code == "200") {
+                    window.location.reload();//刷新页面
+                    alert("已成功从收藏列表移除");//提示删除成功
+
+                    //location.reload();
+                } else {
+                    alert("add error!" + data.message);
+                }
+
+            },
+
+        })
+    }
+</script>
+
 </body>
 </html>
