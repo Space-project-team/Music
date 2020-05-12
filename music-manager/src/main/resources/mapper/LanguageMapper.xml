@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.music.generator.mapper.TestMapper">
-  <resultMap id="BaseResultMap" type="com.music.generator.pojo.Test">
-    <id column="test_id" jdbcType="INTEGER" property="testId" />
-    <result column="test_name" jdbcType="VARCHAR" property="testName" />
-    <result column="info" jdbcType="VARCHAR" property="info" />
-    <result column="other" jdbcType="VARCHAR" property="other" />
+<mapper namespace="com.music.manager.mapper.LanguageMapper">
+  <resultMap id="BaseResultMap" type="com.music.manager.pojo.Language">
+    <id column="languageID" jdbcType="VARCHAR" property="languageid" />
+    <result column="languageName" jdbcType="VARCHAR" property="languagename" />
+    <result column="typeID" jdbcType="INTEGER" property="typeid" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -66,15 +65,15 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    test_id, test_name, info, other
+    languageID, languageName, typeID
   </sql>
-  <select id="selectByExample" parameterType="com.music.generator.pojo.TestExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.music.manager.pojo.LanguageExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from m_test
+    from language
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -82,79 +81,70 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from m_test
-    where test_id = #{testId,jdbcType=INTEGER}
+    from language
+    where languageID = #{languageid,jdbcType=VARCHAR}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from m_test
-    where test_id = #{testId,jdbcType=INTEGER}
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from language
+    where languageID = #{languageid,jdbcType=VARCHAR}
   </delete>
-  <delete id="deleteByExample" parameterType="com.music.generator.pojo.TestExample">
-    delete from m_test
+  <delete id="deleteByExample" parameterType="com.music.manager.pojo.LanguageExample">
+    delete from language
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.music.generator.pojo.Test">
-    insert into m_test (test_id, test_name, info, 
-      other)
-    values (#{testId,jdbcType=INTEGER}, #{testName,jdbcType=VARCHAR}, #{info,jdbcType=VARCHAR}, 
-      #{other,jdbcType=VARCHAR})
+  <insert id="insert" parameterType="com.music.manager.pojo.Language">
+    insert into language (languageID, languageName, typeID
+      )
+    values (#{languageid,jdbcType=VARCHAR}, #{languagename,jdbcType=VARCHAR}, #{typeid,jdbcType=INTEGER}
+      )
   </insert>
-  <insert id="insertSelective" parameterType="com.music.generator.pojo.Test">
-    insert into m_test
+  <insert id="insertSelective" parameterType="com.music.manager.pojo.Language">
+    insert into language
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="testId != null">
-        test_id,
+      <if test="languageid != null">
+        languageID,
       </if>
-      <if test="testName != null">
-        test_name,
+      <if test="languagename != null">
+        languageName,
       </if>
-      <if test="info != null">
-        info,
-      </if>
-      <if test="other != null">
-        other,
+      <if test="typeid != null">
+        typeID,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="testId != null">
-        #{testId,jdbcType=INTEGER},
+      <if test="languageid != null">
+        #{languageid,jdbcType=VARCHAR},
       </if>
-      <if test="testName != null">
-        #{testName,jdbcType=VARCHAR},
+      <if test="languagename != null">
+        #{languagename,jdbcType=VARCHAR},
       </if>
-      <if test="info != null">
-        #{info,jdbcType=VARCHAR},
-      </if>
-      <if test="other != null">
-        #{other,jdbcType=VARCHAR},
+      <if test="typeid != null">
+        #{typeid,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.music.generator.pojo.TestExample" resultType="java.lang.Long">
-    select count(*) from m_test
+  <select id="countByExample" parameterType="com.music.manager.pojo.LanguageExample" resultType="java.lang.Long">
+    select count(*) from language
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update m_test
+    update language
     <set>
-      <if test="record.testId != null">
-        test_id = #{record.testId,jdbcType=INTEGER},
+      <if test="record.languageid != null">
+        languageID = #{record.languageid,jdbcType=VARCHAR},
       </if>
-      <if test="record.testName != null">
-        test_name = #{record.testName,jdbcType=VARCHAR},
+      <if test="record.languagename != null">
+        languageName = #{record.languagename,jdbcType=VARCHAR},
       </if>
-      <if test="record.info != null">
-        info = #{record.info,jdbcType=VARCHAR},
-      </if>
-      <if test="record.other != null">
-        other = #{record.other,jdbcType=VARCHAR},
+      <if test="record.typeid != null">
+        typeID = #{record.typeid,jdbcType=INTEGER},
       </if>
     </set>
     <if test="_parameter != null">
@@ -162,35 +152,30 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update m_test
-    set test_id = #{record.testId,jdbcType=INTEGER},
-      test_name = #{record.testName,jdbcType=VARCHAR},
-      info = #{record.info,jdbcType=VARCHAR},
-      other = #{record.other,jdbcType=VARCHAR}
+    update language
+    set languageID = #{record.languageid,jdbcType=VARCHAR},
+      languageName = #{record.languagename,jdbcType=VARCHAR},
+      typeID = #{record.typeid,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.music.generator.pojo.Test">
-    update m_test
+  <update id="updateByPrimaryKeySelective" parameterType="com.music.manager.pojo.Language">
+    update language
     <set>
-      <if test="testName != null">
-        test_name = #{testName,jdbcType=VARCHAR},
+      <if test="languagename != null">
+        languageName = #{languagename,jdbcType=VARCHAR},
       </if>
-      <if test="info != null">
-        info = #{info,jdbcType=VARCHAR},
-      </if>
-      <if test="other != null">
-        other = #{other,jdbcType=VARCHAR},
+      <if test="typeid != null">
+        typeID = #{typeid,jdbcType=INTEGER},
       </if>
     </set>
-    where test_id = #{testId,jdbcType=INTEGER}
+    where languageID = #{languageid,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.music.generator.pojo.Test">
-    update m_test
-    set test_name = #{testName,jdbcType=VARCHAR},
-      info = #{info,jdbcType=VARCHAR},
-      other = #{other,jdbcType=VARCHAR}
-    where test_id = #{testId,jdbcType=INTEGER}
+  <update id="updateByPrimaryKey" parameterType="com.music.manager.pojo.Language">
+    update language
+    set languageName = #{languagename,jdbcType=VARCHAR},
+      typeID = #{typeid,jdbcType=INTEGER}
+    where languageID = #{languageid,jdbcType=VARCHAR}
   </update>
 </mapper>
