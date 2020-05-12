@@ -96,11 +96,16 @@ mybatis:
   type-aliases-package: com.music.manager.pojo
   # spring boot集成mybatis的方式打印sql，需要使用的话可以开启
 #  configuration:
-#存储音乐列表
-musicLink.list: musicLink
+
 # Redis Key
 # myMusic列表 key
 mymusic.list.key: mymusic:list
+#存储音乐列表
+musicLink.list: musicLink
+#存储TOP榜前50
+TOPLink_50: TOPLink_50
+
+
 #关闭Elasticsearch健康检查
 management:
   health:
