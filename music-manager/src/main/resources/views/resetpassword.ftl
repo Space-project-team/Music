@@ -7,10 +7,15 @@
     <meta charset="utf-8">
     <title>test</title>
 
-    <#include "head.ftl">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="${ctx}/css/register.css">
 
 </head>
-
+<script>
+    var ctx="${ctx}";
+</script>
 <body class="gray-bg">
     <div id="nav">
         <div class="nav">
@@ -37,7 +42,7 @@
                             <div class="ibox-title">
                             </div>
                             <div class="ibox-content">
-                                <form id="test" role="form" action="/user/resetUserPassword" method="post">
+                                <form id="test" role="form" action="${ctx}/user/resetUserPassword" method="post">
                                     <div class="form-group">
                                         <!-- 表单 -->
                                         <label for="username" class="col-sm-2 control-label">用户名:</label> <!-- 表单 -->
@@ -58,8 +63,8 @@
                                         </div>
                                     </div> 
                                     <div class="form-group">
-                                        <div class="col-sm-offset-1 col-sm-10" onClick="zhuXiao()">
-                                            <button type="submit" class="btn btn-primary btn-lg" onClick=" chkAll();">确认修改</button>
+                                        <div class="col-sm-offset-1 col-sm-10" onclick="zhuXiao()">
+                                            <button type="submit" class="btn btn-primary btn-lg" <#--onClick=" chkAll();"-->>确认修改</button>
                                         </div>
                                     </div>
                                 </form>
@@ -70,10 +75,10 @@
             </div>
         </div>
     </div>
-    <script src="js/jquery.min.js?v=2.1.4"></script>
-    <script src="js/bootstrap-paginator.min.js"></script>
-    <script src="js/jquery.validate.min.js"></script>
-    <script src="js/tools.js"></script>
+    <script src="${ctx}/js/jquery.min.js?v=2.1.4"></script>
+    <script src="${ctx}/js/bootstrap-paginator.min.js"></script>
+    <script src="${ctx}/js/jquery.validate.min.js"></script>
+    <script src="${ctx}/js/tools.js"></script>
     <script type="text/javascript">
     $('#test').validate({
         submitHandler: function() {

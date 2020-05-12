@@ -8,7 +8,14 @@
     <!-- Bootstrap -->
     <title>轻语音乐</title>
 
-    <#include "head.ftl">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="${ctx}/css/jquery.mCustomScrollbar.css">
+    <link rel="stylesheet" href="${ctx}/css/index1.css">
+    <link rel="shortcut icon" type="image/x-icon" href="${ctx}/images/logo1.png">
+    <script src="${ctx}/js/jquery.min.js"></script>
+    <script src="${ctx}/js/jquery.cookie.js"></script>
+    <script src="${ctx}/js/jquery.mCustomScrollbar.js"></script>
+    <script src="${ctx}/js/player.js"></script>
 
 </head>
 
@@ -103,7 +110,7 @@
 </div>
 <div class="mask"></div>
 <audio id="audio" src=""></audio>
-<script src="js/index.js"></script>
+<script src="${ctx}/js/index.js"></script>
 <script>
     //工作原理代码见inde.js
     getList2();

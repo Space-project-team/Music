@@ -146,7 +146,8 @@ public class UserServicelmpl implements UserService {
 			return result;
 		}
 		user.setUserPassword(Md5Util.getMD5String(newPassword));
-		userMapper.updateByPrimaryKey(user);
+		int row=userMapper.updateByPrimaryKey(user);
+        System.out.println(row);
 		return BaseResult.success();
 	}
 

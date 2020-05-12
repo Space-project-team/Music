@@ -18,6 +18,7 @@
 <link rel="shortcut icon" type="image/x-icon" href="${ctx}/static/images/logo1.png">
 <link rel="stylesheet" href="${ctx}/css/index.css">
 <link rel="stylesheet" href="${ctx}/css/register.css">
+<link rel="stylesheet" href="${ctx}/css/index1.css">
 
 
 <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
