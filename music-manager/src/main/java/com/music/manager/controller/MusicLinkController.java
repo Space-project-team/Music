@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import com.music.common.result.BaseResult;
 import com.music.common.result.MusicPageInfo;
 import com.music.manager.pojo.MusicLink;
+import com.music.manager.pojo.Song;
 import com.music.manager.pojo.User;
 import com.music.manager.service.IMusicLinkService;
 import com.music.manager.service.impl.MusicLinkServicelmpl;
@@ -14,6 +15,7 @@ import com.music.manager.vo.MusicLinkQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -66,7 +68,7 @@ public class MusicLinkController {
 	}
 
 
-	@RequestMapping(value = "TOP-Link",method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@RequestMapping(value = "TOPLink",method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public BaseResult TOPLink(Integer pageNum,Integer pageSize){
 		return musicLinkService.getTOPLink(pageNum,pageSize);

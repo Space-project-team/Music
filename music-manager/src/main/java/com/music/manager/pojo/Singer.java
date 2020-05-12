@@ -11,7 +11,7 @@ public class Singer implements Serializable {
     /**
      * 歌手编号
      */
-    private Integer singerid;
+    private String singerid;
 
     /**
      * 姓名
@@ -43,12 +43,12 @@ public class Singer implements Serializable {
      */
     private static final long serialVersionUID = 1L;
 
-    public Integer getSingerid() {
+    public String getSingerid() {
         return singerid;
     }
 
-    public void setSingerid(Integer singerid) {
-        this.singerid = singerid;
+    public void setSingerid(String singerid) {
+        this.singerid = singerid == null ? null : singerid.trim();
     }
 
     public String getSingername() {

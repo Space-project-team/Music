@@ -48,6 +48,7 @@ public class MyMusicService implements IMyMusicService {
      */
     @Override
     public BaseResult getMyMusicList(Integer uid, Integer pageNum, Integer pageSize) {
+
         //开启分页
         PageHelper.startPage(pageNum,pageSize);
         //判断用户是否存在

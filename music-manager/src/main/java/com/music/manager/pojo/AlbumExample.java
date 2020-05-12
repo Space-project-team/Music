@@ -1,11 +1,12 @@
 package com.music.manager.pojo;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
-public class AlbumExample {
+public class AlbumExample  implements Serializable {
     /**
      * album
      */

@@ -129,52 +129,62 @@ public class SingerExample {
             return (Criteria) this;
         }
 
-        public Criteria andSingeridEqualTo(Integer value) {
+        public Criteria andSingeridEqualTo(String value) {
             addCriterion("singerID =", value, "singerid");
             return (Criteria) this;
         }
 
-        public Criteria andSingeridNotEqualTo(Integer value) {
+        public Criteria andSingeridNotEqualTo(String value) {
             addCriterion("singerID <>", value, "singerid");
             return (Criteria) this;
         }
 
-        public Criteria andSingeridGreaterThan(Integer value) {
+        public Criteria andSingeridGreaterThan(String value) {
             addCriterion("singerID >", value, "singerid");
             return (Criteria) this;
         }
 
-        public Criteria andSingeridGreaterThanOrEqualTo(Integer value) {
+        public Criteria andSingeridGreaterThanOrEqualTo(String value) {
             addCriterion("singerID >=", value, "singerid");
             return (Criteria) this;
         }
 
-        public Criteria andSingeridLessThan(Integer value) {
+        public Criteria andSingeridLessThan(String value) {
             addCriterion("singerID <", value, "singerid");
             return (Criteria) this;
         }
 
-        public Criteria andSingeridLessThanOrEqualTo(Integer value) {
+        public Criteria andSingeridLessThanOrEqualTo(String value) {
             addCriterion("singerID <=", value, "singerid");
             return (Criteria) this;
         }
 
-        public Criteria andSingeridIn(List<Integer> values) {
+        public Criteria andSingeridLike(String value) {
+            addCriterion("singerID like", value, "singerid");
+            return (Criteria) this;
+        }
+
+        public Criteria andSingeridNotLike(String value) {
+            addCriterion("singerID not like", value, "singerid");
+            return (Criteria) this;
+        }
+
+        public Criteria andSingeridIn(List<String> values) {
             addCriterion("singerID in", values, "singerid");
             return (Criteria) this;
         }
 
-        public Criteria andSingeridNotIn(List<Integer> values) {
+        public Criteria andSingeridNotIn(List<String> values) {
             addCriterion("singerID not in", values, "singerid");
             return (Criteria) this;
         }
 
-        public Criteria andSingeridBetween(Integer value1, Integer value2) {
+        public Criteria andSingeridBetween(String value1, String value2) {
             addCriterion("singerID between", value1, value2, "singerid");
             return (Criteria) this;
         }
 
-        public Criteria andSingeridNotBetween(Integer value1, Integer value2) {
+        public Criteria andSingeridNotBetween(String value1, String value2) {
             addCriterion("singerID not between", value1, value2, "singerid");
             return (Criteria) this;
         }

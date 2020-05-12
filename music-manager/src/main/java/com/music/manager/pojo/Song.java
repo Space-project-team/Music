@@ -11,7 +11,7 @@ public class Song implements Serializable {
     /**
      * 歌曲编号
      */
-    private Integer songid;
+    private String songid;
 
     /**
      * 歌曲名称
@@ -43,12 +43,12 @@ public class Song implements Serializable {
      */
     private static final long serialVersionUID = 1L;
 
-    public Integer getSongid() {
+    public String getSongid() {
         return songid;
     }
 
-    public void setSongid(Integer songid) {
-        this.songid = songid;
+    public void setSongid(String songid) {
+        this.songid = songid == null ? null : songid.trim();
     }
 
     public String getSongname() {

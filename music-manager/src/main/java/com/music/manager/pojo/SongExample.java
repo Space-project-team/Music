@@ -129,52 +129,62 @@ public class SongExample {
             return (Criteria) this;
         }
 
-        public Criteria andSongidEqualTo(Integer value) {
+        public Criteria andSongidEqualTo(String value) {
             addCriterion("songID =", value, "songid");
             return (Criteria) this;
         }
 
-        public Criteria andSongidNotEqualTo(Integer value) {
+        public Criteria andSongidNotEqualTo(String value) {
             addCriterion("songID <>", value, "songid");
             return (Criteria) this;
         }
 
-        public Criteria andSongidGreaterThan(Integer value) {
+        public Criteria andSongidGreaterThan(String value) {
             addCriterion("songID >", value, "songid");
             return (Criteria) this;
         }
 
-        public Criteria andSongidGreaterThanOrEqualTo(Integer value) {
+        public Criteria andSongidGreaterThanOrEqualTo(String value) {
             addCriterion("songID >=", value, "songid");
             return (Criteria) this;
         }
 
-        public Criteria andSongidLessThan(Integer value) {
+        public Criteria andSongidLessThan(String value) {
             addCriterion("songID <", value, "songid");
             return (Criteria) this;
         }
 
-        public Criteria andSongidLessThanOrEqualTo(Integer value) {
+        public Criteria andSongidLessThanOrEqualTo(String value) {
             addCriterion("songID <=", value, "songid");
             return (Criteria) this;
         }
 
-        public Criteria andSongidIn(List<Integer> values) {
+        public Criteria andSongidLike(String value) {
+            addCriterion("songID like", value, "songid");
+            return (Criteria) this;
+        }
+
+        public Criteria andSongidNotLike(String value) {
+            addCriterion("songID not like", value, "songid");
+            return (Criteria) this;
+        }
+
+        public Criteria andSongidIn(List<String> values) {
             addCriterion("songID in", values, "songid");
             return (Criteria) this;
         }
 
-        public Criteria andSongidNotIn(List<Integer> values) {
+        public Criteria andSongidNotIn(List<String> values) {
             addCriterion("songID not in", values, "songid");
             return (Criteria) this;
         }
 
-        public Criteria andSongidBetween(Integer value1, Integer value2) {
+        public Criteria andSongidBetween(String value1, String value2) {
             addCriterion("songID between", value1, value2, "songid");
             return (Criteria) this;
         }
 
-        public Criteria andSongidNotBetween(Integer value1, Integer value2) {
+        public Criteria andSongidNotBetween(String value1, String value2) {
             addCriterion("songID not between", value1, value2, "songid");
             return (Criteria) this;
         }
