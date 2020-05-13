@@ -7,7 +7,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>我的音乐</title>
 
-    <#include "head.ftl">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="${ctx}/css/index.css">
+    <link rel="stylesheet" type="text/css" href="${ctx}/css/mymusic.css">
+    <link rel="shortcut icon" type="image/x-icon" href="${ctx}/images/logo1.png">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript"
+            src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
 
 </head>
 <body style="user-select: none;">
@@ -230,10 +237,21 @@
                     </div>
                 </div>
             </div>
+
             <div class="col-sm-12">
                 <ul id="pagintor"></ul>
             </div>
         </div>
+        <div class="row">
+            <div class="col-sm-1 text-left"></div>
+            <div class="col-sm-11 text-right">
+                <div class="dataTables_paginate paging_simple_numbers">
+                    <ul class="pagination" id="pageContent">
+                    </ul>
+                </div>
+            </div>
+        </div>
+
     </div>
 </div>
 <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---
@@ -241,11 +259,38 @@
                                                    最后 页脚
 
 --><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---->
-<script src="js/jquery.min.js?v=2.1.4"></script>
-<script src="js/bootstrap-paginator.min.js"></script>
-<script src="js/jquery.validate.min.js"></script>
-<script src="js/tools.js"></script>
-<script src="js/jquery.cookie.js"></script>
+<script src="${ctx}/js/jquery.min.js"></script>
+<script src="${ctx}/js/bootstrap-paginator.min.js"></script>
+<script src="${ctx}/js/jquery.validate.min.js"></script>
+<script src="${ctx}/js/tools.js"></script>
+<script src="${ctx}/js/jquery.cookie.js"></script>
+<script src="${ctx}/js/doT.min.js"></script>
+
+<!-- 编写分页模板 -->
+<script type="template" id="pageTemplate">
+    {{ if(it.hasPreviousPage){ }}
+    <li class="paginate_button prev">
+        <a href="javascript:getList2('{{=it.prePage}}');">上一页</a>
+    </li>
+    {{ } }}
+
+    {{ for(var i = 1; i <= it.pages; i++){ }}
+    <li class="paginate_button
+        {{ if(i == it.pageNum){ }}
+        active
+        {{ } }}
+        ">
+        <a href="javascript:getList2('{{=i}}');">{{=i}}</a>
+    </li>
+    {{ } }}
+
+    {{ if(it.hasNextPage){ }}
+    <li class="paginate_button next">
+        <a href="javascript:getList2('{{=it.nextPage}}');">下一页</a>
+    </li>
+    {{ } }}
+</script>
+
 <script type="text/javascript">
 
 
@@ -263,30 +308,32 @@
         }
     });
 
-    getList2();
-
-    function getList2() {
+    getList2(1);
+    /*
+    * 获取歌曲信息 -分页
+    * */
+    function getList2(page) {
         $.ajax({
-            url: "myMusic/getMyMusicList",      //后台获取整个数据库方法的地址
+            url: "${ctx}/myMusic/getMyMusicList",      //后台获取整个数据库方法的地址
             type: "POST",
             data: {
-                "user_name": $.cookie("user_name"),
-                "user_password": $.cookie("user_password"),
-                "song_id": $.cookie("song_id"),
+                userName: $.cookie("user_name"),
+                pageNum: page,
+                pageSize:5,
             },
             success: function (data) {
-                if (data.statusCode == "200") {
+                if (data.code==200) {
                     var str = '';                                                   //动态生成表格
                     /* data.data.list.length对应respon.map.list.length */
-                    for (var i = 0; i < data.data.list.length; i++) {
+                    for (var i = 0; i < data.pageInfo.list.length; i++) {
                         var a = i + 1;
 
 
                         str += '<tr>'
                             + '<td class="number111"  style="padding: 14px;border-bottom: 1px solid #eee; width: 100px;text-align: center;">' + a + '</td>'
-                            + '<td  style="padding: 14px;border-bottom: 1px solid #eee;width: 600px;text-align: center;"><a class=sName' + i + ' href="#">' + data.data.list[i].my_songName + '</a>' +
+                            + '<td  style="padding: 14px;border-bottom: 1px solid #eee;width: 600px;text-align: center;"><a class=sName' + i + ' href="#">' + data.pageInfo.list[i].mySongname + '</a>' +
                             '<span class="glyphicon glyphicon-trash" id=sFav' + i + ' style="color: #2c323b;float: right;"></span></td>'
-                            + '<td style="padding: 14px;border-bottom: 1px solid #eee;width: 300px;text-align: center;"><a href="#">' + data.data.list[i].my_singer + '</a></td>'
+                            + '<td style="padding: 14px;border-bottom: 1px solid #eee;width: 300px;text-align: center;"><a href="#">' + data.pageInfo.list[i].mySinger + '</a></td>'
                             + '</tr>';//将动态生成的表格添加到table标签中
 
                         function play(i) {
@@ -308,21 +355,27 @@
                     }
 
                     function fn(j) {//
-                        $.cookie("song_link", data.data.list[j].my_songLink, {expires: 7, path: "/"});//
-                        $.cookie("song_name", data.data.list[j].my_songName, {expires: 7, path: "/"});//   保存后台传入的相关信息和链接进入cookie，在播放页面直接将cookie的值调用出来，
-                        $.cookie("song_singer", data.data.list[j].my_singer, {expires: 7, path: "/"});//    然后替换原有的信息和播放路径，完成点击歌曲播放功能
-                        $.cookie("song_photo", data.data.list[j].my_photoLink, {expires: 7, path: "/"});//
+                        $.cookie("song_link", data.pageInfo.list[j].mySonglink, {expires: 7, path: "/"});//
+                        $.cookie("song_name", data.pageInfo.list[j].mySongname, {expires: 7, path: "/"});//   保存后台传入的相关信息和链接进入cookie，在播放页面直接将cookie的值调用出来，
+                        $.cookie("song_singer", data.pageInfo.list[j].mySinger, {expires: 7, path: "/"});//    然后替换原有的信息和播放路径，完成点击歌曲播放功能
+                        $.cookie("song_photo", data.pageInfo.list[j].myPhotolink, {expires: 7, path: "/"});//
                         window.location.href = "${ctx}/QQmusic";//跳转页面
                     }
 
                     function fn1(j) {
 
-                        $.cookie("ml_id", data.data.list[j].my_id, {expires: 7, path: "/"});      //将歌曲id保存下来，点击删除按钮时，将值传入后台，删除数据库
+                        $.cookie("ml_id", data.pageInfo.list[j].myId, {expires: 7, path: "/"});      //将歌曲id保存下来，点击删除按钮时，将值传入后台，删除数据库
                     }
 
 
                     $("table tbody").html(str);
-                } else if (data.statusCode == "202") {//如果后台返回202则提示歌曲已收藏
+
+                    //获取分页模板
+                    var pageTemp = doT.template($("#pageTemplate").text());
+                    //填充数据
+                    $("#pageContent").html(pageTemp(data.pageInfo));
+
+                } else {   //如果后台返回202则提示歌曲已收藏
                     alert("您还没有收藏歌曲哦，快去列表收藏吧！");
                 }
             },
@@ -335,20 +388,21 @@
     function dle() {//删除已收藏歌曲的方法
         $.ajax({
             async: false,//给ajax嵌套执行，所以需设定false
-            url: "/myMusic/deleteMyMusic",//后台地址
+            url: "${ctx}/myMusic/deleteMyMusic",//后台地址
             type: "post",//post请求方式
             data: {
-                "song_id": $.cookie("ml_id"),//传入歌曲id
-                "user_id": $.cookie("user_id"),//传入用户id
+                mid: $.cookie("ml_id"),//传入歌曲id
+                userName: $.cookie("user_name"),//传入用户名
             },
             success: function (data) {//webspond
-                if (data.statusCode == "200") {
+                console.log(data);
+                if (data.code==200) {
                     window.location.reload();//刷新页面
                     alert("已成功从收藏列表移除");//提示删除成功
 
                     //location.reload();
                 } else {
-                    alert("add error!" + data.statusMsg);
+                    alert("add error!" + data.message);
                 }
 
             },
@@ -356,5 +410,6 @@
         })
     }
 </script>
+
 </body>
 </html>

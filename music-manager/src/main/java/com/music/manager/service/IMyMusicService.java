@@ -13,11 +13,11 @@ public interface IMyMusicService {
     /**
      * 用户歌曲信息列表-分页
      */
-    BaseResult getMyMusicList(Integer uid, Integer pageNum, Integer pageSize);
+    BaseResult getMyMusicList(String userName, Integer pageNum, Integer pageSize);
 
     /**
      * 根据用户id和歌曲id 删除
      */
-    int deleteMyMusic(Integer mid,Integer uid);
+    int deleteMyMusic(Integer mid,String userName);
 
 }

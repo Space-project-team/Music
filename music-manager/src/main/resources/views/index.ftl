@@ -7,9 +7,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>我们敲代码滴不懂音乐</title>
 
-    <#include "head.ftl">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="${ctx}/css/index.css">
+    <link rel="shortcut icon" type="image/x-icon" href="${ctx}/images/logo1.png">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 </head>
+<script>
+   var ctx="${ctx}";
+</script>
 <body style="user-select: none">
 <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---
  
@@ -25,7 +32,7 @@
                 <h4 class="modal-title" id="myModalLabel">账号密码登录</h4>
             </div>
             <div class="modal-body" style="position: relative;">
-                <form id="test" class="form-horizontal" role="form" action="/user/loginPage" method="post"
+                <form id="test" class="form-horizontal" role="form" action="${ctx}/user/loginPage" method="post"
                       style="padding-left: 50px;">
                     <div class="form-group">
                         <img src="${ctx}/images/logo2.png" style="display: block; padding: 20px 151px">
@@ -341,7 +348,7 @@
                     <a href="#" style="margin-left: 42px">莫文蔚</a>
                 </div>
             </li>
-            <li class="back2"><img src="${ctx}/images/paihan-2.png" width="225.2px" height="500px">
+            <li class="back2"><img src="/images/paihan-2.png" width="225.2px" height="500px">
                 <div class="shang tong">
                     <p>抖音最火榜</p>
                     <p style="font-size: 30px;font-weight: bold;	">流行</p>
@@ -434,11 +441,11 @@
         </p>
     </div>
 </div>
-<script src="js/jquery.min.js?v=2.1.4"></script>
-<script src="js/bootstrap-paginator.min.js"></script>
-<script src="js/jquery.validate.min.js"></script>
-<script src="js/tools.js"></script>
-<script src="js/jquery.cookie.js"></script>
+<script src="${ctx}/js/jquery.min.js?v=2.1.4"></script>
+<script src="${ctx}/js/bootstrap-paginator.min.js"></script>
+<script src="${ctx}/js/jquery.validate.min.js"></script>
+<script src="${ctx}/js/tools.js"></script>
+<script src="${ctx}/js/jquery.cookie.js"></script>
 <script type="text/javascript" src="js/vue.min.js"></script>
 
 <script type="text/javascript">

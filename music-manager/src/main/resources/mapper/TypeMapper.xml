@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.music.manager.mapper.TestMapper">
-  <resultMap id="BaseResultMap" type="com.music.manager.pojo.Test">
-    <id column="test_id" jdbcType="INTEGER" property="testId" />
-    <result column="test_name" jdbcType="VARCHAR" property="testName" />
-    <result column="info" jdbcType="VARCHAR" property="info" />
-    <result column="other" jdbcType="VARCHAR" property="other" />
+<mapper namespace="com.music.manager.mapper.TypeMapper">
+  <resultMap id="BaseResultMap" type="com.music.manager.pojo.Type">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="typeName" jdbcType="VARCHAR" property="typename" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -66,15 +64,15 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    test_id, test_name, info, other
+    id, typeName
   </sql>
-  <select id="selectByExample" parameterType="com.music.manager.pojo.TestExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.music.manager.pojo.TypeExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from m_test
+    from type
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -85,76 +83,56 @@
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from m_test
-    where test_id = #{testId,jdbcType=INTEGER}
+    from type
+    where id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from m_test
-    where test_id = #{testId,jdbcType=INTEGER}
+    delete from type
+    where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.music.manager.pojo.TestExample">
-    delete from m_test
+  <delete id="deleteByExample" parameterType="com.music.manager.pojo.TypeExample">
+    delete from type
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.music.manager.pojo.Test">
-    insert into m_test (test_id, test_name, info, 
-      other)
-    values (#{testId,jdbcType=INTEGER}, #{testName,jdbcType=VARCHAR}, #{info,jdbcType=VARCHAR}, 
-      #{other,jdbcType=VARCHAR})
+  <insert id="insert" parameterType="com.music.manager.pojo.Type">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into type (typeName)
+    values (#{typename,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.music.manager.pojo.Test">
-    insert into m_test
+  <insert id="insertSelective" parameterType="com.music.manager.pojo.Type">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into type
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="testId != null">
-        test_id,
-      </if>
-      <if test="testName != null">
-        test_name,
-      </if>
-      <if test="info != null">
-        info,
-      </if>
-      <if test="other != null">
-        other,
+      <if test="typename != null">
+        typeName,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="testId != null">
-        #{testId,jdbcType=INTEGER},
-      </if>
-      <if test="testName != null">
-        #{testName,jdbcType=VARCHAR},
-      </if>
-      <if test="info != null">
-        #{info,jdbcType=VARCHAR},
-      </if>
-      <if test="other != null">
-        #{other,jdbcType=VARCHAR},
+      <if test="typename != null">
+        #{typename,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.music.manager.pojo.TestExample" resultType="java.lang.Long">
-    select count(*) from m_test
+  <select id="countByExample" parameterType="com.music.manager.pojo.TypeExample" resultType="java.lang.Long">
+    select count(*) from type
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update m_test
+    update type
     <set>
-      <if test="record.testId != null">
-        test_id = #{record.testId,jdbcType=INTEGER},
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
       </if>
-      <if test="record.testName != null">
-        test_name = #{record.testName,jdbcType=VARCHAR},
-      </if>
-      <if test="record.info != null">
-        info = #{record.info,jdbcType=VARCHAR},
-      </if>
-      <if test="record.other != null">
-        other = #{record.other,jdbcType=VARCHAR},
+      <if test="record.typename != null">
+        typeName = #{record.typename,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null">
@@ -162,35 +140,25 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update m_test
-    set test_id = #{record.testId,jdbcType=INTEGER},
-      test_name = #{record.testName,jdbcType=VARCHAR},
-      info = #{record.info,jdbcType=VARCHAR},
-      other = #{record.other,jdbcType=VARCHAR}
+    update type
+    set id = #{record.id,jdbcType=INTEGER},
+      typeName = #{record.typename,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.music.manager.pojo.Test">
-    update m_test
+  <update id="updateByPrimaryKeySelective" parameterType="com.music.manager.pojo.Type">
+    update type
     <set>
-      <if test="testName != null">
-        test_name = #{testName,jdbcType=VARCHAR},
-      </if>
-      <if test="info != null">
-        info = #{info,jdbcType=VARCHAR},
-      </if>
-      <if test="other != null">
-        other = #{other,jdbcType=VARCHAR},
+      <if test="typename != null">
+        typeName = #{typename,jdbcType=VARCHAR},
       </if>
     </set>
-    where test_id = #{testId,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.music.manager.pojo.Test">
-    update m_test
-    set test_name = #{testName,jdbcType=VARCHAR},
-      info = #{info,jdbcType=VARCHAR},
-      other = #{other,jdbcType=VARCHAR}
-    where test_id = #{testId,jdbcType=INTEGER}
+  <update id="updateByPrimaryKey" parameterType="com.music.manager.pojo.Type">
+    update type
+    set typeName = #{typename,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

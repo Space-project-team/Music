@@ -9,7 +9,11 @@
     <meta name="keywords" content="">
     <meta name="description" content="">
 
-    <#include "head.ftl">
+    <link href="${ctx}/css/bootstrap.min14ed.css?v=3.3.6" rel="stylesheet">
+    <link href="${ctx}/css/font-awesome.min93e3.css?v=4.4.0" rel="stylesheet">
+    <link href="${ctx}/css/plugins/iCheck/custom.css" rel="stylesheet">
+    <link href="${ctx}/css/animate.min.css" rel="stylesheet">
+    <link href="${ctx}/css/style.min862f.css?v=4.1.0" rel="stylesheet">
 
 </head>
 <body class="gray-bg">
@@ -73,14 +77,14 @@
             <div class="col-sm-12"><ul id="pagintor"></ul></div>
         </div>
     </div>
-    <script src="js/jquery.min.js?v=2.1.4"></script>
-    <script src="js/bootstrap.min.js?v=3.3.6"></script>
-    <script src="js/plugins/peity/jquery.peity.min.js"></script>
-    <script src="js/plugins/iCheck/icheck.min.js"></script>
-    <script src="js/demo/peity-demo.js"></script>
-    <script src="js/bootstrap-paginator.min.js"></script>
-    <script src="js/jquery.validate.min.js"></script>
-    <script src="js/tools.js"></script>
+    <script src="${ctx}/js/jquery.min.js?v=2.1.4"></script>
+    <script src="${ctx}/js/bootstrap.min.js?v=3.3.6"></script>
+    <script src="${ctx}/js/plugins/peity/jquery.peity.min.js"></script>
+    <script src="${ctx}/js/plugins/iCheck/icheck.min.js"></script>
+    <script src="${ctx}/js/demo/peity-demo.js"></script>
+    <script src="${ctx}/js/bootstrap-paginator.min.js"></script>
+    <script src="${ctx}/js/jquery.validate.min.js"></script>
+    <script src="${ctx}/js/tools.js"></script>
 	<script type="text/javascript">
 		$('#test').validate({
 			rules: {

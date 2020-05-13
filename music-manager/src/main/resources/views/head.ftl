@@ -18,6 +18,7 @@
 <link rel="shortcut icon" type="image/x-icon" href="${ctx}/static/images/logo1.png">
 <link rel="stylesheet" href="${ctx}/css/index.css">
 <link rel="stylesheet" href="${ctx}/css/register.css">
+<link rel="stylesheet" href="${ctx}/css/index1.css">
 
 
 <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
@@ -32,10 +33,9 @@
 <script src="${ctx}/js/player.js"></script>
 
 
-
+<link rel="stylesheet" href="${ctx}/css/index1.css">
 <link href="${ctx}/css/bootstrap.min14ed.css?v=3.3.6" rel="stylesheet">
 <link href="${ctx}/css/font-awesome.min93e3.css?v=4.4.0" rel="stylesheet">
 <link href="${ctx}/css/plugins/iCheck/custom.css" rel="stylesheet">
 <link href="${ctx}/css/animate.min.css" rel="stylesheet">
-
 

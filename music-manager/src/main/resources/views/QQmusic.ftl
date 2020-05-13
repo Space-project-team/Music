@@ -8,7 +8,14 @@
     <!-- Bootstrap -->
     <title>轻语音乐</title>
 
-    <#include "head.ftl">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="${ctx}/css/jquery.mCustomScrollbar.css">
+    <link rel="stylesheet" href="${ctx}/css/index1.css">
+    <link rel="shortcut icon" type="image/x-icon" href="${ctx}/images/logo1.png">
+    <script src="${ctx}/js/jquery.min.js"></script>
+    <script src="${ctx}/js/jquery.cookie.js"></script>
+    <script src="${ctx}/js/jquery.mCustomScrollbar.js"></script>
+    <script src="${ctx}/js/player.js"></script>
 
 </head>
 
@@ -103,35 +110,37 @@
 </div>
 <div class="mask"></div>
 <audio id="audio" src=""></audio>
-<script src="js/index.js"></script>
+<script src="${ctx}/js/index.js"></script>
 <script>
-    //工作原理代码见inde.js
+    //工作原理代码见index.js
     getList2();
 
     function getList2() {
         $.ajax({
-            url: "myMusic/getMyMusicList",
+            url: "${ctx}/myMusic/getMyMusicList",
             type: "POST",
             data: {
-                "user_name": $.cookie("user_name"),
-                "user_password": $.cookie("user_password"),
-                "song_id": $.cookie("song_id"),
+               userName: $.cookie("user_name"),
+               pageNum:1,
+               pageSize:10
             },
             success: function (data) {
-                if (data.statusCode == "200") {
+                console.log(data);
+                if (data.code==200) {
                     var str = '';
                     /* data.data.list.length对应respon.map.list.length */
-                    for (var i = 0; i < data.data.list.length; i++) {
+                    for (var i = 0; i < data.pageInfo.list.length; i++) {
+                        //console.log(i);
                         var a = i + 1;
                         str += '<li class="list_music">\n' +
                             '                        <div class="list_number">' + a + '</div>\n' +
-                            '                        <div id= sName' + i + ' class="list_name" style="cursor: pointer;">' + data.data.list[i].my_songName +
+                            '                        <div id= sName' + i + ' class="list_name" style="cursor: pointer;">' + data.pageInfo.list[i].mySongname +
                             '<span class="glyphicon glyphicon-trash" id=sFav' + i + ' style="color: rgba(255,255,255,0.5);float: right;margin-right: 20px;cursor: pointer;"></span>' +
                             '                        </div>\n' +
-                            '                        <div class="list_singer">' + data.data.list[i].my_singer + '</div>\n' +
+                            '                        <div class="list_singer">' + data.pageInfo.list[i].mySinger + '</div>\n' +
                             '                        <div class="list_time"><span class="time1">4:36</span>\n' +
                             '                    </li>';
-
+                        //console.log(1111);
                         function play(i) {
                             $("#sNamee").on('click', '#sName' + i, function () {
                                 fn(i);
@@ -152,21 +161,20 @@
 
                     function fn(j) {
 
-                        $.cookie("song_link", data.data.list[j].my_songLink, {expires: 7, path: "/"});
-                        $.cookie("song_name", data.data.list[j].my_songName, {expires: 7, path: "/"});
-                        $.cookie("song_singer", data.data.list[j].my_singer, {expires: 7, path: "/"});
-                        $.cookie("song_photo", data.data.list[j].my_photoLink, {expires: 7, path: "/"});
-                        window.location.href = "/QQmusic.html";
+                        $.cookie("song_link", data.pageInfo.list[j].mySonglink, {expires: 7, path: "/"});
+                        $.cookie("song_name", data.pageInfo.list[j].mySongname, {expires: 7, path: "/"});
+                        $.cookie("song_singer", data.pageInfo.list[j].mySinger, {expires: 7, path: "/"});
+                        $.cookie("song_photo", data.pageInfo.list[j].myPhotolink, {expires: 7, path: "/"});
+                        window.location.href = "${ctx}/QQmusic";
                     }
 
                     function fn1(j) {
-
-                        $.cookie("ml_id", data.data.list[j].my_id, {expires: 7, path: "/"});
+                        $.cookie("ml_id", data.pageInfo.list[j].mlId, {expires: 7, path: "/"});
                     }
-
-
+                    //console.log(str);
                     $("#sNamee").html(str);
-                } else if (data.statusCode == "202") {
+
+                } else{
                     alert("您还没有收藏歌曲哦，快去列表收藏吧！");
                 }
             },
@@ -179,20 +187,20 @@
     function dle() {
         $.ajax({
             async: false,
-            url: "/myMusic/deleteMyMusic",
+            url: "${ctx}/myMusic/deleteMyMusic",
             type: "post",
             data: {
-                "song_id": $.cookie("ml_id"),
-                "user_id": $.cookie("user_id"),
+                mid: $.cookie("ml_id"),
+                userName:$.cookie("user_name")
             },
             success: function (data) {//webspond
-                if (data.statusCode == "200") {
+                if (data.code== 200) {
                     window.location.reload();
                     alert("已成功从收藏列表移除");
 
                     //location.reload();
                 } else {
-                    alert("add error!" + data.statusMsg);
+                    alert("add error!" + data.message);
                 }
 
             },

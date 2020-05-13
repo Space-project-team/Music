@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.music.manager.mapper.SingerMapper">
+  <resultMap id="BaseResultMap" type="com.music.manager.pojo.Singer">
+    <id column="singerID" jdbcType="VARCHAR" property="singerid" />
+    <result column="singerName" jdbcType="VARCHAR" property="singername" />
+    <result column="isGroup" jdbcType="VARCHAR" property="isgroup" />
+    <result column="sex" jdbcType="VARCHAR" property="sex" />
+    <result column="fans" jdbcType="INTEGER" property="fans" />
+    <result column="headImage" jdbcType="VARCHAR" property="headimage" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    singerID, singerName, isGroup, sex, fans, headImage
+  </sql>
+  <select id="selectByExample" parameterType="com.music.manager.pojo.SingerExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from singer
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from singer
+    where singerID = #{singerid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from singer
+    where singerID = #{singerid,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.music.manager.pojo.SingerExample">
+    delete from singer
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.music.manager.pojo.Singer">
+    insert into singer (singerID, singerName, isGroup, 
+      sex, fans, headImage
+      )
+    values (#{singerid,jdbcType=VARCHAR}, #{singername,jdbcType=VARCHAR}, #{isgroup,jdbcType=VARCHAR}, 
+      #{sex,jdbcType=VARCHAR}, #{fans,jdbcType=INTEGER}, #{headimage,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.music.manager.pojo.Singer">
+    insert into singer
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="singerid != null">
+        singerID,
+      </if>
+      <if test="singername != null">
+        singerName,
+      </if>
+      <if test="isgroup != null">
+        isGroup,
+      </if>
+      <if test="sex != null">
+        sex,
+      </if>
+      <if test="fans != null">
+        fans,
+      </if>
+      <if test="headimage != null">
+        headImage,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="singerid != null">
+        #{singerid,jdbcType=VARCHAR},
+      </if>
+      <if test="singername != null">
+        #{singername,jdbcType=VARCHAR},
+      </if>
+      <if test="isgroup != null">
+        #{isgroup,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="fans != null">
+        #{fans,jdbcType=INTEGER},
+      </if>
+      <if test="headimage != null">
+        #{headimage,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.music.manager.pojo.SingerExample" resultType="java.lang.Long">
+    select count(*) from singer
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update singer
+    <set>
+      <if test="record.singerid != null">
+        singerID = #{record.singerid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.singername != null">
+        singerName = #{record.singername,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isgroup != null">
+        isGroup = #{record.isgroup,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sex != null">
+        sex = #{record.sex,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fans != null">
+        fans = #{record.fans,jdbcType=INTEGER},
+      </if>
+      <if test="record.headimage != null">
+        headImage = #{record.headimage,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update singer
+    set singerID = #{record.singerid,jdbcType=VARCHAR},
+      singerName = #{record.singername,jdbcType=VARCHAR},
+      isGroup = #{record.isgroup,jdbcType=VARCHAR},
+      sex = #{record.sex,jdbcType=VARCHAR},
+      fans = #{record.fans,jdbcType=INTEGER},
+      headImage = #{record.headimage,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.music.manager.pojo.Singer">
+    update singer
+    <set>
+      <if test="singername != null">
+        singerName = #{singername,jdbcType=VARCHAR},
+      </if>
+      <if test="isgroup != null">
+        isGroup = #{isgroup,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        sex = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="fans != null">
+        fans = #{fans,jdbcType=INTEGER},
+      </if>
+      <if test="headimage != null">
+        headImage = #{headimage,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where singerID = #{singerid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.music.manager.pojo.Singer">
+    update singer
+    set singerName = #{singername,jdbcType=VARCHAR},
+      isGroup = #{isgroup,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=VARCHAR},
+      fans = #{fans,jdbcType=INTEGER},
+      headImage = #{headimage,jdbcType=VARCHAR}
+    where singerID = #{singerid,jdbcType=VARCHAR}
+  </update>
+</mapper>

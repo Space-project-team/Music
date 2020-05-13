@@ -25,7 +25,7 @@ spring:
     username: root
     password: root
     type: com.alibaba.druid.pool.DruidDataSource
-	
+
   # freemarker 模板引擎
   freemarker:
     cache: false
@@ -62,11 +62,11 @@ spring:
       # 4.TemplateExceptionHandler.RETHROW_HANDLER简单重新抛出所有异常而不会做其他的事情
       # 5.使用自定义异常类实现TemplateExceptionHandler重写handleTemplateException方法
       template_exception_handler: html_debug
-	  
+
   # redis 缓存
   redis:
     timeout: 10000                          # 连接超时时间
-    host: 192.168.10.100                   # Redis服务器地址
+    host: 127.0.0.1                    # Redis服务器地址
     port: 6379                              # Redis服务器端口
     database: 0                             # 选择哪个库，默认0库
     lettuce:
@@ -75,7 +75,7 @@ spring:
         max-wait: 10000                     # 最大连接阻塞等待时间，单位毫秒，默认 -1
         max-idle: 200                       # 最大空闲连接，默认 8
         min-idle: 5                         # 最小空闲连接，默认 0
-    password: root
+   # password: root
   # Dubbo
   dubbo:
     #开启dubbo服务
@@ -102,6 +102,7 @@ mybatis:
 
 #存储音乐列表
 musicLink.list: musicLink
+TOPLink_50: TOPLink_50
 # Redis Key
 # myMusic列表 key
 mymusic.list.key: mymusic:list

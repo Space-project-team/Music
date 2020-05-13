@@ -31,4 +31,8 @@ public interface MyMusicMapper {
     int updateByPrimaryKeySelective(MyMusic record);
 
     int updateByPrimaryKey(MyMusic record);
+
+    Integer selectByUserName(String userName);
+
+    int deleteByMidAndUid(Integer mid, Integer uid);
 }

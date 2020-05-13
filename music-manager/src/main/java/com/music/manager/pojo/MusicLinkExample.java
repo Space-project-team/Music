@@ -1,9 +1,10 @@
 package com.music.manager.pojo;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MusicLinkExample {
+public class MusicLinkExample implements Serializable {
     /**
      * musiclink
      */

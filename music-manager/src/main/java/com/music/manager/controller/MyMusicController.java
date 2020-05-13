@@ -22,25 +22,26 @@ public class MyMusicController {
     private IMyMusicService iMyMusicService;
     /**
      * 根据用户id查询自己的歌曲信息--分页
-     * @param uid
+     * @param userName
      * @return
      */
     @RequestMapping("getMyMusicList")
     @ResponseBody
-    public BaseResult getMyMusicList(Integer uid, Integer pageNum, Integer pageSize){
-        System.out.println(iMyMusicService.getMyMusicList(uid,pageNum,pageSize));
-        return iMyMusicService.getMyMusicList(uid,pageNum,pageSize);
+    public BaseResult getMyMusicList(String userName, Integer pageNum, Integer pageSize){
+        System.out.println(iMyMusicService.getMyMusicList(userName,pageNum,pageSize));
+        return iMyMusicService.getMyMusicList(userName,pageNum,pageSize);
     }
 
     /**
      * 根据用户id 和 歌曲删除
      * @param mid
-     * @param uid
+     * @param userName
      * @return
      */
     @RequestMapping("deleteMyMusic")
-    public BaseResult deleteMyMusic(Integer mid,Integer uid){
-        int result=iMyMusicService.deleteMyMusic(mid,uid);
+    @ResponseBody
+    public BaseResult deleteMyMusic(Integer mid,String userName){
+        int result=iMyMusicService.deleteMyMusic(mid,userName);
         System.out.println(result);
         if(result>0){
             return BaseResult.success();
