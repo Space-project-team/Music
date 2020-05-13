@@ -348,7 +348,7 @@
                     <a href="#" style="margin-left: 42px">莫文蔚</a>
                 </div>
             </li>
-            <li class="back2"><img src="/images/paihan-2.png" width="225.2px" height="500px">
+            <li class="back2"><img src="${ctx}/images/paihan-2.png" width="225.2px" height="500px">
                 <div class="shang tong">
                     <p>抖音最火榜</p>
                     <p style="font-size: 30px;font-weight: bold;	">流行</p>
@@ -394,7 +394,7 @@
                     <a class="topline" href="#">4. &nbsp生僻字</a>
                     <a href="#" style="margin-left: 42px">陈珂与</a></div>
             </li>
-            <li class="back5"><img src="${ctx}/${ctx}/images/paihan-5.jpg" width="225.2px" height="500px">
+            <li class="back5"><img src="${ctx}/images/paihan-5.jpg" width="225.2px" height="500px">
                 <div class="shang tong">
                     <p>伤感情歌榜</p>
                     <p style="font-size: 30px;font-weight: bold;	">经典</p>
@@ -473,10 +473,10 @@
     //
     //
     $.ajax({
-        url: "musicLink/getSongRearch",
+        url: "http://localhost:9091/music-manager/musicLink/getSongRearch",
         type: "POST",
         success: function (data) {
-            if (data.statusCode == "200") {
+            if (data.code == 200) {
                 $(".jDian1").click(function () {//点击调用fn（）方法，并传入14，下方以此类推
                     fn(14);
                 });
@@ -530,12 +530,11 @@
                 $("#user_number").html($.cookie("user_id"));
 
                 function fn(i) {//调用方法，更改cookie的信息，并跳转到播放页面
-                    console.log(data.data.list[i].ml_id);
-                    $.cookie("song_link", data.data.list[i].ml_songLink, {expires: 7, path: "/"});
-                    $.cookie("song_name", data.data.list[i].ml_songName, {expires: 7, path: "/"});
-                    $.cookie("song_singer", data.data.list[i].ml_singer, {expires: 7, path: "/"});
-                    $.cookie("song_photo", data.data.list[i].ml_photoLink, {expires: 7, path: "/"});
-                    window.open("${ctx}/QQmusic");
+                    $.cookie("song_link", data.pageInfo.list[i].songfile, {expires: 7, path: "/"});
+                    $.cookie("song_name", data.pageInfo.list[i].songname, {expires: 7, path: "/"});
+                    $.cookie("song_singer", data.pageInfo.list[i].singerid, {expires: 7, path: "/"});
+                    $.cookie("song_photo", data.pageInfo.list[i].photoimage, {expires: 7, path: "/"});
+                    window.open("http://localhost:9091/music-manager/QQmusic");
                 }
             }
         },
@@ -553,7 +552,9 @@
             type: "POST",
             data: lll,
             success: function (data) {
+                console.log("进入回调方法");
                 if (data.code == 200) {
+                    console.log("查询成功");
                     var search = document.getElementById("songName").value;
                     $.cookie("song_search", search, {expires: 7, path: "/"});
                     window.open("http://localhost:9091/music-manager/musicSearchTest");
@@ -561,13 +562,14 @@
                     /* data.data.list.length对应respon.map.list.length */
                     for (var i = 0; i < data.pageInfo.list.length; i++) {
                         str += '<tr>'
-                            + '<td>' + data.pageInfo.list[i].mlSongname + '</td>'
-                            + '<td>' + data.pageInfo.list[i].mlSinger + '</td>'
+                            + '<td>' + data.pageInfo.list[i].songname + '</td>'
+                            + '<td>' + data.pageInfo.list[i].singerid + '</td>'
                             /* + '<td>' + data.data.list[i].ml_songLink + '</td>' */
                             + '</tr>';
                     }
                     $("table tbody").html(str);
-                } else if (data.code == 500) {
+                } else if (data.code == 400) {
+                    console.log("歌曲不存在");
                     alert("搜索不到歌曲,请重新输入！");
                 }
             },

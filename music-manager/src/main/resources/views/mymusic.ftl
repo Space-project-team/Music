@@ -17,6 +17,9 @@
             src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
 
 </head>
+<script>
+    var ctx="${ctx}";
+</script>
 <body style="user-select: none;">
 <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---
 
@@ -311,7 +314,7 @@
     * */
     function getList2(page) {
         $.ajax({
-            url: "${ctx}/myMusic/getMyMusicList",      //后台获取整个数据库方法的地址
+            url: "http://localhost:9091/music-manager/myMusic/getMyMusicList",      //后台获取整个数据库方法的地址
             type: "POST",
             data: {
                 userName: $.cookie("user_name"),
@@ -357,7 +360,7 @@
                         $.cookie("song_name", data.pageInfo.list[j].mySongname, {expires: 7, path: "/"});//   保存后台传入的相关信息和链接进入cookie，在播放页面直接将cookie的值调用出来，
                         $.cookie("song_singer", data.pageInfo.list[j].mySinger, {expires: 7, path: "/"});//    然后替换原有的信息和播放路径，完成点击歌曲播放功能
                         $.cookie("song_photo", data.pageInfo.list[j].myPhotolink, {expires: 7, path: "/"});//
-                        window.location.href = "${ctx}/QQmusic";//跳转页面
+                        window.location.href = "http://localhost:9091/music-manager/QQmusic";//跳转页面
                     }
 
                     function fn1(j) {
@@ -447,7 +450,7 @@
     function dle() {//删除已收藏歌曲的方法
         $.ajax({
             async: false,//给ajax嵌套执行，所以需设定false
-            url: "${ctx}/myMusic/deleteMyMusic",//后台地址
+            url: "http://localhost:9091/music-manager/myMusic/deleteMyMusic",//后台地址
             type: "post",//post请求方式
             data: {
                 mid: $.cookie("ml_id"),//传入歌曲id

@@ -15,6 +15,9 @@
 	<link rel="stylesheet" href="${ctx}/css/index.css">
 
 </head>
+<script>
+	var ctx="${ctx}";
+</script>
 <body >
 <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---
 
@@ -221,7 +224,7 @@
 				<a href="#">X</a>
 				<a href="#">Y</a>
 				<a href="#">Z</a>
-				<a title"其他歌手" href="#">其他</a>
+				<a title="其他歌手" href="#">其他</a>
 			</div>
 		</div>
 		<div class="zhong">
