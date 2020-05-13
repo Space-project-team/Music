@@ -18,6 +18,9 @@
     <script src="${ctx}/js/player.js"></script>
 
 </head>
+<script>
+    var ctx="${ctx}";
+</script>
 
 <body style="user-select: none;">
 <div class="header">
@@ -117,7 +120,7 @@
 
     function getList2() {
         $.ajax({
-            url: "${ctx}/myMusic/getMyMusicList",
+            url: "http://localhost:9091/music-manager/myMusic/getMyMusicList",
             type: "POST",
             data: {
                userName: $.cookie("user_name"),
@@ -165,7 +168,7 @@
                         $.cookie("song_name", data.pageInfo.list[j].mySongname, {expires: 7, path: "/"});
                         $.cookie("song_singer", data.pageInfo.list[j].mySinger, {expires: 7, path: "/"});
                         $.cookie("song_photo", data.pageInfo.list[j].myPhotolink, {expires: 7, path: "/"});
-                        window.location.href = "${ctx}/QQmusic";
+                        window.location.href = "http://localhost:9091/music-manager/QQmusic";
                     }
 
                     function fn1(j) {
@@ -187,7 +190,7 @@
     function dle() {
         $.ajax({
             async: false,
-            url: "${ctx}/myMusic/deleteMyMusic",
+            url: "http://localhost:9091/music-manager/myMusic/deleteMyMusic",
             type: "post",
             data: {
                 mid: $.cookie("ml_id"),

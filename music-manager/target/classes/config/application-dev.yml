@@ -23,7 +23,7 @@ spring:
     name: test
     url: jdbc:mysql://localhost:3306/music?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC
     username: root
-    password: ""
+    password: 123456
     type: com.alibaba.druid.pool.DruidDataSource
   # freemarker 模板引擎
   freemarker:
@@ -104,8 +104,8 @@ mymusic.list.key: mymusic:list
 musicLink.list: musicLink
 #存储TOP榜前50
 TOPLink_50: TOPLink_50
-
-
+#歌手列表-默认
+singer.list.key: singer:list
 #关闭Elasticsearch健康检查
 management:
   health:

@@ -15,6 +15,9 @@
 	<link rel="stylesheet" href="${ctx}/css/index.css">
 
 </head>
+<script>
+	var ctx="${ctx}";
+</script>
 <body >
 <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---
 
@@ -135,7 +138,7 @@
 				<ul class="dropdown-menu">
 					<li><a class="erjicaidan" href="${ctx}/musicRadio  ">电台</a></li>
 					<li><a class="erjicaidan" href="${ctx}/songlist  ">歌单</a></li>
-					<li><a class="erjicaidan" href="#">歌手</a></li>
+					<li><a class="erjicaidan" href="${ctx}/singer">歌手</a></li>
 				</ul>
 			</li>
 		</ul>
@@ -221,145 +224,15 @@
 				<a href="#">X</a>
 				<a href="#">Y</a>
 				<a href="#">Z</a>
-				<a title"其他歌手" href="#">其他</a>
+				<a title="其他歌手" href="#">其他</a>
 			</div>
 		</div>
 		<div class="zhong">
-			<div class="singerpn">
-				<a href="#"><img src="${ctx}/images/s1.jpg" alt="刘德华" class="singerpicture"></a>
-				<span class="st"><strong>1st</strong></span>
-				<span class="singername">刘德华</span>
-			</div>
-			<div class="singerpn">
-				<a href="#"><img src="${ctx}/images/s2.jpg" alt="薛之谦" class="singerpicture"></a>
-				<span class="st"><strong>2nd</strong></span>
-				<span class="singername">薛之谦</span>
-			</div>
-			<div class="singerpn">
-				<a href="#"><img src="${ctx}/images/s3.jpg" alt="林俊杰" class="singerpicture"></a>
-				<span class="st"><strong>3rd</strong></span>
-				<span class="singername">林俊杰</span>
-			</div>
-			<div class="singerpn">
-				<a href="#"><img src="${ctx}/images/s4.jpg" alt="周杰伦" class="singerpicture"></a>
-				<span class="st"><strong>4th</strong></span>
-				<span class="singername">周杰伦</span>
-			</div>
-			<div class="singerpn">
-				<a href="#"><img src="${ctx}/images/s5.jpg" alt="邓紫棋" class="singerpicture"></a>
-				<span class="st"><strong>5th</strong></span>
-				<span class="singername">邓紫棋</span>
-			</div>
-			<div class="singerpn">
-				<a href="#"><img src="${ctx}/images/s6.jpg" alt="TFBOYS" class="singerpicture"></a>
-				<span class="st"><strong>6th</strong></span>
-				<span class="singername">TFBOYS</span>
-			</div>
-			<div class="singerpn">
-				<a href="#"><img src="${ctx}/images/s7.jpg" alt="毛不易" class="singerpicture"></a>
-				<span class="st"><strong>7th</strong></span>
-				<span class="singername">毛不易</span>
-			</div>
-			<div class="singerpn">
-				<a href="#"><img src="${ctx}/images/s8.jpg" alt="张杰" class="singerpicture"></a>
-				<span class="st"><strong>8th</strong></span>
-				<span class="singername">张杰</span>
-			</div>
-			<div class="singerpn">
-				<a href="#"><img src="${ctx}/images/s9.jpg" alt="张学友" class="singerpicture"></a>
-				<span class="st"><strong>9th</strong></span>
-				<span class="singername">张学友</span>
-			</div>
-			<div class="singerpn">
-				<a href="#"><img src="${ctx}/images/s10.jpg" alt="易烊千玺" class="singerpicture"></a>
-				<span class="st"><strong>10th</strong></span>
-				<span class="singername">易烊千玺</span>
-			</div>
-			<div class="singerpn">
-				<a href="#"><img src="${ctx}/images/s11.jpg" alt="刀郎" class="singerpicture">
-				</a>				<span class="st"><strong>11th</strong></span>
-				<span class="singername">刀郎</span>
-			</div>
-			<div class="singerpn">
-				<a href="#"><img src="${ctx}/images/s12.jpg" alt="李荣浩" class="singerpicture"></a>
-				<span class="st"><strong>12th</strong></span>
-				<span class="singername">李荣浩</span>
-			</div>
-			<div class="singerpn">
-				<a href="#"><img src="${ctx}/images/s13.jpg" alt="王俊凯" class="singerpicture"></a>
-				<span class="st"><strong>13th</strong></span>
-				<span class="singername">王俊凯</span>
-			</div>
-			<div class="singerpn">
-				<a href="#"><img src="${ctx}/images/s14.jpg" alt="半阳" class="singerpicture"></a>
-				<span class="st"><strong>14th</strong></span>
-				<span class="singername">半阳</span>
-			</div>
-			<div class="singerpn">
-				<a href="#"><img src="${ctx}/images/s15.jpg" alt="陈奕迅" class="singerpicture"></a>
-				<span class="st"><strong>15th</strong></span>
-				<span class="singername">陈奕迅</span>
-			</div>
-			<div class="singerpn">
-				<a href="#"><img src="${ctx}/images/s16.jpg" alt="蔡徐坤" class="singerpicture"></a>
-				<span class="st"><strong>16th</strong></span>
-				<span class="singername">蔡徐坤</span>
-			</div>
-			<div class="singerpn">
-				<a href="#"><img src="${ctx}/images/s17.jpg" alt="华晨宇" class="singerpicture"></a>
-				<span class="st"><strong>17th</strong></span>
-				<span class="singername">华晨宇</span>
-			</div>
-			<div class="singerpn">
-				<a href="#"><img src="${ctx}/images/s18.jpg" alt="陈立农" class="singerpicture"></a>
-				<span class="st"><strong>18th</strong></span>
-				<span class="singername">陈立农</span>
-			</div>
+
 		</div>
 		<div class="boxbox">
 			<table class="table">
-				<tbody>
-					<tr class="active">
-						<td>19 <img src="${ctx}/images/下降.png"> <a href="#">庄心妍</a></td>
-						<td>27 <img src="${ctx}/images/下降.png"> <a href="#">白小白</a></td>
-						<td>35 <img src="${ctx}/images/下降.png"> <a href="#">冷漠</a></td>
-					</tr>
-					<tr class="success">
-						<td>20 <img src="${ctx}/images/上升.png"> <a href="#">凤凰传奇</a></td>
-						<td>28 <img src="${ctx}/images/上升.png"> <a href="#">周华健</a></td>
-						<td>36 <img src="${ctx}/images/下降.png"> <a href="#">Alan Walker</a></td>
-					</tr>
-					<tr  class="warning">
-						<td>21 <img src="${ctx}/images/下降.png"> <a href="#">黄家驹</a></td>
-						<td>29 <img src="${ctx}/images/下降.png"> <a href="#">汪苏泷</a></td>
-						<td>37 <img src="${ctx}/images/上升.png"> <a href="#">张艺兴</a></td>
-					</tr>
-					<tr  class="danger">
-						<td>22 <img src="${ctx}/images/下降.png"> <a href="#">花姐</a></td>
-						<td>30 <img src="${ctx}/images/上升.png"> <a href="#">火箭少女101</a></td>
-						<td>38 <img src="${ctx}/images/上升.png"> <a href="#">张靓颖</a></td>
-					</tr>
-					<tr class="active">
-						<td>23 <img src="${ctx}/images/上升.png"> <a href="#">许嵩</a></td>
-						<td>31 <img src="${ctx}/images/上升.png"> <a href="#">王杰</a></td>
-						<td>39 <img src="${ctx}/images/上升.png"> <a href="#">艾辰</a></td>
-					</tr>
-					<tr class="success">
-						<td>24 <img src="${ctx}/images/上升.png"> <a href="#">王源</a></td>
-						<td>32 <img src="${ctx}/images/上升.png"> <a href="#">卓依婷</a></td>
-						<td>40 <img src="${ctx}/images/下降.png"> <a href="#">虎二</a></td>
-					</tr>
-					<tr  class="warning">
-						<td>25 <img src="${ctx}/images/下降.png"> <a href="#">郑源</a></td>
-						<td>33 <img src="${ctx}/images/上升.png"> <a href="#">鹿晗</a></td>
-						<td>41 <img src="${ctx}/images/下降.png"> <a href="#">邓丽君</a></td>
-					</tr>
-					<tr  class="danger">
-						<td>26 <img src="${ctx}/images/上升.png"> <a href="#">张宇</a></td>
-						<td>34 <img src="${ctx}/images/上升.png"> <a href="#">孙露</a></td>
-						<td>42 <img src="${ctx}/images/下降.png"> <a href="#">张韶涵</a></td>
-					</tr>
-				</tbody>
+
 			</table>
 		</div>
 		<div class="nvg">
@@ -424,24 +297,86 @@
         $("#display1").attr("style","display:none;");
     }
 
-    $('#test').validate({
-        errorPlacement: function(error, element) {
-            error.appendTo(element.parent());
-        },
-        onfocusout:function(element){
-            $(element).valid();
-        },
-        submitHandler: function (form) {
-            denglu($('#test').attr("action"), $('#test').serialize());
+	$('#test').validate({
+		errorPlacement: function(error, element) {
+			error.appendTo(element.parent());
+		},
+		onfocusout:function(element){
+			$(element).valid();
+		},
+		submitHandler: function (form) {
+			denglu($('#test').attr("action"), $('#test').serialize());
 
 
-        }
-    });
+		}
+	});
 
 
+	/**
+	 * 查询与更新歌手排行榜
+	 * */
+	function getSingerList(pagenum) {
+		var zhong = $(".zhong");
+		var table2 = $(".table");
+		$.ajax({
+			url: "${ctx}/singer/getSingerList",      //后台获取整个数据库方法的地址
+			type: "POST",
+			data: {
+				pageNum: pagenum,
+				pageSize:42,
+			},
+			success: function (data) {
+				if (data.code==200) {
+					var str = '';
+					//动态生成表格
+					var box= '';
+					box +='<tbody>';
+					box+='<tr class="active">';
+					box+='</tr>';
+					/* data.data.list.length对应respon.map.list.length */
+					for (var i = 0; i < data.pageInfo.list.length; i++) {
+						var a = i + 1;
+						/*1-18为有图片的显示*/
+						if(a<=20){
+							str += '<div class="singerpn">'
+									+ '<a href="#"><img src='+data.pageInfo.list[i].headimage+'?x-oss-process=style/shiying'+' alt='+data.pageInfo.list[i].singername+'class="singerpicture"></a>'
+									+'<span class="st"><strong>' ;
+								if (a==1){
+									str+='1st';
+								}else if(a==2){
+									str+='2nd';
+								}else if(a==3){
+									str+='3rd';
+							}else {
+								str+=''+a+'th';
+							}
 
+							str+='</strong></span>'
+									+'<span class="singername">'+data.pageInfo.list[i].singername+'</span>'
+									+'</div>'
+						}
+						if(a>20){
 
+							box+='<td>'+a+ '<img src="${ctx}/images/上升.png"> <a href="#">'+data.pageInfo.list[i].singername+'</a></td>';
 
+						}
+						}
+
+					box+='</tbody>';
+					}
+				console.log("box:"+box);
+				zhong.append(str);
+				table2.append(box);
+			},
+			error: function (data) {
+				alert(JSON.stringify(data));//连接失败弹窗
+			}
+		})
+	}
+	$(document).ready(function () {
+		getSingerList(1);
+
+	});
 </script>
 	</body>
 	</html>

@@ -15,6 +15,9 @@
 	<link rel="stylesheet" href="${ctx}/css/index.css">
 
 </head>
+<script>
+	var ctx="${ctx}";
+</script>
 <body >
 <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---
 
@@ -104,7 +107,7 @@
 			</div>
 			<!-- 图标加上搜索框结束 -->
 			<div id="col10" class="dengluzhuce">
-				<a class="mymusic" href="/mymusic.html>我的音乐"</a>
+				<a class="mymusic" href="/mymusic.html>我的音乐"></a>
 				<a class="mymusic" href="/huiyuanzhongxin.html">会员中心</a>
 				<span class="mymusic">|</span>
 				<img id="touxiang" src="${ctx}/images/touxiang.png" width="40px" height="40px" style="display: inline-block; width: 40px;height: 40px;border:0;border-radius: 40px;margin-bottom: 5px;">
