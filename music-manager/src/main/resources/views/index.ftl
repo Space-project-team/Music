@@ -547,7 +547,7 @@
     /* 音乐搜索 */
 
     function getList2(lll) {
-        test
+       /* test*/
         $.ajax({
             url: "http://localhost:9091/music-manager/musicLink/getSongRearch",
             type: "POST",

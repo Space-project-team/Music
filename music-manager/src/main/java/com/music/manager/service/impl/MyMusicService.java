@@ -48,8 +48,7 @@ public class MyMusicService implements IMyMusicService {
      */
     @Override
     public BaseResult getMyMusicList(String userName, Integer pageNum, Integer pageSize) {
-        //开启分页
-        PageHelper.startPage(pageNum,pageSize);
+
         //判断用户是否存在
         if(StringUtils.isEmpty(userName)){
             return BaseResult.error();
@@ -67,6 +66,8 @@ public class MyMusicService implements IMyMusicService {
         if (StringUtils.isEmpty(uid)){
             return BaseResult.error();
         }
+        //开启分页
+        PageHelper.startPage(pageNum,pageSize);
         //创建对象
         MyMusicExample example=new MyMusicExample();
         example.createCriteria().andUserIdEqualTo(uid);

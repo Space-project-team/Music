@@ -25,7 +25,7 @@
                         <h5>添加</h5>
                     </div>
                     <div class="ibox-content">
-                        <form id="test" role="form" action="musicLink/getMusicLinkList" method="post">
+                        <form id="test" role="form" action="${ctx}/musicLink/getMusicLinkList" method="post">
                             	<div class="row">
                             		<div class="form-group  col-md-4">
                                 		<label class="col-sm-4 control-label" style="text-align:right;padding-top:7px;">测试名称：</label>
