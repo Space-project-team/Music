@@ -549,25 +549,25 @@
     function getList2(lll) {
         test
         $.ajax({
-            url: "musicLink/getSongRearch",
+            url: "http://localhost:9091/music-manager/musicLink/getSongRearch",
             type: "POST",
             data: lll,
             success: function (data) {
-                if (data.statusCode == "200") {
+                if (data.code == 200) {
                     var search = document.getElementById("songName").value;
                     $.cookie("song_search", search, {expires: 7, path: "/"});
-                    window.open("${ctx}/musicSearchTest");
+                    window.open("http://localhost:9091/music-manager/musicSearchTest");
                     var str = '';
                     /* data.data.list.length对应respon.map.list.length */
-                    for (var i = 0; i < data.data.list.length; i++) {
+                    for (var i = 0; i < data.pageInfo.list.length; i++) {
                         str += '<tr>'
-                            + '<td>' + data.data.list[i].ml_songName + '</td>'
-                            + '<td>' + data.data.list[i].ml_singer + '</td>'
+                            + '<td>' + data.pageInfo.list[i].mlSongname + '</td>'
+                            + '<td>' + data.pageInfo.list[i].mlSinger + '</td>'
                             /* + '<td>' + data.data.list[i].ml_songLink + '</td>' */
                             + '</tr>';
                     }
                     $("table tbody").html(str);
-                } else if (data.statusCode == "202") {
+                } else if (data.code == 500) {
                     alert("搜索不到歌曲,请重新输入！");
                 }
             },

@@ -58,6 +58,8 @@ public class MusicLinkServicelmpl implements IMusicLinkService{
      */
     @Override
     public BaseResult getMusicList(Integer pageNum,Integer pageSize) {
+        //实时更新数据
+        redisTemplate.delete(musicLinkList);
         if(StringUtils.isEmpty(pageNum)||StringUtils.isEmpty(pageSize)){
             pageNum = 1;
             pageSize = 30;
@@ -91,11 +93,6 @@ public class MusicLinkServicelmpl implements IMusicLinkService{
      */
     @Override
     public BaseResult getMusicByMusicName(String songName) {
-        //非空判断
-        if(StringUtils.isEmpty(songName)){
-            return BaseResult.error();
-        }
-
         BaseResult result = null;
         //创建查询对象
         MusicLinkExample musicLinkExample = new MusicLinkExample();
@@ -217,15 +214,20 @@ public class MusicLinkServicelmpl implements IMusicLinkService{
         return BaseResult.error();
     }
 
+    @Override
+    public BaseResult ModuleMusic(Integer pageNum, Integer pageSize, String SongType) {
+        return ModuleSong(pageNum,pageSize,SongType);
+    }
+
+
     /**
-     *
-     * 网络歌曲排行榜
+     * 模板
      * @param pageNum
      * @param pageSize
+     * @param SongType
      * @return
      */
-    @Override
-    public BaseResult getNetworkMusic(Integer pageNum, Integer pageSize) {
+    public BaseResult ModuleSong(Integer pageNum, Integer pageSize,String SongType){
         if(StringUtils.isEmpty(pageNum)||StringUtils.isEmpty(pageSize)){
             pageNum = 1;
             pageSize = 50;
@@ -234,7 +236,7 @@ public class MusicLinkServicelmpl implements IMusicLinkService{
         PageHelper.startPage(pageNum,pageSize);
         //创建查询对象
         LanguageExample languageExample = new LanguageExample();
-        languageExample.createCriteria().andLanguagenameEqualTo("网络歌曲");
+        languageExample.createCriteria().andLanguagenameEqualTo(SongType);
         List<Language> languages = languageMapper.selectByExample(languageExample);
         //判断非空
         if(!CollectionUtils.isEmpty(languages)){
@@ -262,7 +264,4 @@ public class MusicLinkServicelmpl implements IMusicLinkService{
         }
         return BaseResult.error();
     }
-
-
-
 }

@@ -355,6 +355,7 @@
                     }
 
                     function fn(j) {//
+                        $.cookie("ml_id", data.pageInfo.list[j].mySonglink, {expires: 7, path: "/"});
                         $.cookie("song_link", data.pageInfo.list[j].mySonglink, {expires: 7, path: "/"});//
                         $.cookie("song_name", data.pageInfo.list[j].mySongname, {expires: 7, path: "/"});//   保存后台传入的相关信息和链接进入cookie，在播放页面直接将cookie的值调用出来，
                         $.cookie("song_singer", data.pageInfo.list[j].mySinger, {expires: 7, path: "/"});//    然后替换原有的信息和播放路径，完成点击歌曲播放功能
