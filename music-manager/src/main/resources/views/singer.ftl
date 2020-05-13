@@ -138,7 +138,7 @@
 				<ul class="dropdown-menu">
 					<li><a class="erjicaidan" href="${ctx}/musicRadio  ">电台</a></li>
 					<li><a class="erjicaidan" href="${ctx}/songlist  ">歌单</a></li>
-					<li><a class="erjicaidan" href="#">歌手</a></li>
+					<li><a class="erjicaidan" href="${ctx}/singer">歌手</a></li>
 				</ul>
 			</li>
 		</ul>
@@ -228,141 +228,11 @@
 			</div>
 		</div>
 		<div class="zhong">
-			<div class="singerpn">
-				<a href="#"><img src="${ctx}/images/s1.jpg" alt="刘德华" class="singerpicture"></a>
-				<span class="st"><strong>1st</strong></span>
-				<span class="singername">刘德华</span>
-			</div>
-			<div class="singerpn">
-				<a href="#"><img src="${ctx}/images/s2.jpg" alt="薛之谦" class="singerpicture"></a>
-				<span class="st"><strong>2nd</strong></span>
-				<span class="singername">薛之谦</span>
-			</div>
-			<div class="singerpn">
-				<a href="#"><img src="${ctx}/images/s3.jpg" alt="林俊杰" class="singerpicture"></a>
-				<span class="st"><strong>3rd</strong></span>
-				<span class="singername">林俊杰</span>
-			</div>
-			<div class="singerpn">
-				<a href="#"><img src="${ctx}/images/s4.jpg" alt="周杰伦" class="singerpicture"></a>
-				<span class="st"><strong>4th</strong></span>
-				<span class="singername">周杰伦</span>
-			</div>
-			<div class="singerpn">
-				<a href="#"><img src="${ctx}/images/s5.jpg" alt="邓紫棋" class="singerpicture"></a>
-				<span class="st"><strong>5th</strong></span>
-				<span class="singername">邓紫棋</span>
-			</div>
-			<div class="singerpn">
-				<a href="#"><img src="${ctx}/images/s6.jpg" alt="TFBOYS" class="singerpicture"></a>
-				<span class="st"><strong>6th</strong></span>
-				<span class="singername">TFBOYS</span>
-			</div>
-			<div class="singerpn">
-				<a href="#"><img src="${ctx}/images/s7.jpg" alt="毛不易" class="singerpicture"></a>
-				<span class="st"><strong>7th</strong></span>
-				<span class="singername">毛不易</span>
-			</div>
-			<div class="singerpn">
-				<a href="#"><img src="${ctx}/images/s8.jpg" alt="张杰" class="singerpicture"></a>
-				<span class="st"><strong>8th</strong></span>
-				<span class="singername">张杰</span>
-			</div>
-			<div class="singerpn">
-				<a href="#"><img src="${ctx}/images/s9.jpg" alt="张学友" class="singerpicture"></a>
-				<span class="st"><strong>9th</strong></span>
-				<span class="singername">张学友</span>
-			</div>
-			<div class="singerpn">
-				<a href="#"><img src="${ctx}/images/s10.jpg" alt="易烊千玺" class="singerpicture"></a>
-				<span class="st"><strong>10th</strong></span>
-				<span class="singername">易烊千玺</span>
-			</div>
-			<div class="singerpn">
-				<a href="#"><img src="${ctx}/images/s11.jpg" alt="刀郎" class="singerpicture">
-				</a>				<span class="st"><strong>11th</strong></span>
-				<span class="singername">刀郎</span>
-			</div>
-			<div class="singerpn">
-				<a href="#"><img src="${ctx}/images/s12.jpg" alt="李荣浩" class="singerpicture"></a>
-				<span class="st"><strong>12th</strong></span>
-				<span class="singername">李荣浩</span>
-			</div>
-			<div class="singerpn">
-				<a href="#"><img src="${ctx}/images/s13.jpg" alt="王俊凯" class="singerpicture"></a>
-				<span class="st"><strong>13th</strong></span>
-				<span class="singername">王俊凯</span>
-			</div>
-			<div class="singerpn">
-				<a href="#"><img src="${ctx}/images/s14.jpg" alt="半阳" class="singerpicture"></a>
-				<span class="st"><strong>14th</strong></span>
-				<span class="singername">半阳</span>
-			</div>
-			<div class="singerpn">
-				<a href="#"><img src="${ctx}/images/s15.jpg" alt="陈奕迅" class="singerpicture"></a>
-				<span class="st"><strong>15th</strong></span>
-				<span class="singername">陈奕迅</span>
-			</div>
-			<div class="singerpn">
-				<a href="#"><img src="${ctx}/images/s16.jpg" alt="蔡徐坤" class="singerpicture"></a>
-				<span class="st"><strong>16th</strong></span>
-				<span class="singername">蔡徐坤</span>
-			</div>
-			<div class="singerpn">
-				<a href="#"><img src="${ctx}/images/s17.jpg" alt="华晨宇" class="singerpicture"></a>
-				<span class="st"><strong>17th</strong></span>
-				<span class="singername">华晨宇</span>
-			</div>
-			<div class="singerpn">
-				<a href="#"><img src="${ctx}/images/s18.jpg" alt="陈立农" class="singerpicture"></a>
-				<span class="st"><strong>18th</strong></span>
-				<span class="singername">陈立农</span>
-			</div>
+
 		</div>
 		<div class="boxbox">
 			<table class="table">
-				<tbody>
-					<tr class="active">
-						<td>19 <img src="${ctx}/images/下降.png"> <a href="#">庄心妍</a></td>
-						<td>27 <img src="${ctx}/images/下降.png"> <a href="#">白小白</a></td>
-						<td>35 <img src="${ctx}/images/下降.png"> <a href="#">冷漠</a></td>
-					</tr>
-					<tr class="success">
-						<td>20 <img src="${ctx}/images/上升.png"> <a href="#">凤凰传奇</a></td>
-						<td>28 <img src="${ctx}/images/上升.png"> <a href="#">周华健</a></td>
-						<td>36 <img src="${ctx}/images/下降.png"> <a href="#">Alan Walker</a></td>
-					</tr>
-					<tr  class="warning">
-						<td>21 <img src="${ctx}/images/下降.png"> <a href="#">黄家驹</a></td>
-						<td>29 <img src="${ctx}/images/下降.png"> <a href="#">汪苏泷</a></td>
-						<td>37 <img src="${ctx}/images/上升.png"> <a href="#">张艺兴</a></td>
-					</tr>
-					<tr  class="danger">
-						<td>22 <img src="${ctx}/images/下降.png"> <a href="#">花姐</a></td>
-						<td>30 <img src="${ctx}/images/上升.png"> <a href="#">火箭少女101</a></td>
-						<td>38 <img src="${ctx}/images/上升.png"> <a href="#">张靓颖</a></td>
-					</tr>
-					<tr class="active">
-						<td>23 <img src="${ctx}/images/上升.png"> <a href="#">许嵩</a></td>
-						<td>31 <img src="${ctx}/images/上升.png"> <a href="#">王杰</a></td>
-						<td>39 <img src="${ctx}/images/上升.png"> <a href="#">艾辰</a></td>
-					</tr>
-					<tr class="success">
-						<td>24 <img src="${ctx}/images/上升.png"> <a href="#">王源</a></td>
-						<td>32 <img src="${ctx}/images/上升.png"> <a href="#">卓依婷</a></td>
-						<td>40 <img src="${ctx}/images/下降.png"> <a href="#">虎二</a></td>
-					</tr>
-					<tr  class="warning">
-						<td>25 <img src="${ctx}/images/下降.png"> <a href="#">郑源</a></td>
-						<td>33 <img src="${ctx}/images/上升.png"> <a href="#">鹿晗</a></td>
-						<td>41 <img src="${ctx}/images/下降.png"> <a href="#">邓丽君</a></td>
-					</tr>
-					<tr  class="danger">
-						<td>26 <img src="${ctx}/images/上升.png"> <a href="#">张宇</a></td>
-						<td>34 <img src="${ctx}/images/上升.png"> <a href="#">孙露</a></td>
-						<td>42 <img src="${ctx}/images/下降.png"> <a href="#">张韶涵</a></td>
-					</tr>
-				</tbody>
+
 			</table>
 		</div>
 		<div class="nvg">
@@ -445,89 +315,68 @@
 	/**
 	 * 查询与更新歌手排行榜
 	 * */
-	function getSingerList(page) {
+	function getSingerList(pagenum) {
+		var zhong = $(".zhong");
+		var table2 = $(".table");
 		$.ajax({
 			url: "${ctx}/singer/getSingerList",      //后台获取整个数据库方法的地址
 			type: "POST",
 			data: {
-				pageNum: page,
+				pageNum: pagenum,
 				pageSize:42,
 			},
 			success: function (data) {
 				if (data.code==200) {
-					var str = '';                                                   //动态生成表格
+					var str = '';
+					//动态生成表格
+					var box= '';
+					box +='<tbody>';
+					box+='<tr class="active">';
+					box+='</tr>';
 					/* data.data.list.length对应respon.map.list.length */
 					for (var i = 0; i < data.pageInfo.list.length; i++) {
 						var a = i + 1;
 						/*1-18为有图片的显示*/
-						if(a<=18){
+						if(a<=20){
 							str += '<div class="singerpn">'
-									+ '<a href="#"><img src='+data.pageInfo.list[i].headImage+'${ctx}/images/s1.jpg" alt="刘德华" class="singerpicture"></a>'
-									+'<span class="st"><strong>1st</strong></span>'
-									+'<span class="singername">刘德华</span>'
-									+ '</div>'
+									+ '<a href="#"><img src='+data.pageInfo.list[i].headimage+'?x-oss-process=style/shiying'+' alt='+data.pageInfo.list[i].singername+'class="singerpicture"></a>'
+									+'<span class="st"><strong>' ;
+								if (a==1){
+									str+='1st';
+								}else if(a==2){
+									str+='2nd';
+								}else if(a==3){
+									str+='3rd';
+							}else {
+								str+=''+a+'th';
+							}
+
+							str+='</strong></span>'
+									+'<span class="singername">'+data.pageInfo.list[i].singername+'</span>'
+									+'</div>'
+						}
+						if(a>20){
+
+							box+='<td>'+a+ '<img src="${ctx}/images/上升.png"> <a href="#">'+data.pageInfo.list[i].singername+'</a></td>';
+
+						}
 						}
 
-
-
-
-
-						str += '<tr>'
-								+ '<td class="number111"  style="padding: 14px;border-bottom: 1px solid #eee; width: 100px;text-align: center;">' + a + '</td>'
-								+ '<td  style="padding: 14px;border-bottom: 1px solid #eee;width: 600px;text-align: center;"><a class=sName' + i + ' href="#">' + data.pageInfo.list[i].mySongname + '</a>' +
-								'<span class="glyphicon glyphicon-trash" id=sFav' + i + ' style="color: #2c323b;float: right;"></span></td>'
-								+ '<td style="padding: 14px;border-bottom: 1px solid #eee;width: 300px;text-align: center;"><a href="#">' + data.pageInfo.list[i].mySinger + '</a></td>'
-								+ '</tr>';//将动态生成的表格添加到table标签中
-
-						function play(i) {
-							$("table").on('click', '.sName' + i, function () {//由于该标签是动态添加的，所以一般的选择器没有办法直接选中，因此需要借用事件委托来完成选择并添加click事件
-								fn(i);                                          //调用fn方法，方法的作用见后方备注
-							});
-						}
-
-						play(i);          //i的值不能由jq直接调用，所以利用play的方法传值进入
-
-						function play1(i) {
-							$("table").on('click', '#sFav' + i, function () {  //i的值不能由jq直接调用，所以利用play的方法传值进入
-								fn1(i);//调用fn1方法来保存cookie
-								dle(); //调用del方法删除，该方法为ajax，所以此处嵌套ajax，需定义 async: false,异步执行才不会出错
-							});
-						}
-
-						play1(i);
+					box+='</tbody>';
 					}
-
-					function fn(j) {//
-						$.cookie("song_link", data.pageInfo.list[j].mySonglink, {expires: 7, path: "/"});//
-						$.cookie("song_name", data.pageInfo.list[j].mySongname, {expires: 7, path: "/"});//   保存后台传入的相关信息和链接进入cookie，在播放页面直接将cookie的值调用出来，
-						$.cookie("song_singer", data.pageInfo.list[j].mySinger, {expires: 7, path: "/"});//    然后替换原有的信息和播放路径，完成点击歌曲播放功能
-						$.cookie("song_photo", data.pageInfo.list[j].myPhotolink, {expires: 7, path: "/"});//
-						window.location.href = "${ctx}/QQmusic";//跳转页面
-					}
-
-					function fn1(j) {
-
-						$.cookie("ml_id", data.pageInfo.list[j].myId, {expires: 7, path: "/"});      //将歌曲id保存下来，点击删除按钮时，将值传入后台，删除数据库
-					}
-
-
-					$("table tbody").html(str);
-
-					//获取分页模板
-					var pageTemp = doT.template($("#pageTemplate").text());
-					//填充数据
-					$("#pageContent").html(pageTemp(data.pageInfo));
-
-				} else {   //如果后台返回202则提示歌曲已收藏
-					alert("您还没有收藏歌曲哦，快去列表收藏吧！");
-				}
+				console.log("box:"+box);
+				zhong.append(str);
+				table2.append(box);
 			},
 			error: function (data) {
 				alert(JSON.stringify(data));//连接失败弹窗
 			}
 		})
 	}
+	$(document).ready(function () {
+		getSingerList(1);
 
+	});
 </script>
 	</body>
 	</html>

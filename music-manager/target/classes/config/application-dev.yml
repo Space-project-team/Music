@@ -104,8 +104,8 @@ mymusic.list.key: mymusic:list
 musicLink.list: musicLink
 #存储TOP榜前50
 TOPLink_50: TOPLink_50
-
-
+#歌手列表-默认
+singer.list.key: singer:list
 #关闭Elasticsearch健康检查
 management:
   health:

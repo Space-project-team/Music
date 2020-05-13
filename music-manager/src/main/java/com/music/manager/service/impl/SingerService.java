@@ -32,6 +32,12 @@ public class SingerService implements ISingerService {
     private String singerListRedisKey;
     @Override
     public BaseResult getSingerList(Integer pageNum, Integer pageSize) {
+        if(pageNum<=0||pageNum==null){
+            pageNum=1;
+        }
+        if (pageSize<=0||pageSize==null){
+            pageSize=42;
+        }
         //开启分页
         PageHelper.startPage(pageNum,pageSize);
         //先从redis查询是否有数据
@@ -44,6 +50,7 @@ public class SingerService implements ISingerService {
         }
         //创建对象
         SingerExample singerExample =new SingerExample();
+        singerExample.setOrderByClause("fans desc");
         List<Singer> singerList = singerMapper.selectByExample(singerExample);
 //如果查询结果不为空，放入分页对象返回
         if(!CollectionUtils.isEmpty(singerList)){
