@@ -41,18 +41,17 @@ public class MyMusicService implements IMyMusicService {
 
     /**
      * 搜索用户歌曲信息 -分页
-     * @param uid
+     * @param userName
      * @param pageNum
      * @param pageSize
      * @return
      */
     @Override
-    public BaseResult getMyMusicList(Integer uid, Integer pageNum, Integer pageSize) {
-
+    public BaseResult getMyMusicList(String userName, Integer pageNum, Integer pageSize) {
         //开启分页
         PageHelper.startPage(pageNum,pageSize);
         //判断用户是否存在
-        if(StringUtils.isEmpty(uid)){
+        if(StringUtils.isEmpty(userName)){
             return BaseResult.error();
         }
         //先从redis查询是否有数据
@@ -63,12 +62,17 @@ public class MyMusicService implements IMyMusicService {
             PageInfo pageInfo = JsonUtil.jsonStr2Object(myMusicListJson, PageInfo.class);
             return BaseResult.success(pageInfo);
         }
+        //查询用户id
+        Integer uid=myMusicMapper.selectByUserName(userName);
+        if (StringUtils.isEmpty(uid)){
+            return BaseResult.error();
+        }
         //创建对象
         MyMusicExample example=new MyMusicExample();
         example.createCriteria().andUserIdEqualTo(uid);
         //根据用户id查询查询歌曲列表
         List<MyMusic> myList=myMusicMapper.selectByExample(example);
-        System.out.println(myList.toString());
+        //System.out.println(myList.toString());
         //如果查询结果不为空，放入分页对象返回
         if(!CollectionUtils.isEmpty(myList)){
             PageInfo<MyMusic> pageInfo=new PageInfo<>(myList);
@@ -88,16 +92,21 @@ public class MyMusicService implements IMyMusicService {
     /**
      * 根据用户id 和歌曲id 删除
      * @param mid
-     * @param uid
+     * @param userName
      * @return
      */
     @Override
-    public int deleteMyMusic(Integer mid, Integer uid) {
+    public int deleteMyMusic(Integer mid, String userName) {
         //判断是否为空
         if(StringUtils.isEmpty(mid)){
             return 0;
         }
-        if(StringUtils.isEmpty(uid)){
+        if(StringUtils.isEmpty(userName)){
+            return 0;
+        }
+        //获取用户id
+        Integer uid=myMusicMapper.selectByUserName(userName);
+        if (StringUtils.isEmpty(uid)){
             return 0;
         }
         //创建对象
