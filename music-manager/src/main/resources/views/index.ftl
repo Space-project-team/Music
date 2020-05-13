@@ -547,7 +547,7 @@
     /* 音乐搜索 */
 
     function getList2(lll) {
-        test
+       /* test*/
         $.ajax({
             url: "musicLink/getSongRearch",
             type: "POST",

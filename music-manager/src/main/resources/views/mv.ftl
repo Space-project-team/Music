@@ -30,7 +30,7 @@
 				<h4 class="modal-title" id="myModalLabel">账号密码登录</h4>
 			</div>
 			<div class="modal-body" style="position: relative;">
-				<form id="test" class="form-horizontal" role="form" action="/user/loginPage" method="post" style="padding-left: 50px;">
+				<form id="test" class="form-horizontal" role="form" action="${ctx}/user/loginPage" method="post" style="padding-left: 50px;">
 					<div class="form-group">
 						<img src="${ctx}/images/logo2.png" style="display: block; padding: 20px 151px">
 						<div class="erweima"><img src="${ctx}/images/二维码2.jpg" style="position: absolute;width: 130px;
