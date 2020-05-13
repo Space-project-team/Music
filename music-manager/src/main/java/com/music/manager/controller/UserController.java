@@ -5,8 +5,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
+import com.github.qcloudsms.httpclient.HTTPException;
 import com.music.common.result.BaseResult;
 import com.music.manager.service.IMyMusicService;
+import com.music.manager.service.SendMessageService;
 import com.music.manager.service.UserService;
 import com.music.manager.service.impl.UserServicelmpl;
 import com.music.manager.vo.AdminQuery;
@@ -16,6 +18,8 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.io.IOException;
 
 
 /**
@@ -38,6 +42,8 @@ public class UserController {
 	@Autowired
 	UserServicelmpl userService2;
 
+	@Autowired
+	private SendMessageService sendMessage;
 	String newName = null;
 
 	/**
@@ -96,5 +102,33 @@ public class UserController {
 	@ResponseBody
 	public BaseResult layOut(HttpServletRequest request,HttpServletResponse response){
 		return  userService.layOut(request,response);
+	}
+
+	/**
+	 * 手机注册功能
+	 *
+	 * */
+	@RequestMapping(value = "/register", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public BaseResult register(AdminQuery adminQuery,HttpServletRequest request){
+		return userService.SendSmsRegister(adminQuery, request);
+	}
+
+	/**
+	 * 发送短信
+	 */
+	@RequestMapping(value = "/SendSsm", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public BaseResult SendSsm(String phone,HttpServletRequest request){
+		BaseResult result = null;
+		try {
+			//发送短信
+			result = sendMessage.sendMessage(phone, request);
+		} catch (HTTPException e) {
+			return BaseResult.error();
+		} catch (IOException e) {
+			return BaseResult.error();
+		}
+		return result;
 	}
 }
