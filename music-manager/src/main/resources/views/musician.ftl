@@ -15,6 +15,9 @@
 	<link rel="stylesheet" href="${ctx}/css/index.css">
 
 </head>
+<script>
+	var ctx="${ctx}";
+</script>
 <body >
 <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---
 
@@ -29,7 +32,7 @@
 				<h4 class="modal-title" id="myModalLabel">账号密码登录</h4>
 			</div>
 			<div class="modal-body" style="position: relative;">
-				<form id="test" class="form-horizontal" role="form" action="/user/loginPage" method="post" style="padding-left: 50px;">
+				<form id="test" class="form-horizontal" role="form" action="${ctx}/user/loginPage" method="post" style="padding-left: 50px;">
 					<div class="form-group">
 						<img src="${ctx}/images/logo2.png" style="display: block; padding: 20px 151px">
 						<div class="erweima"><img src="${ctx}/images/二维码2.jpg" style="position: absolute;width: 130px;
@@ -104,7 +107,7 @@
 			</div>
 			<!-- 图标加上搜索框结束 -->
 			<div id="col10" class="dengluzhuce">
-				<a class="mymusic" href="/mymusic.html>我的音乐"</a>
+				<a class="mymusic" href="/mymusic.html>我的音乐"></a>
 				<a class="mymusic" href="/huiyuanzhongxin.html">会员中心</a>
 				<span class="mymusic">|</span>
 				<img id="touxiang" src="${ctx}/images/touxiang.png" width="40px" height="40px" style="display: inline-block; width: 40px;height: 40px;border:0;border-radius: 40px;margin-bottom: 5px;">

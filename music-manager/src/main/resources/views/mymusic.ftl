@@ -17,6 +17,9 @@
             src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
 
 </head>
+<script>
+    var ctx="${ctx}";
+</script>
 <body style="user-select: none;">
 <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---
 
@@ -32,7 +35,7 @@
                 <h4 class="modal-title" id="myModalLabel">账号密码登录</h4>
             </div>
             <div class="modal-body" style="position: relative;">
-                <form id="test" class="form-horizontal" role="form" action="/user/loginPage" method="post"
+                <form id="test" class="form-horizontal" role="form" action="${ctx}/user/loginPage" method="post"
                       style="padding-left: 50px;">
                     <div class="form-group">
                         <img src="${ctx}/images/logo2.png" style="display: block; padding: 20px 151px">
@@ -242,14 +245,8 @@
                 <ul id="pagintor"></ul>
             </div>
         </div>
-        <div class="row">
-            <div class="col-sm-1 text-left"></div>
-            <div class="col-sm-11 text-right">
-                <div class="dataTables_paginate paging_simple_numbers">
-                    <ul class="pagination" id="pageContent">
-                    </ul>
-                </div>
-            </div>
+        <div class="pagination">
+
         </div>
 
     </div>
@@ -266,7 +263,8 @@
 <script src="${ctx}/js/jquery.cookie.js"></script>
 <script src="${ctx}/js/doT.min.js"></script>
 
-<!-- 编写分页模板 -->
+<#--
+<!-- 编写分页模板 &ndash;&gt;
 <script type="template" id="pageTemplate">
     {{ if(it.hasPreviousPage){ }}
     <li class="paginate_button prev">
@@ -290,6 +288,7 @@
     </li>
     {{ } }}
 </script>
+-->
 
 <script type="text/javascript">
 
@@ -307,19 +306,20 @@
             denglu($('#test').attr("action"), $('#test').serialize());//调用tools文件里的denglu方法，详情见tools
         }
     });
-
-    getList2(1);
+    $(document).ready(function () {
+        getList2(1);
+    });
     /*
     * 获取歌曲信息 -分页
     * */
     function getList2(page) {
         $.ajax({
-            url: "${ctx}/myMusic/getMyMusicList",      //后台获取整个数据库方法的地址
+            url: "http://localhost:9091/music-manager/myMusic/getMyMusicList",      //后台获取整个数据库方法的地址
             type: "POST",
             data: {
                 userName: $.cookie("user_name"),
                 pageNum: page,
-                pageSize:5,
+                pageSize:5
             },
             success: function (data) {
                 if (data.code==200) {
@@ -355,11 +355,12 @@
                     }
 
                     function fn(j) {//
+                        $.cookie("ml_id", data.pageInfo.list[j].mySonglink, {expires: 7, path: "/"});
                         $.cookie("song_link", data.pageInfo.list[j].mySonglink, {expires: 7, path: "/"});//
                         $.cookie("song_name", data.pageInfo.list[j].mySongname, {expires: 7, path: "/"});//   保存后台传入的相关信息和链接进入cookie，在播放页面直接将cookie的值调用出来，
                         $.cookie("song_singer", data.pageInfo.list[j].mySinger, {expires: 7, path: "/"});//    然后替换原有的信息和播放路径，完成点击歌曲播放功能
                         $.cookie("song_photo", data.pageInfo.list[j].myPhotolink, {expires: 7, path: "/"});//
-                        window.location.href = "${ctx}/QQmusic";//跳转页面
+                        window.location.href = "http://localhost:9091/music-manager/QQmusic";//跳转页面
                     }
 
                     function fn1(j) {
@@ -370,10 +371,9 @@
 
                     $("table tbody").html(str);
 
-                    //获取分页模板
-                    var pageTemp = doT.template($("#pageTemplate").text());
-                    //填充数据
-                    $("#pageContent").html(pageTemp(data.pageInfo));
+                    pageTools(data.pageInfo.currentPage,3);
+                    //分页
+                    pageInfoMyMusic(data.pageInfo,"pagination");
 
                 } else {   //如果后台返回202则提示歌曲已收藏
                     alert("您还没有收藏歌曲哦，快去列表收藏吧！");
@@ -385,10 +385,72 @@
         })
     }
 
+    /**
+     * 分页
+     */
+    function pageInfoMyMusic(pageInfo,pagination) {
+        var barDiv = $("."+pagination);
+        /*var context = "<span>当前页：" + pageInfo.pageNum + "&nbsp;总页数："
+            + pageInfo.pages + "&nbsp;&nbsp;总记录数："+pageInfo.total+"</span>";*/
+        var context = "<div class='query-content-page-btn'><ul>";
+        if (pageInfo.pageNum > 1) {
+            context += "<li class='prev-next' onclick=prePage('"
+                + pageInfo.prePage + "')><</li>";
+        }
+        for (var i = 0; i < pageInfo.navigatepageNums.length; i++) {
+            if (pageInfo.pageNum == pageInfo.navigatepageNums[i]) {
+                context += "<li class='current_page' onclick=numPage('"
+                    + pageInfo.navigatepageNums[i]
+                    + "')>"
+                    + pageInfo.navigatepageNums[i] + "</li>"
+            } else {
+                context += "<li onclick=numPage('"
+                    + pageInfo.navigatepageNums[i] + "')>"
+                    + pageInfo.navigatepageNums[i] + "</li>"
+            }
+
+        }
+
+        if (pageInfo.pageNum < pageInfo.pages) {
+            context += "<li class='bus-border-right prev-next' onclick=nextPage('"
+                + pageInfo.nextPage + "')>></li>";
+        }
+        context += "</ul></div>";
+        barDiv.html(context);
+    }
+
+    // 下一页
+    function nextPage() {
+        // 获取当前页的值 加一 然后重新赋值给当前页
+        var page = parseInt($("#pageNum").val()) + 1;
+        $("#pageNum").val(page);
+        // 调用搜索函数
+        getList2(page);
+    }
+
+    //上一页
+    function prePage() {
+        // 获取当前页的值 减一 然后重新赋值给当前页
+        var page = parseInt($("#pageNum").val()) - 1;
+        $("#pageNum").val(page);
+        // 调用搜索函数
+        getList2(page);
+    }
+
+
+    // 第几页
+    function numPage(num) {
+        // 获取点击的按钮值 然后重新赋值给当前页
+        $("#pageNum").val(num);
+
+        // 调用搜索函数
+       getList2(num);
+    }
+
     function dle() {//删除已收藏歌曲的方法
         $.ajax({
             async: false,//给ajax嵌套执行，所以需设定false
-            url: "${ctx}/myMusic/deleteMyMusic",//后台地址
+            url: "http://localhost:9091/music-manager/myMusic/deleteMyMusic",//后台地址
             type: "post",//post请求方式
             data: {
                 mid: $.cookie("ml_id"),//传入歌曲id

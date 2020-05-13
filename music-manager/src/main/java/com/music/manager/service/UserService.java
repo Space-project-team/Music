@@ -27,4 +27,7 @@ public interface UserService {
 
     //用户注销
     BaseResult layOut(HttpServletRequest request, HttpServletResponse response);
+
+    //手机注册
+    BaseResult SendSmsRegister(AdminQuery adminQuery,HttpServletRequest request);
 }

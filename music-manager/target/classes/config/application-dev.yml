@@ -25,7 +25,7 @@ spring:
     username: root
     password: root
     type: com.alibaba.druid.pool.DruidDataSource
-	
+
   # freemarker 模板引擎
   freemarker:
     cache: false
@@ -62,7 +62,7 @@ spring:
       # 4.TemplateExceptionHandler.RETHROW_HANDLER简单重新抛出所有异常而不会做其他的事情
       # 5.使用自定义异常类实现TemplateExceptionHandler重写handleTemplateException方法
       template_exception_handler: html_debug
-	  
+
   # redis 缓存
   redis:
     timeout: 10000                          # 连接超时时间
@@ -100,11 +100,15 @@ mybatis:
   # spring boot集成mybatis的方式打印sql，需要使用的话可以开启
 #  configuration:
 
-#存储音乐列表
-musicLink.list: musicLink
 # Redis Key
 # myMusic列表 key
 mymusic.list.key: mymusic:list
+#存储音乐列表
+musicLink.list: musicLink
+#存储TOP榜前50
+TOPLink_50: TOPLink_50
+#歌手列表-默认
+singer.list.key: singer:list
 
 #关闭Elasticsearch健康检查
 management:

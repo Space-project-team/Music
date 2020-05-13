@@ -59,6 +59,9 @@ public class MusicLinkServicelmpl implements IMusicLinkService{
      */
     @Override
     public BaseResult getMusicList(Integer pageNum,Integer pageSize) {
+        //实时更新数据
+        redisTemplate.delete(musicLinkList);
+        if(StringUtils.isEmpty(pageNum)||StringUtils.isEmpty(pageSize)){
         if(StringUtils.isEmpty(pageNum)){
             pageNum = 1;
         }
@@ -95,31 +98,28 @@ public class MusicLinkServicelmpl implements IMusicLinkService{
      */
     @Override
     public BaseResult getMusicByMusicName(String songName) {
-        //非空判断
-        if(StringUtils.isEmpty(songName)){
-            return BaseResult.error();
-        }
-
-        BaseResult result = null;
         //创建查询对象
-        MusicLinkExample musicLinkExample = new MusicLinkExample();
-        MusicLinkExample.Criteria criteria = musicLinkExample.createCriteria();
+        SongExample songExample = new SongExample();
+        //设置查询先后顺序
+        songExample.setOrderByClause("votes desc");
+        SongExample.Criteria criteria = songExample.createCriteria();
         //模糊查询
-        if(null!=songName) {
-            criteria.andMlSongnameLike("%"+songName+"%");
+        if(!StringUtils.isEmpty(songName)) {
+            criteria.andSongnameLike("%"+songName+"%");
         }
         //执行
-        List<MusicLink> musicLinks = musicLinkMapper.selectByExample(musicLinkExample);
-        if (CollectionUtils.isEmpty(musicLinks)){
-            result = new BaseResult();
-            result.setCode(500);
-            return result;
+        List<Song> songList = songMapper.selectByExample(songExample);
+        if (CollectionUtils.isEmpty(songList)){
+            System.out.println("暂无该数据");
+            return BaseResult.error();
         }
-        result = new BaseResult();
-        result.setCode(200);
+        //将歌手id换成歌手名称
+        for(Song song :songList){
+            Singer singer = singerMapper.selectByPrimaryKey(song.getSingerid());
+            song.setSingerid(singer.getSingername());
+        }
         PageHelper.startPage(1,30);
-        result.setPageInfo(new PageInfo<>(musicLinks));
-        return result;
+        return BaseResult.success(new PageInfo<>(songList));
     }
 
     /**
@@ -221,14 +221,20 @@ public class MusicLinkServicelmpl implements IMusicLinkService{
         return BaseResult.error();
     }
 
+    @Override
+    public BaseResult ModuleMusic(Integer pageNum, Integer pageSize, String SongType) {
+        return ModuleSong(pageNum,pageSize,SongType);
+    }
+
+
     /**
-     *
+     * 模板
      * @param pageNum
      * @param pageSize
+     * @param SongType
      * @return
      */
-    @Override
-    public BaseResult getNetworkMusic(Integer pageNum, Integer pageSize) {
+    public BaseResult ModuleSong(Integer pageNum, Integer pageSize,String SongType){
         if(StringUtils.isEmpty(pageNum)||StringUtils.isEmpty(pageSize)){
             pageNum = 1;
             pageSize = 50;
@@ -237,7 +243,7 @@ public class MusicLinkServicelmpl implements IMusicLinkService{
         PageHelper.startPage(pageNum,pageSize);
         //创建查询对象
         LanguageExample languageExample = new LanguageExample();
-        languageExample.createCriteria().andLanguagenameEqualTo("网络歌曲");
+        languageExample.createCriteria().andLanguagenameEqualTo(SongType);
         List<Language> languages = languageMapper.selectByExample(languageExample);
         //判断非空
         if(!CollectionUtils.isEmpty(languages)){
@@ -265,6 +271,4 @@ public class MusicLinkServicelmpl implements IMusicLinkService{
         }
         return BaseResult.error();
     }
-
-
 }
