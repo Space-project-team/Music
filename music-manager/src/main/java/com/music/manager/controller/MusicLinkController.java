@@ -91,4 +91,6 @@ public class MusicLinkController {
 	public BaseResult NetworkMusic(Integer pageNum,Integer pageSize){
 		return musicLinkService.getNetworkMusic(pageNum,pageSize);
 	}
+
+
 }

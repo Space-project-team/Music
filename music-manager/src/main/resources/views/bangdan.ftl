@@ -180,7 +180,7 @@
                     <a href="">飙升榜单</a>
                     <a href="javascript:void(0)" onclick="getModuleMusic('TOPLink')">TOP50榜单</a>
                     <a href="javascript:void(0)" onclick="getModuleMusic('NetworkMusic')">网络音乐榜</a>
-                    <a href="javascript:void(0)" >电影音乐榜</a>
+                    <a href="javascript:void(0)" onclick="">电影音乐榜</a>
                     <a href="javascript:void(0)" >DJ热歌榜</a>
                     <a href="javascript:void(0)" >欧美新歌榜</a>
                     <a href="javascript:void(0)" >中国梦之声榜</a>

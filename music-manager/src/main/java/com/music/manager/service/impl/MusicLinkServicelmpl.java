@@ -219,6 +219,7 @@ public class MusicLinkServicelmpl implements IMusicLinkService{
 
     /**
      *
+     * 网络歌曲排行榜
      * @param pageNum
      * @param pageSize
      * @return
@@ -261,6 +262,7 @@ public class MusicLinkServicelmpl implements IMusicLinkService{
         }
         return BaseResult.error();
     }
+
 
 
 }
