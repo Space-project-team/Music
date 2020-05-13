@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.music.manager.mapper.MyMusicMapper">
-  <resultMap id="BaseResultMap" type="com.music.manager.pojo.MyMusic">
+<mapper namespace="com.music.generator.mapper.MyMusicMapper">
+  <resultMap id="BaseResultMap" type="com.music.generator.pojo.MyMusic">
     <id column="my_id" jdbcType="INTEGER" property="myId" />
     <result column="my_songName" jdbcType="VARCHAR" property="mySongname" />
     <result column="my_singer" jdbcType="VARCHAR" property="mySinger" />
@@ -71,7 +71,7 @@
   <sql id="Base_Column_List">
     my_id, my_songName, my_singer, my_songLink, my_lyricLink, my_photoLink, user_id
   </sql>
-  <select id="selectByExample" parameterType="com.music.manager.pojo.MyMusicExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.music.generator.pojo.MyMusicExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -95,13 +95,13 @@
     delete from mymusic
     where my_id = #{myId,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.music.manager.pojo.MyMusicExample">
+  <delete id="deleteByExample" parameterType="com.music.generator.pojo.MyMusicExample">
     delete from mymusic
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.music.manager.pojo.MyMusic">
+  <insert id="insert" parameterType="com.music.generator.pojo.MyMusic">
     insert into mymusic (my_id, my_songName, my_singer, 
       my_songLink, my_lyricLink, my_photoLink, 
       user_id)
@@ -109,7 +109,7 @@
       #{mySonglink,jdbcType=VARCHAR}, #{myLyriclink,jdbcType=VARCHAR}, #{myPhotolink,jdbcType=VARCHAR}, 
       #{userId,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="com.music.manager.pojo.MyMusic">
+  <insert id="insertSelective" parameterType="com.music.generator.pojo.MyMusic">
     insert into mymusic
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="myId != null">
@@ -158,7 +158,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.music.manager.pojo.MyMusicExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.music.generator.pojo.MyMusicExample" resultType="java.lang.Long">
     select count(*) from mymusic
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -206,7 +206,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.music.manager.pojo.MyMusic">
+  <update id="updateByPrimaryKeySelective" parameterType="com.music.generator.pojo.MyMusic">
     update mymusic
     <set>
       <if test="mySongname != null">
@@ -230,7 +230,7 @@
     </set>
     where my_id = #{myId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.music.manager.pojo.MyMusic">
+  <update id="updateByPrimaryKey" parameterType="com.music.generator.pojo.MyMusic">
     update mymusic
     set my_songName = #{mySongname,jdbcType=VARCHAR},
       my_singer = #{mySinger,jdbcType=VARCHAR},

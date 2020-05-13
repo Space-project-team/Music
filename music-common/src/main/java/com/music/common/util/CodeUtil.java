@@ -1,11 +1,5 @@
 package com.music.common.util;
 
-
-
-
-
-import org.apache.commons.lang.RandomStringUtils;
-
 import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
