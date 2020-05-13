@@ -12,6 +12,7 @@ import com.music.manager.service.impl.UserServicelmpl;
 import com.music.manager.vo.AdminQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -47,8 +48,7 @@ public class UserController {
 	@RequestMapping(value = "/loginPage", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public BaseResult loginCon(AdminQuery adminQuery, HttpServletRequest request, HttpServletResponse response) {
-
-		return  userService.login(adminQuery,request,response);
+		return  userService.login(adminQuery, request, response);
 	}
 
 

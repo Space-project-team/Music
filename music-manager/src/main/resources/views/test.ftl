@@ -16,6 +16,9 @@
     <link href="${ctx}/css/style.min862f.css?v=4.1.0" rel="stylesheet">
 
 </head>
+<script>
+    var ctx="${ctx}";
+</script>
 <body class="gray-bg">
     <div class="wrapper wrapper-content animated fadeInRight">
 		<div class="row">
@@ -25,7 +28,7 @@
                         <h5>添加</h5>
                     </div>
                     <div class="ibox-content">
-                        <form id="test" role="form" action="musicLink/getMusicLinkList" method="post">
+                        <form id="test" role="form" action="${ctx}/musicLink/getMusicLinkList" method="post">
                             	<div class="row">
                             		<div class="form-group  col-md-4">
                                 		<label class="col-sm-4 control-label" style="text-align:right;padding-top:7px;">测试名称：</label>
@@ -141,11 +144,11 @@
 
 		function getList(pageNo) {test
 			$.ajax({
-				url : "musicLink/getMusicLinkList",
+				url : "http://localhost:9091/music-manager/musicLink/getMusicLinkList",
 				type : "POST",
 				data : "pageNo=" + pageNo,
 				success : function(data) {
-					if (data.statusCode == "200") {
+					if (data.code == 200) {
 						var str = '';
 						/* data.data.list.length对应respon.map.list.length */
 						for (var i = 0; i < data.data.list.length; i++) {

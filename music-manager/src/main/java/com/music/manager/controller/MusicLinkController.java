@@ -41,7 +41,7 @@ public class MusicLinkController {
 	 * @param
 	 * @return
 	 */
-	@RequestMapping(value = "/getMusicLinkList",method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+	@RequestMapping(value = "getMusicLinkList",method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public BaseResult getMusicLink(Integer pageNum, Integer pageSize,HttpServletRequest request){
 		BaseResult result = musicLinkService.getMusicList(pageNum, pageSize);
@@ -50,7 +50,7 @@ public class MusicLinkController {
 	}
 
 	// 歌曲搜索功能
-	@RequestMapping(value = "/getSongRearch",method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@RequestMapping(value = "getSongRearch",method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public BaseResult getMusicByMusicName(String songName){
 		return  musicLinkService.getMusicByMusicName(songName);
@@ -60,7 +60,7 @@ public class MusicLinkController {
 	 * 歌曲收藏
 	 * @return
 	 */
-	@RequestMapping(value = "/addMusicCollect",method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@RequestMapping(value = "addMusicCollect",method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public BaseResult  addMusicCollect(HttpServletRequest request,String songName,Integer mid){
 		User user = (User) request.getSession().getAttribute("user");
@@ -89,7 +89,55 @@ public class MusicLinkController {
 	@RequestMapping(value = "NetworkMusic",method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public BaseResult NetworkMusic(Integer pageNum,Integer pageSize){
-		return musicLinkService.getNetworkMusic(pageNum,pageSize);
+		return musicLinkService.ModuleMusic(pageNum,pageSize,"网络歌曲");
+	}
+
+	/**
+	 * 电影排行榜
+	 * @param pageNum
+	 * @param pageSize
+	 * @return
+	 */
+	@RequestMapping(value = "MovieSong",method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public BaseResult MovieSong(Integer pageNum,Integer pageSize){
+		return musicLinkService.ModuleMusic(pageNum,pageSize,"影视原声");
+	}
+
+	/**
+	 * 获取DJ排行榜
+	 * @param pageNum
+	 * @param pageSize
+	 * @return
+	 */
+	@RequestMapping(value = "DjSong",method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public BaseResult DjSong(Integer pageNum,Integer pageSize){
+		return musicLinkService.ModuleMusic(pageNum,pageSize,"DJ");
+	}
+
+	/**
+	 * 欧美新热歌
+	 * @param pageNum
+	 * @param pageSize
+	 * @return
+	 */
+	@RequestMapping(value = "EuropeMusic",method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public BaseResult EuropeMusic(Integer pageNum,Integer pageSize){
+		return musicLinkService.ModuleMusic(pageNum,pageSize,"欧美");
+	}
+
+	/**
+	 *	粤语排行榜
+	 * @param pageNum
+	 * @param pageSize
+	 * @return
+	 */
+	@RequestMapping(value = "YueYuMusic",method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public BaseResult YueYuMusic(Integer pageNum,Integer pageSize){
+		return musicLinkService.ModuleMusic(pageNum,pageSize,"粤语");
 	}
 
 

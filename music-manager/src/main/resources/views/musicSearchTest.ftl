@@ -13,6 +13,9 @@
     <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 </head>
+<script>
+    var ctx="${ctx}";
+</script>
 <body style="user-select: none">
 <div class="search1">
     <div class="logo1" style="width: 153px; padding: 20.6px 0; display: inline-block;"><a
@@ -21,7 +24,7 @@
 
     <nav class="navmargin navbar navbar-default" role="navigation">
         <div class="shurukuang" style="padding: 20.6px 30px;">
-            <form class="bs-example" id="test" role="form" action="musicLink/getSongRearch" method="post">
+            <form class="bs-example" id="test" role="form" action=${ctx}"/musicLink/getSongRearch" method="post">
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="input-group">
@@ -90,24 +93,24 @@
 
     function getList2(lll) {
         $.ajax({
-            url: "musicLink/getSongRearch",//后台地址
+            url: "http://localhost:9091/music-manager/musicLink/getSongRearch",//后台地址
             type: "POST",//post方式请求
             data: lll,//将数据通过lll在调用的时候传入
             success: function (data) {
-                if (data.statusCode == "200") {
+                if (data.code == 200) {
                     var search = document.getElementById("songName").value;//获取搜索框内的文本
                     $.cookie("song_search", search, {expires: 7, path: "/"});//将文本存入cookie
                     var str = '';
                     /* data.data.list.length对应respon.map.list.length */
-                    for (var i = 0; i < data.data.list.length; i++) {
+                    for (var i = 0; i < data.pageInfo.list.length; i++) {
                         var a = i + 1;
 
 
                         str += '<tr>'
                             + '<td class="number111"  style="padding: 14px;border-bottom: 1px solid #eee; width: 100px;text-align: center;">' + a + '</td>'
-                            + '<td  style="padding: 14px;border-bottom: 1px solid #eee;width: 600px;text-align: center;"><a class=sName' + i + ' href="#">' + data.data.list[i].ml_songName + '</a>' +
+                            + '<td  style="padding: 14px;border-bottom: 1px solid #eee;width: 600px;text-align: center;"><a class=sName' + i + ' href="#">' + data.pageInfo.list[i].songname + '</a>' +
                             '<span class="glyphicon glyphicon-heart" id=sFav' + i + ' style="color: #eee;float: right;"></span></td>'
-                            + '<td style="padding: 14px;border-bottom: 1px solid #eee;width: 300px;text-align: center;"><a href="#">' + data.data.list[i].ml_singer + '</a></td>'
+                            + '<td style="padding: 14px;border-bottom: 1px solid #eee;width: 300px;text-align: center;"><a href="#">' + data.pageInfo.list[i].singerid + '</a></td>'
                             + '</tr>';
 
                         function play(i) {
@@ -131,23 +134,23 @@
                     }
 
                     function fn(j) {
-                        console.log(data.data.list[j].ml_id);
-                        $.cookie("song_link", data.data.list[j].ml_songLink, {expires: 7, path: "/"});
-                        $.cookie("song_name", data.data.list[j].ml_songName, {expires: 7, path: "/"});
-                        $.cookie("song_singer", data.data.list[j].ml_singer, {expires: 7, path: "/"});
-                        $.cookie("song_photo", data.data.list[j].ml_photoLink, {expires: 7, path: "/"});
-                        window.location.href = "${ctx}/QQmusic";
+
+                        $.cookie("song_link", data.pageInfo.list[j].songfile, {expires: 7, path: "/"});
+                        $.cookie("song_name", data.pageInfo.list[j].songname, {expires: 7, path: "/"});
+                        $.cookie("song_singer",data.pageInfo.list[j].singerid, {expires: 7, path: "/"});
+                        $.cookie("song_photo", data.pageInfo.list[j].photoimage, {expires: 7, path: "/"});
+                        window.location.href = "http://localhost:9091/music-manager/QQmusic";
                     }
 
                     function fn1(j) {
-                        console.log(data.data.list[j].ml_id);
-                        $.cookie("song_id", data.data.list[j].ml_id, {expires: 7, path: "/"});
-                        $.cookie("song_name", data.data.list[j].ml_songName, {expires: 7, path: "/"});
+
+                        $.cookie("song_id", data.pageInfo.list[j].songid, {expires: 7, path: "/"});
+                        $.cookie("song_name", data.pageInfo.list[j].songname, {expires: 7, path: "/"});
                     }
 
 
                     $("table tbody").html(str);
-                } else if (data.statusCode == "202") {
+                } else if (data.code == 400) {
                     alert("搜索不到歌曲！");
                 }
             },
@@ -161,7 +164,7 @@
     function fav(j) {
         $.ajax({
             async: false,
-            url: "/musicLink/addMusicCollect",
+            url: "http://localhost:9091/music-manager/musicLink/addMusicCollect",
             type: "post",
             data: {
                 "songName": $.cookie("song_name"),
@@ -170,7 +173,7 @@
                 "user_password": $.cookie("user_password"),
             },
             success: function (data) {//webspond
-                if (data.statusCode == "200") {
+                if (data.code == 200) {
                     $('#sFav' + j).css('color', '#ff69b4');
                     alert("歌曲收藏成功，请去我的音乐查看！")
 

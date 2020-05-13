@@ -13,9 +13,12 @@
     <link rel="shortcut icon" type="image/x-icon" href="${ctx}/images/logo1.png">
     <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="js/bangdan.js"></script>
+    <script src="${ctx}/js/bangdan.js"></script>
 
 </head>
+<script>
+    var ctx="${ctx}";
+</script>
 <body style="overflow-x: hidden;user-select: none;">
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
      style="overflow: auto;">
@@ -26,7 +29,7 @@
                 <h4 class="modal-title" id="myModalLabel">账号密码登录</h4>
             </div>
             <div class="modal-body" style="position: relative;">
-                <form id="test" class="form-horizontal" role="form" action="/user/loginPage" method="post"
+                <form id="test" class="form-horizontal" role="form" action="${ctx}/user/loginPage" method="post"
                       style="padding-left: 50px;">
                     <div class="form-group">
                         <img src="${ctx}/images/logo2.png" style="display: block; padding: 20px 151px">
@@ -180,12 +183,12 @@
                     <a href="">飙升榜单</a>
                     <a href="javascript:void(0)" onclick="getModuleMusic('TOPLink')">TOP50榜单</a>
                     <a href="javascript:void(0)" onclick="getModuleMusic('NetworkMusic')">网络音乐榜</a>
-                    <a href="javascript:void(0)" onclick="">电影音乐榜</a>
-                    <a href="javascript:void(0)" >DJ热歌榜</a>
-                    <a href="javascript:void(0)" >欧美新歌榜</a>
-                    <a href="javascript:void(0)" >中国梦之声榜</a>
-                    <a href="javascript:void(0)" >国风美少年榜</a>
-                    <a href="javascript:void(0)" >粤语新歌榜</a>
+                    <a href="javascript:void(0)" onclick="getModuleMusic('MovieSong')">电影音乐榜</a>
+                    <a href="javascript:void(0)" onclick="getModuleMusic('DjSong')">DJ热歌榜</a>
+                    <a href="javascript:void(0)" onclick="getModuleMusic('EuropeMusic')">欧美新歌榜</a>
+                    <a href="javascript:void(0)" onclick="getModuleMusic('TOPLink')">中国梦之声榜</a>
+                    <a href="javascript:void(0)" onclick="getModuleMusic('TOPLink')">国风美少年榜</a>
+                    <a href="javascript:void(0)" onclick="getModuleMusic('YueYuMusic')">粤语新歌榜</a>
                 </div>
             </div>
         </div>
@@ -303,7 +306,7 @@
     function getList(pageNum,pageSize) {
         test
         $.ajax({
-            url: "${ctx}/musicLink/getMusicLinkList",
+            url: "http://localhost:9091/music-manager/musicLink/getMusicLinkList",
             type: "GET",
             data: {
                 pageNum:pageNum,
@@ -346,7 +349,7 @@
                         $.cookie("song_name", data.pageInfo.list[j].mlSongname, {expires: 7, path: "/"});
                         $.cookie("song_singer", data.pageInfo.list[j].mlSinger, {expires: 7, path: "/"});
                         $.cookie("song_photo", data.pageInfo.list[j].mlPhotolink, {expires: 7, path: "/"});
-                        window.location.href = "${ctx}/QQmusic";
+                        window.location.href = "http://localhost:9091/music-manager/QQmusic";
                     }
 
                     function fn1(j) {
@@ -376,14 +379,14 @@
     function fav(j) {
         $.ajax({
             async: false,
-            url: "${ctx}/musicLink/addMusicCollect",
+            url: "http://localhost:9091/music-manager/musicLink/addMusicCollect",
             type: "post",
             data: {
                 songName: $.cookie("song_name"),
                 mid: $.cookie("song_id")
             },
             success: function (data) {//webspond
-                if (data.code == "200") {
+                if (data.code == 200) {
 
                     // $('#sFav'+j).removeClass('glyphicon-heart');
                     $('#sFav' + j).css('color', '#ff69b4');
@@ -403,7 +406,7 @@
 
     //下方为时钟
     $("#search1").click(function () {
-        window.open("${ctx}/musicSearchTest");//给登录按钮一个超链接
+        window.open("http://localhost:9091/music-manager/musicSearchTest");//给登录按钮一个超链接
     });
     var clock = new Vue({
         el: '#clock',
