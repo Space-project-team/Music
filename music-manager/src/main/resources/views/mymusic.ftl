@@ -317,9 +317,8 @@
             url: "${ctx}/myMusic/getMyMusicList",      //后台获取整个数据库方法的地址
             type: "POST",
             data: {
-                userName: $.cookie("user_name"),
                 pageNum: page,
-                pageSize:5,
+                pageSize:42,
             },
             success: function (data) {
                 if (data.code==200) {

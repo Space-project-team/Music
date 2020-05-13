@@ -221,7 +221,7 @@
 				<a href="#">X</a>
 				<a href="#">Y</a>
 				<a href="#">Z</a>
-				<a title"其他歌手" href="#">其他</a>
+				<a title="其他歌手" href="#">其他</a>
 			</div>
 		</div>
 		<div class="zhong">
@@ -424,23 +424,106 @@
         $("#display1").attr("style","display:none;");
     }
 
-    $('#test').validate({
-        errorPlacement: function(error, element) {
-            error.appendTo(element.parent());
-        },
-        onfocusout:function(element){
-            $(element).valid();
-        },
-        submitHandler: function (form) {
-            denglu($('#test').attr("action"), $('#test').serialize());
+	$('#test').validate({
+		errorPlacement: function(error, element) {
+			error.appendTo(element.parent());
+		},
+		onfocusout:function(element){
+			$(element).valid();
+		},
+		submitHandler: function (form) {
+			denglu($('#test').attr("action"), $('#test').serialize());
 
 
-        }
-    });
+		}
+	});
+
+
+	/**
+	 * 查询与更新歌手排行榜
+	 * */
+	function getSingerList(page) {
+		$.ajax({
+			url: "${ctx}/singer/getSingerList",      //后台获取整个数据库方法的地址
+			type: "POST",
+			data: {
+				pageNum: page,
+				pageSize:42,
+			},
+			success: function (data) {
+				if (data.code==200) {
+					var str = '';                                                   //动态生成表格
+					/* data.data.list.length对应respon.map.list.length */
+					for (var i = 0; i < data.pageInfo.list.length; i++) {
+						var a = i + 1;
+						/*1-18为有图片的显示*/
+						if(a<=18){
+							str += '<div class="singerpn">'
+									+ '<a href="#"><img src='+data.pageInfo.list[i].headImage+'${ctx}/images/s1.jpg" alt="刘德华" class="singerpicture"></a>'
+									+'<span class="st"><strong>1st</strong></span>'
+									+'<span class="singername">刘德华</span>'
+									+ '</div>'
+						}
 
 
 
 
+
+						str += '<tr>'
+								+ '<td class="number111"  style="padding: 14px;border-bottom: 1px solid #eee; width: 100px;text-align: center;">' + a + '</td>'
+								+ '<td  style="padding: 14px;border-bottom: 1px solid #eee;width: 600px;text-align: center;"><a class=sName' + i + ' href="#">' + data.pageInfo.list[i].mySongname + '</a>' +
+								'<span class="glyphicon glyphicon-trash" id=sFav' + i + ' style="color: #2c323b;float: right;"></span></td>'
+								+ '<td style="padding: 14px;border-bottom: 1px solid #eee;width: 300px;text-align: center;"><a href="#">' + data.pageInfo.list[i].mySinger + '</a></td>'
+								+ '</tr>';//将动态生成的表格添加到table标签中
+
+						function play(i) {
+							$("table").on('click', '.sName' + i, function () {//由于该标签是动态添加的，所以一般的选择器没有办法直接选中，因此需要借用事件委托来完成选择并添加click事件
+								fn(i);                                          //调用fn方法，方法的作用见后方备注
+							});
+						}
+
+						play(i);          //i的值不能由jq直接调用，所以利用play的方法传值进入
+
+						function play1(i) {
+							$("table").on('click', '#sFav' + i, function () {  //i的值不能由jq直接调用，所以利用play的方法传值进入
+								fn1(i);//调用fn1方法来保存cookie
+								dle(); //调用del方法删除，该方法为ajax，所以此处嵌套ajax，需定义 async: false,异步执行才不会出错
+							});
+						}
+
+						play1(i);
+					}
+
+					function fn(j) {//
+						$.cookie("song_link", data.pageInfo.list[j].mySonglink, {expires: 7, path: "/"});//
+						$.cookie("song_name", data.pageInfo.list[j].mySongname, {expires: 7, path: "/"});//   保存后台传入的相关信息和链接进入cookie，在播放页面直接将cookie的值调用出来，
+						$.cookie("song_singer", data.pageInfo.list[j].mySinger, {expires: 7, path: "/"});//    然后替换原有的信息和播放路径，完成点击歌曲播放功能
+						$.cookie("song_photo", data.pageInfo.list[j].myPhotolink, {expires: 7, path: "/"});//
+						window.location.href = "${ctx}/QQmusic";//跳转页面
+					}
+
+					function fn1(j) {
+
+						$.cookie("ml_id", data.pageInfo.list[j].myId, {expires: 7, path: "/"});      //将歌曲id保存下来，点击删除按钮时，将值传入后台，删除数据库
+					}
+
+
+					$("table tbody").html(str);
+
+					//获取分页模板
+					var pageTemp = doT.template($("#pageTemplate").text());
+					//填充数据
+					$("#pageContent").html(pageTemp(data.pageInfo));
+
+				} else {   //如果后台返回202则提示歌曲已收藏
+					alert("您还没有收藏歌曲哦，快去列表收藏吧！");
+				}
+			},
+			error: function (data) {
+				alert(JSON.stringify(data));//连接失败弹窗
+			}
+		})
+	}
 
 </script>
 	</body>
