@@ -21,4 +21,9 @@ public class SingerController {
     public BaseResult getSingerList(Integer pageNum, Integer pageSize){
         return  iSingerService.getSingerList(pageNum,pageSize);
     }
+    @RequestMapping("getSexSingerList")
+    @ResponseBody
+    public BaseResult getSexSingerList(String sex,Integer pageNum, Integer pageSize){
+        return  iSingerService.getSexSingerList(sex,pageNum,pageSize);
+    }
 }

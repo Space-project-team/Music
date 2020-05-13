@@ -156,13 +156,13 @@
 	<div class="l">
 		<ul class="sng1">
 			<li class="all">
-				<a title="全部歌手" class="hover" href="#" >全部歌手</a>
+				<a title="全部歌手" class="hover" href="javascript:getSingerList(1)" >全部歌手</a>
 			</li>
 			<li class="all">
-				<a title="华语男歌手" class="hover" href="#">华语男歌手</a>
+				<a title="华语男歌手" class="hover" href="javascript:getSexSingerList('男',1)">华语男歌手</a>
 			</li>
 			<li class="all">
-				<a title="华语女歌手" class="hover" href="#">华语女歌手</a>
+				<a title="华语女歌手" class="hover" href="javascript:getSexSingerList('女',1)">华语女歌手</a>
 			</li>
 			<li class="all">
 				<a title="华语组合" class="hover" href="#">华语组合</a>
@@ -318,12 +318,14 @@
 	function getSingerList(pagenum) {
 		var zhong = $(".zhong");
 		var table2 = $(".table");
+		zhong.empty();
+		table2.empty();
 		$.ajax({
 			url: "${ctx}/singer/getSingerList",      //后台获取整个数据库方法的地址
 			type: "POST",
 			data: {
 				pageNum: pagenum,
-				pageSize:42,
+				pageSize:50,
 			},
 			success: function (data) {
 				if (data.code==200) {
@@ -377,6 +379,67 @@
 		getSingerList(1);
 
 	});
+	function getSexSingerList(sex,pagenum) {
+		var zhong = $(".zhong");
+		var table2 = $(".table");
+		zhong.empty();
+		table2.empty();
+		$.ajax({
+			url: "${ctx}/singer/getSexSingerList",      //后台获取整个数据库方法的地址
+			type: "POST",
+			data: {
+				sex:sex,
+				pageNum: pagenum,
+				pageSize:50,
+			},
+			success: function (data) {
+				if (data.code==200) {
+					var str = '';
+					//动态生成表格
+					var box= '';
+					box +='<tbody>';
+					box+='<tr class="active">';
+					box+='</tr>';
+					/* data.data.list.length对应respon.map.list.length */
+					for (var i = 0; i < data.pageInfo.list.length; i++) {
+						var a = i + 1;
+						/*1-18为有图片的显示*/
+						if(a<=20){
+							str += '<div class="singerpn">'
+									+ '<a href="#"><img src='+data.pageInfo.list[i].headimage+'?x-oss-process=style/shiying'+' alt='+data.pageInfo.list[i].singername+'class="singerpicture"></a>'
+									+'<span class="st"><strong>' ;
+							if (a==1){
+								str+='1st';
+							}else if(a==2){
+								str+='2nd';
+							}else if(a==3){
+								str+='3rd';
+							}else {
+								str+=a+'th';
+							}
+
+							str+='</strong></span>'
+									+'<span class="singername">'+data.pageInfo.list[i].singername+'</span>'
+									+'</div>'
+						}
+						if(a>20){
+
+							box+='<td>'+a+ '<img src="${ctx}/images/上升.png"> <a href="#">'+data.pageInfo.list[i].singername+'</a></td>';
+
+						}
+					}
+
+					box+='</tbody>';
+				}
+				console.log("box:"+box);
+				zhong.append(str);
+				table2.append(box);
+			},
+			error: function (data) {
+				alert(JSON.stringify(data));//连接失败弹窗
+			}
+		})
+	}
 </script>
 	</body>
 	</html>
