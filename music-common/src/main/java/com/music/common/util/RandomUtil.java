@@ -6,12 +6,12 @@ package com.music.common.util;
 public class RandomUtil {
 
     // 获取n位随机验证码
-    public static String getRandom1() {
+    public static String getRandom1(int i) {
         // 还有一种简单的办法就是把所有大小写字母和数字都写到一起 直接一个随机数就生成了
         String[] letters = new String[]{"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"};
         String code = "";
 
-        for (int i = 0; i < 4; i++) {
+        for (int j = 0; j < 4; i++) {
             if (Math.random() * 2 > 1) {
                 if (Math.random() * 2 > 1) {
                     code = code + letters[(int) Math.floor(Math.random() * 26 + 1)];

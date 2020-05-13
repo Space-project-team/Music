@@ -105,9 +105,9 @@
 
                         str += '<tr>'
                             + '<td class="number111"  style="padding: 14px;border-bottom: 1px solid #eee; width: 100px;text-align: center;">' + a + '</td>'
-                            + '<td  style="padding: 14px;border-bottom: 1px solid #eee;width: 600px;text-align: center;"><a class=sName' + i + ' href="#">' + data.pageInfo.list[i].mlSongname + '</a>' +
+                            + '<td  style="padding: 14px;border-bottom: 1px solid #eee;width: 600px;text-align: center;"><a class=sName' + i + ' href="#">' + data.pageInfo.list[i].songname + '</a>' +
                             '<span class="glyphicon glyphicon-heart" id=sFav' + i + ' style="color: #eee;float: right;"></span></td>'
-                            + '<td style="padding: 14px;border-bottom: 1px solid #eee;width: 300px;text-align: center;"><a href="#">' + data.pageInfo.list[i].mlSinger + '</a></td>'
+                            + '<td style="padding: 14px;border-bottom: 1px solid #eee;width: 300px;text-align: center;"><a href="#">' + data.pageInfo.list[i].singerid + '</a></td>'
                             + '</tr>';
 
                         function play(i) {
@@ -132,22 +132,22 @@
 
                     function fn(j) {
 
-                        $.cookie("song_link", data.pageInfo.list[j].mlSonglink, {expires: 7, path: "/"});
-                        $.cookie("song_name", data.pageInfo.list[j].mlSongname, {expires: 7, path: "/"});
-                        $.cookie("song_singer",data.pageInfo.list[j].mlSinger, {expires: 7, path: "/"});
-                        $.cookie("song_photo", data.pageInfo.list[j].mlPhotolink, {expires: 7, path: "/"});
+                        $.cookie("song_link", data.pageInfo.list[j].songfile, {expires: 7, path: "/"});
+                        $.cookie("song_name", data.pageInfo.list[j].songname, {expires: 7, path: "/"});
+                        $.cookie("song_singer",data.pageInfo.list[j].singerid, {expires: 7, path: "/"});
+                        $.cookie("song_photo", data.pageInfo.list[j].photoimage, {expires: 7, path: "/"});
                         window.location.href = "${ctx}/QQmusic";
                     }
 
                     function fn1(j) {
 
-                        $.cookie("song_id", data.pageInfo.list[j].mlId, {expires: 7, path: "/"});
-                        $.cookie("song_name", data.pageInfo.list[j].mlSongname, {expires: 7, path: "/"});
+                        $.cookie("song_id", data.pageInfo.list[j].songid, {expires: 7, path: "/"});
+                        $.cookie("song_name", data.pageInfo.list[j].songname, {expires: 7, path: "/"});
                     }
 
 
                     $("table tbody").html(str);
-                } else if (data.code == 500) {
+                } else if (data.code == 400) {
                     alert("搜索不到歌曲！");
                 }
             },

@@ -530,12 +530,11 @@
                 $("#user_number").html($.cookie("user_id"));
 
                 function fn(i) {//调用方法，更改cookie的信息，并跳转到播放页面
-                    console.log(data.data.list[i].ml_id);
-                    $.cookie("song_link", data.data.list[i].ml_songLink, {expires: 7, path: "/"});
-                    $.cookie("song_name", data.data.list[i].ml_songName, {expires: 7, path: "/"});
-                    $.cookie("song_singer", data.data.list[i].ml_singer, {expires: 7, path: "/"});
-                    $.cookie("song_photo", data.data.list[i].ml_photoLink, {expires: 7, path: "/"});
-                    window.open("${ctx}/QQmusic");
+                    $.cookie("song_link", data.pageInfo.list[i].songfile, {expires: 7, path: "/"});
+                    $.cookie("song_name", data.pageInfo.list[i].songname, {expires: 7, path: "/"});
+                    $.cookie("song_singer", data.pageInfo.list[i].singerid, {expires: 7, path: "/"});
+                    $.cookie("song_photo", data.pageInfo.list[i].photoimage, {expires: 7, path: "/"});
+                    window.open("http://localhost:9091/music-manager/myMusic/QQmusic");
                 }
             }
         },
@@ -561,13 +560,13 @@
                     /* data.data.list.length对应respon.map.list.length */
                     for (var i = 0; i < data.pageInfo.list.length; i++) {
                         str += '<tr>'
-                            + '<td>' + data.pageInfo.list[i].mlSongname + '</td>'
-                            + '<td>' + data.pageInfo.list[i].mlSinger + '</td>'
+                            + '<td>' + data.pageInfo.list[i].songname + '</td>'
+                            + '<td>' + data.pageInfo.list[i].singerid + '</td>'
                             /* + '<td>' + data.data.list[i].ml_songLink + '</td>' */
                             + '</tr>';
                     }
                     $("table tbody").html(str);
-                } else if (data.code == 500) {
+                } else if (data.code == 400) {
                     alert("搜索不到歌曲,请重新输入！");
                 }
             },

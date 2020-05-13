@@ -10,8 +10,8 @@
     <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="${ctx}/css/register.css">
-
+    <link rel="stylesheet" href="${ctx}/static/css/register.css">
+    <script src="https://ssl.captcha.qq.com/TCaptcha.js"></script>
 </head>
 <script>
     var ctx="${ctx}";
@@ -20,7 +20,7 @@
     <div id="nav">
         <div class="nav">
             <ul class="n1" id="ulHeader">
-                <li class="home"><img src="${ctx}/images/logo2.png" width="170" height="40" alt="轻语音乐" class="logo2"><a href="#" title="轻语商城">轻语商城</a><span></span></li>
+                <li class="home"><img src="${ctx}/static/images/logo2.png" width="170" height="40" alt="轻语音乐" class="logo2"><a href="#" title="轻语商城">轻语商城</a><span></span></li>
                 <li class="" id="downloadLink"><a href="#" title="下载客户端" target="_blank">下载客户端</a><span></span></li>
                 <li><a href="#" hidefocus="true" title="音乐直播" target="_blank">音乐直播</a><span></span></li>
                 <li><a href="#" title="轻语音乐人" target="_self">轻语音乐人</a><span></span></li>
@@ -42,23 +42,26 @@
                             <div class="ibox-title">
                             </div>
                             <div class="ibox-content">
-                                <form id="test" role="form" action="${ctx}/user/addUser" method="post">
+                                <form <#--id="test" role="form" action="${ctx}/user/register" method="post"-->>
                                     <div class="form-group">
                                         <!-- 表单 -->
-                                        <label for="username" class="col-sm-2 control-label">用户名:</label> <!-- 表单 -->
+                                        <label for="phone" class="col-sm-2 control-label">手机号:</label> <!-- 表单 -->
                                         <div class="col-sm-10" style="margin: 0 0 20px">
-                                            <input type="text" class="form-control" id="user_name" name="user_name" placeholder="请输入用户名" size="20">
+                                            <input type="text" class="form-control" id="phone" name="phone" placeholder="请输入手机号" size="20">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="password" class="col-sm-2 control-label">密码:</label>
+                                        <label for="code" class="col-sm-2 control-label">验证码:</label>
                                         <div class="col-sm-10" style="margin: 0 0 20px">
-                                            <input type="password" class="form-control" id="user_password" name="user_password" placeholder="请输入密码" size="20">
+                                            <input type="password" class="form-control" id="code" name="code" placeholder="请输入验证码" size="20">
+                                            <button type="submit" class="btn btn-primary btn-lg" <#--onClick="chkAll();"--> onclick="SendSsm()">发送验证码</button>
                                         </div>
+
                                     </div>
+
                                     <div class="form-group">
                                         <div class="col-sm-offset-1 col-sm-10">
-                                            <button type="submit" class="btn btn-primary btn-lg" <#--onClick="chkAll();"-->>注册</button>
+                                            <button type="submit" class="btn btn-primary btn-lg" <#--onClick="chkAll();"-->id="register" onclick="register()">注册</button>
                                         </div>
                                     </div>
                                 </form>
@@ -69,11 +72,60 @@
             </div>
         </div>
     </div>
-    <script src="${ctx}/js/jquery.min.js?v=2.1.4"></script>
-    <script src="${ctx}/js/bootstrap-paginator.min.js"></script>
-    <script src="${ctx}/js/jquery.validate.min.js"></script>
-    <script src="${ctx}/js/tools.js"></script>
+    <script src="${ctx}/static/js/jquery.min.js?v=2.1.4"></script>
+    <script src="${ctx}/static/js/bootstrap-paginator.min.js"></script>
+    <script src="${ctx}/static/js/jquery.validate.min.js"></script>
+    <script src="${ctx}/static/js/tools.js"></script>
     <script type="text/javascript">
+        function SendSsm() {
+            var phone = $("#phone");
+            var code = $("#code");
+            if(null==phone||""==phone){
+                return false;
+            }
+            if(nul==code||""==code){
+                return false;
+            }
+            $.ajax({
+                type:"get",
+                url: "http://localhost:9091/music-manager/user/SendSsm",
+                data:{
+                    phoneNum:phone,
+                    code:code
+                },
+                success:function (data) {
+                    if(data.code==200){
+                        alert("发送成功!");
+                    }else{
+                        alert(data.code.message);
+                    }
+                }
+
+            })
+        }
+
+        function register() {
+            var code = $("#code");
+            $.ajax({
+                type:"get",
+                url: "http://localhost:9091/music-manager/user/register",
+                data:{
+                    code:code
+                },
+                success:function (data) {
+                    if(data.code==200){
+                        alert("注册成功!");
+                        alert("您的账号:"+data.pageInfo.list.userName+"   您的密码:"+data.pageInfo.list.userPassword);
+                    }else{
+                        alert(data.message);
+                    }
+                }
+
+            })
+        }
+
+
+
     $('#test').validate({
         submitHandler: function(form) {
             addToDB($('#test').attr("action"), $('#test').serialize());//tools里的方法
@@ -101,5 +153,7 @@
         </div>
     </div>
 </body>
+<script>
 
+</script>
 </html>
