@@ -13,9 +13,6 @@
     <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 </head>
-<script>
-    var ctx="${ctx}";
-</script>
 <body style="user-select: none">
 <div class="search1">
     <div class="logo1" style="width: 153px; padding: 20.6px 0; display: inline-block;"><a
@@ -139,7 +136,7 @@
                         $.cookie("song_name", data.pageInfo.list[j].songname, {expires: 7, path: "/"});
                         $.cookie("song_singer",data.pageInfo.list[j].singerid, {expires: 7, path: "/"});
                         $.cookie("song_photo", data.pageInfo.list[j].photoimage, {expires: 7, path: "/"});
-                        window.location.href = "http://localhost:9091/music-manager/QQmusic";
+                        window.location.href = "${ctx}/QQmusic";
                     }
 
                     function fn1(j) {

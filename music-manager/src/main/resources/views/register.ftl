@@ -74,7 +74,7 @@
                                         <div class="col-sm-10" style="margin: 0 0 20px">
                                             <input type="password" class="form-control" id="user_password" name="user_password" placeholder="请输入密码" size="20">
                                         </div>
-                                    </div> 
+                                    </div>
                                     <div class="form-group">
                                         <div class="col-sm-offset-1 col-sm-10">
                                             <button type="submit" class="btn btn-primary btn-lg" <#--onClick="chkAll();"-->>注册</button>

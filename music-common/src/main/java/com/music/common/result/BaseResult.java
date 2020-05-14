@@ -16,6 +16,7 @@ public class BaseResult implements Serializable {
     // 分页对象(商品列表需要-pom.xml添加依赖)
     PageInfo<?> pageInfo;
 
+
     //成功返回的对象
     public static BaseResult success() {
         BaseResult result = new BaseResult();
@@ -32,6 +33,8 @@ public class BaseResult implements Serializable {
         result.setPageInfo(pageInfo);
         return result;
     }
+
+
 
     //失败返回的对象
     public static BaseResult error() {
@@ -56,6 +59,8 @@ public class BaseResult implements Serializable {
     public void setCode(Integer code) {
         this.code = code;
     }
+
+
 
     public String getMessage() {
         return message;
