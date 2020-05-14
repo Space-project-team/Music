@@ -183,6 +183,18 @@ public class UserServicelmpl implements UserService {
 		//生成6位随机验证码
 		//1.参数判断非空
 		BaseResult result = null;
+		if(StringUtils.isEmpty(adminQuery.getUser_name())){
+			result = new BaseResult();
+			result.setCode(500);
+			result.setMessage("用户名不能为空!");
+			return result;
+		}
+		if(StringUtils.isEmpty(adminQuery.getUser_password())){
+			result = new BaseResult();
+			result.setCode(501);
+			result.setMessage("密码不能为空!");
+			return result;
+		}
 		if(StringUtils.isEmpty(adminQuery.getCode())){
 			result = new BaseResult();
 			result.setCode(501);
@@ -198,27 +210,23 @@ public class UserServicelmpl implements UserService {
 		if(code.equals(adminQuery.getCode())){
 			//创建查询对象
 			UserExample userExample = new UserExample();
-			String UserName = CodeUtil.getStringRandom(4);
 			//添加参数
-			userExample.createCriteria().andUserNameEqualTo(UserName);
+			userExample.createCriteria().andUserNameEqualTo(adminQuery.getUser_name());
 			//执行
 			List<User> users = userMapper.selectByExample(userExample);
 			//3.判断返回用户值是否为空
 			if(CollectionUtils.isEmpty(users)) {
 				//3.1 为空,则证明改用户名可用
 				User user = new User();
-				user.setUserName(UserName);
-				user.setUserPassword(Md5Util.getMD5String("123456"));
+				user.setUserName(adminQuery.getUser_name());
+				user.setUserPassword(Md5Util.getMD5String(adminQuery.getUser_password()));
 				Date date = new Date();
 				user.setCreateTime(date);
 				int row = userMapper.insertSelective(user);
 				if(row>0) {
 					//将user信息存储到session中
 					request.getSession().setAttribute("user", user);
-					List<User> list = new ArrayList<>();
-					user.setUserPassword("123456");
-					list.add(user);
-					return BaseResult.success(new PageInfo<>(list));
+					return BaseResult.success();
 				}
 				return BaseResult.error();
 			}

@@ -1,6 +1,6 @@
 package com.music.manager.vo;
 
-class MyMusicQuery {
+public class MyMusicQuery {
     private String songName;
     private String song_id;
     private String user_name;

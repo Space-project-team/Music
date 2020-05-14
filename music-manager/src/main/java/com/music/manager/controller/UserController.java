@@ -119,11 +119,11 @@ public class UserController {
 	 */
 	@RequestMapping(value = "/SendSsm", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
-	public BaseResult SendSsm(String phone,HttpServletRequest request){
+	public BaseResult SendSsm(String phoneNum,HttpServletRequest request){
 		BaseResult result = null;
 		try {
 			//发送短信
-			result = sendMessage.sendMessage(phone, request);
+			result = sendMessage.sendMessage(phoneNum, request);
 		} catch (HTTPException e) {
 			return BaseResult.error();
 		} catch (IOException e) {
