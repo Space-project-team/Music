@@ -13,6 +13,17 @@
     <link rel="stylesheet" href="${ctx}/css/register.css">
 
 </head>
+<style>
+    #yz{
+        position: absolute;
+        width: 130px;
+        height: 30px;
+        top: 70px;
+        left: 500px;
+        font-size: 20px;
+        color: #0F769F;
+    }
+</style>
 <script>
     var ctx="${ctx}";
 </script>
@@ -49,6 +60,14 @@
                                         <div class="col-sm-10" style="margin: 0 0 20px">
                                             <input type="text" class="form-control" id="user_name" name="user_name" placeholder="请输入用户名" size="20">
                                         </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <!-- 表单 -->
+                                        <label for="phone" class="col-sm-2 control-label">手机号:</label> <!-- 表单 -->
+                                        <div class="col-sm-10" style="margin: 0 0 20px">
+                                            <input type="text" class="form-control" id="phone" name="phone" placeholder="请输入手机号" size="20">
+                                        </div>
+                                        <button type="button" id="yz"<#--onClick="chkAll();"-->>获取验证码</button>
                                     </div>
                                     <div class="form-group">
                                         <label for="password" class="col-sm-2 control-label">密码:</label>
