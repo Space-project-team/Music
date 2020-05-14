@@ -245,9 +245,6 @@
                 <ul id="pagintor"></ul>
             </div>
         </div>
-        <div class="pagination">
-
-        </div>
 
     </div>
 </div>
@@ -262,33 +259,6 @@
 <script src="${ctx}/js/tools.js"></script>
 <script src="${ctx}/js/jquery.cookie.js"></script>
 <script src="${ctx}/js/doT.min.js"></script>
-
-<#--
-<!-- 编写分页模板 &ndash;&gt;
-<script type="template" id="pageTemplate">
-    {{ if(it.hasPreviousPage){ }}
-    <li class="paginate_button prev">
-        <a href="javascript:getList2('{{=it.prePage}}');">上一页</a>
-    </li>
-    {{ } }}
-
-    {{ for(var i = 1; i <= it.pages; i++){ }}
-    <li class="paginate_button
-        {{ if(i == it.pageNum){ }}
-        active
-        {{ } }}
-        ">
-        <a href="javascript:getList2('{{=i}}');">{{=i}}</a>
-    </li>
-    {{ } }}
-
-    {{ if(it.hasNextPage){ }}
-    <li class="paginate_button next">
-        <a href="javascript:getList2('{{=it.nextPage}}');">下一页</a>
-    </li>
-    {{ } }}
-</script>
--->
 
 <script type="text/javascript">
 
@@ -307,19 +277,20 @@
         }
     });
     $(document).ready(function () {
-        getList2(1);
+        pageTools(1, 10);//tools里的方法
+        getList(1,10);
     });
     /*
     * 获取歌曲信息 -分页
     * */
-    function getList2(page) {
+    function getList(pageNum,pageSize) {
         $.ajax({
             url: "http://localhost:9091/music-manager/myMusic/getMyMusicList",      //后台获取整个数据库方法的地址
             type: "POST",
             data: {
                 userName: $.cookie("user_name"),
-                pageNum: page,
-                pageSize:5
+                pageNum: pageNum,
+                pageSize:pageSize
             },
             success: function (data) {
                 if (data.code==200) {
@@ -371,10 +342,6 @@
 
                     $("table tbody").html(str);
 
-                    pageTools(data.pageInfo.currentPage,3);
-                    //分页
-                    pageInfoMyMusic(data.pageInfo,"pagination");
-
                 } else {   //如果后台返回202则提示歌曲已收藏
                     alert("您还没有收藏歌曲哦，快去列表收藏吧！");
                 }
@@ -383,68 +350,6 @@
                 alert(JSON.stringify(data));//连接失败弹窗
             }
         })
-    }
-
-    /**
-     * 分页
-     */
-    function pageInfoMyMusic(pageInfo,pagination) {
-        var barDiv = $("."+pagination);
-        /*var context = "<span>当前页：" + pageInfo.pageNum + "&nbsp;总页数："
-            + pageInfo.pages + "&nbsp;&nbsp;总记录数："+pageInfo.total+"</span>";*/
-        var context = "<div class='query-content-page-btn'><ul>";
-        if (pageInfo.pageNum > 1) {
-            context += "<li class='prev-next' onclick=prePage('"
-                + pageInfo.prePage + "')><</li>";
-        }
-        for (var i = 0; i < pageInfo.navigatepageNums.length; i++) {
-            if (pageInfo.pageNum == pageInfo.navigatepageNums[i]) {
-                context += "<li class='current_page' onclick=numPage('"
-                    + pageInfo.navigatepageNums[i]
-                    + "')>"
-                    + pageInfo.navigatepageNums[i] + "</li>"
-            } else {
-                context += "<li onclick=numPage('"
-                    + pageInfo.navigatepageNums[i] + "')>"
-                    + pageInfo.navigatepageNums[i] + "</li>"
-            }
-
-        }
-
-        if (pageInfo.pageNum < pageInfo.pages) {
-            context += "<li class='bus-border-right prev-next' onclick=nextPage('"
-                + pageInfo.nextPage + "')>></li>";
-        }
-        context += "</ul></div>";
-        barDiv.html(context);
-    }
-
-    // 下一页
-    function nextPage() {
-        // 获取当前页的值 加一 然后重新赋值给当前页
-        var page = parseInt($("#pageNum").val()) + 1;
-        $("#pageNum").val(page);
-        // 调用搜索函数
-        getList2(page);
-    }
-
-    //上一页
-    function prePage() {
-        // 获取当前页的值 减一 然后重新赋值给当前页
-        var page = parseInt($("#pageNum").val()) - 1;
-        $("#pageNum").val(page);
-        // 调用搜索函数
-        getList2(page);
-    }
-
-
-    // 第几页
-    function numPage(num) {
-        // 获取点击的按钮值 然后重新赋值给当前页
-        $("#pageNum").val(num);
-
-        // 调用搜索函数
-       getList2(num);
     }
 
     function dle() {//删除已收藏歌曲的方法

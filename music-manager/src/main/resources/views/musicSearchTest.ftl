@@ -21,7 +21,7 @@
 
     <nav class="navmargin navbar navbar-default" role="navigation">
         <div class="shurukuang" style="padding: 20.6px 30px;">
-            <form class="bs-example" id="test" role="form" action=${ctx}"/musicLink/getSongRearch" method="post">
+            <form class="bs-example" id="test" role="form" action="${ctx}/musicLink/getSongRearch" method="post">
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="input-group">

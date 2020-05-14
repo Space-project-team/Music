@@ -163,6 +163,7 @@ public class MusicLinkServicelmpl implements IMusicLinkService {
                 //执行
                 int result = myMusicMapper.insertSelective(myMusic);
                 if (result > 0) {
+                    redisTemplate.delete("mymusic*");
                     return BaseResult.success();
                 }
                 return BaseResult.error();

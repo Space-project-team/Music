@@ -473,10 +473,14 @@
     //
     //
     $.ajax({
-        url: "musicLink/getSongRearch",
+        url: "${ctx}/musicLink/getMusicLinkList",
         type: "POST",
+        data:{
+            page:1,
+            pageSize:30
+        },
         success: function (data) {
-            if (data.statusCode == "200") {
+            if (data.code == 200) {
                 $(".jDian1").click(function () {//点击调用fn（）方法，并传入14，下方以此类推
                     fn(14);
                 });
@@ -534,7 +538,7 @@
                     $.cookie("song_name", data.pageInfo.list[i].songname, {expires: 7, path: "/"});
                     $.cookie("song_singer", data.pageInfo.list[i].singerid, {expires: 7, path: "/"});
                     $.cookie("song_photo", data.pageInfo.list[i].photoimage, {expires: 7, path: "/"});
-                    window.open("http://localhost:9091/music-manager/myMusic/QQmusic");
+                    window.open("http://localhost:9091/music-manager/QQmusic");
                 }
             }
         },
