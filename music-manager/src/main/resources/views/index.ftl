@@ -71,7 +71,7 @@
                             <button class="btn btn-primary" data-dismiss="btn btn-default"
                                     style="background-color: #169af3;padding: 5px 30px">登 &nbsp&nbsp&nbsp&nbsp录
                             </button>
-                            <a href="${ctx}/register" style="float: left;padding-top: 12px;">没有账号？点此注册</a>
+                            <a href="${ctx}/PhoneRegister" style="float: left;padding-top: 12px;">没有账号？点此注册</a>
                         </div>
                     </div>
                 </form>
@@ -474,7 +474,7 @@
     //
     $.ajax({
         url: "${ctx}/musicLink/getMusicLinkList",
-        type: "POST",
+        type: "GET",
         data:{
             page:1,
             pageSize:30

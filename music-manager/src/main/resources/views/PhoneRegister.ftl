@@ -16,6 +16,7 @@
 <script type="text/javascript">
     $(function(){
         $("#sendVerifyCode").click(function () {
+
             var phone = $("#phone").val();
             if(isEmpty(phone)){
                 alert("手机号不能为空！");
@@ -41,12 +42,18 @@
         });
 
 
-        $("#resgit").click(function () {
 
+        $("#chkAll").click(function () {
             var code = $("#code").val();
             var phone = $("#phone").val();
             var user_name = $("#user_name").val();
             var user_password = $("#user_password").val();
+
+
+            if(isEmpty(user_name)){
+                alert("用户名不能为空！")
+                return false;
+            }
 
             if(isEmpty(phone)){
                 alert("手机号不能为空！")
@@ -56,15 +63,10 @@
                 alert("验证码不能为空！")
                 return false;
             }
-            if(isEmpty(user_name)){
-                alert("用户名不能为空！")
-                return false;
-            }
             if(isEmpty(user_password)){
                 alert("密码不能为空！")
                 return false;
             }
-
 
             $.ajax({
                 type: "post",
@@ -77,22 +79,19 @@
                 },
                 dataType: "json",
                 success: function (data) {
+                    console.log("进入回调函数")
                     if (data.code == 200) {
+                        console.log("注册成功")
                         alert("注册成功!");
                         window.location.href = ctx+"/index";
                     } else {
+                        console.log("注册失败")
                         alert(data.message);
-                        $("#user_name").val(user_name);
-                        $("#code").val(code);
-                        $("#phone").val(phone);
-                        $("#user_password").val(user_password);
                     }
                 }
 
-            })
-
+            });
         });
-
     });
 </script>
 
@@ -136,7 +135,7 @@
                         <div class="ibox-title">
                         </div>
                         <div class="ibox-content">
-                            <form>
+                            <form <#--id="test" role="form" action="${ctx}/user/register"--> <#--method="post"-->>
                                 <div class="form-group">
                                     <!-- 表单 -->
                                     <label for="username" class="col-sm-2 control-label">用户名:</label> <!-- 表单 -->
@@ -156,7 +155,7 @@
 
                                 <div class="form-group">
                                     <!-- 验证码 -->
-                                    <label for="code" class="col-sm-2 control-label">验证码:</label> <!-- 表单 -->
+                                    <label for="yz" class="col-sm-2 control-label">验证码:</label> <!-- 表单 -->
                                     <div class="col-sm-10" style="margin: 0 0 20px">
                                         <input type="text" class="form-control" id="code" name="code" placeholder="请输入验证码" size="20">
                                     </div>
@@ -169,7 +168,7 @@
                                 </div>
                                 <div class="form-group">
                                     <div class="col-sm-offset-1 col-sm-10">
-                                        <button  class="btn btn-primary btn-lg" id="resgit">注册</button>
+                                        <button type="button" class="btn btn-primary btn-lg" id="chkAll">注册</button>
                                     </div>
                                 </div>
                             </form>

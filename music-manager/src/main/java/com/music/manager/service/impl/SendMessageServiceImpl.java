@@ -12,7 +12,10 @@ import org.json.JSONException;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.Timer;
+import java.util.TimerTask;
 
 @Service
 public class SendMessageServiceImpl implements SendMessageService {
@@ -47,7 +50,18 @@ public class SendMessageServiceImpl implements SendMessageService {
                     templateId, params, smsSign, "", "");
             if(result.errMsg.equals("OK")){
                 //将code值存储
-                request.getSession().setAttribute("code",code);
+                HttpSession session = request.getSession();
+                session.setAttribute("code",code);
+                //TimerTask实现5分钟后从session中删除checkCode
+                final Timer timer=new Timer();
+                timer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        session.removeAttribute("code");
+                        System.out.println("code");
+                        timer.cancel();
+                    }
+                },5*60*1000);
                 return BaseResult.success();
             }
         } catch (HTTPException e) {

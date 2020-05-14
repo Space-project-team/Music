@@ -225,8 +225,19 @@ public class MusicLinkServicelmpl implements IMusicLinkService {
             return ModuleSong(pageNum, pageSize, SongType);
         }
 
+    /**
+     * 获取MusicLink的总数
+     * @return
+     */
+    @Override
+    public Integer getMusicLinkCount1() {
+        //创建查询对象
+        List<MusicLink> musicLinks = musicLinkMapper.selectByExample(new MusicLinkExample());
+        return musicLinks.size();
+    }
 
-        /**
+
+    /**
          * 模板
          * @param pageNum
          * @param pageSize

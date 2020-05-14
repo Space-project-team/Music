@@ -24,4 +24,6 @@ public interface IMusicLinkService{
     BaseResult getTOPLink(Integer pageNum, Integer pageSize);
     //模板
     BaseResult  ModuleMusic(Integer pageNum, Integer pageSize,String SongType);
+    //获取MusicLink的总数
+    Integer getMusicLinkCount1();
 }

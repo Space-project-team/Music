@@ -141,4 +141,15 @@ public class MusicLinkController {
 	}
 
 
+	/**
+	 * 获取MusicLink的总数
+	 * @return
+	 */
+	@RequestMapping("getMusicLinkCount1")
+	@ResponseBody
+	public Integer getMusicLinkCount1(){
+		return musicLinkService.getMusicLinkCount1();
+	}
+
+
 }
