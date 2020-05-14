@@ -36,7 +36,7 @@ public class SingerService implements ISingerService {
             pageNum=1;
         }
         if (pageSize<=0||pageSize==null){
-            pageSize=42;
+            pageSize=50;
         }
         //开启分页
         PageHelper.startPage(pageNum,pageSize);
@@ -70,6 +70,25 @@ public class SingerService implements ISingerService {
 
     @Override
     public BaseResult getSexSingerList(String sex, Integer pageNum, Integer pageSize) {
-        return null;
+        if(pageNum<=0||pageNum==null){
+            pageNum=1;
+        }
+        if (pageSize<=0||pageSize==null){
+            pageSize=50;
+        }
+        //开启分页
+        PageHelper.startPage(pageNum,pageSize);
+        //创建对象
+        SingerExample singerExample =new SingerExample();
+        singerExample.setOrderByClause("fans desc");
+        singerExample.createCriteria().andSexEqualTo(sex);
+        List<Singer> singerList = singerMapper.selectByExample(singerExample);
+        if(!CollectionUtils.isEmpty(singerList)){
+            PageInfo<Singer> pageInfo=new PageInfo<>(singerList);
+            //将查询的数据放入Redis
+            //返回结果
+            return BaseResult.success(pageInfo);
+        }
+        return BaseResult.error();
     }
 }

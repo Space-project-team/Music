@@ -5,6 +5,9 @@
 *
 *
 * */
+
+var ctx=request.contextPath;
+
 function pageTools(curtpage, tpage) {
     var options = {
         bootstrapMajorVersion: 3, //版本
@@ -46,12 +49,12 @@ function addToDB(url, data) {
         type: "post",
         data: data,
         success: function (data) {//webspond
-            if (data.code == "200") {
+            if (data.statusCode == "200") {
                 window.location.href = ctx+"/index";
                 alert("注册成功，点击跳转主页");
                 //location.reload();
             } else {
-                alert("add error!" + data.message);
+                alert("add error!" + data.statusMsg);
             }
         },
         error: function (data) {
@@ -67,19 +70,17 @@ function addToDB(url, data) {
 *
 *
 * */
-function setPassWord(url,data) {                   //url和data为参数，在调用该方法是传入
-   console.log(url);
-   console.log(data);
+function setPassWord(url, data) {                   //url和data为参数，在调用该方法是传入
     $.ajax({
         url: url,
         type: "post",
         data: data,
         success: function (data) {
-            if (data.code == "200") {
-                window.location.href = ctx+"/index"// 跳转到指定页面
+            if (data.statusCode == "200") {
+                window.location.href = ctx+"/index";// 跳转到指定页面
                 alert("修改密码成功，请重新登录！"); // 弹窗
             } else {
-                alert("add error!" + data.message);
+                alert("add error!" + data.statusMsg);
             }
             ;
         },
@@ -97,14 +98,12 @@ function setPassWord(url,data) {                   //url和data为参数，在�
 *
 * */
 function denglu(url, data) {                                                 //url和data为参数，在调用该方法是传入
-    console.log(url);
-    console.log(ctx);
     $.ajax({
         url: url,
         type: "post",
         data: data,                                                         //      下方为登录成功后实现的功能
         success: function (data) {
-            if (data.code == "200") {
+            if (data.statusCode == "200") {
                 $("#display1").attr("style", "display:none;");              //      隐藏按钮
                 $("#myModal").attr("style", "display:none;");               //      隐藏模态框
                 $(".modal-backdrop.fade").attr("style", "display:none;");   //      隐藏模态框背景颜色
@@ -117,11 +116,11 @@ function denglu(url, data) {                                                 //u
                 $.cookie("user_id", data.userId, {expires: 7, path: "/"});  //      将登录成功后后台返回的用户id保存到cookie中
                 $("#userName").text("账号：" + $.cookie("user_name"));       //      将登录之前右上方的未登录3个字替换为用户名
                 $("#zhuXiao").text("注销");                                              //在用户名后面添加注销接口
-                document.getElementById("touxiang").src = ctx+"images/touxiang2.jpg";       //改变登录前的用户头像
+                document.getElementById("touxiang").src = ctx+"/images/touxiang2.jpg";       //改变登录前的用户头像
                 window.location.reload();                                               //刷新页面
 
             } else {  //返回其他值执行的方法
-                alert(" " + data.message);
+                alert(" " + data.statusMsg);
             }
             ;
         },
