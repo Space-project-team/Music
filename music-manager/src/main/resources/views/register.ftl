@@ -13,8 +13,93 @@
     <link rel="stylesheet" href="${ctx}/css/register.css">
 
 </head>
+<script type="text/javascript">
+    $(function(){
+        $("#sendVerifyCode").click(function () {
+
+            var phone = $("#phone").val();
+            if(isEmpty(phone)){
+                alert("手机号不能为空！");
+                return false;
+            }
+
+            $.ajax({
+                type:"post",
+                url: "http://localhost:9091/music-manager/user/SendSsm",
+                data:{
+                    phoneNum:phone
+                },
+                dataType : "json",
+                success:function (data) {
+                    if(data.code==200){
+                        alert("发送成功!");
+                    }else{
+                        alert(data.code.message);
+                    }
+                }
+
+            });
+        });
+
+
+        function chkAll(){
+
+            var code = $("#code").val();
+            var phone = $("#phone").val();
+            var user_name = $("#user_name").val();
+            var user_password = $("#user_password").val();
+
+            if(isEmpty(phone)){
+                alert("手机号不能为空！")
+                return false;
+            }
+            if(isEmpty(code)){
+                alert("验证码不能为空！")
+                return false;
+            }
+            if(isEmpty(user_name)){
+                alert("用户名不能为空！")
+                return false;
+            }
+            if(isEmpty(user_password)){
+                alert("密码不能为空！")
+                return false;
+            }
+
+
+            $.ajax({
+                type: "post",
+                url: "http://localhost:9091/music-manager/user/register",
+                data: {
+                    user_name:user_name,
+                    user_password:user_password,
+                    phoneNum:phone,
+                    code:code
+                },
+                dataType: "json",
+                success: function (data) {
+                    console.log("进入回调函数")
+                    if (data.code == 200) {
+                        console.log("注册成功")
+                        alert("注册成功!");
+                        alert("您的账号:" + data.pageInfo.list.userName + "   您的密码:" + data.pageInfo.list.userPassword);
+                        window.location.href = ctx+"/index";
+                    } else {
+                        console.log("注册失败")
+                        alert(data.message);
+                    }
+                }
+
+            });
+        }
+
+
+
+    });
+</script>
+
 <style>
-    #yz{
+    #sendVerifyCode{
         position: absolute;
         width: 130px;
         height: 30px;
@@ -62,12 +147,21 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <!-- 表单 -->
+                                        <!-- 手机号 -->
                                         <label for="phone" class="col-sm-2 control-label">手机号:</label> <!-- 表单 -->
                                         <div class="col-sm-10" style="margin: 0 0 20px">
                                             <input type="text" class="form-control" id="phone" name="phone" placeholder="请输入手机号" size="20">
                                         </div>
-                                        <button type="button" id="yz"<#--onClick="chkAll();"-->>获取验证码</button>
+                                        <button  type="button"  id="sendVerifyCode" <#--onclick="sendVerifyCode();"-->>获取验证码</button>
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        <!-- 验证码 -->
+                                        <label for="yz" class="col-sm-2 control-label">验证码:</label> <!-- 表单 -->
+                                        <div class="col-sm-10" style="margin: 0 0 20px">
+                                            <input type="text" class="form-control" id="code" name="code" placeholder="请输入验证码" size="20">
+                                        </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="password" class="col-sm-2 control-label">密码:</label>
@@ -77,7 +171,7 @@
                                     </div>
                                     <div class="form-group">
                                         <div class="col-sm-offset-1 col-sm-10">
-                                            <button type="submit" class="btn btn-primary btn-lg" <#--onClick="chkAll();"-->>注册</button>
+                                            <button type="submit" class="btn btn-primary btn-lg" onclick="chkAll();">注册</button>
                                         </div>
                                     </div>
                                 </form>
@@ -91,15 +185,18 @@
     <script src="${ctx}/js/jquery.min.js?v=2.1.4"></script>
     <script src="${ctx}/js/bootstrap-paginator.min.js"></script>
     <script src="${ctx}/js/jquery.validate.min.js"></script>
-    <script src="${ctx}/js/tools.js"></script>
+    <#--<script src="${ctx}/js/tools.js"></script>-->
+    <script src="${ctx}/js/common.js"></script>
     <script type="text/javascript">
-    $('#test').validate({
+
+
+    /*$('#test').validate({
         submitHandler: function(form) {
             addToDB($('#test').attr("action"), $('#test').serialize());//tools里的方法
            //pageTools(1, 30);
            // getList(1);
         }
-    });
+    });*/
     </script>
     <div class="footer">
         <div class="links">
