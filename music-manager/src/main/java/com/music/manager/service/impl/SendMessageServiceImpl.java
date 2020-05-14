@@ -35,7 +35,7 @@ public class SendMessageServiceImpl implements SendMessageService {
         }
         int appid = 1400365043;
         String appkey = "92ab2a9508b1cc96935a0d4acbc6b6c2";
-        String[] phoneNumbers = {"15279179201"}; //手机号可以添很多。
+        String[] phoneNumbers = {phoneNum}; //手机号可以添很多。
         int templateId = 598600;
         String smsSign = "小小伯乐无君愁";
         try {

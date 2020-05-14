@@ -180,7 +180,6 @@ public class UserServicelmpl implements UserService {
 	 */
 	@Override
 	public BaseResult SendSmsRegister(AdminQuery adminQuery,HttpServletRequest request) {
-		//生成6位随机验证码
 		//1.参数判断非空
 		BaseResult result = null;
 		if(StringUtils.isEmpty(adminQuery.getUser_name())){
@@ -201,11 +200,8 @@ public class UserServicelmpl implements UserService {
 			result.setMessage("验证码不能为空!");
 			return result;
 		}
-
+		//从作用域中取code
 		String code = (String) request.getSession().getAttribute("code");
-		if(StringUtils.isEmpty(code)){
-			return BaseResult.error();
-		}
 		//判断用户填写的验证码是否与发送短信后的验证码一致
 		if(code.equals(adminQuery.getCode())){
 			//创建查询对象
@@ -226,7 +222,10 @@ public class UserServicelmpl implements UserService {
 				if(row>0) {
 					//将user信息存储到session中
 					request.getSession().setAttribute("user", user);
-					return BaseResult.success();
+					result = new BaseResult();
+					result.setCode(200);
+					result.setMessage("注册成功!");
+					return result;
 				}
 				return BaseResult.error();
 			}
