@@ -119,6 +119,8 @@ public class MyMusicService implements IMyMusicService {
         int result=myMusicMapper.deleteByExample(example);
         //如果结果大于0,返回结果
         if(result>0){
+            //清除redis中数据
+            redisTemplate.delete("mymusic*");
             return 1;
         }
         return 0;

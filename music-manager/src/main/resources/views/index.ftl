@@ -71,7 +71,7 @@
                             <button class="btn btn-primary" data-dismiss="btn btn-default"
                                     style="background-color: #169af3;padding: 5px 30px">登 &nbsp&nbsp&nbsp&nbsp录
                             </button>
-                            <a href="${ctx}/register" style="float: left;padding-top: 12px;">没有账号？点此注册</a>
+                            <a href="${ctx}/PhoneRegister" style="float: left;padding-top: 12px;">没有账号？点此注册</a>
                         </div>
                     </div>
                 </form>
@@ -473,10 +473,14 @@
     //
     //
     $.ajax({
-        url: "musicLink/getSongRearch",
-        type: "POST",
+        url: "${ctx}/musicLink/getMusicLinkList",
+        type: "GET",
+        data:{
+            page:1,
+            pageSize:30
+        },
         success: function (data) {
-            if (data.statusCode == "200") {
+            if (data.code == 200) {
                 $(".jDian1").click(function () {//点击调用fn（）方法，并传入14，下方以此类推
                     fn(14);
                 });
@@ -534,7 +538,7 @@
                     $.cookie("song_name", data.pageInfo.list[i].songname, {expires: 7, path: "/"});
                     $.cookie("song_singer", data.pageInfo.list[i].singerid, {expires: 7, path: "/"});
                     $.cookie("song_photo", data.pageInfo.list[i].photoimage, {expires: 7, path: "/"});
-                    window.open("http://localhost:9091/music-manager/myMusic/QQmusic");
+                    window.open("http://localhost:9091/music-manager/QQmusic");
                 }
             }
         },

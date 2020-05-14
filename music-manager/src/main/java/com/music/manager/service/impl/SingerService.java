@@ -9,6 +9,7 @@ import com.music.manager.pojo.MyMusic;
 import com.music.manager.pojo.Singer;
 import com.music.manager.pojo.SingerExample;
 import com.music.manager.service.ISingerService;
+import com.music.manager.vo.SingerQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -30,6 +31,17 @@ public class SingerService implements ISingerService {
     private RedisTemplate<String,Object> redisTemplate;
     @Value("${singer.list.key}")
     private String singerListRedisKey;
+
+    private Integer pageNum = null;
+    private Integer pageSize = null;
+
+
+    /**
+     * 获取所以歌手,按照粉丝排行
+     * @param pageNum
+     * @param pageSize
+     * @return
+     */
     @Override
     public BaseResult getSingerList(Integer pageNum, Integer pageSize) {
         if(pageNum<=0||pageNum==null){
@@ -70,12 +82,8 @@ public class SingerService implements ISingerService {
 
     @Override
     public BaseResult getSexSingerList(String sex, Integer pageNum, Integer pageSize) {
-        if(pageNum<=0||pageNum==null){
-            pageNum=1;
-        }
-        if (pageSize<=0||pageSize==null){
-            pageSize=50;
-        }
+        //分页参数设置
+        setPage(pageNum,pageSize);
         //开启分页
         PageHelper.startPage(pageNum,pageSize);
         //创建对象
@@ -90,5 +98,71 @@ public class SingerService implements ISingerService {
             return BaseResult.success(pageInfo);
         }
         return BaseResult.error();
+    }
+
+    @Override
+    public BaseResult getTypeSingerList(SingerQuery singerQuery) {
+        //分页参数设置
+        setPage(singerQuery.getPageNum(),singerQuery.getPageSize());
+        //开启分页
+        PageHelper.startPage(pageNum,pageSize);
+        //创建对象
+        SingerExample singerExample =new SingerExample();
+        //设置参数
+        singerExample.setOrderByClause("fans desc");
+        SingerExample.Criteria criteria = singerExample.createCriteria();
+        criteria.andSexEqualTo(singerQuery.getSex());
+        criteria.andTypeEqualTo(singerQuery.getTypeName());
+        //查询
+        List<Singer> singers = singerMapper.selectByExample(singerExample);
+        if(!CollectionUtils.isEmpty(singers)){
+            //不为空,返回数据
+            return BaseResult.success(new PageInfo<>(singers));
+        }
+        //为空,返回失败信息
+        return BaseResult.error();
+    }
+
+    /**
+     * 风格组合歌手查询
+     * @param singerQuery
+     * @return
+     */
+    @Override
+    public BaseResult getGroupSingerList(SingerQuery singerQuery) {
+        //分页参数设置
+        setPage(singerQuery.getPageNum(),singerQuery.getPageSize());
+        //开启分页
+        PageHelper.startPage(pageNum,pageSize);
+        //创建对象
+        SingerExample singerExample =new SingerExample();
+        //设置参数
+        singerExample.setOrderByClause("fans desc");
+        SingerExample.Criteria criteria = singerExample.createCriteria();
+        criteria.andGroupsEqualTo(singerQuery.getGroup());
+        criteria.andTypeEqualTo(singerQuery.getTypeName());
+        //查询
+        List<Singer> singers = singerMapper.selectByExample(singerExample);
+        if(!CollectionUtils.isEmpty(singers)){
+            //不为空,返回数据
+            return BaseResult.success(new PageInfo<>(singers));
+        }
+        //为空,返回失败信息
+        return BaseResult.error();
+    }
+
+    /**
+     * 设置分页参数
+     * @param pageNums
+     * @param pageSizes
+     */
+    public void setPage(Integer pageNums,Integer pageSizes){
+        pageNum = pageNums;
+        pageSize = pageSizes;
+        //分页参数判断
+        if(StringUtils.isEmpty(pageNum)||StringUtils.isEmpty(pageSize)){
+            pageNum = 1;
+            pageSize = 30;
+        }
     }
 }

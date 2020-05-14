@@ -162,6 +162,7 @@ public class MusicLinkServicelmpl implements IMusicLinkService {
                 //执行
                 int result = myMusicMapper.insertSelective(myMusic);
                 if (result > 0) {
+                    redisTemplate.delete("mymusic*");
                     return BaseResult.success();
                 }
                 return BaseResult.error();
@@ -224,8 +225,19 @@ public class MusicLinkServicelmpl implements IMusicLinkService {
             return ModuleSong(pageNum, pageSize, SongType);
         }
 
+    /**
+     * 获取MusicLink的总数
+     * @return
+     */
+    @Override
+    public Integer getMusicLinkCount1() {
+        //创建查询对象
+        List<MusicLink> musicLinks = musicLinkMapper.selectByExample(new MusicLinkExample());
+        return musicLinks.size();
+    }
 
-        /**
+
+    /**
          * 模板
          * @param pageNum
          * @param pageSize

@@ -222,6 +222,8 @@ public class UserServicelmpl implements UserService {
 				if(row>0) {
 					//将user信息存储到session中
 					request.getSession().setAttribute("user", user);
+					//注册完,删除有效验证码
+					request.getSession().removeAttribute("code");
 					result = new BaseResult();
 					result.setCode(200);
 					result.setMessage("注册成功!");

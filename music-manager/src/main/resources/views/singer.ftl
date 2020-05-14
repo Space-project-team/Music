@@ -165,32 +165,32 @@
 				<a title="华语女歌手" class="hover" href="javascript:getSexSingerList('女',1)">华语女歌手</a>
 			</li>
 			<li class="all">
-				<a title="华语组合" class="hover" href="#">华语组合</a>
+				<a title="华语组合" class="hover" href="javascript:getGroupSingerList('华语','1',1)">华语组合</a>
 			</li>
 		</ul>
 		<ul class="sng2">
 			<li class="all">
-				<a title="日韩男歌手" class="hover" href="#" >日韩男歌手</a>
+				<a title="日韩男歌手" class="hover" href="javascript:getTypeSingerList('日韩','男',1)" >日韩男歌手</a>
 			</li>
 			<li class="all">
-				<a title="日韩女歌手" class="hover" href="#" >日韩女歌手</a>
+				<a title="日韩女歌手" class="hover" href="javascript:getTypeSingerList('日韩','女',1)" >日韩女歌手</a>
 			</li>
 			<li class="all">
-				<a title="日韩组合" class="hover" href="#" >日韩组合</a>
+				<a title="日韩组合" class="hover" href="javascript:getGroupSingerList('日韩','1',1)" >日韩组合</a>
 			</li>
 		</ul>
 		<ul class="sng3">
 			<li class="all">
-				<a title="欧美男歌手" class="hover" href="#" >欧美男歌手</a>
+				<a title="欧美男歌手" class="hover" href="javascript:getTypeSingerList('欧美','男',1)">欧美男歌手</a>
 			</li>
 			<li class="all">
-				<a title="欧美女歌手" class="hover" href="#" >欧美女歌手</a>
+				<a title="欧美女歌手" class="hover" href="javascript:getTypeSingerList('欧美','女',1)" >欧美女歌手</a>
 			</li>
 			<li class="all">
-				<a title="欧美组合" class="hover" href="#" >欧美组合</a>
+				<a title="欧美组合" class="hover" href="javascript:getGroupSingerList('欧美','1',1)" >欧美组合</a>
 			</li>
 			<li class="oth">
-				<a title="其他歌手" class="hover" href="#">其他</a>
+				<a title="其他歌手" class="hover" href="javascript:getSingerList(1)">其他</a>
 			</li>
 		</ul>
 	</div>
@@ -379,6 +379,7 @@
 		getSingerList(1);
 
 	});
+
 	function getSexSingerList(sex,pagenum) {
 		var zhong = $(".zhong");
 		var table2 = $(".table");
@@ -440,6 +441,137 @@
 			}
 		})
 	}
+
+
+
+	//类型歌手查询
+	function getTypeSingerList(typeName,sex,pagenum) {
+		var zhong = $(".zhong");
+		var table2 = $(".table");
+		zhong.empty();
+		table2.empty();
+		$.ajax({
+			url: "${ctx}/singer/getTypeSingerList",      //后台获取整个数据库方法的地址
+			type: "POST",
+			data: {
+				typeName:typeName,
+				sex:sex,
+				pageNum: pagenum,
+				pageSize:50,
+			},
+			success: function (data) {
+				if (data.code==200) {
+					var str = '';
+					//动态生成表格
+					var box= '';
+					box +='<tbody>';
+					box+='<tr class="active">';
+					box+='</tr>';
+					/* data.data.list.length对应respon.map.list.length */
+					for (var i = 0; i < data.pageInfo.list.length; i++) {
+						var a = i + 1;
+						/*1-18为有图片的显示*/
+						if(a<=20){
+							str += '<div class="singerpn">'
+									+ '<a href="#"><img src='+data.pageInfo.list[i].headimage+'?x-oss-process=style/shiying'+' alt='+data.pageInfo.list[i].singername+'class="singerpicture"></a>'
+									+'<span class="st"><strong>' ;
+							if (a==1){
+								str+='1st';
+							}else if(a==2){
+								str+='2nd';
+							}else if(a==3){
+								str+='3rd';
+							}else {
+								str+=a+'th';
+							}
+
+							str+='</strong></span>'
+									+'<span class="singername">'+data.pageInfo.list[i].singername+'</span>'
+									+'</div>'
+						}
+						if(a>20){
+
+							box+='<td>'+a+ '<img src="${ctx}/images/上升.png"> <a href="#">'+data.pageInfo.list[i].singername+'</a></td>';
+
+						}
+					}
+
+					box+='</tbody>';
+				}
+				console.log("box:"+box);
+				zhong.append(str);
+				table2.append(box);
+			},
+			error: function (data) {
+				alert(JSON.stringify(data));//连接失败弹窗
+			}
+		})
+	}
+
+	//类型歌手查询
+	function getGroupSingerList(typeName,group,pagenum) {
+		var zhong = $(".zhong");
+		var table2 = $(".table");
+		zhong.empty();
+		table2.empty();
+		$.ajax({
+			url: "${ctx}/singer/getGroupSingerList",      //后台获取整个数据库方法的地址
+			type: "POST",
+			data: {
+				typeName:typeName,
+				group:group,
+				pageNum: pagenum,
+				pageSize:50,
+			},
+			success: function (data) {
+				if (data.code==200) {
+					var str = '';
+					//动态生成表格
+					var box= '';
+					box +='<tbody>';
+					box+='<tr class="active">';
+					box+='</tr>';
+					/* data.data.list.length对应respon.map.list.length */
+					for (var i = 0; i < data.pageInfo.list.length; i++) {
+						var a = i + 1;
+						/*1-18为有图片的显示*/
+						if(a<=20){
+							str += '<div class="singerpn">'
+									+ '<a href="#"><img src='+data.pageInfo.list[i].headimage+'?x-oss-process=style/shiying'+' alt='+data.pageInfo.list[i].singername+'class="singerpicture"></a>'
+									+'<span class="st"><strong>' ;
+							if (a==1){
+								str+='1st';
+							}else if(a==2){
+								str+='2nd';
+							}else if(a==3){
+								str+='3rd';
+							}else {
+								str+=a+'th';
+							}
+
+							str+='</strong></span>'
+									+'<span class="singername">'+data.pageInfo.list[i].singername+'</span>'
+									+'</div>'
+						}
+						if(a>20){
+
+							box+='<td>'+a+ '<img src="${ctx}/images/上升.png"> <a href="#">'+data.pageInfo.list[i].singername+'</a></td>';
+
+						}
+					}
+
+					box+='</tbody>';
+				}
+				console.log("box:"+box);
+				zhong.append(str);
+				table2.append(box);
+			},
+			error: function (data) {
+				alert(JSON.stringify(data));//连接失败弹窗
+			}
+		})
+	}
+
 </script>
 	</body>
 	</html>

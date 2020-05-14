@@ -14,7 +14,7 @@
     <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="${ctx}/js/bangdan.js"></script>
-
+    <link rel="stylesheet" href="${ctx}/layui-v2.5.5/layui/css/layui.css" media="all">
 </head>
 <script>
     var ctx="${ctx}";
@@ -282,15 +282,15 @@
         </tbody>
     </table>
 
+    <div id="test1" class="form-control" style="text-align: center"></div>
 
 </div>
 <audio id="audio" src=""></audio>
 
-    <!--榜单下面的分页，有bug，点击后会导致收藏音乐重复跳出弹框，暂时不用分页功能！ -->
-<div style="position: relative;bottom: 0;left: 50%;" class="col-sm-12">
-    <ul id="pagintor"></ul>
-</div>
 
+
+
+<script src="${ctx}/layui-v2.5.5/layui/layui.js"></script>
 <script src="${ctx}/js/jquery.min.js?v=2.1.4"></script>
 <script src="${ctx}/js/bootstrap-paginator.min.js"></script>
 <script src="${ctx}/js/jquery.validate.min.js"></script>
@@ -298,6 +298,62 @@
 <script src="${ctx}/js/jquery.cookie.js"></script>
 <script type="text/javascript" src="${ctx}/js/vue.min.js"></script>
 <script type="text/javascript">
+
+    $(function () {
+        $.ajax({
+            type:"get",
+            url:ctx+"/musicLink/getMusicLinkCount1",
+            async: true,
+            success: function(data) {
+                console.log(data);
+                layui.use('laypage', function(){
+                    var laypage = layui.laypage;
+                    //执行一个laypage实例
+                    laypage.render({
+                        elem: 'test1' //注意，这里的 test1 是 ID，不用加 # 号
+                        ,count: data //数据总数，从服务端得到
+                        ,layout: ['count', 'prev', 'page', 'next', 'limit', 'skip']
+                        ,jump: function(obj, first){
+                        //obj包含了当前分页的所有参数，比如：
+                        console.log(obj.curr); //得到当前页，以便向服务端请求对应页的数据。
+                        console.log(obj.limit); //得到每页显示的条数
+
+                        //首次不执行
+                        if(!first){
+                            //do something
+                        }
+                        //第二个ajax获取当前页请求数据
+                        $.ajax({
+                            type: “post”,
+                        url: “/autocarrier/hdGoodsPublish/goodspage”,
+                        async: true,
+                            data:{
+                            curr:obj.curr,
+                                limit:obj.limit
+                        },
+                        success: function(list) {
+                            console.log(list);
+                            dataobj=JSON.parse(list);
+                            detail(dataobj);//调用函数
+                        }
+                    });
+                    }
+                    })
+    })
+    
+    layui.use('laypage', function(){
+        var laypage = layui.laypage;
+
+        //执行一个laypage实例
+        laypage.render({
+            elem: 'test1' //注意，这里的 test1 是 ID，不用加 # 号
+            ,count: 50 //数据总数，从服务端得到
+
+        });
+    });
+
+
+
     $(document).ready(function () {
         pageTools(1, 10);//tools里的方法
         getList(1,10);
@@ -372,7 +428,7 @@
                 $("table tbody").html(str);
             },
             error: function (data) {
-                alert(JSON.stringify(data));
+                alert("网站正在更新,非常抱歉!");
             }
         })
     }//已在mymusic中注释
