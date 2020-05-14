@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 /**
  * @author zhoubin 
- * @create 2020-05-12
+ * @create 2020-05-14
  * @since 1.0.0
  */
 public class Singer implements Serializable {
@@ -37,6 +37,16 @@ public class Singer implements Serializable {
      * 头像
      */
     private String headimage;
+
+    /**
+     * 风格
+     */
+    private String type;
+
+    /**
+     * 是否组合（1 是 2 否）
+     */
+    private String groups;
 
     /**
      * singer
@@ -91,6 +101,22 @@ public class Singer implements Serializable {
         this.headimage = headimage == null ? null : headimage.trim();
     }
 
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type == null ? null : type.trim();
+    }
+
+    public String getGroups() {
+        return groups;
+    }
+
+    public void setGroups(String groups) {
+        this.groups = groups == null ? null : groups.trim();
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -103,6 +129,8 @@ public class Singer implements Serializable {
         sb.append(", sex=").append(sex);
         sb.append(", fans=").append(fans);
         sb.append(", headimage=").append(headimage);
+        sb.append(", type=").append(type);
+        sb.append(", groups=").append(groups);
         sb.append("]");
         return sb.toString();
     }
