@@ -14,14 +14,24 @@
 
 </head>
 <script type="text/javascript">
+
+    var wait = 60;
+
     $(function(){
+
+
         $("#sendVerifyCode").click(function () {
+
+
 
             var phone = $("#phone").val();
             if(isEmpty(phone)){
                 alert("手机号不能为空！");
                 return false;
             }
+
+
+            time(this);
 
             $.ajax({
                 type:"post",
@@ -34,12 +44,29 @@
                     if(data.code==200){
                         alert("发送成功!");
                     }else{
-                        alert(data.code.message);
+                        alert(data.message);
                     }
                 }
 
             });
         });
+
+
+        function time(o) {
+            if (wait == 0) {
+                o.removeAttribute("disabled");
+                o.innerHTML = "免费获取验证码";
+                wait = 60;
+            } else {
+                o.setAttribute("disabled", true);
+                o.innerHTML = wait + "秒重新发送";
+                wait--;
+                setTimeout(function() {
+                    time(o)
+                }, 1000)
+            }
+        }
+
 
 
 
@@ -100,7 +127,7 @@
 <style>
     #sendVerifyCode{
         position: absolute;
-        width: 130px;
+        width: 160px;
         height: 30px;
         top: 70px;
         left: 500px;
@@ -151,7 +178,7 @@
                                         <div class="col-sm-10" style="margin: 0 0 20px">
                                             <input type="text" class="form-control" id="phone" name="phone" placeholder="请输入手机号" size="20">
                                         </div>
-                                        <button  type="button"  id="sendVerifyCode" <#--onclick="sendVerifyCode();"-->>获取验证码</button>
+                                        <button  type="button"  id="sendVerifyCode" <#--onclick="sendVerifyCode();"-->>免费获取验证码</button>
                                     </div>
 
 
