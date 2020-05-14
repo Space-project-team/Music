@@ -42,8 +42,8 @@
         });
 
 
-        function chkAll(){
 
+        $("#chkAll").click(function () {
             var code = $("#code").val();
             var phone = $("#phone").val();
             var user_name = $("#user_name").val();
@@ -82,7 +82,6 @@
                     if (data.code == 200) {
                         console.log("注册成功")
                         alert("注册成功!");
-                        alert("您的账号:" + data.pageInfo.list.userName + "   您的密码:" + data.pageInfo.list.userPassword);
                         window.location.href = ctx+"/index";
                     } else {
                         console.log("注册失败")
@@ -91,7 +90,7 @@
                 }
 
             });
-        }
+        });
 
 
 
@@ -138,7 +137,7 @@
                             <div class="ibox-title">
                             </div>
                             <div class="ibox-content">
-                                <form id="test" role="form" action="${ctx}/user/addUser" method="post">
+                                <form <#--id="test" role="form" action="${ctx}/user/register"--> <#--method="post"-->>
                                     <div class="form-group">
                                         <!-- 表单 -->
                                         <label for="username" class="col-sm-2 control-label">用户名:</label> <!-- 表单 -->
@@ -171,7 +170,7 @@
                                     </div>
                                     <div class="form-group">
                                         <div class="col-sm-offset-1 col-sm-10">
-                                            <button type="submit" class="btn btn-primary btn-lg" onclick="chkAll();">注册</button>
+                                            <button type="button" class="btn btn-primary btn-lg" id="chkAll">注册</button>
                                         </div>
                                     </div>
                                 </form>

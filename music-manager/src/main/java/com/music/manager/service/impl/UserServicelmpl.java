@@ -203,7 +203,7 @@ public class UserServicelmpl implements UserService {
 		//从作用域中取code
 		String code = (String) request.getSession().getAttribute("code");
 		//判断用户填写的验证码是否与发送短信后的验证码一致
-		if(code.equals(adminQuery.getCode())){
+		if(adminQuery.getCode().equals(code)){
 			//创建查询对象
 			UserExample userExample = new UserExample();
 			//添加参数

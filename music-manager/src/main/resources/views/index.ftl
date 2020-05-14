@@ -348,7 +348,7 @@
                     <a href="#" style="margin-left: 42px">莫文蔚</a>
                 </div>
             </li>
-            <li class="back2"><img src="/images/paihan-2.png" width="225.2px" height="500px">
+            <li class="back2"><img src="${ctx}/images/paihan-2.png" width="225.2px" height="500px">
                 <div class="shang tong">
                     <p>抖音最火榜</p>
                     <p style="font-size: 30px;font-weight: bold;	">流行</p>
@@ -394,7 +394,7 @@
                     <a class="topline" href="#">4. &nbsp生僻字</a>
                     <a href="#" style="margin-left: 42px">陈珂与</a></div>
             </li>
-            <li class="back5"><img src="${ctx}/${ctx}/images/paihan-5.jpg" width="225.2px" height="500px">
+            <li class="back5"><img src="${ctx}/images/paihan-5.jpg" width="225.2px" height="500px">
                 <div class="shang tong">
                     <p>伤感情歌榜</p>
                     <p style="font-size: 30px;font-weight: bold;	">经典</p>
