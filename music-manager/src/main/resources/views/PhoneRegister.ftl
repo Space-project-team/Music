@@ -8,12 +8,96 @@
     <title>注册</title>
 
     <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="${ctx}/js/jquery.min.js"></script>
-    <script src="${ctx}/js/bootstrap.min.js"></script>
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="${ctx}/css/register.css">
+
 </head>
+<script type="text/javascript">
+    $(function(){
+        $("#sendVerifyCode").click(function () {
+            var phone = $("#phone").val();
+            if(isEmpty(phone)){
+                alert("手机号不能为空！");
+                return false;
+            }
+
+            $.ajax({
+                type:"post",
+                url: "http://localhost:9091/music-manager/user/SendSsm",
+                data:{
+                    phoneNum:phone
+                },
+                dataType : "json",
+                success:function (data) {
+                    if(data.code==200){
+                        alert("发送成功!");
+                    }else{
+                        alert(data.message);
+                    }
+                }
+
+            });
+        });
+
+
+        $("#resgit").click(function () {
+
+            var code = $("#code").val();
+            var phone = $("#phone").val();
+            var user_name = $("#user_name").val();
+            var user_password = $("#user_password").val();
+
+            if(isEmpty(phone)){
+                alert("手机号不能为空！")
+                return false;
+            }
+            if(isEmpty(code)){
+                alert("验证码不能为空！")
+                return false;
+            }
+            if(isEmpty(user_name)){
+                alert("用户名不能为空！")
+                return false;
+            }
+            if(isEmpty(user_password)){
+                alert("密码不能为空！")
+                return false;
+            }
+
+
+            $.ajax({
+                type: "post",
+                url: "http://localhost:9091/music-manager/user/register",
+                data: {
+                    user_name:user_name,
+                    user_password:user_password,
+                    phoneNum:phone,
+                    code:code
+                },
+                dataType: "json",
+                success: function (data) {
+                    if (data.code == 200) {
+                        alert("注册成功!");
+                        window.location.href = ctx+"/index";
+                    } else {
+                        alert(data.message);
+                        $("#user_name").val(user_name);
+                        $("#code").val(code);
+                        $("#phone").val(phone);
+                        $("#user_password").val(user_password);
+                    }
+                }
+
+            })
+
+        });
+
+    });
+</script>
+
 <style>
-    #yz{
+    #sendVerifyCode{
         position: absolute;
         width: 130px;
         height: 30px;
@@ -47,17 +131,34 @@
         <h3><span class="glyphicon glyphicon-star">&nbsp用户注册</span></h3><br /><br />
         <div class="wrapper wrapper-content animated fadeInRight">
             <div class="row">
-                <div class="col-sm-16">
+                <div class="col-sm-12">
                     <div class="ibox float-e-margins">
                         <div class="ibox-title">
                         </div>
                         <div class="ibox-content">
-                            <form   <#-- id="test" action="${ctx}/user/addUser" method="post"-->>
+                            <form>
                                 <div class="form-group">
                                     <!-- 表单 -->
                                     <label for="username" class="col-sm-2 control-label">用户名:</label> <!-- 表单 -->
                                     <div class="col-sm-10" style="margin: 0 0 20px">
                                         <input type="text" class="form-control" id="user_name" name="user_name" placeholder="请输入用户名" size="20">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <!-- 手机号 -->
+                                    <label for="phone" class="col-sm-2 control-label">手机号:</label> <!-- 表单 -->
+                                    <div class="col-sm-10" style="margin: 0 0 20px">
+                                        <input type="text" class="form-control" id="phone" name="phone" placeholder="请输入手机号" size="20">
+                                    </div>
+                                    <button  type="button"  id="sendVerifyCode" <#--onclick="sendVerifyCode();"-->>获取验证码</button>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <!-- 验证码 -->
+                                    <label for="code" class="col-sm-2 control-label">验证码:</label> <!-- 表单 -->
+                                    <div class="col-sm-10" style="margin: 0 0 20px">
+                                        <input type="text" class="form-control" id="code" name="code" placeholder="请输入验证码" size="20">
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -67,25 +168,8 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <!-- 手机号 -->
-                                    <label for="phone" class="col-sm-2 control-label">手机号:</label> <!-- 表单 -->
-                                    <div class="col-sm-10" style="margin: 0 0 20px">
-                                        <input type="text" class="form-control" id="phone" name="phone" placeholder="请输入手机号" size="20">
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <!-- 验证码 -->
-                                    <label for="yz" class="col-sm-2 control-label">验证码:</label> <!-- 表单 -->
-                                    <div class="col-sm-10" style="margin: 0 0 20px">
-                                        <input type="text" class="form-control" id="yz" name="yz" placeholder="请输入验证码" size="20">
-                                    </div>
-                                    <button  type="button"  id="sendVerifyCode">获取验证码</button>
-                                </div>
-
-                                <div class="form-group">
                                     <div class="col-sm-offset-1 col-sm-10">
-                                        <button type="button" id="sub-btn" class="btn btn-primary btn-lg" >注册</button>
+                                        <button  class="btn btn-primary btn-lg" id="resgit">注册</button>
                                     </div>
                                 </div>
                             </form>
@@ -96,20 +180,22 @@
         </div>
     </div>
 </div>
-<#--<script src="${ctx}/js/jquery.min.js?v=2.1.4"></script>
+<script src="${ctx}/js/jquery.min.js?v=2.1.4"></script>
 <script src="${ctx}/js/bootstrap-paginator.min.js"></script>
 <script src="${ctx}/js/jquery.validate.min.js"></script>
-<script src="${ctx}/js/tools.js"></script>
+<#--<script src="${ctx}/js/tools.js"></script>-->
+<script src="${ctx}/js/common.js"></script>
 <script type="text/javascript">
-    $('#test').validate({
-        /*submitHandler: function(form) {
-            addToDB($('#test').attr("action"), $('#test').serialize());//tools里的方法
-            //pageTools(1, 30);
-            // getList(1);
-        }*/
 
-    });
-</script>-->
+
+    /*$('#test').validate({
+        submitHandler: function(form) {
+            addToDB($('#test').attr("action"), $('#test').serialize());//tools里的方法
+           //pageTools(1, 30);
+           // getList(1);
+        }
+    });*/
+</script>
 <div class="footer">
     <div class="links">
         <a hidefocus="true" href="#" target="_blank">开发者：</a>
@@ -129,74 +215,5 @@
     </div>
 </div>
 </body>
-<script>
-    $(function(){
-        //发送验证码
-        $("#sendVerifyCode").on("click", function(){
-            var phone = $("#phone");
-            if(null==phone||""==phone){
-                alert("手机号不能为空！")
-                return false;
-            }
-            $.ajax({
-                type:"post",
-                url: "http://localhost:9091/music-manager/user/SendSsm",
-                data:{
-                    phoneNum:phone
-                },
-                dataType : "json",
-                success:function (data) {
-                    if(data.code==200){
-                        alert("发送成功!");
-                    }else{
-                        alert(data.code.message);
-                    }
-                }
 
-            })
-        });
-        //提交
-        $("#sub-btn").on("click", function() {
-            var code = $("#code");
-            var phone = $("#phone");
-            var user_name = $("#user_name");
-            var user_password = $("#user_password");
-
-            if(null==phone||""==phone){
-                alert("手机号不能为空！")
-                return false;
-            }
-            if(null==code||""==code){
-                alert("验证码不能为空！")
-                return false;
-            }
-            if(null==user_name||""==user_name){
-                alert("用户名不能为空！")
-                return false;
-            }
-            if(null==user_password||""==user_password){
-                alert("密码不能为空！")
-                return false;
-            }
-
-            $.ajax({
-                type: "post",
-                url: "http://localhost:9091/music-manager/user/register",
-                data: {
-                    code: code
-                },
-                dataType: "json",
-                success: function (data) {
-                    if (data.code == 200) {
-                        alert("注册成功!");
-                        alert("您的账号:" + data.pageInfo.list.userName + "   您的密码:" + data.pageInfo.list.userPassword);
-                    } else {
-                        alert(data.message);
-                    }
-                }
-
-            })
-        });
-    });
-</script>
 </html>

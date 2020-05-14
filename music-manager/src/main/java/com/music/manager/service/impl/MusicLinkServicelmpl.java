@@ -59,7 +59,6 @@ public class MusicLinkServicelmpl implements IMusicLinkService {
     @Override
     public BaseResult getMusicList(Integer pageNum, Integer pageSize) {
         //实时更新数据
-        // TODO: 2020/5/13 ？？？
         redisTemplate.delete(musicLinkList);
             if (StringUtils.isEmpty(pageNum)) {
                 pageNum = 1;
