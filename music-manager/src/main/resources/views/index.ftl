@@ -121,7 +121,7 @@
             <div id="col10" class="dengluzhuce">
                 <a class="mymusic" href="${ctx}/mymusic" target="_blank">我的音乐</a>
                 <a class="mymusic" href="${ctx}/mymusic" target="_blank">您是第<span
-                        id="user_number" style="font-size:20px;color:red;text-align:center;padding:0;"> &nbsp</span>位用户</a>
+                        id="user_number" style="font-size:20px;color:red;text-align:center;padding:0;"> 208 &nbsp</span>位用户</a>
                 <span class="mymusic">|</span>
                 <img id="touxiang" src="${ctx}/images/touxiang.png" width="40px" height="40px"
                      style="display: inline-block; width: 40px;height: 40px;border:0;border-radius: 40px;margin-bottom: 5px;">
@@ -348,7 +348,7 @@
                     <a href="#" style="margin-left: 42px">莫文蔚</a>
                 </div>
             </li>
-            <li class="back2"><img src="/images/paihan-2.png" width="225.2px" height="500px">
+            <li class="back2"><img src="${ctx}/images/paihan-2.png" width="225.2px" height="500px">
                 <div class="shang tong">
                     <p>抖音最火榜</p>
                     <p style="font-size: 30px;font-weight: bold;	">流行</p>
@@ -394,7 +394,7 @@
                     <a class="topline" href="#">4. &nbsp生僻字</a>
                     <a href="#" style="margin-left: 42px">陈珂与</a></div>
             </li>
-            <li class="back5"><img src="${ctx}/${ctx}/images/paihan-5.jpg" width="225.2px" height="500px">
+            <li class="back5"><img src="${ctx}/images/paihan-5.jpg" width="225.2px" height="500px">
                 <div class="shang tong">
                     <p>伤感情歌榜</p>
                     <p style="font-size: 30px;font-weight: bold;	">经典</p>
@@ -533,12 +533,13 @@
 
                 $("#user_number").html($.cookie("user_id"));
 
-                function fn(i) {//调用方法，更改cookie的信息，并跳转到播放页面
-                    $.cookie("song_link", data.pageInfo.list[i].songfile, {expires: 7, path: "/"});
-                    $.cookie("song_name", data.pageInfo.list[i].songname, {expires: 7, path: "/"});
-                    $.cookie("song_singer", data.pageInfo.list[i].singerid, {expires: 7, path: "/"});
-                    $.cookie("song_photo", data.pageInfo.list[i].photoimage, {expires: 7, path: "/"});
-                    window.open("http://localhost:9091/music-manager/QQmusic");
+                function fn(j) {
+                    console.log(data.pageInfo.list[j].mlId);
+                    $.cookie("song_link", data.pageInfo.list[j].mlSonglink, {expires: 7, path: "/"});
+                    $.cookie("song_name", data.pageInfo.list[j].mlSongname, {expires: 7, path: "/"});
+                    $.cookie("song_singer", data.pageInfo.list[j].mlSinger, {expires: 7, path: "/"});
+                    $.cookie("song_photo", data.pageInfo.list[j].mlPhotolink, {expires: 7, path: "/"});
+                    window.location.href = "http://localhost:9091/music-manager/QQmusic";
                 }
             }
         },

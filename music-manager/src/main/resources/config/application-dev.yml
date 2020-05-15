@@ -23,7 +23,7 @@ spring:
     name: test
     url: jdbc:mysql://localhost:3306/music?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC
     username: root
-    password: ""
+    password: 123456
     type: com.alibaba.druid.pool.DruidDataSource
 
   # freemarker 模板引擎
@@ -65,7 +65,7 @@ spring:
 
   # redis 缓存
   redis:
-    timeout: 300                          # 连接超时时间
+    timeout: 10000                          # 连接超时时间
     host: 175.24.16.105                 # Redis服务器地址
     port: 6379                              # Redis服务器端口
     database: 0                             # 选择哪个库，默认0库
