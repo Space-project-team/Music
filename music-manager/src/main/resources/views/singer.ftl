@@ -13,7 +13,7 @@
 	<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
 	<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<link rel="stylesheet" href="${ctx}/css/index.css">
-
+	<link rel="stylesheet" href="${ctx}/layui-v2.5.5/layui/css/layui.css" media="all">
 </head>
 <script>
 	var ctx="${ctx}";
@@ -156,38 +156,38 @@
 	<div class="l">
 		<ul class="sng1">
 			<li class="all">
-				<a title="全部歌手" class="hover" href="javascript:getSingerList(1)" >全部歌手</a>
+				<a title="全部歌手" class="hover" href="javascript:getSingerList(1,10)" >全部歌手</a>
 			</li>
 			<li class="all">
-				<a title="华语男歌手" class="hover" href="javascript:getSexSingerList('男',1)">华语男歌手</a>
+				<a title="华语男歌手" class="hover" href="javascript:getSexSingerList('男',1,10)">华语男歌手</a>
 			</li>
 			<li class="all">
-				<a title="华语女歌手" class="hover" href="javascript:getSexSingerList('女',1)">华语女歌手</a>
+				<a title="华语女歌手" class="hover" href="javascript:getSexSingerList('女',1,10)">华语女歌手</a>
 			</li>
 			<li class="all">
-				<a title="华语组合" class="hover" href="javascript:getGroupSingerList('华语','1',1)">华语组合</a>
+				<a title="华语组合" class="hover" href="javascript:getGroupSingerList('华语','1',10)">华语组合</a>
 			</li>
 		</ul>
 		<ul class="sng2">
 			<li class="all">
-				<a title="日韩男歌手" class="hover" href="javascript:getTypeSingerList('日韩','男',1)" >日韩男歌手</a>
+				<a title="日韩男歌手" class="hover" href="javascript:getTypeSingerList('日韩','男',10)" >日韩男歌手</a>
 			</li>
 			<li class="all">
-				<a title="日韩女歌手" class="hover" href="javascript:getTypeSingerList('日韩','女',1)" >日韩女歌手</a>
+				<a title="日韩女歌手" class="hover" href="javascript:getTypeSingerList('日韩','女',10)" >日韩女歌手</a>
 			</li>
 			<li class="all">
-				<a title="日韩组合" class="hover" href="javascript:getGroupSingerList('日韩','1',1)" >日韩组合</a>
+				<a title="日韩组合" class="hover" href="javascript:getGroupSingerList('日韩','1',10)" >日韩组合</a>
 			</li>
 		</ul>
 		<ul class="sng3">
 			<li class="all">
-				<a title="欧美男歌手" class="hover" href="javascript:getTypeSingerList('欧美','男',1)">欧美男歌手</a>
+				<a title="欧美男歌手" class="hover" href="javascript:getTypeSingerList('欧美','男',10)">欧美男歌手</a>
 			</li>
 			<li class="all">
 				<a title="欧美女歌手" class="hover" href="javascript:getTypeSingerList('欧美','女',1)" >欧美女歌手</a>
 			</li>
 			<li class="all">
-				<a title="欧美组合" class="hover" href="javascript:getGroupSingerList('欧美','1',1)" >欧美组合</a>
+				<a title="欧美组合" class="hover" href="javascript:getGroupSingerList('欧美','1',10)" >欧美组合</a>
 			</li>
 			<li class="oth">
 				<a title="其他歌手" class="hover" href="javascript:getSingerList(1)">其他</a>
@@ -235,17 +235,10 @@
 
 			</table>
 		</div>
-		<div class="nvg">
-			<ul class="pagination pagination-sm">
-				<li><a href="#">&laquo;</a></li>
-				<li><a href="#">1</a></li>
-				<li><a href="#">2</a></li>
-				<li><a href="#">3</a></li>
-				<li><a href="#">4</a></li>
-				<li><a href="#">5</a></li>
-				<li><a href="#">&raquo;</a></li>
-			</ul>
-		</div>
+		<!--layui分页-->
+		<div id="page" style="text-align: center;"></div>
+
+
 	</div>
 </div>	
 
@@ -280,13 +273,15 @@
 			</p>
 		</div>
 	</div>
+
+<script src="${ctx}/layui-v2.5.5/layui/layui.js"></script>
 <script src="${ctx}/js/jquery.min.js?v=2.1.4"></script>
 <script src="${ctx}/js/bootstrap-paginator.min.js"></script>
 <script src="${ctx}/js/jquery.validate.min.js"></script>
 <script src="${ctx}/js/tools.js"></script>
 <script src="${ctx}/js/jquery.cookie.js"></script>
+<script src="${ctx}/js/pagingUtil.js"></script>
 <script type="text/javascript">
-
 
     if ($.cookie("user_name")!=undefined  && $.cookie("user_name")!="1"){
         $("#userName").text("账号："+$.cookie("user_name"));
@@ -311,11 +306,16 @@
 		}
 	});
 
+	//加载总页数
+	var totals; //总数
+	var page;	//起始页
+	var endPage;	//总页数
 
 	/**
 	 * 查询与更新歌手排行榜
 	 * */
-	function getSingerList(pagenum) {
+	function getSingerList(pageNum,pageSize) {
+
 		var zhong = $(".zhong");
 		var table2 = $(".table");
 		zhong.empty();
@@ -324,11 +324,16 @@
 			url: "${ctx}/singer/getSingerList",      //后台获取整个数据库方法的地址
 			type: "POST",
 			data: {
-				pageNum: pagenum,
-				pageSize:50,
+				pageNum: pageNum,
+				pageSize:pageSize,
 			},
 			success: function (data) {
 				if (data.code==200) {
+
+					totals = data.pageInfo.total;
+					page = data.pageInfo.pageNum;
+					endPage = data.pageInfo.pages;
+
 					var str = '';
 					//动态生成表格
 					var box= '';
@@ -365,6 +370,9 @@
 						}
 
 					box+='</tbody>';
+					//layui分页
+					pagingUtils(totals,page,endPage);
+
 					}
 				console.log("box:"+box);
 				zhong.append(str);
@@ -380,7 +388,7 @@
 
 	});
 
-	function getSexSingerList(sex,pagenum) {
+	function getSexSingerList(sex,pagenum,pageSize) {
 		var zhong = $(".zhong");
 		var table2 = $(".table");
 		zhong.empty();
@@ -391,10 +399,14 @@
 			data: {
 				sex:sex,
 				pageNum: pagenum,
-				pageSize:50,
+				pageSize:pageSize,
 			},
 			success: function (data) {
 				if (data.code==200) {
+					totals = data.pageInfo.total;
+					page = data.pageInfo.pageNum;
+					endPage = data.pageInfo.pages;
+
 					var str = '';
 					//动态生成表格
 					var box= '';
@@ -429,7 +441,8 @@
 
 						}
 					}
-
+					//layui分页
+					pagingUtils(totals,page,endPage);
 					box+='</tbody>';
 				}
 				console.log("box:"+box);
@@ -445,7 +458,7 @@
 
 
 	//类型歌手查询
-	function getTypeSingerList(typeName,sex,pagenum) {
+	function getTypeSingerList(typeName,sex,pagenum,pageSize) {
 		var zhong = $(".zhong");
 		var table2 = $(".table");
 		zhong.empty();
@@ -457,10 +470,14 @@
 				typeName:typeName,
 				sex:sex,
 				pageNum: pagenum,
-				pageSize:50,
+				pageSize:pageSize,
 			},
 			success: function (data) {
 				if (data.code==200) {
+					totals = data.pageInfo.total;
+					page = data.pageInfo.pageNum;
+					endPage = data.pageInfo.pages;
+
 					var str = '';
 					//动态生成表格
 					var box= '';
@@ -495,7 +512,8 @@
 
 						}
 					}
-
+					//layui分页
+					pagingUtils(totals,page,endPage);
 					box+='</tbody>';
 				}
 				console.log("box:"+box);
@@ -509,7 +527,7 @@
 	}
 
 	//类型歌手查询
-	function getGroupSingerList(typeName,group,pagenum) {
+	function getGroupSingerList(typeName,group,pagenum,pageSize) {
 		var zhong = $(".zhong");
 		var table2 = $(".table");
 		zhong.empty();
@@ -521,10 +539,14 @@
 				typeName:typeName,
 				group:group,
 				pageNum: pagenum,
-				pageSize:50,
+				pageSize:pageSize,
 			},
 			success: function (data) {
 				if (data.code==200) {
+					totals = data.pageInfo.total;
+					page = data.pageInfo.pageNum;
+					endPage = data.pageInfo.pages;
+
 					var str = '';
 					//动态生成表格
 					var box= '';
@@ -559,7 +581,8 @@
 
 						}
 					}
-
+					//layui分页
+					pagingUtils(totals,page,endPage);
 					box+='</tbody>';
 				}
 				console.log("box:"+box);

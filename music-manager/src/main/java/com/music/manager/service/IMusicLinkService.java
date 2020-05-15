@@ -23,7 +23,8 @@ public interface IMusicLinkService{
     //获取top前50歌曲
     BaseResult getTOPLink(Integer pageNum, Integer pageSize);
     //模板
-    BaseResult  ModuleMusic(Integer pageNum, Integer pageSize,String SongType);
-    //获取MusicLink的总数
-    Integer getMusicLinkCount1();
+    BaseResult  ModuleMusic(Integer pageNum, Integer pageSize,String SongType,String time);
+    //获取song总数
+    Integer getSongLinkCount();
+
 }

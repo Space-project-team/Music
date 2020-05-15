@@ -1,10 +1,11 @@
 package com.music.manager.pojo;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * @author zhoubin 
- * @create 2020-05-12
+ * @create 2020-05-15
  * @since 1.0.0
  */
 public class Song implements Serializable {
@@ -42,6 +43,11 @@ public class Song implements Serializable {
      * 歌曲风格
      */
     private String typeid;
+
+    /**
+     * 歌曲创建时间
+     */
+    private Date createTime;
 
     /**
      * song
@@ -104,6 +110,14 @@ public class Song implements Serializable {
         this.typeid = typeid == null ? null : typeid.trim();
     }
 
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -117,6 +131,7 @@ public class Song implements Serializable {
         sb.append(", songfile=").append(songfile);
         sb.append(", photoimage=").append(photoimage);
         sb.append(", typeid=").append(typeid);
+        sb.append(", createTime=").append(createTime);
         sb.append("]");
         return sb.toString();
     }

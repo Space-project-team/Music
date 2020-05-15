@@ -4,6 +4,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 
+import com.github.pagehelper.PageInfo;
 import com.music.common.result.BaseResult;
 import com.music.common.result.MusicPageInfo;
 import com.music.manager.pojo.MusicLink;
@@ -89,7 +90,7 @@ public class MusicLinkController {
 	@RequestMapping(value = "NetworkMusic",method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public BaseResult NetworkMusic(Integer pageNum,Integer pageSize){
-		return musicLinkService.ModuleMusic(pageNum,pageSize,"网络歌曲");
+		return musicLinkService.ModuleMusic(pageNum,pageSize,"网络歌曲",null);
 	}
 
 	/**
@@ -101,7 +102,7 @@ public class MusicLinkController {
 	@RequestMapping(value = "MovieSong",method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public BaseResult MovieSong(Integer pageNum,Integer pageSize){
-		return musicLinkService.ModuleMusic(pageNum,pageSize,"影视原声");
+		return musicLinkService.ModuleMusic(pageNum,pageSize,"影视原声",null);
 	}
 
 	/**
@@ -113,7 +114,7 @@ public class MusicLinkController {
 	@RequestMapping(value = "DjSong",method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public BaseResult DjSong(Integer pageNum,Integer pageSize){
-		return musicLinkService.ModuleMusic(pageNum,pageSize,"DJ");
+		return musicLinkService.ModuleMusic(pageNum,pageSize,"DJ",null);
 	}
 
 	/**
@@ -125,7 +126,7 @@ public class MusicLinkController {
 	@RequestMapping(value = "EuropeMusic",method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public BaseResult EuropeMusic(Integer pageNum,Integer pageSize){
-		return musicLinkService.ModuleMusic(pageNum,pageSize,"欧美");
+		return musicLinkService.ModuleMusic(pageNum,pageSize,"欧美","2");
 	}
 
 	/**
@@ -137,19 +138,22 @@ public class MusicLinkController {
 	@RequestMapping(value = "YueYuMusic",method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public BaseResult YueYuMusic(Integer pageNum,Integer pageSize){
-		return musicLinkService.ModuleMusic(pageNum,pageSize,"粤语");
+		return musicLinkService.ModuleMusic(pageNum,pageSize,"粤语",null);
 	}
 
 
 	/**
-	 * 获取MusicLink的总数
+	 * 欧美经典排行榜
+	 * @param pageNum
+	 * @param pageSize
 	 * @return
 	 */
-	@RequestMapping("getMusicLinkCount1")
+	@RequestMapping(value = "EuropeSutraMusic",method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
-	public Integer getMusicLinkCount1(){
-		return musicLinkService.getMusicLinkCount1();
+	public BaseResult EuropeSutraMusic( Integer pageNum,Integer pageSize){
+		return musicLinkService.ModuleMusic(pageNum,pageSize,"欧美","1");
 	}
+
 
 
 }

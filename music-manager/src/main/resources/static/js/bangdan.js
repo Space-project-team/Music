@@ -1,7 +1,13 @@
+//加载总页数
+var total = null;
+var pageNums = null;
+var pageEnd= null;
+
+
 function getModuleMusic(url,pageNum,pageSize) {
 
     $.ajax({
-        url: "http://localhost:9091/music-manager/musicLink/"+url,
+        url: ctx+"/musicLink/"+url,
         type: "POST",
         data: {
             pageNum:pageNum,
@@ -54,9 +60,46 @@ function getModuleMusic(url,pageNum,pageSize) {
                 }
             }
             $("table tbody").html(str);
+                pageNums = data.pageInfo.pageNum;
+                total = data.pageInfo.total;
+                pageEnd = data.pageInfo.pages;
+
+            layui.use(['laypage','jquery'], function() {
+
+                var laypage = layui.laypage,$ = layui.$;
+
+                laypage.render({
+                    elem: $("#page")
+                    //注意，这里的 elem 指向存放分页的容器，值可以是容器ID、DOM对象。
+                    //例1. elem: 'idName' 注意：如果这么写，这里不能加 # 号
+                    //例2. elem: document.getElementById('idName')
+                    //例3. elem: $("#idName")
+                    ,count: total //数据总数，从服务端得到
+                    , limit: 10                      //默认每页显示条数
+                    , limits: [10, 20, 30]			//可选每页显示条数
+                    , curr: pageNums                        //起始页
+                    , groups: 5                      //连续页码个数
+                    , prev: '上一页'                 //上一页文本
+                    , netx: '下一页'                 //下一页文本
+                    , first: 1                      //首页文本
+                    , last: pageEnd                    //尾页文本
+                    , layout: ['prev', 'page', 'next','limit','refresh','skip']
+                    //跳转页码时调用
+                    , jump: function (obj, first) { //obj为当前页的属性和方法，第一次加载first为true
+                        //非首次加载 do something
+                        if (!first) {
+                            //清空以前加载的数据
+                            $('tbody').empty();
+                            //调用加载函数加载数据
+                            showRecord(obj.curr,obj.limit);
+                        }
+                    }
+                });
+            })
         },
         error: function (data) {
-            alert(JSON.stringify(data));
+            alert("该网站正在更新,非常抱歉!");
         }
     })
 }
+

@@ -467,7 +467,7 @@
     });//已在mymusic中注释
 
 
-    //
+   //
     //
     //            获取榜单
     //
@@ -477,7 +477,7 @@
         type: "GET",
         data:{
             page:1,
-            pageSize:30
+            pageSize:10
         },
         success: function (data) {
             if (data.code == 200) {

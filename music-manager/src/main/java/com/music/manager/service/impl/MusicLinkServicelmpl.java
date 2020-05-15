@@ -22,7 +22,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 
@@ -77,12 +82,19 @@ public class MusicLinkServicelmpl implements IMusicLinkService {
                 return BaseResult.success(pageInfo);
             }
             //不存在缓存,从数据库中查询所有音乐,在放入缓存中
-            List<MusicLink> musicLinks = musicLinkMapper.selectByExample(new MusicLinkExample());
-            if (!CollectionUtils.isEmpty(musicLinks)) {
+        List<Song> songs = songMapper.selectByExample(new SongExample());
+            if (!CollectionUtils.isEmpty(songs)) {
+
+                //将歌手id换成歌手名称
+                for (Song song : songs) {
+                    Singer singer = singerMapper.selectByPrimaryKey(song.getSingerid());
+                    song.setSingerid(singer.getSingername());
+                }
                 //将集合存入分页工具
-                PageInfo<MusicLink> page = new PageInfo<>(musicLinks);
+                PageInfo<Song> page = new PageInfo<>(songs);
+                //获取musicLink总数
+                page.setTotal(getSongLinkCount());
                 //将list存入缓存中
-//            valueOperations.set(musicLinkList,JsonUtil.object2JsonStr(page));
                 valueOperations.rightPush(musicLinkList, JsonUtil.object2JsonStr(page));
                 return BaseResult.success(page);
             }
@@ -117,7 +129,9 @@ public class MusicLinkServicelmpl implements IMusicLinkService {
                 song.setSingerid(singer.getSingername());
             }
             PageHelper.startPage(1, 30);
-            return BaseResult.success(new PageInfo<>(songList));
+            PageInfo<Song> songPageInfo = new PageInfo<>(songList);
+            songPageInfo.setTotal(getSongLinkCount());
+            return BaseResult.success(songPageInfo);
         }
 
         /**
@@ -194,6 +208,7 @@ public class MusicLinkServicelmpl implements IMusicLinkService {
             if (!StringUtils.isEmpty(str)) {
                 //不为空
                 PageInfo pageInfo = JsonUtil.jsonStr2Object(str, PageInfo.class);
+                pageInfo.setTotal(getSongLinkCount());
                 //放入返回对象
                 return BaseResult.success(pageInfo);
             }
@@ -214,28 +229,36 @@ public class MusicLinkServicelmpl implements IMusicLinkService {
                 //将集合存入分页工具
                 PageInfo<Song> page = new PageInfo<>(songList);
                 operations.set(TOPLink, JsonUtil.object2JsonStr(page));
+                page.setTotal(songList.size());
                 //遍历所有的歌曲,在根据
                 return BaseResult.success(page);
             }
             return BaseResult.error();
         }
 
+
+
+    /**
+     * 使用music模板
+     * @param pageNum
+     * @param pageSize
+     * @param SongType
+     * @return
+     */
         @Override
-        public BaseResult ModuleMusic (Integer pageNum, Integer pageSize, String SongType){
-            return ModuleSong(pageNum, pageSize, SongType);
+        public BaseResult ModuleMusic (Integer pageNum, Integer pageSize, String SongType,String time){
+            return ModuleSong(pageNum, pageSize, SongType,time);
         }
 
     /**
-     * 获取MusicLink的总数
+     * 获取歌曲总数
      * @return
      */
     @Override
-    public Integer getMusicLinkCount1() {
-        //创建查询对象
-        List<MusicLink> musicLinks = musicLinkMapper.selectByExample(new MusicLinkExample());
-        return musicLinks.size();
+    public Integer getSongLinkCount() {
+        List<Song> songs = songMapper.selectByExample(new SongExample());
+        return songs.size();
     }
-
 
     /**
          * 模板
@@ -244,7 +267,7 @@ public class MusicLinkServicelmpl implements IMusicLinkService {
          * @param SongType
          * @return
          */
-        public BaseResult ModuleSong (Integer pageNum, Integer pageSize, String SongType){
+        public BaseResult ModuleSong (Integer pageNum, Integer pageSize, String SongType,String time){
             if (StringUtils.isEmpty(pageNum) || StringUtils.isEmpty(pageSize)) {
                 pageNum = 1;
                 pageSize = 50;
@@ -266,6 +289,31 @@ public class MusicLinkServicelmpl implements IMusicLinkService {
                 criteria.andTypeidEqualTo(language.getLanguageid());
                 //设置字段排序
                 songExample.setOrderByClause("votes DESC");
+
+                //添加创建时间查询条件
+                DateFormat dateFormat1 = new SimpleDateFormat("yyyy-MM-dd");
+                Date date = null;
+                Calendar calendar=Calendar.getInstance();
+                try {
+                    date = dateFormat1.parse("2010-12-30");
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+
+                if("1".equals(time)){
+                    //欧美经典排行榜
+                    criteria.andCreateTimeLessThanOrEqualTo(date);
+                }else if("2".equals(time)){
+                    //欧美新歌排行榜
+                    try {
+                        //将大于当前系统时间减3个月
+                        calendar.add(Calendar.MONTH, -3);
+                        date = dateFormat1.parse(dateFormat1.format(calendar.getTime()));
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                    criteria.andCreateTimeGreaterThanOrEqualTo(date);
+                }
                 List<Song> songs = songMapper.selectByExample(songExample);
                 //判断是否为空
                 if (!CollectionUtils.isEmpty(songs)) {
@@ -276,7 +324,9 @@ public class MusicLinkServicelmpl implements IMusicLinkService {
                         //将歌手的名字放入
                         song.setSingerid(singer.getSingername());
                     }
-                    return BaseResult.success(new PageInfo<>(songs));
+                    PageInfo<Song> songPageInfo = new PageInfo<>(songs);
+                    songPageInfo.setTotal(songs.size());
+                    return BaseResult.success(songPageInfo);
                 }
             }
             return BaseResult.error();
