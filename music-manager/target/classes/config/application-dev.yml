@@ -97,6 +97,7 @@ spring:
 mybatis:
   mapper-locations: classpath:mapper/*.xml
   type-aliases-package: com.music.manager.pojo
+
   # spring boot集成mybatis的方式打印sql，需要使用的话可以开启
 #  configuration:
 
@@ -114,3 +115,6 @@ management:
   health:
     elasticsearch:
       enabled: false
+
+pagehelper:
+  reasonable: false

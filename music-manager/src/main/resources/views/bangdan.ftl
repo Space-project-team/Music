@@ -16,6 +16,10 @@
     <script src="${ctx}/js/bangdan.js"></script>
     <link rel="stylesheet" href="${ctx}/layui-v2.5.5/layui/css/layui.css" media="all">
 </head>
+<style>
+    .con-box{position:relative;width:800px;height:500px;background:#000;}
+    .demo{position:absolute;width:200px;height:150px;bottom:0;left:50%;margin-left:-100px;}
+</style>
 <script>
     var ctx="${ctx}";
 </script>
@@ -179,16 +183,16 @@
             </div>
             <div id="collapseOne" class="panel-collapse collapse in">
                 <div class="panel-body">
-                    <a href="">轻语音乐榜</a>
-                    <a href="">飙升榜单</a>
-                    <a href="javascript:void(0)" onclick="getModuleMusic('TOPLink')">TOP50榜单</a>
-                    <a href="javascript:void(0)" onclick="getModuleMusic('NetworkMusic')">网络音乐榜</a>
-                    <a href="javascript:void(0)" onclick="getModuleMusic('MovieSong')">电影音乐榜</a>
-                    <a href="javascript:void(0)" onclick="getModuleMusic('DjSong')">DJ热歌榜</a>
-                    <a href="javascript:void(0)" onclick="getModuleMusic('EuropeMusic')">欧美新歌榜</a>
-                    <a href="javascript:void(0)" onclick="getModuleMusic('TOPLink')">中国梦之声榜</a>
-                    <a href="javascript:void(0)" onclick="getModuleMusic('TOPLink')">国风美少年榜</a>
-                    <a href="javascript:void(0)" onclick="getModuleMusic('YueYuMusic')">粤语新歌榜</a>
+                    <a href="javascript:void(0)" onclick="showRecord(1,10)">轻语音乐榜</a>
+                    <a href="javascript:void(0)" onclick="showRecord(1,10)">飙升榜单</a>
+                    <a href="javascript:void(0)" onclick="getModuleMusic('TOPLink',1,10)">TOP50榜单</a>
+                    <a href="javascript:void(0)" onclick="getModuleMusic('NetworkMusic',1,10)">网络音乐榜</a>
+                    <a href="javascript:void(0)" onclick="getModuleMusic('MovieSong',1,10)">电影音乐榜</a>
+                    <a href="javascript:void(0)" onclick="getModuleMusic('DjSong',1,10)">DJ热歌榜</a>
+                    <a href="javascript:void(0)" onclick="getModuleMusic('EuropeMusic',1,10)">欧美新歌榜</a>
+                    <a href="javascript:void(0)" onclick="getModuleMusic('TOPLink',1,10)">中国梦之声榜</a>
+                    <a href="javascript:void(0)" onclick="getModuleMusic('TOPLink',1,10)">国风美少年榜</a>
+                    <a href="javascript:void(0)" onclick="getModuleMusic('YueYuMusic',1,10)">粤语新歌榜</a>
                 </div>
             </div>
         </div>
@@ -203,16 +207,8 @@
             </div>
             <div id="collapseTwo" class="panel-collapse collapse">
                 <div class="panel-body">
-                    <a href="">轻语音乐榜</a>
-                    <a href="">飙升榜单</a>
-                    <a href="">TOP50榜单</a>
-                    <a href="">网络音乐榜</a>
-                    <a href="">电影音乐榜</a>
-                    <a href="">DJ热歌榜</a>
-                    <a href="">欧美新歌榜</a>
-                    <a href="">中国梦之声榜</a>
-                    <a href="">国风美少年榜</a>
-                    <a href="">粤语新歌榜</a>
+                    <a href="javascript:void(0)" onclick="getModuleMusic('EuropeMusic')">欧美新歌榜</a>
+                    <a href="javascript:void(0)" onclick="getModuleMusic('EuropeSutraMusic')">欧美经典榜</a>
                 </div>
             </div>
         </div>
@@ -227,16 +223,7 @@
             </div>
             <div id="collapseThree" class="panel-collapse collapse">
                 <div class="panel-body">
-                    <a href="">轻语音乐榜</a>
-                    <a href="">飙升榜单</a>
-                    <a href="">TOP50榜单</a>
-                    <a href="">网络音乐榜</a>
-                    <a href="">电影音乐榜</a>
-                    <a href="">DJ热歌榜</a>
-                    <a href="">欧美新歌榜</a>
-                    <a href="">中国梦之声榜</a>
-                    <a href="">国风美少年榜</a>
-                    <a href="">粤语新歌榜</a>
+                    <a href="">新曲榜</a>
                 </div>
             </div>
         </div>
@@ -251,16 +238,7 @@
             </div>
             <div id="collapseFour" class="panel-collapse collapse">
                 <div class="panel-body">
-                    <a href="">轻语音乐榜</a>
-                    <a href="">飙升榜单</a>
-                    <a href="">TOP50榜单</a>
-                    <a href="">网络音乐榜</a>
-                    <a href="">电影音乐榜</a>
-                    <a href="">DJ热歌榜</a>
-                    <a href="">欧美新歌榜</a>
-                    <a href="">中国梦之声榜</a>
-                    <a href="">国风美少年榜</a>
-                    <a href="">粤语新歌榜</a>
+                    <a href="">歌手榜</a>
                 </div>
             </div>
         </div>
@@ -271,18 +249,17 @@
         <thead>
         <tr style="border-bottom: 1px solid #919191;line-height: 35px;">
             <th style="text-align: center;">序号</th>
-            <th style="text-align: center;">歌名</th>
+            <th style="text-align: center;" >歌名</th>
             <th style="text-align: center;">歌手</th>
-            <th></th>
         </tr>
         </thead>
-        <tbody>
-        <tr>
-        </tr>
-        </tbody>
-    </table>
 
-    <div id="test1" class="form-control" style="text-align: center"></div>
+        <tbody>
+        </tbody>
+
+    </table>
+    <div id="page" style="text-align: center;"></div>
+
 
 </div>
 <audio id="audio" src=""></audio>
@@ -299,172 +276,118 @@
 <script type="text/javascript" src="${ctx}/js/vue.min.js"></script>
 <script type="text/javascript">
 
-    $(function () {
+
+
+
+    //加载总页数
+    var totals;
+    var page;
+    var pages;
+    function showRecord(pageNum,pageSize) {
         $.ajax({
-            type:"get",
-            url:ctx+"/musicLink/getMusicLinkCount1",
-            async: true,
-            success: function(data) {
-                console.log(data);
-                layui.use('laypage', function(){
-                    var laypage = layui.laypage;
-                    //执行一个laypage实例
-                    laypage.render({
-                        elem: 'test1' //注意，这里的 test1 是 ID，不用加 # 号
-                        ,count: data //数据总数，从服务端得到
-                        ,layout: ['count', 'prev', 'page', 'next', 'limit', 'skip']
-                        ,jump: function(obj, first){
-                        //obj包含了当前分页的所有参数，比如：
-                        console.log(obj.curr); //得到当前页，以便向服务端请求对应页的数据。
-                        console.log(obj.limit); //得到每页显示的条数
-
-                        //首次不执行
-                        if(!first){
-                            //do something
-                        }
-                        //第二个ajax获取当前页请求数据
-                        $.ajax({
-                            type: “post”,
-                        url: “/autocarrier/hdGoodsPublish/goodspage”,
-                        async: true,
-                            data:{
-                            curr:obj.curr,
-                                limit:obj.limit
-                        },
-                        success: function(list) {
-                            console.log(list);
-                            dataobj=JSON.parse(list);
-                            detail(dataobj);//调用函数
-                        }
-                    });
-                    }
-                    })
-    })
-    
-    layui.use('laypage', function(){
-        var laypage = layui.laypage;
-
-        //执行一个laypage实例
-        laypage.render({
-            elem: 'test1' //注意，这里的 test1 是 ID，不用加 # 号
-            ,count: 50 //数据总数，从服务端得到
-
-        });
-    });
-
-
-
-    $(document).ready(function () {
-        pageTools(1, 10);//tools里的方法
-        getList(1,10);
-    });
-    $("#user_number").html($.cookie("user_id"));
-    function getList(pageNum,pageSize) {
-        $.ajax({
-            url: "http://localhost:9091/music-manager/musicLink/getMusicLinkList",
-            type: "GET",
+            type: "get",
+            url: ctx + "/musicLink/getMusicLinkList",
             data: {
-                pageNum:pageNum,
-                pageSize:pageSize
+                pageNum: pageNum,
+                pageSize: pageSize
             },
             success: function (data) {
-                if (data.code== 200) {
+                console.log(data);
+                if (data.code == 200) {
+
+                    page = data.pageInfo.pageNum;
+                    totals = data.pageInfo.total;
+                    pages = data.pageInfo.pages;
+                    //加载后台返回的List集合数据
                     var str = '';
                     for (var i = 0; i < data.pageInfo.list.length; i++) {
                         var a = i + 1;
-                        var mlid = data.pageInfo.list[i].mlId;
-                        var oobject = data.pageInfo.list[i];
-                        var obj = JSON.stringify(oobject).replace(/"/g,"&quot;");
                         str += '<tr>'
                             + '<td class="number111"  style="padding: 14px;border-bottom: 1px solid #eee; width: 100px;text-align: center;">' + ((data.pageInfo.pageNum - 1) * 10 + a) + '</td>'
-                            + '<td  style="padding: 14px;border-bottom: 1px solid #eee;width: 600px;text-align: center;"><a class=sName' + mlid + ' href="#" onclick="dd('+obj+')">' + data.pageInfo.list[i].mlSongname + '</a>' +
-                            '<span class="glyphicon glyphicon-heart" id=sFav' + mlid + ' style="color: #eee;float: right;" onclick="play1('+obj+')"></span></td>'
-                            + '<td style="padding: 14px;border-bottom: 1px solid #eee;width: 300px;text-align: center;"><a href="#">' + data.pageInfo.list[i].mlSinger + '</a></td>'
+                            + '<td  style="padding: 14px;border-bottom: 1px solid #eee;width: 600px;text-align: center;"><a class=sName' + i + ' href="#">' + data.pageInfo.list[i].songname + '</a>' +
+                            '<span class="glyphicon glyphicon-heart" id=sFav' + i + ' style="color: #eee;float: right;"></span></td>'
+                            + '<td style="padding: 14px;border-bottom: 1px solid #eee;width: 300px;text-align: center;"><a href="#">' + data.pageInfo.list[i].singerid + '</a></td>'
                             + '</tr>';
 
-                        // function dd(i) {
-                        //     $("table").on('click', '.sName' + i, function () {
-                        //         fn(i);
-                        //     });
-                        // }
-                        //
-                        // dd(i);
+                        function dd(i) {
+                            $("table").on('click', '.sName' + i, function () {
+                                fn(i);
+                            });
+                        }
 
-                        // function play1(mlid,i) {
-                        //     $("table").on('click', '#sFav' + mlid, function () {
-                        //         fn1(i);
-                        //         fav(i);
-                        //     });
-                        // }
-                        //
-                        // play1(mlid,i);
+                        dd(i);
+
+                        function play1(i) {
+                            $("table").on('click', '#sFav' + i, function () {
+                                fn1(i);
+                                fav(i);
+                            });
+                        }
+
+                        play1(i);
                     }
-
-                    <#--function fn(j) {-->
-                    <#--    console.log(data.pageInfo.list[j].mlId);-->
-                    <#--    $.cookie("song_link", data.pageInfo.list[j].mlSonglink, {expires: 7, path: "/"});-->
-                    <#--    $.cookie("song_name", data.pageInfo.list[j].mlSongname, {expires: 7, path: "/"});-->
-                    <#--    $.cookie("song_singer", data.pageInfo.list[j].mlSinger, {expires: 7, path: "/"});-->
-                    <#--    $.cookie("song_photo", data.pageInfo.list[j].mlPhotolink, {expires: 7, path: "/"});-->
-                    <#--    window.location.href = "${ctx}/QQmusic";-->
-                    <#--}-->
 
                     function fn(j) {
-                        console.log(data.pageInfo.list[j].mlId);
-                        $.cookie("song_link", data.pageInfo.list[j].mlSonglink, {expires: 7, path: "/"});
-                        $.cookie("song_name", data.pageInfo.list[j].mlSongname, {expires: 7, path: "/"});
-                        $.cookie("song_singer", data.pageInfo.list[j].mlSinger, {expires: 7, path: "/"});
-                        $.cookie("song_photo", data.pageInfo.list[j].mlPhotolink, {expires: 7, path: "/"});
-                        window.location.href = "http://localhost:9091/music-manager/QQmusic";
+                        $.cookie("song_link", data.pageInfo.list[j].songfile, {expires: 7, path: "/"});
+                        $.cookie("song_name", data.pageInfo.list[j].songname, {expires: 7, path: "/"});
+                        $.cookie("song_singer", data.pageInfo.list[j].singerid, {expires: 7, path: "/"});
+                        $.cookie("song_photo", data.pageInfo.list[j].photoimage, {expires: 7, path: "/"});
+                        window.location.href = "http://localhost:9091/music-manager/QQmusic.html";
                     }
-                    <#--function fn1(j) {-->
-                    <#--    console.log(data.pageInfo.list[j].mlId);-->
-                    <#--    $.cookie("song_id", data.pageInfo.list[j].mlId, {expires: 7, path: "/"});-->
-                    <#--    $.cookie("song_name", data.pageInfo.list[j].mlSongname, {expires: 7, path: "/"});-->
-                    <#--}-->
 
+                    function fn1(j) {
+                        $.cookie("song_id", data.pageInfo.list[j].songid, {expires: 7, path: "/"});
+                        $.cookie("song_name", data.pageInfo.list[j].songname, {expires: 7, path: "/"});
+                    }
 
+                        $("table tbody").html(str);
+
+                        layui.use(['laypage', 'jquery'], function () {
+
+                            var laypage = layui.laypage, $ = layui.$;
+
+                            laypage.render({
+                                elem: 'page'
+                                //注意，这里的 elem 指向存放分页的容器，值可以是容器ID、DOM对象。
+                                //例1. elem: 'idName' 注意：如果这么写，这里不能加 # 号
+                                //例2. elem: document.getElementById('idName')
+                                //例3. elem: $("#idName")
+                                , count: totals //数据总数，从服务端得到
+                                , limit: 10                      //默认每页显示条数
+                                , limits: [10, 20, 30]			//可选每页显示条数
+                                , curr: page                        //起始页
+                                , groups: 5                      //连续页码个数
+                                , prev: '上一页'                 //上一页文本
+                                , netx: '下一页'                 //下一页文本
+                                , first: 1                      //首页文本
+                                , last: pages                     //尾页文本
+                                , layout: ['prev', 'page', 'next', 'limit', 'refresh', 'skip']
+                                //跳转页码时调用
+                                , jump: function (obj, first) { //obj为当前页的属性和方法，第一次加载first为true
+                                    //非首次加载 do something
+                                    if (!first) {
+                                        //清空以前加载的数据
+                                        $('tbody').empty();
+                                        //调用加载函数加载数据
+                                        showRecord(obj.curr, obj.limit);
+                                    }
+                                }
+                            });
+                        })
+                    }
                 }
-                $("table tbody").html(str);
             },
-            error: function (data) {
-                alert("网站正在更新,非常抱歉!");
+            error: function () {
+                alert("该网站正在更新,非常抱歉!")
             }
-        })
-    }//已在mymusic中注释
-
-    function dd(obj) {
-            fn(obj);
+        });
     }
 
-    // dd(i);
-
-    function play1(obj) {
-            fn1(obj);
-            fav(obj);
-    }
-
-    // play1(obj);
-
-    function fn(obj) {
-        console.log(obj.mlId);
-        $.cookie("song_link", obj.mlSonglink, {expires: 7, path: "/"});
-        $.cookie("song_name", obj.mlSongname, {expires: 7, path: "/"});
-        $.cookie("song_singer", obj.mlSinger, {expires: 7, path: "/"});
-        $.cookie("song_photo", obj.mlPhotolink, {expires: 7, path: "/"});
-        window.location.href = "${ctx}/QQmusic";
-    }
-
-    function fn1(obj) {
-        console.log(obj.mlId);
-        $.cookie("song_id", obj.mlId, {expires: 7, path: "/"});
-        $.cookie("song_name", obj.mlSongname, {expires: 7, path: "/"});
-    }
-
+    //已在mymusic中注释
     if ($.cookie("user_name") != undefined && $.cookie("user_name") != "1") {
         $("#userName").text("账号：" + $.cookie("user_name"));
         $("#zhuXiao").text("注销");
-        document.getElementById("touxiang").src = "${ctx}/images/touxiang2.jpg";
+        document.getElementById("touxiang").src = "images/touxiang2.jpg";
         $("#display1").attr("style", "display:none;");
     }//已在mymusic中注释
     $('#test').validate({
@@ -472,20 +395,22 @@
             denglu($('#test').attr("action"), $('#test').serialize());
         }
     });//已在mymusic中注释
-    function fav(obj) {
+    function fav(j) {
         $.ajax({
             async: false,
-            url: "http://localhost:9091/music-manager/musicLink/addMusicCollect",
+            url: "/musicLink/addMusicCollect",
             type: "post",
             data: {
-                songName: $.cookie("song_name"),
-                mid: $.cookie("song_id")
+                "songName": $.cookie("song_name"),
+                "song_id": $.cookie("song_id"),
+                "user_name": $.cookie("user_name"),
+                "user_password": $.cookie("user_password"),
             },
             success: function (data) {//webspond
-                if (data.code == 200) {
+                if (data.statusCode == "200") {
 
                     // $('#sFav'+j).removeClass('glyphicon-heart');
-                    $('#sFav' + obj.mlId).css('color', '#ff69b4');
+                    $('#sFav' + j).css('color', '#ff69b4');
                     alert("歌曲收藏成功，请去我的音乐查看");
 
 
@@ -499,11 +424,11 @@
         })
     }//已在mymusic中注释
 
-
     //下方为时钟
     $("#search1").click(function () {
         window.open("http://localhost:9091/music-manager/musicSearchTest");//给登录按钮一个超链接
     });
+    */
     var clock = new Vue({
         el: '#clock',
         data: {
@@ -514,11 +439,13 @@
     var week = ['星期天', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'];
     var timerID = setInterval(updateTime, 1000);
     updateTime();
+
     function updateTime() {
         var cd = new Date();
         clock.time = zeroPadding(cd.getHours(), 2) + ':' + zeroPadding(cd.getMinutes(), 2) + ':' + zeroPadding(cd.getSeconds(), 2);
         clock.date = zeroPadding(cd.getFullYear(), 4) + '-' + zeroPadding(cd.getMonth() + 1, 2) + '-' + zeroPadding(cd.getDate(), 2) + ' ' + week[cd.getDay()];
     };
+
     function zeroPadding(num, digit) {
         var zero = '';
         for (var i = 0; i < digit; i++) {

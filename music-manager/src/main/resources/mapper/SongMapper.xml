@@ -9,6 +9,7 @@
     <result column="songFile" jdbcType="VARCHAR" property="songfile" />
     <result column="photoImage" jdbcType="VARCHAR" property="photoimage" />
     <result column="TypeID" jdbcType="VARCHAR" property="typeid" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -69,7 +70,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    songID, songName, singerID, votes, songFile, photoImage, TypeID
+    songID, songName, singerID, votes, songFile, photoImage, TypeID, create_time
   </sql>
   <select id="selectByExample" parameterType="com.music.manager.pojo.SongExample" resultMap="BaseResultMap">
     select
@@ -104,10 +105,10 @@
   <insert id="insert" parameterType="com.music.manager.pojo.Song">
     insert into song (songID, songName, singerID, 
       votes, songFile, photoImage, 
-      TypeID)
+      TypeID, create_time)
     values (#{songid,jdbcType=VARCHAR}, #{songname,jdbcType=VARCHAR}, #{singerid,jdbcType=VARCHAR}, 
       #{votes,jdbcType=VARCHAR}, #{songfile,jdbcType=VARCHAR}, #{photoimage,jdbcType=VARCHAR}, 
-      #{typeid,jdbcType=VARCHAR})
+      #{typeid,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.music.manager.pojo.Song">
     insert into song
@@ -133,6 +134,9 @@
       <if test="typeid != null">
         TypeID,
       </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="songid != null">
@@ -155,6 +159,9 @@
       </if>
       <if test="typeid != null">
         #{typeid,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
@@ -188,6 +195,9 @@
       <if test="record.typeid != null">
         TypeID = #{record.typeid,jdbcType=VARCHAR},
       </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -201,7 +211,8 @@
       votes = #{record.votes,jdbcType=VARCHAR},
       songFile = #{record.songfile,jdbcType=VARCHAR},
       photoImage = #{record.photoimage,jdbcType=VARCHAR},
-      TypeID = #{record.typeid,jdbcType=VARCHAR}
+      TypeID = #{record.typeid,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -227,6 +238,9 @@
       <if test="typeid != null">
         TypeID = #{typeid,jdbcType=VARCHAR},
       </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
     </set>
     where songID = #{songid,jdbcType=VARCHAR}
   </update>
@@ -237,7 +251,8 @@
       votes = #{votes,jdbcType=VARCHAR},
       songFile = #{songfile,jdbcType=VARCHAR},
       photoImage = #{photoimage,jdbcType=VARCHAR},
-      TypeID = #{typeid,jdbcType=VARCHAR}
+      TypeID = #{typeid,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
     where songID = #{songid,jdbcType=VARCHAR}
   </update>
 </mapper>

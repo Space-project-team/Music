@@ -7,12 +7,12 @@ public interface ISingerService {
     /**
      * 用户歌曲信息列表-分页
      */
-    BaseResult getSingerList(Integer pageNum, Integer pageSize);
+    BaseResult getSingerList(SingerQuery singerQuery);
 
     /**
      * 男女歌手分页
      * */
-    BaseResult getSexSingerList(String sex,Integer pageNum, Integer pageSize);
+    BaseResult getSexSingerList(SingerQuery singerQuery);
 
     /**
      * 日韩男女歌手分页
@@ -27,4 +27,10 @@ public interface ISingerService {
      * @return
      */
     BaseResult getGroupSingerList(SingerQuery singerQuery);
+
+    /**
+     * 获取歌手总数
+     * @return
+     */
+    Integer getSingerCount();
 }

@@ -121,7 +121,7 @@
             <div id="col10" class="dengluzhuce">
                 <a class="mymusic" href="${ctx}/mymusic" target="_blank">我的音乐</a>
                 <a class="mymusic" href="${ctx}/mymusic" target="_blank">您是第<span
-                        id="user_number" style="font-size:20px;color:red;text-align:center;padding:0;"> &nbsp</span>位用户</a>
+                        id="user_number" style="font-size:20px;color:red;text-align:center;padding:0;"> 208 &nbsp</span>位用户</a>
                 <span class="mymusic">|</span>
                 <img id="touxiang" src="${ctx}/images/touxiang.png" width="40px" height="40px"
                      style="display: inline-block; width: 40px;height: 40px;border:0;border-radius: 40px;margin-bottom: 5px;">
@@ -446,7 +446,7 @@
 <script src="${ctx}/js/jquery.validate.min.js"></script>
 <script src="${ctx}/js/tools.js"></script>
 <script src="${ctx}/js/jquery.cookie.js"></script>
-<script type="text/javascript" src="js/vue.min.js"></script>
+<script type="text/javascript" src="${ctx}/js/vue.min.js"></script>
 
 <script type="text/javascript">
 
@@ -467,20 +467,28 @@
     });//已在mymusic中注释
 
 
-    //
+   //
     //
     //            获取榜单
     //
     //
+    //加载总页数
+    var totals;
+    var page;
+    var pages;
     $.ajax({
         url: "${ctx}/musicLink/getMusicLinkList",
         type: "GET",
         data:{
             page:1,
-            pageSize:30
+            pageSize:10
         },
         success: function (data) {
             if (data.code == 200) {
+                page = data.pageInfo.pageNum;
+                totals = data.pageInfo.total;
+                pages = data.pageInfo.pages;
+
                 $(".jDian1").click(function () {//点击调用fn（）方法，并传入14，下方以此类推
                     fn(14);
                 });
@@ -533,17 +541,18 @@
 
                 $("#user_number").html($.cookie("user_id"));
 
-                function fn(i) {//调用方法，更改cookie的信息，并跳转到播放页面
-                    $.cookie("song_link", data.pageInfo.list[i].songfile, {expires: 7, path: "/"});
-                    $.cookie("song_name", data.pageInfo.list[i].songname, {expires: 7, path: "/"});
-                    $.cookie("song_singer", data.pageInfo.list[i].singerid, {expires: 7, path: "/"});
-                    $.cookie("song_photo", data.pageInfo.list[i].photoimage, {expires: 7, path: "/"});
-                    window.open("http://localhost:9091/music-manager/QQmusic");
+                function fn(j) {
+                    $.cookie("song_link", data.pageInfo.list[j].songfile, {expires: 7, path: "/"});
+                    $.cookie("song_name", data.pageInfo.list[j].songname, {expires: 7, path: "/"});
+                    $.cookie("song_singer", data.pageInfo.list[j].singerid, {expires: 7, path: "/"});
+                    $.cookie("song_photo", data.pageInfo.list[j].photoimage, {expires: 7, path: "/"});
+                    window.location.href = "http://localhost:9091/music-manager/QQmusic.html";
                 }
+
             }
         },
-        error: function (data) {
-            alert(JSON.stringify(data));
+        error: function () {
+            alert("该网站正在更新,非常抱歉!");
         }
     })
 

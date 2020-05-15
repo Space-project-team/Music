@@ -17,13 +17,14 @@ public interface IMusicLinkService{
     BaseResult getMusicList(Integer pageNum,Integer pageSize);
 
     //歌曲搜索功能
-    BaseResult getMusicByMusicName(String songName);
+    BaseResult getMusicByMusicName(String songName,Integer pageNum,Integer pageSize);
     //收藏歌曲
     BaseResult addMusicCollect(User user, String songName,Integer mid);
     //获取top前50歌曲
     BaseResult getTOPLink(Integer pageNum, Integer pageSize);
     //模板
-    BaseResult  ModuleMusic(Integer pageNum, Integer pageSize,String SongType);
-    //获取MusicLink的总数
-    Integer getMusicLinkCount1();
+    BaseResult  ModuleMusic(Integer pageNum, Integer pageSize,String SongType,String time);
+    //获取song总数
+    Integer getSongLinkCount();
+
 }

@@ -11,7 +11,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="${ctx}/images/logo1.png">
     <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
+    <link rel="stylesheet" href="${ctx}/layui-v2.5.5/layui/css/layui.css" media="all">
 </head>
 <body style="user-select: none">
 <div class="search1">
@@ -34,6 +34,9 @@
 							</span>
                         </div><!-- /input-group -->
                     </div><!-- /.col-lg-6 -->
+                    <div id="clock">
+                        <p class="time">{{ time }}</p>
+                    </div>
                 </div><!-- /.row -->
             </form>
         </div>
@@ -66,17 +69,18 @@
             </div>
         </div>
     </div>
-    <div class="col-sm-12">
-        <ul id="pagintor"></ul>
-    </div>
+
+    <div id="page" style="text-align: center;"></div>
+
 </div>
 </div>
+<script src="${ctx}/layui-v2.5.5/layui/layui.js"></script>
 <script src="${ctx}/js/jquery.min.js?v=2.1.4"></script>
 <script src="${ctx}/js/bootstrap-paginator.min.js"></script>
 <script src="${ctx}/js/jquery.validate.min.js"></script>
 <script src="${ctx}/js/tools.js"></script>
 <script src="${ctx}/js/jquery.cookie.js"></script>
-
+<script type="text/javascript" src="${ctx}/js/vue.min.js"></script>
 
 <script type="text/javascript">
 
@@ -86,15 +90,30 @@
               rearchSong($('#test').attr("action"));
           }
       }); */
-    getList2("songName=" + $.cookie("song_search"));//调用getlist2方法
+    getList2("songName=" + $.cookie("song_search"),1,10);//调用getlist2方法
 
-    function getList2(lll) {
+
+    //加载总页数
+    var totals;
+    var page;
+    var pages;
+
+    function getList2(lll,pageNum,pageSize) {
         $.ajax({
             url: "http://localhost:9091/music-manager/musicLink/getSongRearch",//后台地址
             type: "POST",//post方式请求
-            data: lll,//将数据通过lll在调用的时候传入
+            data: {
+                songName:111,
+                pageNum:pageNum,
+                pageSize:pageSize
+            },//将数据通过lll在调用的时候传入
             success: function (data) {
                 if (data.code == 200) {
+                    //分页参数
+                    page = data.pageInfo.pageNum;
+                    totals = data.pageInfo.total;
+                    pages = data.pageInfo.pages;
+
                     var search = document.getElementById("songName").value;//获取搜索框内的文本
                     $.cookie("song_search", search, {expires: 7, path: "/"});//将文本存入cookie
                     var str = '';
@@ -147,6 +166,42 @@
 
 
                     $("table tbody").html(str);
+
+                    layui.use(['laypage', 'jquery'], function () {
+
+                        var laypage = layui.laypage, $ = layui.$;
+
+                        laypage.render({
+                            elem: 'page'
+                            //注意，这里的 elem 指向存放分页的容器，值可以是容器ID、DOM对象。
+                            //例1. elem: 'idName' 注意：如果这么写，这里不能加 # 号
+                            //例2. elem: document.getElementById('idName')
+                            //例3. elem: $("#idName")
+                            , count: totals //数据总数，从服务端得到
+                            , limit: 10                      //默认每页显示条数
+                            , limits: [10, 20, 30]			//可选每页显示条数
+                            , curr: page                        //起始页
+                            , groups: 5                      //连续页码个数
+                            , prev: '上一页'                 //上一页文本
+                            , netx: '下一页'                 //下一页文本
+                            , first: 1                      //首页文本
+                            , last: pages                     //尾页文本
+                            , layout: ['prev', 'page', 'next', 'limit', 'refresh', 'skip']
+                            //跳转页码时调用
+                            , jump: function (obj, first) { //obj为当前页的属性和方法，第一次加载first为true
+                                //非首次加载 do something
+                                if (!first) {
+                                    //清空以前加载的数据
+                                    $('tbody').empty();
+                                    //调用加载函数加载数据
+                                    getList2("songName=" + $.cookie("song_search"),obj.curr, obj.limit);
+                                }
+                            }
+                        });
+                    })
+
+
+
                 } else if (data.code == 400) {
                     alert("搜索不到歌曲！");
                 }
@@ -184,6 +239,35 @@
         })
     }//已在mymusic中注释
 
+    //
+    //
+    //           数字时钟
+    //
+    //
+    var clock = new Vue({
+        el: '#clock',
+        data: {
+            time: '',
+            date: ''
+        }
+    });
+    var week = ['星期天', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'];
+    var timerID = setInterval(updateTime, 1000);
+    updateTime();
+
+    function updateTime() {
+        var cd = new Date();
+        clock.time = zeroPadding(cd.getHours(), 2) + ':' + zeroPadding(cd.getMinutes(), 2) + ':' + zeroPadding(cd.getSeconds(), 2);
+        clock.date = zeroPadding(cd.getFullYear(), 4) + '-' + zeroPadding(cd.getMonth() + 1, 2) + '-' + zeroPadding(cd.getDate(), 2) + ' ' + week[cd.getDay()];
+    };
+
+    function zeroPadding(num, digit) {
+        var zero = '';
+        for (var i = 0; i < digit; i++) {
+            zero += '0';
+        }
+        return (zero + num).slice(-digit);
+    }
 
 </script>
 

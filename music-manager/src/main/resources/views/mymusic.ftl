@@ -110,6 +110,9 @@
 							</span>
                             </div><!-- /input-group -->
                         </div><!-- /.col-lg-6 -->
+                        <div id="clock">
+                            <p class="time">{{ time }}</p>
+                        </div>
                     </div><!-- /.row -->
                 </form>
             </div>
@@ -241,9 +244,12 @@
                 </div>
             </div>
 
-            <div class="col-sm-12">
+            <div style="position: relative;bottom: 0;left: 50%;" class="col-sm-12">
                 <ul id="pagintor"></ul>
             </div>
+
+            <div id="pagination"></div>
+
         </div>
 
     </div>
@@ -259,7 +265,10 @@
 <script src="${ctx}/js/tools.js"></script>
 <script src="${ctx}/js/jquery.cookie.js"></script>
 <script src="${ctx}/js/doT.min.js"></script>
-
+<!--分页-->
+<link rel="stylesheet" href="${ctx}/css/pagination.css" />
+<script type="text/javascript" src="${ctx}/js/jquery.pagination.js"></script>
+<script type="text/javascript" src="${ctx}/js/vue.min.js"></script>
 <script type="text/javascript">
 
 
@@ -276,21 +285,23 @@
             denglu($('#test').attr("action"), $('#test').serialize());//调用tools文件里的denglu方法，详情见tools
         }
     });
+    $("#user_number").html($.cookie("user_id"));
+
     $(document).ready(function () {
-        pageTools(1, 30);//tools里的方法
-        getList(1,10);
+        getList(1);
     });
+
     /*
     * 获取歌曲信息 -分页
     * */
-    function getList(pageNum,pageSize) {
+    function getList(pageNum) {
         $.ajax({
             url: "http://localhost:9091/music-manager/myMusic/getMyMusicList",      //后台获取整个数据库方法的地址
             type: "POST",
             data: {
                 userName: $.cookie("user_name"),
                 pageNum: pageNum,
-                pageSize:pageSize
+                pageSize:20
             },
             success: function (data) {
                 if (data.code==200) {
@@ -298,8 +309,6 @@
                     /* data.data.list.length对应respon.map.list.length */
                     for (var i = 0; i < data.pageInfo.list.length; i++) {
                         var a = i + 1;
-
-
                         str += '<tr>'
                             + '<td class="number111"  style="padding: 14px;border-bottom: 1px solid #eee; width: 100px;text-align: center;">' + a + '</td>'
                             + '<td  style="padding: 14px;border-bottom: 1px solid #eee;width: 600px;text-align: center;"><a class=sName' + i + ' href="#">' + data.pageInfo.list[i].mySongname + '</a>' +
@@ -326,7 +335,8 @@
                     }
 
                     function fn(j) {//
-                        $.cookie("ml_id", data.pageInfo.list[j].mySonglink, {expires: 7, path: "/"});
+                        console.log(data.pageInfo.list[j].myId);
+                        $.cookie("my_id", data.pageInfo.list[j].myId, {expires: 7, path: "/"});
                         $.cookie("song_link", data.pageInfo.list[j].mySonglink, {expires: 7, path: "/"});//
                         $.cookie("song_name", data.pageInfo.list[j].mySongname, {expires: 7, path: "/"});//   保存后台传入的相关信息和链接进入cookie，在播放页面直接将cookie的值调用出来，
                         $.cookie("song_singer", data.pageInfo.list[j].mySinger, {expires: 7, path: "/"});//    然后替换原有的信息和播放路径，完成点击歌曲播放功能
@@ -336,15 +346,13 @@
 
                     function fn1(j) {
 
-                        $.cookie("ml_id", data.pageInfo.list[j].myId, {expires: 7, path: "/"});      //将歌曲id保存下来，点击删除按钮时，将值传入后台，删除数据库
+                        $.cookie("my_id", data.pageInfo.list[j].myId, {expires: 7, path: "/"});      //将歌曲id保存下来，点击删除按钮时，将值传入后台，删除数据库
                     }
-
-
                     $("table tbody").html(str);
-
-                } else {   //如果后台返回202则提示歌曲已收藏
+                }else {//如果后台返回202则提示歌曲已收藏
                     alert("您还没有收藏歌曲哦，快去列表收藏吧！");
                 }
+
             },
             error: function (data) {
                 alert(JSON.stringify(data));//连接失败弹窗
@@ -352,13 +360,15 @@
         })
     }
 
+
+
     function dle() {//删除已收藏歌曲的方法
         $.ajax({
             async: false,//给ajax嵌套执行，所以需设定false
             url: "http://localhost:9091/music-manager/myMusic/deleteMyMusic",//后台地址
             type: "post",//post请求方式
             data: {
-                mid: $.cookie("ml_id"),//传入歌曲id
+                mid: $.cookie("my_id"),//传入歌曲id
                 userName: $.cookie("user_name"),//传入用户名
             },
             success: function (data) {//webspond
@@ -376,6 +386,36 @@
 
         })
     }
+    //
+    //
+    //           数字时钟
+    //
+    //
+    var clock = new Vue({
+        el: '#clock',
+        data: {
+            time: '',
+            date: ''
+        }
+    });
+    var week = ['星期天', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'];
+    var timerID = setInterval(updateTime, 1000);
+    updateTime();
+
+    function updateTime() {
+        var cd = new Date();
+        clock.time = zeroPadding(cd.getHours(), 2) + ':' + zeroPadding(cd.getMinutes(), 2) + ':' + zeroPadding(cd.getSeconds(), 2);
+        clock.date = zeroPadding(cd.getFullYear(), 4) + '-' + zeroPadding(cd.getMonth() + 1, 2) + '-' + zeroPadding(cd.getDate(), 2) + ' ' + week[cd.getDay()];
+    };
+
+    function zeroPadding(num, digit) {
+        var zero = '';
+        for (var i = 0; i < digit; i++) {
+            zero += '0';
+        }
+        return (zero + num).slice(-digit);
+    }
+
 </script>
 
 </body>
