@@ -48,7 +48,6 @@ function getModuleMusic(url,pageNum,pageSize) {
                 }
 
                 function fn(j) {
-                    console.log(data.pageInfo.list[j].mlId);
                     $.cookie("song_link", data.pageInfo.list[j].songfile, {expires: 7, path: "/"});
                     $.cookie("song_name", data.pageInfo.list[j].songname, {expires: 7, path: "/"});
                     $.cookie("song_singer", data.pageInfo.list[j].singerid, {expires: 7, path: "/"});
@@ -57,7 +56,6 @@ function getModuleMusic(url,pageNum,pageSize) {
                 }
 
                 function fn1(j) {
-                    console.log(data.data.list[j].mlId);
                     $.cookie("song_id", data.data.list[j].songid, {expires: 7, path: "/"});
                     $.cookie("song_name", data.data.list[j].songname, {expires: 7, path: "/"});
                 }
@@ -98,7 +96,7 @@ function getModuleMusic(url,pageNum,pageSize) {
                 });
             })
         },
-        error: function (data) {
+        error: function () {
             alert("该网站正在更新,非常抱歉!");
         }
     })

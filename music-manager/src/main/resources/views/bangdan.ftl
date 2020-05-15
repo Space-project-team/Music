@@ -294,10 +294,10 @@
             success: function (data) {
                 console.log(data);
                 if (data.code == 200) {
+
                     page = data.pageInfo.pageNum;
                     totals = data.pageInfo.total;
                     pages = data.pageInfo.pages;
-                    console.log(totals);
                     //加载后台返回的List集合数据
                     var str = '';
                     for (var i = 0; i < data.pageInfo.list.length; i++) {
@@ -309,8 +309,39 @@
                             + '<td style="padding: 14px;border-bottom: 1px solid #eee;width: 300px;text-align: center;"><a href="#">' + data.pageInfo.list[i].singerid + '</a></td>'
                             + '</tr>';
 
+                        function dd(i) {
+                            $("table").on('click', '.sName' + i, function () {
+                                fn(i);
+                            });
+                        }
+
+                        dd(i);
+
+                        function play1(i) {
+                            $("table").on('click', '#sFav' + i, function () {
+                                fn1(i);
+                                fav(i);
+                            });
+                        }
+
+                        play1(i);
+                    }
+
+                    function fn(j) {
+                        $.cookie("song_link", data.pageInfo.list[j].songfile, {expires: 7, path: "/"});
+                        $.cookie("song_name", data.pageInfo.list[j].songname, {expires: 7, path: "/"});
+                        $.cookie("song_singer", data.pageInfo.list[j].singerid, {expires: 7, path: "/"});
+                        $.cookie("song_photo", data.pageInfo.list[j].photoimage, {expires: 7, path: "/"});
+                        window.location.href = "http://localhost:9091/music-manager/QQmusic.html";
+                    }
+
+                    function fn1(j) {
+                        $.cookie("song_id", data.pageInfo.list[j].songid, {expires: 7, path: "/"});
+                        $.cookie("song_name", data.pageInfo.list[j].songname, {expires: 7, path: "/"});
+                    }
 
                         $("table tbody").html(str);
+
                         layui.use(['laypage', 'jquery'], function () {
 
                             var laypage = layui.laypage, $ = layui.$;
@@ -352,21 +383,46 @@
         });
     }
 
-  /*  window.onload = function(){
-        if(document.cookie.indexOf("exec=1")==-1){
-            //先初始化加载首页，十条数据
-            showRecord(1,10);
-            document.cookie="exec=1";//内存cookie，浏览器重启前只会执行一次，如果你要再指定时间内都执行，自己增加expires设置有效时间
+    //已在mymusic中注释
+    if ($.cookie("user_name") != undefined && $.cookie("user_name") != "1") {
+        $("#userName").text("账号：" + $.cookie("user_name"));
+        $("#zhuXiao").text("注销");
+        document.getElementById("touxiang").src = "images/touxiang2.jpg";
+        $("#display1").attr("style", "display:none;");
+    }//已在mymusic中注释
+    $('#test').validate({
+        submitHandler: function () {
+            denglu($('#test').attr("action"), $('#test').serialize());
         }
-    };
-*/
+    });//已在mymusic中注释
+    function fav(j) {
+        $.ajax({
+            async: false,
+            url: "/musicLink/addMusicCollect",
+            type: "post",
+            data: {
+                "songName": $.cookie("song_name"),
+                "song_id": $.cookie("song_id"),
+                "user_name": $.cookie("user_name"),
+                "user_password": $.cookie("user_password"),
+            },
+            success: function (data) {//webspond
+                if (data.statusCode == "200") {
+
+                    // $('#sFav'+j).removeClass('glyphicon-heart');
+                    $('#sFav' + j).css('color', '#ff69b4');
+                    alert("歌曲收藏成功，请去我的音乐查看");
 
 
+                    //location.reload();
+                } else {
+                    alert("亲！您已经收藏这首歌了哦，快去我的音乐中查看吧");
+                }
 
+            },
 
-
-
-/*
+        })
+    }//已在mymusic中注释
 
     //下方为时钟
     $("#search1").click(function () {
@@ -393,7 +449,7 @@
             zero += '0';
         }
         return (zero + num).slice(-digit);
-    }*/
+    }
 </script>
 </body>
 </html>

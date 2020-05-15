@@ -472,6 +472,10 @@
     //            获取榜单
     //
     //
+    //加载总页数
+    var totals;
+    var page;
+    var pages;
     $.ajax({
         url: "${ctx}/musicLink/getMusicLinkList",
         type: "GET",
@@ -481,6 +485,10 @@
         },
         success: function (data) {
             if (data.code == 200) {
+                page = data.pageInfo.pageNum;
+                totals = data.pageInfo.total;
+                pages = data.pageInfo.pages;
+
                 $(".jDian1").click(function () {//点击调用fn（）方法，并传入14，下方以此类推
                     fn(14);
                 });
@@ -534,17 +542,17 @@
                 $("#user_number").html($.cookie("user_id"));
 
                 function fn(j) {
-                    console.log(data.pageInfo.list[j].mlId);
-                    $.cookie("song_link", data.pageInfo.list[j].mlSonglink, {expires: 7, path: "/"});
-                    $.cookie("song_name", data.pageInfo.list[j].mlSongname, {expires: 7, path: "/"});
-                    $.cookie("song_singer", data.pageInfo.list[j].mlSinger, {expires: 7, path: "/"});
-                    $.cookie("song_photo", data.pageInfo.list[j].mlPhotolink, {expires: 7, path: "/"});
-                    window.location.href = "http://localhost:9091/music-manager/QQmusic";
+                    $.cookie("song_link", data.pageInfo.list[j].songfile, {expires: 7, path: "/"});
+                    $.cookie("song_name", data.pageInfo.list[j].songname, {expires: 7, path: "/"});
+                    $.cookie("song_singer", data.pageInfo.list[j].singerid, {expires: 7, path: "/"});
+                    $.cookie("song_photo", data.pageInfo.list[j].photoimage, {expires: 7, path: "/"});
+                    window.location.href = "http://localhost:9091/music-manager/QQmusic.html";
                 }
+
             }
         },
-        error: function (data) {
-            alert(JSON.stringify(data));
+        error: function () {
+            alert("该网站正在更新,非常抱歉!");
         }
     })
 

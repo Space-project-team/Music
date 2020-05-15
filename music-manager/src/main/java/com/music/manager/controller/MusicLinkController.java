@@ -53,8 +53,8 @@ public class MusicLinkController {
 	// 歌曲搜索功能
 	@RequestMapping(value = "getSongRearch",method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
-	public BaseResult getMusicByMusicName(String songName){
-		return  musicLinkService.getMusicByMusicName(songName);
+	public BaseResult getMusicByMusicName(String songName,Integer pageNum,Integer pageSize){
+		return  musicLinkService.getMusicByMusicName(songName,pageNum,pageSize);
 	}
 
 	/**

@@ -107,7 +107,14 @@ public class MusicLinkServicelmpl implements IMusicLinkService {
          * @return
          */
         @Override
-        public BaseResult getMusicByMusicName (String songName){
+        public BaseResult getMusicByMusicName (String songName,Integer pageNum,Integer pageSize){
+
+            if (StringUtils.isEmpty(pageNum) || StringUtils.isEmpty(pageSize)) {
+                pageNum = 1;
+                pageSize = 10;
+            }
+            //开启分页
+            PageHelper.startPage(pageNum,pageSize);
             //创建查询对象
             SongExample songExample = new SongExample();
             //设置查询先后顺序
@@ -128,9 +135,9 @@ public class MusicLinkServicelmpl implements IMusicLinkService {
                 Singer singer = singerMapper.selectByPrimaryKey(song.getSingerid());
                 song.setSingerid(singer.getSingername());
             }
-            PageHelper.startPage(1, 30);
             PageInfo<Song> songPageInfo = new PageInfo<>(songList);
-            songPageInfo.setTotal(getSongLinkCount());
+            //设置总数
+            songPageInfo.setTotal(songList.size());
             return BaseResult.success(songPageInfo);
         }
 
