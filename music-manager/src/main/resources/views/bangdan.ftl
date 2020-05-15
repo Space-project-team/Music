@@ -301,231 +301,237 @@
 
     $(function () {
         $.ajax({
-            type:"get",
-            url:ctx+"/musicLink/getMusicLinkCount1",
+            type: "get",
+            url: ctx + "/musicLink/getMusicLinkCount1",
             async: true,
-            success: function(data) {
+            success: function (data) {
                 console.log(data);
-                layui.use('laypage', function(){
+                layui.use('laypage', function () {
                     var laypage = layui.laypage;
                     //执行一个laypage实例
                     laypage.render({
                         elem: 'test1' //注意，这里的 test1 是 ID，不用加 # 号
-                        ,count: data //数据总数，从服务端得到
-                        ,layout: ['count', 'prev', 'page', 'next', 'limit', 'skip']
-                        ,jump: function(obj, first){
-                        //obj包含了当前分页的所有参数，比如：
-                        console.log(obj.curr); //得到当前页，以便向服务端请求对应页的数据。
-                        console.log(obj.limit); //得到每页显示的条数
+                        , count: data //数据总数，从服务端得到
+                        , layout: ['count', 'prev', 'page', 'next', 'limit', 'skip']
+                        , jump: function (obj, first) {
+                            //obj包含了当前分页的所有参数，比如：
+                            console.log(obj.curr); //得到当前页，以便向服务端请求对应页的数据。
+                            console.log(obj.limit); //得到每页显示的条数
 
-                        //首次不执行
-                        if(!first){
-                            //do something
+                            //首次不执行
+                            if (!first) {
+                                //do something
+                            }
+                            //第二个ajax获取当前页请求数据
+                            $.ajax({
+                                type: "post",
+                                url: "/autocarrier/hdGoodsPublish/goodspage",
+                                async: true,
+                                data: {
+                                    curr: obj.curr,
+                                    limit: obj.limit
+                                },
+                                success: function (list) {
+                                    console.log(list);
+                                    dataobj = JSON.parse(list);
+                                    detail(dataobj);//调用函数
+                                }
+                            });
                         }
-                        //第二个ajax获取当前页请求数据
-                        $.ajax({
-                            type: "post",
-                            url: "/autocarrier/hdGoodsPublish/goodspage",
-                            async: true,
-                            data:{
-                            curr:obj.curr,
-                                limit:obj.limit
-                        },
-                        success: function(list) {
-                            console.log(list);
-                            dataobj=JSON.parse(list);
-                            detail(dataobj);//调用函数
-                        }
-                    });
-                    }
                     })
+                })
+
+                layui.use('laypage', function () {
+                    var laypage = layui.laypage;
+
+                    //执行一个laypage实例
+                    laypage.render({
+                        elem: 'test1' //注意，这里的 test1 是 ID，不用加 # 号
+                        , count: 50 //数据总数，从服务端得到
+
+                    });
+                });
+
+
+                $(document).ready(function () {
+                    pageTools(1, 10);//tools里的方法
+                    getList(1, 10);
+                });
+                $("#user_number").html($.cookie("user_id"));
+
+                function getList(pageNum, pageSize) {
+                    $.ajax({
+                        url: "http://localhost:9091/music-manager/musicLink/getMusicLinkList",
+                        type: "GET",
+                        data: {
+                            pageNum: pageNum,
+                            pageSize: pageSize
+                        },
+                        success: function (data) {
+                            if (data.code == 200) {
+                                var str = '';
+                                for (var i = 0; i < data.pageInfo.list.length; i++) {
+                                    var a = i + 1;
+                                    var mlid = data.pageInfo.list[i].mlId;
+                                    var oobject = data.pageInfo.list[i];
+                                    var obj = JSON.stringify(oobject).replace(/"/g, "&quot;");
+                                    str += '<tr>'
+                                        + '<td class="number111"  style="padding: 14px;border-bottom: 1px solid #eee; width: 100px;text-align: center;">' + ((data.pageInfo.pageNum - 1) * 10 + a) + '</td>'
+                                        + '<td  style="padding: 14px;border-bottom: 1px solid #eee;width: 600px;text-align: center;"><a class=sName' + mlid + ' href="#" onclick="dd(' + obj + ')">' + data.pageInfo.list[i].mlSongname + '</a>' +
+                                        '<span class="glyphicon glyphicon-heart" id=sFav' + mlid + ' style="color: #eee;float: right;" onclick="play1(' + obj + ')"></span></td>'
+                                        + '<td style="padding: 14px;border-bottom: 1px solid #eee;width: 300px;text-align: center;"><a href="#">' + data.pageInfo.list[i].mlSinger + '</a></td>'
+                                        + '</tr>';
+
+                                    // function dd(i) {
+                                    //     $("table").on('click', '.sName' + i, function () {
+                                    //         fn(i);
+                                    //     });
+                                    // }
+                                    //
+                                    // dd(i);
+
+                                    // function play1(mlid,i) {
+                                    //     $("table").on('click', '#sFav' + mlid, function () {
+                                    //         fn1(i);
+                                    //         fav(i);
+                                    //     });
+                                    // }
+                                    //
+                                    // play1(mlid,i);
+                                }
+
+                                <#--function fn(j) {-->
+                                <#--    console.log(data.pageInfo.list[j].mlId);-->
+                                <#--    $.cookie("song_link", data.pageInfo.list[j].mlSonglink, {expires: 7, path: "/"});-->
+                                <#--    $.cookie("song_name", data.pageInfo.list[j].mlSongname, {expires: 7, path: "/"});-->
+                                <#--    $.cookie("song_singer", data.pageInfo.list[j].mlSinger, {expires: 7, path: "/"});-->
+                                <#--    $.cookie("song_photo", data.pageInfo.list[j].mlPhotolink, {expires: 7, path: "/"});-->
+                                <#--    window.location.href = "${ctx}/QQmusic";-->
+                                <#--}-->
+
+                                function fn(j) {
+                                    console.log(data.pageInfo.list[j].mlId);
+                                    $.cookie("song_link", data.pageInfo.list[j].mlSonglink, {expires: 7, path: "/"});
+                                    $.cookie("song_name", data.pageInfo.list[j].mlSongname, {expires: 7, path: "/"});
+                                    $.cookie("song_singer", data.pageInfo.list[j].mlSinger, {expires: 7, path: "/"});
+                                    $.cookie("song_photo", data.pageInfo.list[j].mlPhotolink, {expires: 7, path: "/"});
+                                    window.location.href = "http://localhost:9091/music-manager/QQmusic";
+                                }
+
+                                <#--function fn1(j) {-->
+                                <#--    console.log(data.pageInfo.list[j].mlId);-->
+                                <#--    $.cookie("song_id", data.pageInfo.list[j].mlId, {expires: 7, path: "/"});-->
+                                <#--    $.cookie("song_name", data.pageInfo.list[j].mlSongname, {expires: 7, path: "/"});-->
+                                <#--}-->
+
+
+                            }
+                            $("table tbody").html(str);
+                        },
+                        error: function (data) {
+                            alert("网站正在更新,非常抱歉!");
+                        }
+                    })
+                }//已在mymusic中注释
+
+                function dd(obj) {
+                    fn(obj);
+                }
+
+                // dd(i);
+
+                function play1(obj) {
+                    fn1(obj);
+                    fav(obj);
+                }
+
+                // play1(obj);
+
+                function fn(obj) {
+                    console.log(obj.mlId);
+                    $.cookie("song_link", obj.mlSonglink, {expires: 7, path: "/"});
+                    $.cookie("song_name", obj.mlSongname, {expires: 7, path: "/"});
+                    $.cookie("song_singer", obj.mlSinger, {expires: 7, path: "/"});
+                    $.cookie("song_photo", obj.mlPhotolink, {expires: 7, path: "/"});
+                    window.location.href = "${ctx}/QQmusic";
+                }
+
+                function fn1(obj) {
+                    console.log(obj.mlId);
+                    $.cookie("song_id", obj.mlId, {expires: 7, path: "/"});
+                    $.cookie("song_name", obj.mlSongname, {expires: 7, path: "/"});
+                }
+
+                if ($.cookie("user_name") != undefined && $.cookie("user_name") != "1") {
+                    $("#userName").text("账号：" + $.cookie("user_name"));
+                    $("#zhuXiao").text("注销");
+                    document.getElementById("touxiang").src = "${ctx}/images/touxiang2.jpg";
+                    $("#display1").attr("style", "display:none;");
+                }//已在mymusic中注释
+                $('#test').validate({
+                    submitHandler: function () {
+                        denglu($('#test').attr("action"), $('#test').serialize());
+                    }
+                });//已在mymusic中注释
+                function fav(obj) {
+                    $.ajax({
+                        async: false,
+                        url: "http://localhost:9091/music-manager/musicLink/addMusicCollect",
+                        type: "post",
+                        data: {
+                            songName: $.cookie("song_name"),
+                            mid: $.cookie("song_id")
+                        },
+                        success: function (data) {//webspond
+                            if (data.code == 200) {
+
+                                // $('#sFav'+j).removeClass('glyphicon-heart');
+                                $('#sFav' + obj.mlId).css('color', '#ff69b4');
+                                alert("歌曲收藏成功，请去我的音乐查看");
+
+
+                                //location.reload();
+                            } else {
+                                alert("亲！您已经收藏这首歌了哦，快去我的音乐中查看吧");
+                            }
+
+                        },
+
+                    })
+                }//已在mymusic中注释
+
+
+                //下方为时钟
+                $("#search1").click(function () {
+                    window.open("http://localhost:9091/music-manager/musicSearchTest");//给登录按钮一个超链接
+                });
+                var clock = new Vue({
+                    el: '#clock',
+                    data: {
+                        time: '',
+                        date: ''
+                    }
+                });
+                var week = ['星期天', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'];
+                var timerID = setInterval(updateTime, 1000);
+                updateTime();
+
+                function updateTime() {
+                    var cd = new Date();
+                    clock.time = zeroPadding(cd.getHours(), 2) + ':' + zeroPadding(cd.getMinutes(), 2) + ':' + zeroPadding(cd.getSeconds(), 2);
+                    clock.date = zeroPadding(cd.getFullYear(), 4) + '-' + zeroPadding(cd.getMonth() + 1, 2) + '-' + zeroPadding(cd.getDate(), 2) + ' ' + week[cd.getDay()];
+                };
+
+                function zeroPadding(num, digit) {
+                    var zero = '';
+                    for (var i = 0; i < digit; i++) {
+                        zero += '0';
+                    }
+                    return (zero + num).slice(-digit);
+                }
+            },
+        })
     })
-    
-    layui.use('laypage', function(){
-        var laypage = layui.laypage;
-
-        //执行一个laypage实例
-        laypage.render({
-            elem: 'test1' //注意，这里的 test1 是 ID，不用加 # 号
-            ,count: 50 //数据总数，从服务端得到
-
-        });
-    });
-
-
-
-    $(document).ready(function () {
-        pageTools(1, 10);//tools里的方法
-        getList(1,10);
-    });
-    $("#user_number").html($.cookie("user_id"));
-    function getList(pageNum,pageSize) {
-        $.ajax({
-            url: "http://localhost:9091/music-manager/musicLink/getMusicLinkList",
-            type: "GET",
-            data: {
-                pageNum:pageNum,
-                pageSize:pageSize
-            },
-            success: function (data) {
-                if (data.code== 200) {
-                    var str = '';
-                    for (var i = 0; i < data.pageInfo.list.length; i++) {
-                        var a = i + 1;
-                        var mlid = data.pageInfo.list[i].mlId;
-                        var oobject = data.pageInfo.list[i];
-                        var obj = JSON.stringify(oobject).replace(/"/g,"&quot;");
-                        str += '<tr>'
-                            + '<td class="number111"  style="padding: 14px;border-bottom: 1px solid #eee; width: 100px;text-align: center;">' + ((data.pageInfo.pageNum - 1) * 10 + a) + '</td>'
-                            + '<td  style="padding: 14px;border-bottom: 1px solid #eee;width: 600px;text-align: center;"><a class=sName' + mlid + ' href="#" onclick="dd('+obj+')">' + data.pageInfo.list[i].mlSongname + '</a>' +
-                            '<span class="glyphicon glyphicon-heart" id=sFav' + mlid + ' style="color: #eee;float: right;" onclick="play1('+obj+')"></span></td>'
-                            + '<td style="padding: 14px;border-bottom: 1px solid #eee;width: 300px;text-align: center;"><a href="#">' + data.pageInfo.list[i].mlSinger + '</a></td>'
-                            + '</tr>';
-
-                        // function dd(i) {
-                        //     $("table").on('click', '.sName' + i, function () {
-                        //         fn(i);
-                        //     });
-                        // }
-                        //
-                        // dd(i);
-
-                        // function play1(mlid,i) {
-                        //     $("table").on('click', '#sFav' + mlid, function () {
-                        //         fn1(i);
-                        //         fav(i);
-                        //     });
-                        // }
-                        //
-                        // play1(mlid,i);
-                    }
-
-                    <#--function fn(j) {-->
-                    <#--    console.log(data.pageInfo.list[j].mlId);-->
-                    <#--    $.cookie("song_link", data.pageInfo.list[j].mlSonglink, {expires: 7, path: "/"});-->
-                    <#--    $.cookie("song_name", data.pageInfo.list[j].mlSongname, {expires: 7, path: "/"});-->
-                    <#--    $.cookie("song_singer", data.pageInfo.list[j].mlSinger, {expires: 7, path: "/"});-->
-                    <#--    $.cookie("song_photo", data.pageInfo.list[j].mlPhotolink, {expires: 7, path: "/"});-->
-                    <#--    window.location.href = "${ctx}/QQmusic";-->
-                    <#--}-->
-
-                    function fn(j) {
-                        console.log(data.pageInfo.list[j].mlId);
-                        $.cookie("song_link", data.pageInfo.list[j].mlSonglink, {expires: 7, path: "/"});
-                        $.cookie("song_name", data.pageInfo.list[j].mlSongname, {expires: 7, path: "/"});
-                        $.cookie("song_singer", data.pageInfo.list[j].mlSinger, {expires: 7, path: "/"});
-                        $.cookie("song_photo", data.pageInfo.list[j].mlPhotolink, {expires: 7, path: "/"});
-                        window.location.href = "http://localhost:9091/music-manager/QQmusic";
-                    }
-                    <#--function fn1(j) {-->
-                    <#--    console.log(data.pageInfo.list[j].mlId);-->
-                    <#--    $.cookie("song_id", data.pageInfo.list[j].mlId, {expires: 7, path: "/"});-->
-                    <#--    $.cookie("song_name", data.pageInfo.list[j].mlSongname, {expires: 7, path: "/"});-->
-                    <#--}-->
-
-
-                }
-                $("table tbody").html(str);
-            },
-            error: function (data) {
-                alert("网站正在更新,非常抱歉!");
-            }
-        })
-    }//已在mymusic中注释
-
-    function dd(obj) {
-            fn(obj);
-    }
-
-    // dd(i);
-
-    function play1(obj) {
-            fn1(obj);
-            fav(obj);
-    }
-
-    // play1(obj);
-
-    function fn(obj) {
-        console.log(obj.mlId);
-        $.cookie("song_link", obj.mlSonglink, {expires: 7, path: "/"});
-        $.cookie("song_name", obj.mlSongname, {expires: 7, path: "/"});
-        $.cookie("song_singer", obj.mlSinger, {expires: 7, path: "/"});
-        $.cookie("song_photo", obj.mlPhotolink, {expires: 7, path: "/"});
-        window.location.href = "${ctx}/QQmusic";
-    }
-
-    function fn1(obj) {
-        console.log(obj.mlId);
-        $.cookie("song_id", obj.mlId, {expires: 7, path: "/"});
-        $.cookie("song_name", obj.mlSongname, {expires: 7, path: "/"});
-    }
-
-    if ($.cookie("user_name") != undefined && $.cookie("user_name") != "1") {
-        $("#userName").text("账号：" + $.cookie("user_name"));
-        $("#zhuXiao").text("注销");
-        document.getElementById("touxiang").src = "${ctx}/images/touxiang2.jpg";
-        $("#display1").attr("style", "display:none;");
-    }//已在mymusic中注释
-    $('#test').validate({
-        submitHandler: function () {
-            denglu($('#test').attr("action"), $('#test').serialize());
-        }
-    });//已在mymusic中注释
-    function fav(obj) {
-        $.ajax({
-            async: false,
-            url: "http://localhost:9091/music-manager/musicLink/addMusicCollect",
-            type: "post",
-            data: {
-                songName: $.cookie("song_name"),
-                mid: $.cookie("song_id")
-            },
-            success: function (data) {//webspond
-                if (data.code == 200) {
-
-                    // $('#sFav'+j).removeClass('glyphicon-heart');
-                    $('#sFav' + obj.mlId).css('color', '#ff69b4');
-                    alert("歌曲收藏成功，请去我的音乐查看");
-
-
-                    //location.reload();
-                } else {
-                    alert("亲！您已经收藏这首歌了哦，快去我的音乐中查看吧");
-                }
-
-            },
-
-        })
-    }//已在mymusic中注释
-
-
-    //下方为时钟
-    $("#search1").click(function () {
-        window.open("http://localhost:9091/music-manager/musicSearchTest");//给登录按钮一个超链接
-    });
-    var clock = new Vue({
-        el: '#clock',
-        data: {
-            time: '',
-            date: ''
-        }
-    });
-    var week = ['星期天', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'];
-    var timerID = setInterval(updateTime, 1000);
-    updateTime();
-    function updateTime() {
-        var cd = new Date();
-        clock.time = zeroPadding(cd.getHours(), 2) + ':' + zeroPadding(cd.getMinutes(), 2) + ':' + zeroPadding(cd.getSeconds(), 2);
-        clock.date = zeroPadding(cd.getFullYear(), 4) + '-' + zeroPadding(cd.getMonth() + 1, 2) + '-' + zeroPadding(cd.getDate(), 2) + ' ' + week[cd.getDay()];
-    };
-    function zeroPadding(num, digit) {
-        var zero = '';
-        for (var i = 0; i < digit; i++) {
-            zero += '0';
-        }
-        return (zero + num).slice(-digit);
-    }
 </script>
 </body>
 </html>
