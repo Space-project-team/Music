@@ -6,6 +6,7 @@ var pageEnd= null;
 
 function getModuleMusic(url,pageNum,pageSize) {
 
+    var ul = url;
     $.ajax({
         url: ctx+"/musicLink/"+url,
         type: "POST",
@@ -14,8 +15,10 @@ function getModuleMusic(url,pageNum,pageSize) {
             pageSize:pageSize
         },
         success: function (data) {
-            console.log(data);
             if (data.code == 200) {
+                pageNums = data.pageInfo.pageNum;
+                total = data.pageInfo.total;
+                pageEnd = data.pageInfo.pages;
                 var str = '';
                 for (var i = 0; i < data.pageInfo.list.length; i++) {
                     var a = i + 1;
@@ -60,9 +63,7 @@ function getModuleMusic(url,pageNum,pageSize) {
                 }
             }
             $("table tbody").html(str);
-                pageNums = data.pageInfo.pageNum;
-                total = data.pageInfo.total;
-                pageEnd = data.pageInfo.pages;
+
 
             layui.use(['laypage','jquery'], function() {
 
@@ -91,7 +92,7 @@ function getModuleMusic(url,pageNum,pageSize) {
                             //清空以前加载的数据
                             $('tbody').empty();
                             //调用加载函数加载数据
-                            showRecord(obj.curr,obj.limit);
+                            getModuleMusic(ul,obj.curr,obj.limit);
                         }
                     }
                 });

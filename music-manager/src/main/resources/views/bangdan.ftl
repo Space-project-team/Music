@@ -185,14 +185,14 @@
                 <div class="panel-body">
                     <a href="javascript:void(0)" onclick="showRecord(1,10)">轻语音乐榜</a>
                     <a href="javascript:void(0)" onclick="showRecord(1,10)">飙升榜单</a>
-                    <a href="javascript:void(0)" onclick="getModuleMusic('TOPLink')">TOP50榜单</a>
-                    <a href="javascript:void(0)" onclick="getModuleMusic('NetworkMusic')">网络音乐榜</a>
-                    <a href="javascript:void(0)" onclick="getModuleMusic('MovieSong')">电影音乐榜</a>
-                    <a href="javascript:void(0)" onclick="getModuleMusic('DjSong')">DJ热歌榜</a>
-                    <a href="javascript:void(0)" onclick="getModuleMusic('EuropeMusic')">欧美新歌榜</a>
-                    <a href="javascript:void(0)" onclick="getModuleMusic('TOPLink')">中国梦之声榜</a>
-                    <a href="javascript:void(0)" onclick="getModuleMusic('TOPLink')">国风美少年榜</a>
-                    <a href="javascript:void(0)" onclick="getModuleMusic('YueYuMusic')">粤语新歌榜</a>
+                    <a href="javascript:void(0)" onclick="getModuleMusic('TOPLink',1,10)">TOP50榜单</a>
+                    <a href="javascript:void(0)" onclick="getModuleMusic('NetworkMusic',1,10)">网络音乐榜</a>
+                    <a href="javascript:void(0)" onclick="getModuleMusic('MovieSong',1,10)">电影音乐榜</a>
+                    <a href="javascript:void(0)" onclick="getModuleMusic('DjSong',1,10)">DJ热歌榜</a>
+                    <a href="javascript:void(0)" onclick="getModuleMusic('EuropeMusic',1,10)">欧美新歌榜</a>
+                    <a href="javascript:void(0)" onclick="getModuleMusic('TOPLink',1,10)">中国梦之声榜</a>
+                    <a href="javascript:void(0)" onclick="getModuleMusic('TOPLink',1,10)">国风美少年榜</a>
+                    <a href="javascript:void(0)" onclick="getModuleMusic('YueYuMusic',1,10)">粤语新歌榜</a>
                 </div>
             </div>
         </div>
