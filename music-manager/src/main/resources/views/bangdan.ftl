@@ -324,9 +324,9 @@
                         }
                         //第二个ajax获取当前页请求数据
                         $.ajax({
-                            type: “post”,
-                        url: “/autocarrier/hdGoodsPublish/goodspage”,
-                        async: true,
+                            type: "post",
+                            url: "/autocarrier/hdGoodsPublish/goodspage",
+                            async: true,
                             data:{
                             curr:obj.curr,
                                 limit:obj.limit

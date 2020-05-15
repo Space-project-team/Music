@@ -533,12 +533,13 @@
 
                 $("#user_number").html($.cookie("user_id"));
 
-                function fn(i) {//调用方法，更改cookie的信息，并跳转到播放页面
-                    $.cookie("song_link", data.pageInfo.list[i].songfile, {expires: 7, path: "/"});
-                    $.cookie("song_name", data.pageInfo.list[i].songname, {expires: 7, path: "/"});
-                    $.cookie("song_singer", data.pageInfo.list[i].singerid, {expires: 7, path: "/"});
-                    $.cookie("song_photo", data.pageInfo.list[i].photoimage, {expires: 7, path: "/"});
-                    window.open("http://localhost:9091/music-manager/QQmusic");
+                function fn(j) {
+                    console.log(data.pageInfo.list[j].mlId);
+                    $.cookie("song_link", data.pageInfo.list[j].mlSonglink, {expires: 7, path: "/"});
+                    $.cookie("song_name", data.pageInfo.list[j].mlSongname, {expires: 7, path: "/"});
+                    $.cookie("song_singer", data.pageInfo.list[j].mlSinger, {expires: 7, path: "/"});
+                    $.cookie("song_photo", data.pageInfo.list[j].mlPhotolink, {expires: 7, path: "/"});
+                    window.location.href = "http://localhost:9091/music-manager/QQmusic";
                 }
             }
         },
