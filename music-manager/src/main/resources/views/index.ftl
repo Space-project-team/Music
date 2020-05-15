@@ -446,7 +446,7 @@
 <script src="${ctx}/js/jquery.validate.min.js"></script>
 <script src="${ctx}/js/tools.js"></script>
 <script src="${ctx}/js/jquery.cookie.js"></script>
-<script type="text/javascript" src="js/vue.min.js"></script>
+<script type="text/javascript" src="${ctx}/js/vue.min.js"></script>
 
 <script type="text/javascript">
 
