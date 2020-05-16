@@ -121,7 +121,7 @@
             <div id="col10" class="dengluzhuce">
                 <a class="mymusic" href="${ctx}/mymusic" target="_blank">我的音乐</a>
                 <a class="mymusic" href="${ctx}/mymusic" target="_blank">您是第<span
-                        id="user_number" style="font-size:20px;color:red;text-align:center;padding:0;"> 208 &nbsp</span>位用户</a>
+                        id="user_number" style="font-size:20px;color:red;text-align:center;padding:0;">  &nbsp</span>位用户</a>
                 <span class="mymusic">|</span>
                 <img id="touxiang" src="${ctx}/images/touxiang.png" width="40px" height="40px"
                      style="display: inline-block; width: 40px;height: 40px;border:0;border-radius: 40px;margin-bottom: 5px;">
@@ -421,18 +421,18 @@
 <div class="footer">
     <div class="links">
         <a hidefocus="true" href="#" target="_blank">开发者：</a>
-        <a hidefocus="true" href="https://github.com/linliquan" target="_blank">林李权</a>
+        <a hidefocus="true" href="https://github.com/linliquan" target="_blank">李杨</a>
         <!--&lt;!&ndash;毕业答辩需要，暂时注释&ndash;&gt;-->
-        <!--<a hidefocus="true" target="_blank" href="#">黄施邕</a>-->
-        <!--<a hidefocus="true" target="_blank" href="#">吴先锋</a>-->
-        <!--<a hidefocus="true" href="#" target="_blank">姚源超</a>-->
-        <!--<a hidefocus="true" href="#" target="_blank">封南生</a>-->
-        <!--<a hidefocus="true" href="#" target="_blank">赵联岸</a>-->
-        <!--<a hidefocus="true" href="#" target="_blank">加入我们</a>-->
-        <a hidefocus="true" href="#" target="_blank">广告合作</a>
+        <a hidefocus="true" target="_blank" href="#">吴强</a>
+        <a hidefocus="true" target="_blank" href="#">朱程鹏</a>
+        <a hidefocus="true" href="#" target="_blank">黄淑琴</a>
+        <a hidefocus="true" href="#" target="_blank">胡雪霏</a>
+        <a hidefocus="true" href="#" target="_blank">郭涛</a>
+        <a hidefocus="true" href="#" target="_blank">郑志训</a>
+        <a hidefocus="true" href="#" target="_blank">加入我们</a>
     </div>
     <div class="copyright">
-        <p style="-moz-user-select: text;-webkit-user-select: text;-ms-user-select: text; user-select:text">如有侵权，请联系：liquan_101@163.com </p>
+        <p style="-moz-user-select: text;-webkit-user-select: text;-ms-user-select: text; user-select:text">如有侵权，请联系：1207182223@qq.com </p>
         <p>Copyright&nbsp;&nbsp;©&nbsp;&nbsp;2019&nbsp;&nbsp;版权所有&nbsp;&nbsp;
             <a hidefocus="true" href="http://www.beian.miit.gov.cn" target="_blank">桂ICP备19004924号</a>
             <a hidefocus="true" class="office-verification"
@@ -546,7 +546,7 @@
                     $.cookie("song_name", data.pageInfo.list[j].songname, {expires: 7, path: "/"});
                     $.cookie("song_singer", data.pageInfo.list[j].singerName, {expires: 7, path: "/"});
                     $.cookie("song_photo", data.pageInfo.list[j].photoimage, {expires: 7, path: "/"});
-                    window.location.href = "http://localhost:9091/music-manager/QQmusic.html";
+                    window.location.href = "http://localhost:9091/music-manager/QQmusic";
                 }
 
             }

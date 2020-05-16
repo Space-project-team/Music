@@ -25,7 +25,7 @@
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="input-group">
-                            <input type="text" id="songName" name="songName" class="form-control" placeholder="为音乐而生">
+                            <input type="text" id="songName" name="songName" class="form-control" placeholder="为音乐而生" value="">
                             <span class="input-group-btn">
 								 <button onclick="getList2(1,$('#songName').val(),10)" class="btn btn-default"
                                          type="button">                                          <!--点击按钮触发getlist2事件-->
@@ -96,7 +96,7 @@
     var totals;
     var page;
     var pages;
-    var songName = $("#songName").val();
+    var songName = $.cookie('song_search');
 
     $(function () {
         //进入加载一次

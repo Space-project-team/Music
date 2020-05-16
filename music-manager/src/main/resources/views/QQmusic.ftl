@@ -175,7 +175,7 @@
                     }
 
                     function fn1(j) {
-                        $.cookie("ml_id", data.pageInfo.list[j].mlId, {expires: 7, path: "/"});
+                        $.cookie("my_id", data.pageInfo.list[j].myId, {expires: 7, path: "/"});
                     }
                     //console.log(str);
                     $("#sNamee").html(str);
@@ -196,7 +196,7 @@
             url: "http://localhost:9091/music-manager/myMusic/deleteMyMusic",
             type: "post",
             data: {
-                mid: $.cookie("ml_id"),
+                mid: $.cookie("my_id"),
                 userName:$.cookie("user_name")
             },
             success: function (data) {//webspond
