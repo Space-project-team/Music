@@ -76,7 +76,7 @@ public class SongExample {
     /**
     /* 
      * @author zhoubin 
-     * @create 2020-05-15
+     * @create 2020-05-16
      * @since 1.0.0
      */
     protected abstract static class GeneratedCriteria {
@@ -260,73 +260,73 @@ public class SongExample {
             return (Criteria) this;
         }
 
-        public Criteria andSingeridIsNull() {
-            addCriterion("singerID is null");
+        public Criteria andSingerNameIsNull() {
+            addCriterion("singer_name is null");
             return (Criteria) this;
         }
 
-        public Criteria andSingeridIsNotNull() {
-            addCriterion("singerID is not null");
+        public Criteria andSingerNameIsNotNull() {
+            addCriterion("singer_name is not null");
             return (Criteria) this;
         }
 
-        public Criteria andSingeridEqualTo(String value) {
-            addCriterion("singerID =", value, "singerid");
+        public Criteria andSingerNameEqualTo(String value) {
+            addCriterion("singer_name =", value, "singerName");
             return (Criteria) this;
         }
 
-        public Criteria andSingeridNotEqualTo(String value) {
-            addCriterion("singerID <>", value, "singerid");
+        public Criteria andSingerNameNotEqualTo(String value) {
+            addCriterion("singer_name <>", value, "singerName");
             return (Criteria) this;
         }
 
-        public Criteria andSingeridGreaterThan(String value) {
-            addCriterion("singerID >", value, "singerid");
+        public Criteria andSingerNameGreaterThan(String value) {
+            addCriterion("singer_name >", value, "singerName");
             return (Criteria) this;
         }
 
-        public Criteria andSingeridGreaterThanOrEqualTo(String value) {
-            addCriterion("singerID >=", value, "singerid");
+        public Criteria andSingerNameGreaterThanOrEqualTo(String value) {
+            addCriterion("singer_name >=", value, "singerName");
             return (Criteria) this;
         }
 
-        public Criteria andSingeridLessThan(String value) {
-            addCriterion("singerID <", value, "singerid");
+        public Criteria andSingerNameLessThan(String value) {
+            addCriterion("singer_name <", value, "singerName");
             return (Criteria) this;
         }
 
-        public Criteria andSingeridLessThanOrEqualTo(String value) {
-            addCriterion("singerID <=", value, "singerid");
+        public Criteria andSingerNameLessThanOrEqualTo(String value) {
+            addCriterion("singer_name <=", value, "singerName");
             return (Criteria) this;
         }
 
-        public Criteria andSingeridLike(String value) {
-            addCriterion("singerID like", value, "singerid");
+        public Criteria andSingerNameLike(String value) {
+            addCriterion("singer_name like", value, "singerName");
             return (Criteria) this;
         }
 
-        public Criteria andSingeridNotLike(String value) {
-            addCriterion("singerID not like", value, "singerid");
+        public Criteria andSingerNameNotLike(String value) {
+            addCriterion("singer_name not like", value, "singerName");
             return (Criteria) this;
         }
 
-        public Criteria andSingeridIn(List<String> values) {
-            addCriterion("singerID in", values, "singerid");
+        public Criteria andSingerNameIn(List<String> values) {
+            addCriterion("singer_name in", values, "singerName");
             return (Criteria) this;
         }
 
-        public Criteria andSingeridNotIn(List<String> values) {
-            addCriterion("singerID not in", values, "singerid");
+        public Criteria andSingerNameNotIn(List<String> values) {
+            addCriterion("singer_name not in", values, "singerName");
             return (Criteria) this;
         }
 
-        public Criteria andSingeridBetween(String value1, String value2) {
-            addCriterion("singerID between", value1, value2, "singerid");
+        public Criteria andSingerNameBetween(String value1, String value2) {
+            addCriterion("singer_name between", value1, value2, "singerName");
             return (Criteria) this;
         }
 
-        public Criteria andSingeridNotBetween(String value1, String value2) {
-            addCriterion("singerID not between", value1, value2, "singerid");
+        public Criteria andSingerNameNotBetween(String value1, String value2) {
+            addCriterion("singer_name not between", value1, value2, "singerName");
             return (Criteria) this;
         }
 
@@ -540,76 +540,6 @@ public class SongExample {
             return (Criteria) this;
         }
 
-        public Criteria andTypeidIsNull() {
-            addCriterion("TypeID is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andTypeidIsNotNull() {
-            addCriterion("TypeID is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andTypeidEqualTo(String value) {
-            addCriterion("TypeID =", value, "typeid");
-            return (Criteria) this;
-        }
-
-        public Criteria andTypeidNotEqualTo(String value) {
-            addCriterion("TypeID <>", value, "typeid");
-            return (Criteria) this;
-        }
-
-        public Criteria andTypeidGreaterThan(String value) {
-            addCriterion("TypeID >", value, "typeid");
-            return (Criteria) this;
-        }
-
-        public Criteria andTypeidGreaterThanOrEqualTo(String value) {
-            addCriterion("TypeID >=", value, "typeid");
-            return (Criteria) this;
-        }
-
-        public Criteria andTypeidLessThan(String value) {
-            addCriterion("TypeID <", value, "typeid");
-            return (Criteria) this;
-        }
-
-        public Criteria andTypeidLessThanOrEqualTo(String value) {
-            addCriterion("TypeID <=", value, "typeid");
-            return (Criteria) this;
-        }
-
-        public Criteria andTypeidLike(String value) {
-            addCriterion("TypeID like", value, "typeid");
-            return (Criteria) this;
-        }
-
-        public Criteria andTypeidNotLike(String value) {
-            addCriterion("TypeID not like", value, "typeid");
-            return (Criteria) this;
-        }
-
-        public Criteria andTypeidIn(List<String> values) {
-            addCriterion("TypeID in", values, "typeid");
-            return (Criteria) this;
-        }
-
-        public Criteria andTypeidNotIn(List<String> values) {
-            addCriterion("TypeID not in", values, "typeid");
-            return (Criteria) this;
-        }
-
-        public Criteria andTypeidBetween(String value1, String value2) {
-            addCriterion("TypeID between", value1, value2, "typeid");
-            return (Criteria) this;
-        }
-
-        public Criteria andTypeidNotBetween(String value1, String value2) {
-            addCriterion("TypeID not between", value1, value2, "typeid");
-            return (Criteria) this;
-        }
-
         public Criteria andCreateTimeIsNull() {
             addCriterion("create_time is null");
             return (Criteria) this;
@@ -669,12 +599,82 @@ public class SongExample {
             addCriterion("create_time not between", value1, value2, "createTime");
             return (Criteria) this;
         }
+
+        public Criteria andTypeidIsNull() {
+            addCriterion("typeid is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeidIsNotNull() {
+            addCriterion("typeid is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeidEqualTo(String value) {
+            addCriterion("typeid =", value, "typeid");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeidNotEqualTo(String value) {
+            addCriterion("typeid <>", value, "typeid");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeidGreaterThan(String value) {
+            addCriterion("typeid >", value, "typeid");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeidGreaterThanOrEqualTo(String value) {
+            addCriterion("typeid >=", value, "typeid");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeidLessThan(String value) {
+            addCriterion("typeid <", value, "typeid");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeidLessThanOrEqualTo(String value) {
+            addCriterion("typeid <=", value, "typeid");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeidLike(String value) {
+            addCriterion("typeid like", value, "typeid");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeidNotLike(String value) {
+            addCriterion("typeid not like", value, "typeid");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeidIn(List<String> values) {
+            addCriterion("typeid in", values, "typeid");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeidNotIn(List<String> values) {
+            addCriterion("typeid not in", values, "typeid");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeidBetween(String value1, String value2) {
+            addCriterion("typeid between", value1, value2, "typeid");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeidNotBetween(String value1, String value2) {
+            addCriterion("typeid not between", value1, value2, "typeid");
+            return (Criteria) this;
+        }
     }
 
     /**
     /* 
      * @author zhoubin 
-     * @create 2020-05-15
+     * @create 2020-05-16
      * @since 1.0.0
      */
     public static class Criteria extends GeneratedCriteria {
@@ -687,7 +687,7 @@ public class SongExample {
     /**
     /* 
      * @author zhoubin 
-     * @create 2020-05-15
+     * @create 2020-05-16
      * @since 1.0.0
      */
     public static class Criterion {

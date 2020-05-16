@@ -84,12 +84,6 @@ public class MusicLinkServicelmpl implements IMusicLinkService {
             //不存在缓存,从数据库中查询所有音乐,在放入缓存中
         List<Song> songs = songMapper.selectByExample(new SongExample());
             if (!CollectionUtils.isEmpty(songs)) {
-
-                //将歌手id换成歌手名称
-                for (Song song : songs) {
-                    Singer singer = singerMapper.selectByPrimaryKey(song.getSingerid());
-                    song.setSingerid(singer.getSingername());
-                }
                 //将集合存入分页工具
                 PageInfo<Song> page = new PageInfo<>(songs);
                 //获取musicLink总数
@@ -130,14 +124,15 @@ public class MusicLinkServicelmpl implements IMusicLinkService {
                 System.out.println("暂无该数据");
                 return BaseResult.error();
             }
-            //将歌手id换成歌手名称
-            for (Song song : songList) {
-                Singer singer = singerMapper.selectByPrimaryKey(song.getSingerid());
-                song.setSingerid(singer.getSingername());
-            }
             PageInfo<Song> songPageInfo = new PageInfo<>(songList);
-            //设置总数
-            songPageInfo.setTotal(songList.size());
+            //设置总数,分两种情况
+            //1.查询条件无,查询所有
+            if(StringUtils.isEmpty(songName)){
+                songPageInfo.setTotal(getSongLinkCount());
+            }else{
+                //2.查询条件有,根据查询条件所得的总数
+                songPageInfo.setTotal(getSelectSongCount(songName));
+            }
             return BaseResult.success(songPageInfo);
         }
 
@@ -226,12 +221,6 @@ public class MusicLinkServicelmpl implements IMusicLinkService {
             //获取到排序后的歌曲
             List<Song> songList = songMapper.selectByExample(songExample);
             if (!CollectionUtils.isEmpty(songList)) {
-                //将查询到的数据存放到缓存中歌手id拿到歌手名
-                for (Song song : songList) {
-                    Singer singer = singerMapper.selectByPrimaryKey(song.getSingerid());
-                    //将歌手的名字放入
-                    song.setSingerid(singer.getSingername());
-                }
                 //将集合存入分页工具
                 PageInfo<Song> page = new PageInfo<>(songList);
                 operations.set(TOPLink, JsonUtil.object2JsonStr(page));
@@ -334,12 +323,6 @@ public class MusicLinkServicelmpl implements IMusicLinkService {
                 //判断是否为空
                 if (!CollectionUtils.isEmpty(songs)) {
                     //不空
-                    for (Song song : songs) {
-                        //根据歌手id拿取到歌手名，并设置到song中
-                        Singer singer = singerMapper.selectByPrimaryKey(song.getSingerid());
-                        //将歌手的名字放入
-                        song.setSingerid(singer.getSingername());
-                    }
                     songPageInfo = new PageInfo<>(songs);
                     songPageInfo.setTotal(get(SongType,time));
                     return BaseResult.success(songPageInfo);
@@ -394,4 +377,25 @@ public class MusicLinkServicelmpl implements IMusicLinkService {
         }
             return null;
      }
+
+    /**
+     * 获取有查询条件的总数
+     * @param songName
+     * @return
+     */
+     public Integer getSelectSongCount(String songName){
+         //创建查询对象
+         SongExample songExample = new SongExample();
+         //设置查询先后顺序
+         songExample.setOrderByClause("votes desc");
+         SongExample.Criteria criteria = songExample.createCriteria();
+         //模糊查询
+         if (!StringUtils.isEmpty(songName)) {
+             criteria.andSongnameLike("%" + songName + "%");
+         }
+         //执行
+         return  songMapper.selectByExample(songExample).size();
+     }
+
+
     }

@@ -75,7 +75,7 @@ public class SingerExample {
     /**
     /* 
      * @author zhoubin 
-     * @create 2020-05-14
+     * @create 2020-05-16
      * @since 1.0.0
      */
     protected abstract static class GeneratedCriteria {
@@ -259,73 +259,73 @@ public class SingerExample {
             return (Criteria) this;
         }
 
-        public Criteria andIsgroupIsNull() {
-            addCriterion("isGroup is null");
+        public Criteria andGroupsIsNull() {
+            addCriterion("groups is null");
             return (Criteria) this;
         }
 
-        public Criteria andIsgroupIsNotNull() {
-            addCriterion("isGroup is not null");
+        public Criteria andGroupsIsNotNull() {
+            addCriterion("groups is not null");
             return (Criteria) this;
         }
 
-        public Criteria andIsgroupEqualTo(String value) {
-            addCriterion("isGroup =", value, "isgroup");
+        public Criteria andGroupsEqualTo(String value) {
+            addCriterion("groups =", value, "groups");
             return (Criteria) this;
         }
 
-        public Criteria andIsgroupNotEqualTo(String value) {
-            addCriterion("isGroup <>", value, "isgroup");
+        public Criteria andGroupsNotEqualTo(String value) {
+            addCriterion("groups <>", value, "groups");
             return (Criteria) this;
         }
 
-        public Criteria andIsgroupGreaterThan(String value) {
-            addCriterion("isGroup >", value, "isgroup");
+        public Criteria andGroupsGreaterThan(String value) {
+            addCriterion("groups >", value, "groups");
             return (Criteria) this;
         }
 
-        public Criteria andIsgroupGreaterThanOrEqualTo(String value) {
-            addCriterion("isGroup >=", value, "isgroup");
+        public Criteria andGroupsGreaterThanOrEqualTo(String value) {
+            addCriterion("groups >=", value, "groups");
             return (Criteria) this;
         }
 
-        public Criteria andIsgroupLessThan(String value) {
-            addCriterion("isGroup <", value, "isgroup");
+        public Criteria andGroupsLessThan(String value) {
+            addCriterion("groups <", value, "groups");
             return (Criteria) this;
         }
 
-        public Criteria andIsgroupLessThanOrEqualTo(String value) {
-            addCriterion("isGroup <=", value, "isgroup");
+        public Criteria andGroupsLessThanOrEqualTo(String value) {
+            addCriterion("groups <=", value, "groups");
             return (Criteria) this;
         }
 
-        public Criteria andIsgroupLike(String value) {
-            addCriterion("isGroup like", value, "isgroup");
+        public Criteria andGroupsLike(String value) {
+            addCriterion("groups like", value, "groups");
             return (Criteria) this;
         }
 
-        public Criteria andIsgroupNotLike(String value) {
-            addCriterion("isGroup not like", value, "isgroup");
+        public Criteria andGroupsNotLike(String value) {
+            addCriterion("groups not like", value, "groups");
             return (Criteria) this;
         }
 
-        public Criteria andIsgroupIn(List<String> values) {
-            addCriterion("isGroup in", values, "isgroup");
+        public Criteria andGroupsIn(List<String> values) {
+            addCriterion("groups in", values, "groups");
             return (Criteria) this;
         }
 
-        public Criteria andIsgroupNotIn(List<String> values) {
-            addCriterion("isGroup not in", values, "isgroup");
+        public Criteria andGroupsNotIn(List<String> values) {
+            addCriterion("groups not in", values, "groups");
             return (Criteria) this;
         }
 
-        public Criteria andIsgroupBetween(String value1, String value2) {
-            addCriterion("isGroup between", value1, value2, "isgroup");
+        public Criteria andGroupsBetween(String value1, String value2) {
+            addCriterion("groups between", value1, value2, "groups");
             return (Criteria) this;
         }
 
-        public Criteria andIsgroupNotBetween(String value1, String value2) {
-            addCriterion("isGroup not between", value1, value2, "isgroup");
+        public Criteria andGroupsNotBetween(String value1, String value2) {
+            addCriterion("groups not between", value1, value2, "groups");
             return (Criteria) this;
         }
 
@@ -598,82 +598,12 @@ public class SingerExample {
             addCriterion("type not between", value1, value2, "type");
             return (Criteria) this;
         }
-
-        public Criteria andGroupsIsNull() {
-            addCriterion("groups is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andGroupsIsNotNull() {
-            addCriterion("groups is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andGroupsEqualTo(String value) {
-            addCriterion("groups =", value, "groups");
-            return (Criteria) this;
-        }
-
-        public Criteria andGroupsNotEqualTo(String value) {
-            addCriterion("groups <>", value, "groups");
-            return (Criteria) this;
-        }
-
-        public Criteria andGroupsGreaterThan(String value) {
-            addCriterion("groups >", value, "groups");
-            return (Criteria) this;
-        }
-
-        public Criteria andGroupsGreaterThanOrEqualTo(String value) {
-            addCriterion("groups >=", value, "groups");
-            return (Criteria) this;
-        }
-
-        public Criteria andGroupsLessThan(String value) {
-            addCriterion("groups <", value, "groups");
-            return (Criteria) this;
-        }
-
-        public Criteria andGroupsLessThanOrEqualTo(String value) {
-            addCriterion("groups <=", value, "groups");
-            return (Criteria) this;
-        }
-
-        public Criteria andGroupsLike(String value) {
-            addCriterion("groups like", value, "groups");
-            return (Criteria) this;
-        }
-
-        public Criteria andGroupsNotLike(String value) {
-            addCriterion("groups not like", value, "groups");
-            return (Criteria) this;
-        }
-
-        public Criteria andGroupsIn(List<String> values) {
-            addCriterion("groups in", values, "groups");
-            return (Criteria) this;
-        }
-
-        public Criteria andGroupsNotIn(List<String> values) {
-            addCriterion("groups not in", values, "groups");
-            return (Criteria) this;
-        }
-
-        public Criteria andGroupsBetween(String value1, String value2) {
-            addCriterion("groups between", value1, value2, "groups");
-            return (Criteria) this;
-        }
-
-        public Criteria andGroupsNotBetween(String value1, String value2) {
-            addCriterion("groups not between", value1, value2, "groups");
-            return (Criteria) this;
-        }
     }
 
     /**
     /* 
      * @author zhoubin 
-     * @create 2020-05-14
+     * @create 2020-05-16
      * @since 1.0.0
      */
     public static class Criteria extends GeneratedCriteria {
@@ -686,7 +616,7 @@ public class SingerExample {
     /**
     /* 
      * @author zhoubin 
-     * @create 2020-05-14
+     * @create 2020-05-16
      * @since 1.0.0
      */
     public static class Criterion {

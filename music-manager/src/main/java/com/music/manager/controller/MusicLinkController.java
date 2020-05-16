@@ -54,6 +54,9 @@ public class MusicLinkController {
 	@RequestMapping(value = "getSongRearch",method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public BaseResult getMusicByMusicName(String songName,Integer pageNum,Integer pageSize){
+		System.out.println(songName);
+		System.out.println("pageNum"+pageNum);
+		System.out.println("pageSize"+pageSize);
 		return  musicLinkService.getMusicByMusicName(songName,pageNum,pageSize);
 	}
 

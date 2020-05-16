@@ -5,7 +5,7 @@ import java.util.Date;
 
 /**
  * @author zhoubin 
- * @create 2020-05-15
+ * @create 2020-05-16
  * @since 1.0.0
  */
 public class Song implements Serializable {
@@ -20,9 +20,9 @@ public class Song implements Serializable {
     private String songname;
 
     /**
-     * 歌手编号
+     * 歌手名
      */
-    private String singerid;
+    private String singerName;
 
     /**
      * 人气值
@@ -40,14 +40,14 @@ public class Song implements Serializable {
     private String photoimage;
 
     /**
-     * 歌曲风格
-     */
-    private String typeid;
-
-    /**
-     * 歌曲创建时间
+     * 创建时间
      */
     private Date createTime;
+
+    /**
+     * 风格
+     */
+    private String typeid;
 
     /**
      * song
@@ -70,12 +70,12 @@ public class Song implements Serializable {
         this.songname = songname == null ? null : songname.trim();
     }
 
-    public String getSingerid() {
-        return singerid;
+    public String getSingerName() {
+        return singerName;
     }
 
-    public void setSingerid(String singerid) {
-        this.singerid = singerid == null ? null : singerid.trim();
+    public void setSingerName(String singerName) {
+        this.singerName = singerName == null ? null : singerName.trim();
     }
 
     public String getVotes() {
@@ -102,20 +102,20 @@ public class Song implements Serializable {
         this.photoimage = photoimage == null ? null : photoimage.trim();
     }
 
-    public String getTypeid() {
-        return typeid;
-    }
-
-    public void setTypeid(String typeid) {
-        this.typeid = typeid == null ? null : typeid.trim();
-    }
-
     public Date getCreateTime() {
         return createTime;
     }
 
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
+    }
+
+    public String getTypeid() {
+        return typeid;
+    }
+
+    public void setTypeid(String typeid) {
+        this.typeid = typeid == null ? null : typeid.trim();
     }
 
     @Override
@@ -126,12 +126,12 @@ public class Song implements Serializable {
         sb.append("Hash = ").append(hashCode());
         sb.append(", songid=").append(songid);
         sb.append(", songname=").append(songname);
-        sb.append(", singerid=").append(singerid);
+        sb.append(", singerName=").append(singerName);
         sb.append(", votes=").append(votes);
         sb.append(", songfile=").append(songfile);
         sb.append(", photoimage=").append(photoimage);
-        sb.append(", typeid=").append(typeid);
         sb.append(", createTime=").append(createTime);
+        sb.append(", typeid=").append(typeid);
         sb.append("]");
         return sb.toString();
     }

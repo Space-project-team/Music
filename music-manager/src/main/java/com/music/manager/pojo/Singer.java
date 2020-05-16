@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 /**
  * @author zhoubin 
- * @create 2020-05-14
+ * @create 2020-05-16
  * @since 1.0.0
  */
 public class Singer implements Serializable {
@@ -19,9 +19,9 @@ public class Singer implements Serializable {
     private String singername;
 
     /**
-     * 是否组合(取值0或1)
+     * 是否组合（1 是 2 否）
      */
-    private String isgroup;
+    private String groups;
 
     /**
      * 检查约束(男,女)
@@ -44,11 +44,6 @@ public class Singer implements Serializable {
     private String type;
 
     /**
-     * 是否组合（1 是 2 否）
-     */
-    private String groups;
-
-    /**
      * singer
      */
     private static final long serialVersionUID = 1L;
@@ -69,12 +64,12 @@ public class Singer implements Serializable {
         this.singername = singername == null ? null : singername.trim();
     }
 
-    public String getIsgroup() {
-        return isgroup;
+    public String getGroups() {
+        return groups;
     }
 
-    public void setIsgroup(String isgroup) {
-        this.isgroup = isgroup == null ? null : isgroup.trim();
+    public void setGroups(String groups) {
+        this.groups = groups == null ? null : groups.trim();
     }
 
     public String getSex() {
@@ -109,14 +104,6 @@ public class Singer implements Serializable {
         this.type = type == null ? null : type.trim();
     }
 
-    public String getGroups() {
-        return groups;
-    }
-
-    public void setGroups(String groups) {
-        this.groups = groups == null ? null : groups.trim();
-    }
-
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -125,12 +112,11 @@ public class Singer implements Serializable {
         sb.append("Hash = ").append(hashCode());
         sb.append(", singerid=").append(singerid);
         sb.append(", singername=").append(singername);
-        sb.append(", isgroup=").append(isgroup);
+        sb.append(", groups=").append(groups);
         sb.append(", sex=").append(sex);
         sb.append(", fans=").append(fans);
         sb.append(", headimage=").append(headimage);
         sb.append(", type=").append(type);
-        sb.append(", groups=").append(groups);
         sb.append("]");
         return sb.toString();
     }
