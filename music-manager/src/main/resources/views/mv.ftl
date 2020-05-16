@@ -278,11 +278,24 @@
 --><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---->
 <div class="footer">
 	<div class="links">
-		
+		<a hidefocus="true" href="#" target="_blank">开发者：</a>
+		<a hidefocus="true" href="https://github.com/linliquan" target="_blank">李杨</a>
+		<!--&lt;!&ndash;毕业答辩需要，暂时注释&ndash;&gt;-->
+		<a hidefocus="true" target="_blank" href="#">吴强</a>
+		<a hidefocus="true" target="_blank" href="#">朱程鹏</a>
+		<a hidefocus="true" href="#" target="_blank">黄淑琴</a>
+		<a hidefocus="true" href="#" target="_blank">胡雪霏</a>
+		<a hidefocus="true" href="#" target="_blank">郭涛</a>
+		<a hidefocus="true" href="#" target="_blank">郑志训</a>
+		<a hidefocus="true" href="#" target="_blank">加入我们</a>
 	</div>
 	<div class="copyright">
-		
-			<a hidefocus="true" class="office-verification" href="http://netadreg.gzaic.gov.cn/ntmm/WebSear/WebLogoPub.aspx?logo=440106106022006022000209" target="_blank"></a>
+		<p style="-moz-user-select: text;-webkit-user-select: text;-ms-user-select: text; user-select:text">如有侵权，请联系：1207182223@qq.com </p>
+		<p>Copyright&nbsp;&nbsp;©&nbsp;&nbsp;2019&nbsp;&nbsp;版权所有&nbsp;&nbsp;
+			<a hidefocus="true" href="http://www.beian.miit.gov.cn" target="_blank">桂ICP备19004924号</a>
+			<a hidefocus="true" class="office-verification"
+			   href="http://netadreg.gzaic.gov.cn/ntmm/WebSear/WebLogoPub.aspx?logo=440106106022006022000209"
+			   target="_blank"></a>
 		</p>
 	</div>
 </div>
