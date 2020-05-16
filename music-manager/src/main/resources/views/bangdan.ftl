@@ -333,10 +333,11 @@
                         $.cookie("song_name", data.pageInfo.list[j].songname, {expires: 7, path: "/"});
                         $.cookie("song_singer", data.pageInfo.list[j].singerName, {expires: 7, path: "/"});
                         $.cookie("song_photo", data.pageInfo.list[j].photoimage, {expires: 7, path: "/"});
-                        window.location.href = "http://localhost:9091/music-manager/QQmusic.html";
+                        window.location.href = "http://localhost:9091/music-manager/QQmusic";
                     }
 
                     function fn1(j) {
+                        console.log(data.pageInfo.list[j].songid);
                         $.cookie("song_id", data.pageInfo.list[j].songid, {expires: 7, path: "/"});
                         $.cookie("song_name", data.pageInfo.list[j].songname, {expires: 7, path: "/"});
                     }
@@ -401,16 +402,17 @@
     function fav(j) {
         $.ajax({
             async: false,
-            url: "/musicLink/addMusicCollect",
+            url: "${ctx}/musicLink/addMusicCollect",
             type: "post",
             data: {
-                "songName": $.cookie("song_name"),
-                "song_id": $.cookie("song_id"),
-                "user_name": $.cookie("user_name"),
-                "user_password": $.cookie("user_password"),
+                songName: $.cookie("song_name"),
+                mid: $.cookie("song_id"),
+                userName: $.cookie("user_name"),
+                userPassword: $.cookie("user_password")
             },
             success: function (data) {//webspond
-                if (data.statusCode == "200") {
+                console.log(data);
+                if (data.code == 200) {
 
                     // $('#sFav'+j).removeClass('glyphicon-heart');
                     $('#sFav' + j).css('color', '#ff69b4');
