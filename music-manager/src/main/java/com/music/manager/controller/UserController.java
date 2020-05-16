@@ -144,7 +144,6 @@ public class UserController {
 	public User getUser(HttpServletRequest request){
 		//从session中获取
 		User user = (User) request.getSession().getAttribute("user");
-		System.out.println(user);
 		if(StringUtils.isEmpty(user)){
 			return null;
 		}

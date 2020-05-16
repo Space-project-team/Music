@@ -27,7 +27,7 @@ public class Song implements Serializable {
     /**
      * 人气值
      */
-    private String votes;
+    private Integer votes;
 
     /**
      * 歌曲文件
@@ -78,12 +78,12 @@ public class Song implements Serializable {
         this.singerName = singerName == null ? null : singerName.trim();
     }
 
-    public String getVotes() {
+    public Integer getVotes() {
         return votes;
     }
 
-    public void setVotes(String votes) {
-        this.votes = votes == null ? null : votes.trim();
+    public void setVotes(Integer votes) {
+        this.votes = votes;
     }
 
     public String getSongfile() {

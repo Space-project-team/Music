@@ -186,8 +186,8 @@
                     <a href="javascript:void(0)" onclick="getModuleMusic('MovieSong',1,10)">电影音乐榜</a>
                     <a href="javascript:void(0)" onclick="getModuleMusic('DjSong',1,10)">DJ热歌榜</a>
                     <a href="javascript:void(0)" onclick="getModuleMusic('EuropeMusic',1,10)">欧美新歌榜</a>
-                    <a href="javascript:void(0)" onclick="getModuleMusic('SongHuai',1,10)">中国梦之声榜</a>
-                    <a href="javascript:void(0)" onclick="getModuleMusic('TOPLink',1,10)">国风美少年榜</a>
+                    <a href="javascript:void(0)" onclick="getModuleMusic('ChineseIdol',1,10)">中国梦之声榜</a>
+                    <a href="javascript:void(0)" onclick="getModuleMusic('SongHuai',1,10)">国风美少年榜</a>
                     <a href="javascript:void(0)" onclick="getModuleMusic('YueYuMusic',1,10)">粤语新歌榜</a>
                 </div>
             </div>

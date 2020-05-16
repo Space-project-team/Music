@@ -5,7 +5,7 @@
     <id column="songID" jdbcType="VARCHAR" property="songid" />
     <result column="songName" jdbcType="VARCHAR" property="songname" />
     <result column="singer_name" jdbcType="VARCHAR" property="singerName" />
-    <result column="votes" jdbcType="VARCHAR" property="votes" />
+    <result column="votes" jdbcType="INTEGER" property="votes" />
     <result column="songFile" jdbcType="VARCHAR" property="songfile" />
     <result column="photoImage" jdbcType="VARCHAR" property="photoimage" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
@@ -107,7 +107,7 @@
       votes, songFile, photoImage, 
       create_time, typeid)
     values (#{songid,jdbcType=VARCHAR}, #{songname,jdbcType=VARCHAR}, #{singerName,jdbcType=VARCHAR}, 
-      #{votes,jdbcType=VARCHAR}, #{songfile,jdbcType=VARCHAR}, #{photoimage,jdbcType=VARCHAR}, 
+      #{votes,jdbcType=INTEGER}, #{songfile,jdbcType=VARCHAR}, #{photoimage,jdbcType=VARCHAR}, 
       #{createTime,jdbcType=TIMESTAMP}, #{typeid,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.music.manager.pojo.Song">
@@ -149,7 +149,7 @@
         #{singerName,jdbcType=VARCHAR},
       </if>
       <if test="votes != null">
-        #{votes,jdbcType=VARCHAR},
+        #{votes,jdbcType=INTEGER},
       </if>
       <if test="songfile != null">
         #{songfile,jdbcType=VARCHAR},
@@ -184,7 +184,7 @@
         singer_name = #{record.singerName,jdbcType=VARCHAR},
       </if>
       <if test="record.votes != null">
-        votes = #{record.votes,jdbcType=VARCHAR},
+        votes = #{record.votes,jdbcType=INTEGER},
       </if>
       <if test="record.songfile != null">
         songFile = #{record.songfile,jdbcType=VARCHAR},
@@ -208,7 +208,7 @@
     set songID = #{record.songid,jdbcType=VARCHAR},
       songName = #{record.songname,jdbcType=VARCHAR},
       singer_name = #{record.singerName,jdbcType=VARCHAR},
-      votes = #{record.votes,jdbcType=VARCHAR},
+      votes = #{record.votes,jdbcType=INTEGER},
       songFile = #{record.songfile,jdbcType=VARCHAR},
       photoImage = #{record.photoimage,jdbcType=VARCHAR},
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
@@ -227,7 +227,7 @@
         singer_name = #{singerName,jdbcType=VARCHAR},
       </if>
       <if test="votes != null">
-        votes = #{votes,jdbcType=VARCHAR},
+        votes = #{votes,jdbcType=INTEGER},
       </if>
       <if test="songfile != null">
         songFile = #{songfile,jdbcType=VARCHAR},
@@ -248,7 +248,7 @@
     update song
     set songName = #{songname,jdbcType=VARCHAR},
       singer_name = #{singerName,jdbcType=VARCHAR},
-      votes = #{votes,jdbcType=VARCHAR},
+      votes = #{votes,jdbcType=INTEGER},
       songFile = #{songfile,jdbcType=VARCHAR},
       photoImage = #{photoimage,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},

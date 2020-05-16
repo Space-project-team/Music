@@ -13,6 +13,8 @@ import com.qiniu.util.Auth;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.InputStream;
 
 /**
@@ -33,7 +35,7 @@ public class UploadServiceImpl implements UploadService {
 	 * @return
 	 */
 	@Override
-	public FileResult upload(InputStream inputStream, String fileName, User user) {
+	public FileResult upload(InputStream inputStream, String fileName, User user, HttpServletRequest request, HttpServletResponse response) {
 		FileResult fileResult = new FileResult();
 		//构造一个带指定 Region 对象的配置类
 		Configuration cfg = new Configuration(Region.region0());
@@ -49,12 +51,12 @@ public class UploadServiceImpl implements UploadService {
 			Auth auth = Auth.create(accessKey, secretKey);
 			String upToken = auth.uploadToken(bucket);
 			try {
-				Response response = uploadManager.put(inputStream,key,upToken,null, null);
+				Response res = uploadManager.put(inputStream,key,upToken,null, null);
 				//解析上传成功的结果
 				// DefaultPutRet putRet = new Gson().fromJson(response.bodyString(), DefaultPutRet.class);
 				// System.out.println(putRet.key);
 				// System.out.println(putRet.hash);
-				if (response.statusCode==200){
+				if (res.statusCode==200){
 					if(user==null||user.equals("")){
 						fileResult.setError("error");
 						fileResult.setMessage("用户未登录");
@@ -65,6 +67,8 @@ public class UploadServiceImpl implements UploadService {
 					fileResult.setFileUrl("http://qafbatitv.bkt.clouddn.com/"+fileName);
 					user.setHeadImage("http://qafbatitv.bkt.clouddn.com/"+fileName);
 					userMapper.updateByPrimaryKey(user);
+					//将user信息更新到session中
+					request.getSession().setAttribute("user",user);
 					return fileResult;
 				}else {
 					fileResult.setError("error");
