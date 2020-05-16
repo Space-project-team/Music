@@ -32,6 +32,9 @@ public class MyMusicController {
         return iMyMusicService.getMyMusicList(userName,pageNum,pageSize);
     }
 
+
+
+
     /**
      * 根据用户id 和 歌曲删除
      * @param mid

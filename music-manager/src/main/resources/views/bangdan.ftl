@@ -16,10 +16,6 @@
     <script src="${ctx}/js/bangdan.js"></script>
     <link rel="stylesheet" href="${ctx}/layui-v2.5.5/layui/css/layui.css" media="all">
 </head>
-<style>
-    .con-box{position:relative;width:800px;height:500px;background:#000;}
-    .demo{position:absolute;width:200px;height:150px;bottom:0;left:50%;margin-left:-100px;}
-</style>
 <script>
     var ctx="${ctx}";
 </script>
@@ -276,9 +272,22 @@
 <script type="text/javascript" src="${ctx}/js/vue.min.js"></script>
 <script type="text/javascript">
 
+    
+    
+    var userId;
     //默认打开首页加载一次
     $(function () {
         showRecord(1,10);
+        //获取用户的id值
+        $.ajax({
+            type: "post",
+            url: ctx+"/user/getUser",
+            success: function (data) {
+                if(data!=null){
+                    userId = data.userId;
+                }
+            }
+        })
     });
 
     //加载总页数
@@ -333,11 +342,10 @@
                         $.cookie("song_name", data.pageInfo.list[j].songname, {expires: 7, path: "/"});
                         $.cookie("song_singer", data.pageInfo.list[j].singerName, {expires: 7, path: "/"});
                         $.cookie("song_photo", data.pageInfo.list[j].photoimage, {expires: 7, path: "/"});
-                        window.location.href = "http://localhost:9091/music-manager/QQmusic";
+                        window.location.href = "http://localhost:9091/music-manager/QQmusic.html";
                     }
 
                     function fn1(j) {
-                        console.log(data.pageInfo.list[j].songid);
                         $.cookie("song_id", data.pageInfo.list[j].songid, {expires: 7, path: "/"});
                         $.cookie("song_name", data.pageInfo.list[j].songname, {expires: 7, path: "/"});
                     }
@@ -399,20 +407,22 @@
             denglu($('#test').attr("action"), $('#test').serialize());
         }
     });//已在mymusic中注释
+    
+    
+    
+    
     function fav(j) {
         $.ajax({
             async: false,
-            url: "${ctx}/musicLink/addMusicCollect",
+            url: ctx+"/musicLink/addMusicCollect",
             type: "post",
             data: {
-                songName: $.cookie("song_name"),
-                mid: $.cookie("song_id"),
-                userName: $.cookie("user_name"),
-                userPassword: $.cookie("user_password")
+                "songName": $.cookie("song_name"),
+                "song_id": $.cookie("song_id"),
+                "user_id": userId
             },
             success: function (data) {//webspond
-                console.log(data);
-                if (data.code == 200) {
+                if (data.code ==200) {
 
                     // $('#sFav'+j).removeClass('glyphicon-heart');
                     $('#sFav' + j).css('color', '#ff69b4');
@@ -420,11 +430,16 @@
 
 
                     //location.reload();
-                } else {
-                    alert("亲！您已经收藏这首歌了哦，快去我的音乐中查看吧");
+                }else if(data.code==205){
+                    alert(data.message);
+                }else{
+                    alert(data.message);
                 }
-
+                    
             },
+            error: function (data) {
+                alert(data.message);
+            }
 
         })
     }//已在mymusic中注释

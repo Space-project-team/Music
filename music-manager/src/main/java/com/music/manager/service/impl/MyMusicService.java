@@ -48,10 +48,17 @@ public class MyMusicService implements IMyMusicService {
      */
     @Override
     public BaseResult getMyMusicList(String userName, Integer pageNum, Integer pageSize) {
-
+        redisTemplate.delete(myMusicListRedisKey);
         //判断用户是否存在
         if(StringUtils.isEmpty(userName)){
-            return BaseResult.error();
+            BaseResult result = new BaseResult();
+            result.setCode(205);
+            result.setMessage("请先登入!");
+            return result;
+        }
+        if (StringUtils.isEmpty(pageNum) || StringUtils.isEmpty(pageSize)) {
+            pageNum = 1;
+            pageSize = 10;
         }
         //先从redis查询是否有数据
         ValueOperations<String,Object> stringObjectValueOperations=redisTemplate.opsForValue();
@@ -79,6 +86,7 @@ public class MyMusicService implements IMyMusicService {
             PageInfo<MyMusic> pageInfo=new PageInfo<>(myList);
             //将查询的数据放入Redis
             stringObjectValueOperations.set(myMusicListRedisKey, JsonUtil.object2JsonStr(pageInfo));
+            pageInfo.setTotal(getCount(uid));
             //返回结果
             return BaseResult.success(pageInfo);
         }else{
@@ -126,4 +134,9 @@ public class MyMusicService implements IMyMusicService {
         return 0;
     }
 
+    public Integer getCount(Integer uid){
+        MyMusicExample myMusicExample = new MyMusicExample();
+        myMusicExample.createCriteria().andUserIdEqualTo(uid);
+        return myMusicMapper.selectByExample(myMusicExample).size();
+    }
 }

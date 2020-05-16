@@ -115,8 +115,11 @@
 <audio id="audio" src=""></audio>
 <script src="${ctx}/js/index.js"></script>
 <script>
+
+    var userName = getCookie("user_name");
     //工作原理代码见index.js
     getList2();
+
 
     function getList2() {
         $.ajax({

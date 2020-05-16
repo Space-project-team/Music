@@ -15,7 +15,7 @@
     <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script type="text/javascript"
             src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
-
+    <link rel="stylesheet" href="${ctx}/layui-v2.5.5/layui/css/layui.css" media="all">
 </head>
 <script>
     var ctx="${ctx}";
@@ -244,11 +244,7 @@
                 </div>
             </div>
 
-            <div style="position: relative;bottom: 0;left: 50%;" class="col-sm-12">
-                <ul id="pagintor"></ul>
-            </div>
-
-            <div id="pagination"></div>
+            <div id="page" style="text-align: center;"></div>
 
         </div>
 
@@ -267,10 +263,15 @@
 <script src="${ctx}/js/doT.min.js"></script>
 <!--分页-->
 <link rel="stylesheet" href="${ctx}/css/pagination.css" />
+<script src="${ctx}/layui-v2.5.5/layui/layui.js"></script>
 <script type="text/javascript" src="${ctx}/js/jquery.pagination.js"></script>
 <script type="text/javascript" src="${ctx}/js/vue.min.js"></script>
 <script type="text/javascript">
 
+    //加载总页数
+    var totals;
+    var page;
+    var pages;
 
     if ($.cookie("user_name") != undefined && $.cookie("user_name") != "1") {//如果用户名不等于1且不等于未定义，则继续执行
         $("#userName").text("账号：" + $.cookie("user_name"));//将未登录3个字替换为用户名
@@ -287,24 +288,28 @@
     });
     $("#user_number").html($.cookie("user_id"));
 
+    //第一次加载
     $(document).ready(function () {
-        getList(1);
+        getList(1,10);
     });
 
     /*
     * 获取歌曲信息 -分页
     * */
-    function getList(pageNum) {
+    function getList(pageNum,pageSize) {
         $.ajax({
             url: "http://localhost:9091/music-manager/myMusic/getMyMusicList",      //后台获取整个数据库方法的地址
             type: "POST",
             data: {
                 userName: $.cookie("user_name"),
                 pageNum: pageNum,
-                pageSize:20
+                pageSize:pageSize
             },
             success: function (data) {
                 if (data.code==200) {
+                    page = data.pageInfo.pageNum;
+                    totals = data.pageInfo.total;
+                    pages = data.pageInfo.pages;
                     var str = '';                                                   //动态生成表格
                     /* data.data.list.length对应respon.map.list.length */
                     for (var i = 0; i < data.pageInfo.list.length; i++) {
@@ -349,7 +354,42 @@
                         $.cookie("my_id", data.pageInfo.list[j].myId, {expires: 7, path: "/"});      //将歌曲id保存下来，点击删除按钮时，将值传入后台，删除数据库
                     }
                     $("table tbody").html(str);
-                }else {//如果后台返回202则提示歌曲已收藏
+                    layui.use(['laypage', 'jquery'], function () {
+
+                        var laypage = layui.laypage, $ = layui.$;
+
+                        laypage.render({
+                            elem: 'page'
+                            //注意，这里的 elem 指向存放分页的容器，值可以是容器ID、DOM对象。
+                            //例1. elem: 'idName' 注意：如果这么写，这里不能加 # 号
+                            //例2. elem: document.getElementById('idName')
+                            //例3. elem: $("#idName")
+                            , count: totals //数据总数，从服务端得到
+                            , limit: 10                      //默认每页显示条数
+                            , limits: [10, 20, 30]			//可选每页显示条数
+                            , curr: page                        //起始页
+                            , groups: 5                      //连续页码个数
+                            , prev: '上一页'                 //上一页文本
+                            , netx: '下一页'                 //下一页文本
+                            , first: 1                      //首页文本
+                            , last: pages                     //尾页文本
+                            , layout: ['prev', 'page', 'next', 'limit', 'refresh', 'skip']
+                            //跳转页码时调用
+                            , jump: function (obj, first) { //obj为当前页的属性和方法，第一次加载first为true
+                                //非首次加载 do something
+                                if (!first) {
+                                    //清空以前加载的数据
+                                    $('tbody').empty();
+                                    //调用加载函数加载数据
+                                    getList(obj.curr, obj.limit);
+                                }
+                            }
+                        });
+                    })
+                }else if(data.code==205){
+                    alert(data.message);
+                }
+                else {//如果后台返回202则提示歌曲已收藏
                     alert("您还没有收藏歌曲哦，快去列表收藏吧！");
                 }
 

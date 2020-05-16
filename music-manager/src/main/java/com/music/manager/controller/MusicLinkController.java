@@ -63,9 +63,8 @@ public class MusicLinkController {
 	 */
 	@RequestMapping(value = "addMusicCollect",method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
-	public BaseResult  addMusicCollect(HttpServletRequest request,String songName,Integer mid){
-		User user = (User) request.getSession().getAttribute("user");
-		return  musicLinkService.addMusicCollect(user,songName,mid);
+	public BaseResult  addMusicCollect(String songName,String song_id,Integer user_id){
+		return  musicLinkService.addMusicCollect(songName,song_id,user_id);
 	}
 
 
