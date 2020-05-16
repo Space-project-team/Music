@@ -397,7 +397,7 @@
     function fav(j) {
         $.ajax({
             async: false,
-            url: "/musicLink/addMusicCollect",
+            url: ctx+"/musicLink/addMusicCollect",
             type: "post",
             data: {
                 "songName": $.cookie("song_name"),
