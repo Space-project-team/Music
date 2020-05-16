@@ -291,10 +291,11 @@
                 pageNum: pageNum,
                 pageSize: pageSize
             },
+
             success: function (data) {
                 console.log(data);
-                if (data.code == 200) {
 
+                if (data.code == 200){
                     page = data.pageInfo.pageNum;
                     totals = data.pageInfo.total;
                     pages = data.pageInfo.pages;
@@ -340,47 +341,52 @@
                         $.cookie("song_name", data.pageInfo.list[j].songname, {expires: 7, path: "/"});
                     }
 
-                        $("table tbody").html(str);
 
-                        layui.use(['laypage', 'jquery'], function () {
+                    $("table tbody").html(str);
 
-                            var laypage = layui.laypage, $ = layui.$;
 
-                            laypage.render({
-                                elem: 'page'
-                                //注意，这里的 elem 指向存放分页的容器，值可以是容器ID、DOM对象。
-                                //例1. elem: 'idName' 注意：如果这么写，这里不能加 # 号
-                                //例2. elem: document.getElementById('idName')
-                                //例3. elem: $("#idName")
-                                , count: totals //数据总数，从服务端得到
-                                , limit: 10                      //默认每页显示条数
-                                , limits: [10, 20, 30]			//可选每页显示条数
-                                , curr: page                        //起始页
-                                , groups: 5                      //连续页码个数
-                                , prev: '上一页'                 //上一页文本
-                                , netx: '下一页'                 //下一页文本
-                                , first: 1                      //首页文本
-                                , last: pages                     //尾页文本
-                                , layout: ['prev', 'page', 'next', 'limit', 'refresh', 'skip']
-                                //跳转页码时调用
-                                , jump: function (obj, first) { //obj为当前页的属性和方法，第一次加载first为true
-                                    //非首次加载 do something
-                                    if (!first) {
-                                        //清空以前加载的数据
-                                        $('tbody').empty();
-                                        //调用加载函数加载数据
-                                        showRecord(obj.curr, obj.limit);
-                                    }
+                    layui.use(['laypage', 'jquery'], function () {
+                        var laypage = layui.laypage, $ = layui.$;
+
+                        laypage.render({
+                            elem: 'page'
+                            //注意，这里的 elem 指向存放分页的容器，值可以是容器ID、DOM对象。
+                            //例1. elem: 'idName' 注意：如果这么写，这里不能加 # 号
+                            //例2. elem: document.getElementById('idName')
+                            //例3. elem: $("#idName")
+                            , count: totals //数据总数，从服务端得到
+                            , limit: 10                      //默认每页显示条数
+                            , limits: [10, 20, 30]			//可选每页显示条数
+                            , curr: page                        //起始页
+                            , groups: 5                      //连续页码个数
+                            , prev: '上一页'                 //上一页文本
+                            , netx: '下一页'                 //下一页文本
+                            , first: 1                      //首页文本
+                            , last: pages                     //尾页文本
+                            , layout: ['prev', 'page', 'next', 'limit', 'refresh', 'skip']
+                            //跳转页码时调用
+                            , jump: function (obj, first) { //obj为当前页的属性和方法，第一次加载first为true
+                                //非首次加载 do something
+                                if (!first) {
+                                    //清空以前加载的数据
+                                    $('tbody').empty();
+                                    //调用加载函数加载数据
+                                    showRecord(obj.curr, obj.limit);
                                 }
-                            });
-                        })
-                    }
+                            }
+                        });
+
+                    });
+
+
                 }
+
             },
             error: function () {
                 alert("该网站正在更新,非常抱歉!")
             }
         });
+
     }
 
     //已在mymusic中注释
@@ -424,11 +430,18 @@
         })
     }//已在mymusic中注释
 
-    //下方为时钟
+
     $("#search1").click(function () {
         window.open("http://localhost:9091/music-manager/musicSearchTest");//给登录按钮一个超链接
     });
-    */
+
+
+
+    //
+    //
+    //           数字时钟
+    //
+    //
     var clock = new Vue({
         el: '#clock',
         data: {
