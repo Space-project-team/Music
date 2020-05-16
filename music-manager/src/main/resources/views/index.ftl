@@ -121,7 +121,7 @@
             <div id="col10" class="dengluzhuce">
                 <a class="mymusic" href="${ctx}/mymusic" target="_blank">我的音乐</a>
                 <a class="mymusic" href="${ctx}/mymusic" target="_blank">您是第<span
-                        id="user_number" style="font-size:20px;color:red;text-align:center;padding:0;"> 208 &nbsp</span>位用户</a>
+                        id="user_number" style="font-size:20px;color:red;text-align:center;padding:0;">  &nbsp</span>位用户</a>
                 <span class="mymusic">|</span>
                 <img id="touxiang" src="${ctx}/images/touxiang.png" width="40px" height="40px"
                      style="display: inline-block; width: 40px;height: 40px;border:0;border-radius: 40px;margin-bottom: 5px;">
