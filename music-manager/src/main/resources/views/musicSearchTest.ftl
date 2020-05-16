@@ -27,7 +27,7 @@
                         <div class="input-group">
                             <input type="text" id="songName" name="songName" class="form-control" placeholder="为音乐而生">
                             <span class="input-group-btn">
-								 <button onclick="getList2($('#songName').serialize())" class="btn btn-default"
+								 <button onclick="getList2(1,$('#songName').val(),10)" class="btn btn-default"
                                          type="button">                                          <!--点击按钮触发getlist2事件-->
 									搜索
 								</button>
@@ -90,20 +90,25 @@
               rearchSong($('#test').attr("action"));
           }
       }); */
-    getList2("songName=" + $.cookie("song_search"),1,10);//调用getlist2方法
-
+    /*getList2("songName=" + $.cookie("song_search"),1,10);//调用getlist2方法*/
 
     //加载总页数
     var totals;
     var page;
     var pages;
+    var songName = $("#songName").val();
 
-    function getList2(lll,pageNum,pageSize) {
+    $(function () {
+        //进入加载一次
+        getList2(1,songName,10);
+    });
+
+    function getList2(pageNum,songName,pageSize) {
         $.ajax({
             url: "http://localhost:9091/music-manager/musicLink/getSongRearch",//后台地址
             type: "POST",//post方式请求
             data: {
-                songName:111,
+                songName:songName,
                 pageNum:pageNum,
                 pageSize:pageSize
             },//将数据通过lll在调用的时候传入
@@ -126,7 +131,7 @@
                             + '<td class="number111"  style="padding: 14px;border-bottom: 1px solid #eee; width: 100px;text-align: center;">' + a + '</td>'
                             + '<td  style="padding: 14px;border-bottom: 1px solid #eee;width: 600px;text-align: center;"><a class=sName' + i + ' href="#">' + data.pageInfo.list[i].songname + '</a>' +
                             '<span class="glyphicon glyphicon-heart" id=sFav' + i + ' style="color: #eee;float: right;"></span></td>'
-                            + '<td style="padding: 14px;border-bottom: 1px solid #eee;width: 300px;text-align: center;"><a href="#">' + data.pageInfo.list[i].singerid + '</a></td>'
+                            + '<td style="padding: 14px;border-bottom: 1px solid #eee;width: 300px;text-align: center;"><a href="#">' + data.pageInfo.list[i].singerName + '</a></td>'
                             + '</tr>';
 
                         function play(i) {
@@ -153,7 +158,7 @@
 
                         $.cookie("song_link", data.pageInfo.list[j].songfile, {expires: 7, path: "/"});
                         $.cookie("song_name", data.pageInfo.list[j].songname, {expires: 7, path: "/"});
-                        $.cookie("song_singer",data.pageInfo.list[j].singerid, {expires: 7, path: "/"});
+                        $.cookie("song_singer",data.pageInfo.list[j].singerName, {expires: 7, path: "/"});
                         $.cookie("song_photo", data.pageInfo.list[j].photoimage, {expires: 7, path: "/"});
                         window.location.href = "${ctx}/QQmusic";
                     }
@@ -194,20 +199,17 @@
                                     //清空以前加载的数据
                                     $('tbody').empty();
                                     //调用加载函数加载数据
-                                    getList2("songName=" + $.cookie("song_search"),obj.curr, obj.limit);
+                                    getList2(obj.curr, songName,obj.limit);
                                 }
                             }
                         });
                     })
-
-
-
                 } else if (data.code == 400) {
                     alert("搜索不到歌曲！");
                 }
             },
             error: function (data) {
-                alert(JSON.stringify(data));
+                alert("搜索不到歌曲！");
             }
         })
     }//已在mymusic中注释

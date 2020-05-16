@@ -4,12 +4,11 @@
   <resultMap id="BaseResultMap" type="com.music.manager.pojo.Singer">
     <id column="singerID" jdbcType="VARCHAR" property="singerid" />
     <result column="singerName" jdbcType="VARCHAR" property="singername" />
-    <result column="isGroup" jdbcType="VARCHAR" property="isgroup" />
+    <result column="groups" jdbcType="VARCHAR" property="groups" />
     <result column="sex" jdbcType="VARCHAR" property="sex" />
     <result column="fans" jdbcType="INTEGER" property="fans" />
     <result column="headImage" jdbcType="VARCHAR" property="headimage" />
     <result column="type" jdbcType="VARCHAR" property="type" />
-    <result column="groups" jdbcType="VARCHAR" property="groups" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -70,7 +69,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    singerID, singerName, isGroup, sex, fans, headImage, type, groups
+    singerID, singerName, groups, sex, fans, headImage, type
   </sql>
   <select id="selectByExample" parameterType="com.music.manager.pojo.SingerExample" resultMap="BaseResultMap">
     select
@@ -103,12 +102,12 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.music.manager.pojo.Singer">
-    insert into singer (singerID, singerName, isGroup, 
+    insert into singer (singerID, singerName, groups, 
       sex, fans, headImage, 
-      type, groups)
-    values (#{singerid,jdbcType=VARCHAR}, #{singername,jdbcType=VARCHAR}, #{isgroup,jdbcType=VARCHAR}, 
+      type)
+    values (#{singerid,jdbcType=VARCHAR}, #{singername,jdbcType=VARCHAR}, #{groups,jdbcType=VARCHAR}, 
       #{sex,jdbcType=VARCHAR}, #{fans,jdbcType=INTEGER}, #{headimage,jdbcType=VARCHAR}, 
-      #{type,jdbcType=VARCHAR}, #{groups,jdbcType=VARCHAR})
+      #{type,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.music.manager.pojo.Singer">
     insert into singer
@@ -119,8 +118,8 @@
       <if test="singername != null">
         singerName,
       </if>
-      <if test="isgroup != null">
-        isGroup,
+      <if test="groups != null">
+        groups,
       </if>
       <if test="sex != null">
         sex,
@@ -134,9 +133,6 @@
       <if test="type != null">
         type,
       </if>
-      <if test="groups != null">
-        groups,
-      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="singerid != null">
@@ -145,8 +141,8 @@
       <if test="singername != null">
         #{singername,jdbcType=VARCHAR},
       </if>
-      <if test="isgroup != null">
-        #{isgroup,jdbcType=VARCHAR},
+      <if test="groups != null">
+        #{groups,jdbcType=VARCHAR},
       </if>
       <if test="sex != null">
         #{sex,jdbcType=VARCHAR},
@@ -159,9 +155,6 @@
       </if>
       <if test="type != null">
         #{type,jdbcType=VARCHAR},
-      </if>
-      <if test="groups != null">
-        #{groups,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -180,8 +173,8 @@
       <if test="record.singername != null">
         singerName = #{record.singername,jdbcType=VARCHAR},
       </if>
-      <if test="record.isgroup != null">
-        isGroup = #{record.isgroup,jdbcType=VARCHAR},
+      <if test="record.groups != null">
+        groups = #{record.groups,jdbcType=VARCHAR},
       </if>
       <if test="record.sex != null">
         sex = #{record.sex,jdbcType=VARCHAR},
@@ -195,9 +188,6 @@
       <if test="record.type != null">
         type = #{record.type,jdbcType=VARCHAR},
       </if>
-      <if test="record.groups != null">
-        groups = #{record.groups,jdbcType=VARCHAR},
-      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -207,12 +197,11 @@
     update singer
     set singerID = #{record.singerid,jdbcType=VARCHAR},
       singerName = #{record.singername,jdbcType=VARCHAR},
-      isGroup = #{record.isgroup,jdbcType=VARCHAR},
+      groups = #{record.groups,jdbcType=VARCHAR},
       sex = #{record.sex,jdbcType=VARCHAR},
       fans = #{record.fans,jdbcType=INTEGER},
       headImage = #{record.headimage,jdbcType=VARCHAR},
-      type = #{record.type,jdbcType=VARCHAR},
-      groups = #{record.groups,jdbcType=VARCHAR}
+      type = #{record.type,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -223,8 +212,8 @@
       <if test="singername != null">
         singerName = #{singername,jdbcType=VARCHAR},
       </if>
-      <if test="isgroup != null">
-        isGroup = #{isgroup,jdbcType=VARCHAR},
+      <if test="groups != null">
+        groups = #{groups,jdbcType=VARCHAR},
       </if>
       <if test="sex != null">
         sex = #{sex,jdbcType=VARCHAR},
@@ -238,21 +227,17 @@
       <if test="type != null">
         type = #{type,jdbcType=VARCHAR},
       </if>
-      <if test="groups != null">
-        groups = #{groups,jdbcType=VARCHAR},
-      </if>
     </set>
     where singerID = #{singerid,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.music.manager.pojo.Singer">
     update singer
     set singerName = #{singername,jdbcType=VARCHAR},
-      isGroup = #{isgroup,jdbcType=VARCHAR},
+      groups = #{groups,jdbcType=VARCHAR},
       sex = #{sex,jdbcType=VARCHAR},
       fans = #{fans,jdbcType=INTEGER},
       headImage = #{headimage,jdbcType=VARCHAR},
-      type = #{type,jdbcType=VARCHAR},
-      groups = #{groups,jdbcType=VARCHAR}
+      type = #{type,jdbcType=VARCHAR}
     where singerID = #{singerid,jdbcType=VARCHAR}
   </update>
 </mapper>
