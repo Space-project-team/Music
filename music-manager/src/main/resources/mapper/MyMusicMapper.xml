@@ -170,7 +170,7 @@
   </select>
     <select id="selectByUserName" parameterType="java.lang.String" resultType="java.lang.Integer">
         select user_id
-        from user
+        from m_user
         where user_name=#{userName}
     </select>
     <update id="updateByExampleSelective" parameterType="map">

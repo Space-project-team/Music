@@ -126,8 +126,6 @@ public class UserServicelmpl implements UserService {
 			userMapper.insertSelective(user);
 			//将user信息存储到session中
 			request.getSession().setAttribute("user",user);
-			User user1 = (User) request.getSession().getAttribute("user");
-			System.out.println(user1);
 			return BaseResult.success();
 		}
 		result = new BaseResult();
@@ -224,6 +222,7 @@ public class UserServicelmpl implements UserService {
 				//3.1 为空,则证明改用户名可用
 				User user = new User();
 				user.setUserName(adminQuery.getUser_name());
+				user.setPhoneNum(adminQuery.getPhoneNum());
 				user.setUserPassword(Md5Util.getMD5String(adminQuery.getUser_password()));
 				Date date = new Date();
 				user.setCreateTime(date);

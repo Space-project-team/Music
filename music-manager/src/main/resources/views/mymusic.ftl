@@ -289,7 +289,18 @@
 
     //第一次加载
     $(document).ready(function () {
+        //获取用户的id值
+        $.ajax({
+            type: "post",
+            url: ctx+"/user/getUser",
+            success: function (data) {
+                if(data!=null){
+                    userId = data.userId;
+                }
+            }
+        })
         getList(1,10);
+
     });
 
     /*

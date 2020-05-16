@@ -11,6 +11,7 @@ import com.github.pagehelper.PageInfo;
 import com.music.common.result.BaseResult;
 import com.music.common.util.JsonUtil;
 import com.music.manager.mapper.*;
+import com.music.manager.mapper.Song;
 import com.music.manager.pojo.*;
 import com.music.manager.service.IMusicLinkService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -111,13 +112,13 @@ public class MusicLinkServicelmpl implements IMusicLinkService {
             PageHelper.startPage(pageNum,pageSize);
             //创建查询对象
             SongExample songExample = new SongExample();
-            //设置查询先后顺序
-            songExample.setOrderByClause("votes desc");
             SongExample.Criteria criteria = songExample.createCriteria();
             //模糊查询
             if (!StringUtils.isEmpty(songName)) {
                 criteria.andSongnameLike("%" + songName + "%");
             }
+            //设置查询先后顺序
+            songExample.setOrderByClause("votes desc");
             //执行
             List<Song> songList = songMapper.selectByExample(songExample);
             if (CollectionUtils.isEmpty(songList)) {

@@ -340,62 +340,52 @@ public class SongExample {
             return (Criteria) this;
         }
 
-        public Criteria andVotesEqualTo(String value) {
+        public Criteria andVotesEqualTo(Integer value) {
             addCriterion("votes =", value, "votes");
             return (Criteria) this;
         }
 
-        public Criteria andVotesNotEqualTo(String value) {
+        public Criteria andVotesNotEqualTo(Integer value) {
             addCriterion("votes <>", value, "votes");
             return (Criteria) this;
         }
 
-        public Criteria andVotesGreaterThan(String value) {
+        public Criteria andVotesGreaterThan(Integer value) {
             addCriterion("votes >", value, "votes");
             return (Criteria) this;
         }
 
-        public Criteria andVotesGreaterThanOrEqualTo(String value) {
+        public Criteria andVotesGreaterThanOrEqualTo(Integer value) {
             addCriterion("votes >=", value, "votes");
             return (Criteria) this;
         }
 
-        public Criteria andVotesLessThan(String value) {
+        public Criteria andVotesLessThan(Integer value) {
             addCriterion("votes <", value, "votes");
             return (Criteria) this;
         }
 
-        public Criteria andVotesLessThanOrEqualTo(String value) {
+        public Criteria andVotesLessThanOrEqualTo(Integer value) {
             addCriterion("votes <=", value, "votes");
             return (Criteria) this;
         }
 
-        public Criteria andVotesLike(String value) {
-            addCriterion("votes like", value, "votes");
-            return (Criteria) this;
-        }
-
-        public Criteria andVotesNotLike(String value) {
-            addCriterion("votes not like", value, "votes");
-            return (Criteria) this;
-        }
-
-        public Criteria andVotesIn(List<String> values) {
+        public Criteria andVotesIn(List<Integer> values) {
             addCriterion("votes in", values, "votes");
             return (Criteria) this;
         }
 
-        public Criteria andVotesNotIn(List<String> values) {
+        public Criteria andVotesNotIn(List<Integer> values) {
             addCriterion("votes not in", values, "votes");
             return (Criteria) this;
         }
 
-        public Criteria andVotesBetween(String value1, String value2) {
+        public Criteria andVotesBetween(Integer value1, Integer value2) {
             addCriterion("votes between", value1, value2, "votes");
             return (Criteria) this;
         }
 
-        public Criteria andVotesNotBetween(String value1, String value2) {
+        public Criteria andVotesNotBetween(Integer value1, Integer value2) {
             addCriterion("votes not between", value1, value2, "votes");
             return (Criteria) this;
         }
