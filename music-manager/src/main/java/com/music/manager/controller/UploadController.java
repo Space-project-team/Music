@@ -39,7 +39,7 @@ public class UploadController {
 		String date = DateTimeFormatter.ofPattern("yyyy/MM/dd/").format(LocalDateTime.now());
 		filename = date + System.currentTimeMillis() + filename.substring(filename.lastIndexOf("."));
 		User user=(User)request.getSession().getAttribute("user");
-		return uploadService.upload(file.getInputStream(), filename,user);
+		return uploadService.upload(file.getInputStream(), filename,user,request,response);
 	}
 
 
