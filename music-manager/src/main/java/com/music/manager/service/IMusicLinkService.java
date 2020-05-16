@@ -19,7 +19,7 @@ public interface IMusicLinkService{
     //歌曲搜索功能
     BaseResult getMusicByMusicName(String songName,Integer pageNum,Integer pageSize);
     //收藏歌曲
-    BaseResult addMusicCollect(User user, String songName,Integer mid);
+    BaseResult addMusicCollect(String songName,String song_id,Integer user_id);
     //获取top前50歌曲
     BaseResult getTOPLink(Integer pageNum, Integer pageSize);
     //模板

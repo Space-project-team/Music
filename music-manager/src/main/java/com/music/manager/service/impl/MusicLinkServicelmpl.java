@@ -138,53 +138,94 @@ public class MusicLinkServicelmpl implements IMusicLinkService {
 
         /**
          * 收藏歌曲
-         * @param user
          * @param songName
          * @return
          */
         @Override
-        public BaseResult addMusicCollect (User user, String songName, Integer mid){
+        public BaseResult addMusicCollect (String songName,String song_id,Integer user_id){
             //1.判断是否为空
-            if (StringUtils.isEmpty(user) || StringUtils.isEmpty(songName) || StringUtils.isEmpty(mid)) {
+            if (StringUtils.isEmpty(user_id)) {
+                //为空,直接返回错误信息
+                BaseResult result = new BaseResult();
+                result.setCode(505);
+                result.setMessage("收藏失败,请您先登入!");
+                return result;
+            }
+
+            if(StringUtils.isEmpty(songName) || StringUtils.isEmpty(song_id)){
                 //为空,直接返回错误信息
                 return BaseResult.error();
             }
             //2.创建查询对象
-            MusicLinkExample musicLinkExample = new MusicLinkExample();
+            SongExample songExample = new SongExample();
             //歌曲id
-            musicLinkExample.createCriteria().andMlIdEqualTo(mid);
+            songExample.createCriteria().andSongidEqualTo(song_id);
             //3.查询该mid是否为有效值
-            if (CollectionUtils.isEmpty(musicLinkMapper.selectByExample(musicLinkExample))) {
+            if (CollectionUtils.isEmpty(songMapper.selectByExample(songExample))) {
                 //为空,无效mid值
                 return BaseResult.error();
             }
             //有值,有效mid
+            //查询该用户下是否收藏重复的歌曲
+            BaseResult result1 = DetermineMyMusic(songName, user_id);
+            if(result1.getCode()==205){
+                return result1;
+            }
             //歌曲名
-            musicLinkExample.createCriteria().andMlSongnameEqualTo(songName);
+            songExample.createCriteria().andSongnameEqualTo(songName);
             //4.执行
-            List<MusicLink> musicLinks = musicLinkMapper.selectByExample(musicLinkExample);
+            List<Song> songs = songMapper.selectByExample(songExample);
             //判断查询后的list是否为空
-            if (!CollectionUtils.isEmpty(musicLinks)) {
+            if (!CollectionUtils.isEmpty(songs)) {
                 //不为空,将该歌曲添加进该用户的myMusic
-                MusicLink music = musicLinks.get(0);
+                Song song = songs.get(0);
                 MyMusic myMusic = new MyMusic();
                 //设置参数
-                myMusic.setMySongname(music.getMlSongname());
-                myMusic.setMySinger(music.getMlSinger());
-                myMusic.setMySonglink(music.getMlSonglink());
+                myMusic.setMySongname(song.getSongname());
+                myMusic.setMySinger(song.getSingerName());
+                myMusic.setMySonglink(song.getSongfile());
                 myMusic.setMyLyriclink(String.valueOf(0));
-                myMusic.setMyPhotolink(music.getMlPhotolink());
-                myMusic.setUserId(user.getUserId());
+                myMusic.setMyPhotolink(song.getPhotoimage());
+                myMusic.setUserId(user_id);
                 //执行
                 int result = myMusicMapper.insertSelective(myMusic);
                 if (result > 0) {
-                    redisTemplate.delete("mymusic*");
+                    redisTemplate.delete("mymusic");
                     return BaseResult.success();
                 }
                 return BaseResult.error();
             }
             return BaseResult.error();
         }
+
+
+        /**
+         * 查询该用户下是否收藏重复的歌曲
+         * @param songName
+         * @param user_id
+         * @return
+         */
+        public BaseResult DetermineMyMusic(String songName,Integer user_id){
+            //创建查询对象
+            MyMusicExample myMusicExample = new MyMusicExample();
+            //设置参数
+            myMusicExample.createCriteria().andUserIdEqualTo(user_id);
+            //执行
+            List<MyMusic> myMusics = myMusicMapper.selectByExample(myMusicExample);
+            if(!CollectionUtils.isEmpty(myMusics)){
+                //不为空
+                for (MyMusic myMusic:myMusics){
+                    if(myMusic.getUserId().equals(user_id)&&myMusic.getMySongname().equals(songName)){
+                        BaseResult result = new BaseResult();
+                        result.setCode(205);
+                        result.setMessage("您的歌单里已拥有该歌曲");
+                        return  result;
+                    }
+                }
+            }
+            return BaseResult.error();
+        }
+
 
         /**
          * 获取TOP-50歌曲
@@ -272,16 +313,76 @@ public class MusicLinkServicelmpl implements IMusicLinkService {
                 pageNum = 1;
                 pageSize = 10;
             }
-            if(StringUtils.isEmpty(SongType)){
+
+            //判断类型是否为空
+            if(!StringUtils.isEmpty(SongType)){
+                //创建查询对象
+                LanguageExample languageExample = new LanguageExample();
+                languageExample.createCriteria().andLanguagenameEqualTo(SongType);
+                List<Language> languages = languageMapper.selectByExample(languageExample);
+                //判断非空
+                if (!CollectionUtils.isEmpty(languages)) {
+                    //获取language对象
+                    Language language = languages.get(0);
+                    //创建查对象
+                    SongExample songExample = new SongExample();
+                    SongExample.Criteria criteria = songExample.createCriteria();
+                    //设置歌曲风格id
+                    criteria.andTypeidEqualTo(language.getLanguageid());
+                    //设置字段排序
+                    songExample.setOrderByClause("votes DESC");
+
+                    PageHelper.startPage(pageNum,pageSize);
+
+                    //封装添加时间参数
+                    getDate(time, criteria);
+                    List<Song> songs = songMapper.selectByExample(songExample);
+                    //判断是否为空
+                    if (!CollectionUtils.isEmpty(songs)) {
+                        //不空
+                        songPageInfo = new PageInfo<>(songs);
+                        songPageInfo.setTotal(get(SongType,time));
+                        return BaseResult.success(songPageInfo);
+                    }
+                }
                 return BaseResult.error();
             }
 
+            //创建查对象
+            SongExample songExample = new SongExample();
+            SongExample.Criteria criteria = songExample.createCriteria();
+            //设置字段排序
+            songExample.setOrderByClause("votes DESC");
+            PageHelper.startPage(pageNum,pageSize);
 
-            //创建查询对象
-            LanguageExample languageExample = new LanguageExample();
+            //封装添加时间参数
+            getDate(time, criteria);
+
+            List<Song> songs = songMapper.selectByExample(songExample);
+            //判断是否为空
+            if (!CollectionUtils.isEmpty(songs)) {
+                //不空
+                songPageInfo = new PageInfo<>(songs);
+                songPageInfo.setTotal(get(SongType,time));
+                return BaseResult.success(songPageInfo);
+            }
+
+            return BaseResult.error();
+        }
+
+    /**
+     * 获取模板的总数
+     * @param SongType
+     * @param time
+     * @return
+     */
+    public Integer get(String SongType,String time) {
+        //创建查询对象
+        LanguageExample languageExample = new LanguageExample();
+        //判断类型是否为空
+        if(!StringUtils.isEmpty(SongType)){
             languageExample.createCriteria().andLanguagenameEqualTo(SongType);
             List<Language> languages = languageMapper.selectByExample(languageExample);
-
             //判断非空
             if (!CollectionUtils.isEmpty(languages)) {
                 //获取language对象
@@ -294,89 +395,21 @@ public class MusicLinkServicelmpl implements IMusicLinkService {
                 //设置字段排序
                 songExample.setOrderByClause("votes DESC");
 
-                PageHelper.startPage(pageNum,pageSize);
-                //添加创建时间查询条件
-                DateFormat dateFormat1 = new SimpleDateFormat("yyyy-MM-dd");
-                Date date = null;
-                Calendar calendar=Calendar.getInstance();
-                try {
-                    date = dateFormat1.parse("2010-12-30");
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
+                //封装添加时间参数
+                getDate(time, criteria);
 
-                if("1".equals(time)){
-                    //欧美经典排行榜
-                    criteria.andCreateTimeLessThanOrEqualTo(date);
-                }else if("2".equals(time)){
-                    //欧美新歌排行榜
-                    try {
-                        //将大于当前系统时间减3个月
-                        calendar.add(Calendar.MONTH, -3);
-                        date = dateFormat1.parse(dateFormat1.format(calendar.getTime()));
-                    } catch (ParseException e) {
-                        e.printStackTrace();
-                    }
-                    criteria.andCreateTimeGreaterThanOrEqualTo(date);
-                }
-
-                List<Song> songs = songMapper.selectByExample(songExample);
-                //判断是否为空
-                if (!CollectionUtils.isEmpty(songs)) {
-                    //不空
-                    songPageInfo = new PageInfo<>(songs);
-                    songPageInfo.setTotal(get(SongType,time));
-                    return BaseResult.success(songPageInfo);
-                }
+                return songMapper.selectByExample(songExample).size();
             }
-            return BaseResult.error();
         }
 
-    //获取模板的总数
-    public Integer get(String SongType,String time) {
-        //创建查询对象
-        LanguageExample languageExample = new LanguageExample();
-        languageExample.createCriteria().andLanguagenameEqualTo(SongType);
-        List<Language> languages = languageMapper.selectByExample(languageExample);
-        //判断非空
-        if (!CollectionUtils.isEmpty(languages)) {
-            //获取language对象
-            Language language = languages.get(0);
-            //创建查对象
-            SongExample songExample = new SongExample();
-            SongExample.Criteria criteria = songExample.createCriteria();
-            //设置歌曲风格id
-            criteria.andTypeidEqualTo(language.getLanguageid());
-            //设置字段排序
-            songExample.setOrderByClause("votes DESC");
-            //添加创建时间查询条件
-            DateFormat dateFormat1 = new SimpleDateFormat("yyyy-MM-dd");
-            Date date = null;
-            Calendar calendar = Calendar.getInstance();
-            try {
-                date = dateFormat1.parse("2010-12-30");
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
-
-            if ("1".equals(time)) {
-                //欧美经典排行榜
-                criteria.andCreateTimeLessThanOrEqualTo(date);
-            } else if ("2".equals(time)) {
-                //欧美新歌排行榜
-                try {
-                    //将大于当前系统时间减3个月
-                    calendar.add(Calendar.MONTH, -3);
-                    date = dateFormat1.parse(dateFormat1.format(calendar.getTime()));
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
-                criteria.andCreateTimeGreaterThanOrEqualTo(date);
-            }
-
-            return songMapper.selectByExample(songExample).size();
-        }
-            return null;
+        //创建查对象
+        SongExample songExample = new SongExample();
+        SongExample.Criteria criteria = songExample.createCriteria();
+        //设置字段排序
+        songExample.setOrderByClause("votes DESC");
+        //封装添加时间参数
+        getDate(time, criteria);
+        return songMapper.selectByExample(songExample).size();
      }
 
     /**
@@ -398,5 +431,34 @@ public class MusicLinkServicelmpl implements IMusicLinkService {
          return  songMapper.selectByExample(songExample).size();
      }
 
+
+
+     public void getDate(String time,SongExample.Criteria criteria){
+         //添加创建时间查询条件
+         DateFormat dateFormat1 = new SimpleDateFormat("yyyy-MM-dd");
+         Date date = null;
+         Calendar calendar=Calendar.getInstance();
+         try {
+             //当前系统时间减10年
+             calendar.add(Calendar.YEAR, -10);
+             date = dateFormat1.parse(dateFormat1.format(calendar.getTime()));
+         } catch (ParseException e) {
+             e.printStackTrace();
+         }
+         if("1".equals(time)){
+             //欧美经典排行榜
+             criteria.andCreateTimeLessThanOrEqualTo(date);
+         }else if("2".equals(time)){
+             //欧美新歌排行榜
+             try {
+                 //将大于当前系统时间减3个月
+                 calendar.add(Calendar.MONTH, -3);
+                 date = dateFormat1.parse(dateFormat1.format(calendar.getTime()));
+             } catch (ParseException e) {
+                 e.printStackTrace();
+             }
+             criteria.andCreateTimeGreaterThanOrEqualTo(date);
+         }
+     }
 
     }

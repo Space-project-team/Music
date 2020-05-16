@@ -59,8 +59,8 @@ function getModuleMusic(url,pageNum,pageSize) {
                 }
 
                 function fn1(j) {
-                    $.cookie("song_id", data.data.list[j].songid, {expires: 7, path: "/"});
-                    $.cookie("song_name", data.data.list[j].songname, {expires: 7, path: "/"});
+                    $.cookie("song_id", data.pageInfo.list[j].songid, {expires: 7, path: "/"});
+                    $.cookie("song_name", data.pageInfo.list[j].songname, {expires: 7, path: "/"});
                 }
             }
             $("table tbody").html(str);
@@ -162,8 +162,8 @@ function getTop(url,pageNum,pageSize) {
                 }
 
                 function fn1(j) {
-                    $.cookie("song_id", data.data.list[j].songid, {expires: 7, path: "/"});
-                    $.cookie("song_name", data.data.list[j].songname, {expires: 7, path: "/"});
+                    $.cookie("song_id", data.pageInfo.list[j].songid, {expires: 7, path: "/"});
+                    $.cookie("song_name", data.pageInfo.list[j].songname, {expires: 7, path: "/"});
                 }
             }
             $("table tbody").html(str);

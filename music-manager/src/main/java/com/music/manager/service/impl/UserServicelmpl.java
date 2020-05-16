@@ -76,6 +76,7 @@ public class UserServicelmpl implements UserService {
 				//3.2两次密码相同,该用户存在并信息正确
 				//将user信息存储到session中
 				request.getSession().setAttribute("user",user);
+				/*System.out.println(request.getSession().getAttribute("user"));*/
 				return BaseResult.success();
 			}else{
 				result = new BaseResult();
@@ -157,6 +158,12 @@ public class UserServicelmpl implements UserService {
 		return BaseResult.success();
 	}
 
+	/**
+	 * 用户注销
+	 * @param request
+	 * @param response
+	 * @return
+	 */
 	@Override
 	public BaseResult layOut(HttpServletRequest request, HttpServletResponse response) {
 		BaseResult result = null;
@@ -169,6 +176,9 @@ public class UserServicelmpl implements UserService {
 		}
 		//清除session
 		request.getSession().removeAttribute("user");
+		//清除cookie
+		CookieUtil.deleteCookie(request,response,"user_name");
+		CookieUtil.deleteCookie(request,response,"user_password");
 		return BaseResult.success();
 	}
 
