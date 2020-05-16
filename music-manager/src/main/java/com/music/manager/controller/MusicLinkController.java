@@ -63,9 +63,8 @@ public class MusicLinkController {
 	 */
 	@RequestMapping(value = "addMusicCollect",method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
-	public BaseResult  addMusicCollect(HttpServletRequest request,String songName,Integer mid){
-		User user = (User) request.getSession().getAttribute("user");
-		return  musicLinkService.addMusicCollect(user,songName,mid);
+	public BaseResult  addMusicCollect(String songName,String song_id,Integer user_id){
+		return  musicLinkService.addMusicCollect(songName,song_id,user_id);
 	}
 
 
@@ -155,5 +154,29 @@ public class MusicLinkController {
 	}
 
 
+	/**
+	 * 新曲榜
+	 * @param pageNum
+	 * @param pageSize
+	 * @return
+	 */
+	@RequestMapping(value = "NewMusic",method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public BaseResult NewMusic(Integer pageNum,Integer pageSize){
+		return musicLinkService.ModuleMusic(pageNum,pageSize,null,"2");
+	}
+
+
+	/**
+	 * 国风美少年榜
+	 * @param pageNum
+	 * @param pageSize
+	 * @return
+	 */
+	@RequestMapping(value = "SongHuai",method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public BaseResult SongHuai(Integer pageNum,Integer pageSize){
+		return musicLinkService.ModuleMusic(pageNum,pageSize,"国风美少年","2");
+	}
 
 }

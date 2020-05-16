@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.github.qcloudsms.httpclient.HTTPException;
 import com.music.common.result.BaseResult;
+import com.music.manager.pojo.User;
 import com.music.manager.service.IMyMusicService;
 import com.music.manager.service.SendMessageService;
 import com.music.manager.service.UserService;
@@ -130,5 +131,23 @@ public class UserController {
 			return BaseResult.error();
 		}
 		return result;
+	}
+
+
+	/**
+	 * 获取user
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value = "getUser",method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public User getUser(HttpServletRequest request){
+		//从session中获取
+		User user = (User) request.getSession().getAttribute("user");
+		System.out.println(user);
+		if(StringUtils.isEmpty(user)){
+			return null;
+		}
+		return user;
 	}
 }
