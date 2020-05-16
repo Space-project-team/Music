@@ -185,7 +185,7 @@
                 <div class="panel-body">
                     <a href="javascript:void(0)" onclick="showRecord(1,10)">轻语音乐榜</a>
                     <a href="javascript:void(0)" onclick="showRecord(1,10)">飙升榜单</a>
-                    <a href="javascript:void(0)" onclick="getModuleMusic('TOPLink',1,10)">TOP50榜单</a>
+                    <a href="javascript:void(0)" onclick="getTop('TOPLink',1,50)">TOP50榜单</a>
                     <a href="javascript:void(0)" onclick="getModuleMusic('NetworkMusic',1,10)">网络音乐榜</a>
                     <a href="javascript:void(0)" onclick="getModuleMusic('MovieSong',1,10)">电影音乐榜</a>
                     <a href="javascript:void(0)" onclick="getModuleMusic('DjSong',1,10)">DJ热歌榜</a>
@@ -276,6 +276,10 @@
 <script type="text/javascript" src="${ctx}/js/vue.min.js"></script>
 <script type="text/javascript">
 
+    //默认打开首页加载一次
+    $(function () {
+        showRecord(1,10);
+    });
 
     //加载总页数
     var totals;
@@ -377,7 +381,7 @@
                 alert("该网站正在更新,非常抱歉!");
             }
 
-        }),
+        })
     }
 
 
@@ -427,7 +431,7 @@
     $("#search1").click(function () {
         window.open("http://localhost:9091/music-manager/musicSearchTest");//给登录按钮一个超链接
     });
-    */
+
     var clock = new Vue({
         el: '#clock',
         data: {
