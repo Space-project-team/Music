@@ -272,16 +272,76 @@ public class MusicLinkServicelmpl implements IMusicLinkService {
                 pageNum = 1;
                 pageSize = 10;
             }
-            if(StringUtils.isEmpty(SongType)){
+
+            //判断类型是否为空
+            if(!StringUtils.isEmpty(SongType)){
+                //创建查询对象
+                LanguageExample languageExample = new LanguageExample();
+                languageExample.createCriteria().andLanguagenameEqualTo(SongType);
+                List<Language> languages = languageMapper.selectByExample(languageExample);
+                //判断非空
+                if (!CollectionUtils.isEmpty(languages)) {
+                    //获取language对象
+                    Language language = languages.get(0);
+                    //创建查对象
+                    SongExample songExample = new SongExample();
+                    SongExample.Criteria criteria = songExample.createCriteria();
+                    //设置歌曲风格id
+                    criteria.andTypeidEqualTo(language.getLanguageid());
+                    //设置字段排序
+                    songExample.setOrderByClause("votes DESC");
+
+                    PageHelper.startPage(pageNum,pageSize);
+
+                    //封装添加时间参数
+                    getDate(time, criteria);
+                    List<Song> songs = songMapper.selectByExample(songExample);
+                    //判断是否为空
+                    if (!CollectionUtils.isEmpty(songs)) {
+                        //不空
+                        songPageInfo = new PageInfo<>(songs);
+                        songPageInfo.setTotal(get(SongType,time));
+                        return BaseResult.success(songPageInfo);
+                    }
+                }
                 return BaseResult.error();
             }
 
+            //创建查对象
+            SongExample songExample = new SongExample();
+            SongExample.Criteria criteria = songExample.createCriteria();
+            //设置字段排序
+            songExample.setOrderByClause("votes DESC");
+            PageHelper.startPage(pageNum,pageSize);
 
-            //创建查询对象
-            LanguageExample languageExample = new LanguageExample();
+            //封装添加时间参数
+            getDate(time, criteria);
+
+            List<Song> songs = songMapper.selectByExample(songExample);
+            //判断是否为空
+            if (!CollectionUtils.isEmpty(songs)) {
+                //不空
+                songPageInfo = new PageInfo<>(songs);
+                songPageInfo.setTotal(get(SongType,time));
+                return BaseResult.success(songPageInfo);
+            }
+
+            return BaseResult.error();
+        }
+
+    /**
+     * 获取模板的总数
+     * @param SongType
+     * @param time
+     * @return
+     */
+    public Integer get(String SongType,String time) {
+        //创建查询对象
+        LanguageExample languageExample = new LanguageExample();
+        //判断类型是否为空
+        if(!StringUtils.isEmpty(SongType)){
             languageExample.createCriteria().andLanguagenameEqualTo(SongType);
             List<Language> languages = languageMapper.selectByExample(languageExample);
-
             //判断非空
             if (!CollectionUtils.isEmpty(languages)) {
                 //获取language对象
@@ -294,89 +354,21 @@ public class MusicLinkServicelmpl implements IMusicLinkService {
                 //设置字段排序
                 songExample.setOrderByClause("votes DESC");
 
-                PageHelper.startPage(pageNum,pageSize);
-                //添加创建时间查询条件
-                DateFormat dateFormat1 = new SimpleDateFormat("yyyy-MM-dd");
-                Date date = null;
-                Calendar calendar=Calendar.getInstance();
-                try {
-                    date = dateFormat1.parse("2010-12-30");
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
+                //封装添加时间参数
+                getDate(time, criteria);
 
-                if("1".equals(time)){
-                    //欧美经典排行榜
-                    criteria.andCreateTimeLessThanOrEqualTo(date);
-                }else if("2".equals(time)){
-                    //欧美新歌排行榜
-                    try {
-                        //将大于当前系统时间减3个月
-                        calendar.add(Calendar.MONTH, -3);
-                        date = dateFormat1.parse(dateFormat1.format(calendar.getTime()));
-                    } catch (ParseException e) {
-                        e.printStackTrace();
-                    }
-                    criteria.andCreateTimeGreaterThanOrEqualTo(date);
-                }
-
-                List<Song> songs = songMapper.selectByExample(songExample);
-                //判断是否为空
-                if (!CollectionUtils.isEmpty(songs)) {
-                    //不空
-                    songPageInfo = new PageInfo<>(songs);
-                    songPageInfo.setTotal(get(SongType,time));
-                    return BaseResult.success(songPageInfo);
-                }
+                return songMapper.selectByExample(songExample).size();
             }
-            return BaseResult.error();
         }
 
-    //获取模板的总数
-    public Integer get(String SongType,String time) {
-        //创建查询对象
-        LanguageExample languageExample = new LanguageExample();
-        languageExample.createCriteria().andLanguagenameEqualTo(SongType);
-        List<Language> languages = languageMapper.selectByExample(languageExample);
-        //判断非空
-        if (!CollectionUtils.isEmpty(languages)) {
-            //获取language对象
-            Language language = languages.get(0);
-            //创建查对象
-            SongExample songExample = new SongExample();
-            SongExample.Criteria criteria = songExample.createCriteria();
-            //设置歌曲风格id
-            criteria.andTypeidEqualTo(language.getLanguageid());
-            //设置字段排序
-            songExample.setOrderByClause("votes DESC");
-            //添加创建时间查询条件
-            DateFormat dateFormat1 = new SimpleDateFormat("yyyy-MM-dd");
-            Date date = null;
-            Calendar calendar = Calendar.getInstance();
-            try {
-                date = dateFormat1.parse("2010-12-30");
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
-
-            if ("1".equals(time)) {
-                //欧美经典排行榜
-                criteria.andCreateTimeLessThanOrEqualTo(date);
-            } else if ("2".equals(time)) {
-                //欧美新歌排行榜
-                try {
-                    //将大于当前系统时间减3个月
-                    calendar.add(Calendar.MONTH, -3);
-                    date = dateFormat1.parse(dateFormat1.format(calendar.getTime()));
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
-                criteria.andCreateTimeGreaterThanOrEqualTo(date);
-            }
-
-            return songMapper.selectByExample(songExample).size();
-        }
-            return null;
+        //创建查对象
+        SongExample songExample = new SongExample();
+        SongExample.Criteria criteria = songExample.createCriteria();
+        //设置字段排序
+        songExample.setOrderByClause("votes DESC");
+        //封装添加时间参数
+        getDate(time, criteria);
+        return songMapper.selectByExample(songExample).size();
      }
 
     /**
@@ -398,5 +390,34 @@ public class MusicLinkServicelmpl implements IMusicLinkService {
          return  songMapper.selectByExample(songExample).size();
      }
 
+
+
+     public void getDate(String time,SongExample.Criteria criteria){
+         //添加创建时间查询条件
+         DateFormat dateFormat1 = new SimpleDateFormat("yyyy-MM-dd");
+         Date date = null;
+         Calendar calendar=Calendar.getInstance();
+         try {
+             //当前系统时间减10年
+             calendar.add(Calendar.YEAR, -10);
+             date = dateFormat1.parse(dateFormat1.format(calendar.getTime()));
+         } catch (ParseException e) {
+             e.printStackTrace();
+         }
+         if("1".equals(time)){
+             //欧美经典排行榜
+             criteria.andCreateTimeLessThanOrEqualTo(date);
+         }else if("2".equals(time)){
+             //欧美新歌排行榜
+             try {
+                 //将大于当前系统时间减3个月
+                 calendar.add(Calendar.MONTH, -3);
+                 date = dateFormat1.parse(dateFormat1.format(calendar.getTime()));
+             } catch (ParseException e) {
+                 e.printStackTrace();
+             }
+             criteria.andCreateTimeGreaterThanOrEqualTo(date);
+         }
+     }
 
     }

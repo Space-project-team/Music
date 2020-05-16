@@ -155,5 +155,29 @@ public class MusicLinkController {
 	}
 
 
+	/**
+	 * 新曲榜
+	 * @param pageNum
+	 * @param pageSize
+	 * @return
+	 */
+	@RequestMapping(value = "NewMusic",method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public BaseResult NewMusic(Integer pageNum,Integer pageSize){
+		return musicLinkService.ModuleMusic(pageNum,pageSize,null,"2");
+	}
+
+
+	/**
+	 * 国风美少年榜
+	 * @param pageNum
+	 * @param pageSize
+	 * @return
+	 */
+	@RequestMapping(value = "SongHuai",method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public BaseResult SongHuai(Integer pageNum,Integer pageSize){
+		return musicLinkService.ModuleMusic(pageNum,pageSize,"国风美少年","2");
+	}
 
 }
