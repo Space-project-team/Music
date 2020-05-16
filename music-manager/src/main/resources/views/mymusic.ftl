@@ -175,7 +175,8 @@
 <div class="headerbg">
     <div class="geRenZiLiao">
         <div class="touxiang">
-            <img src="${ctx}/images/gerentouxianag.jpeg" class="img-circle txborder">
+            <img src="${ctx}/images/gerentouxianag.jpeg" class="img-circle txborder"
+                 style="display: inline-block; width: 120px;height: 120px;border:2px;border-radius: 60px;margin-bottom: 5px;">
         </div>
         <h3 class="mingzijuzhong"><span><img src="${ctx}/images/huiyuan.png" alt="会员" width="auto" height="30px"></span></h3>
         <ul class="gzfs">
