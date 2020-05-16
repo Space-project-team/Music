@@ -1,6 +1,7 @@
 package com.music.manager.mapper;
 
 
+import com.music.manager.pojo.Song;
 import com.music.manager.pojo.SongExample;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;

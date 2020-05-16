@@ -69,7 +69,6 @@ public class UploadServiceImpl implements UploadService {
 					userMapper.updateByPrimaryKey(user);
 					//将user信息更新到session中
 					request.getSession().setAttribute("user",user);
-					System.out.println(request.getSession().getAttribute("user"));
 					return fileResult;
 				}else {
 					fileResult.setError("error");

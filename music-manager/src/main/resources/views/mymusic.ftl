@@ -175,7 +175,11 @@
 <div class="headerbg">
     <div class="geRenZiLiao">
         <div class="touxiang">
-            <img src="${ctx}/images/gerentouxianag.jpeg" class="img-circle txborder">
+            <img src="
+
+                <#--https://0509music.oss-cn-shanghai.aliyuncs.com/head/96%E7%8C%AB.jpg-->"
+                 style="display: inline-block; width: 120px;height: 120px;border:2px;border-radius: 60px;margin-bottom: 5px;"
+                 class="img-circle txborder">
         </div>
         <h3 class="mingzijuzhong"><span><img src="${ctx}/images/huiyuan.png" alt="会员" width="auto" height="30px"></span></h3>
         <ul class="gzfs">
@@ -278,7 +282,7 @@
         $("#userName").text("账号：" + $.cookie("user_name"));//将未登录3个字替换为用户名
         $("#zhuXiao").text("注销");//将注销加在用户名后方
         $(".mingzijuzhong").text("用户: " + $.cookie("user_name"));//替换大头像下面的用户名
-        document.getElementById("touxiang").src = "${ctx}/images/touxiang2.jpg";//替换原始头像
+        document.getElementById("touxiang").src = "https://0509music.oss-cn-shanghai.aliyuncs.com/head/96%E7%8C%AB.jpg";//替换原始头像
         $("#display1").attr("style", "display:none;");//隐藏登录按钮
     }
 
