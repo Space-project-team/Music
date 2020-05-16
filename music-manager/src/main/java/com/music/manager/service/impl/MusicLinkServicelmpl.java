@@ -225,6 +225,7 @@ public class MusicLinkServicelmpl implements IMusicLinkService {
                 PageInfo<Song> page = new PageInfo<>(songList);
                 operations.set(TOPLink, JsonUtil.object2JsonStr(page));
                 page.setTotal(songList.size());
+                page.setPages(1);
                 //遍历所有的歌曲,在根据
                 return BaseResult.success(page);
             }

@@ -473,6 +473,9 @@
     //
     //
     //加载总页数
+    var totals;
+    var page;
+    var pages;
     $.ajax({
         url: "${ctx}/musicLink/getMusicLinkList",
         type: "GET",
@@ -482,6 +485,10 @@
         },
         success: function (data) {
             if (data.code == 200) {
+                page = data.pageInfo.pageNum;
+                totals = data.pageInfo.total;
+                pages = data.pageInfo.pages;
+
                 $(".jDian1").click(function () {//点击调用fn（）方法，并传入14，下方以此类推
                     fn(14);
                 });
