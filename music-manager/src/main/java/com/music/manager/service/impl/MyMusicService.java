@@ -23,6 +23,7 @@ import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -134,9 +135,16 @@ public class MyMusicService implements IMyMusicService {
         return 0;
     }
 
+    /**
+     * 获取个人歌曲总数
+     * @param uid
+     * @return
+     */
     public Integer getCount(Integer uid){
         MyMusicExample myMusicExample = new MyMusicExample();
         myMusicExample.createCriteria().andUserIdEqualTo(uid);
         return myMusicMapper.selectByExample(myMusicExample).size();
     }
+
+
 }

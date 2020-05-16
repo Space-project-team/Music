@@ -1,11 +1,15 @@
 package com.music.manager.controller;
 
 import com.music.common.result.BaseResult;
+import com.music.manager.pojo.User;
 import com.music.manager.service.IMyMusicService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.servlet.http.HttpServletRequest;
 
 
 /**
@@ -27,12 +31,14 @@ public class MyMusicController {
      */
     @RequestMapping("getMyMusicList")
     @ResponseBody
-    public BaseResult getMyMusicList(String userName, Integer pageNum, Integer pageSize){
-        System.out.println(iMyMusicService.getMyMusicList(userName,pageNum,pageSize));
+    public BaseResult getMyMusicList(String userName, Integer pageNum, Integer pageSize, HttpServletRequest request){
+        User user = (User) request.getSession().getAttribute("user");
+        if(StringUtils.isEmpty(user)){
+            return BaseResult.error();
+        }
+        request.setAttribute("MyMusicCount",iMyMusicService.getCount(user.getUserId()));
         return iMyMusicService.getMyMusicList(userName,pageNum,pageSize);
     }
-
-
 
 
     /**

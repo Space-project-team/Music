@@ -126,6 +126,8 @@ public class UserServicelmpl implements UserService {
 			userMapper.insertSelective(user);
 			//将user信息存储到session中
 			request.getSession().setAttribute("user",user);
+			User user1 = (User) request.getSession().getAttribute("user");
+			System.out.println(user1);
 			return BaseResult.success();
 		}
 		result = new BaseResult();
@@ -176,9 +178,6 @@ public class UserServicelmpl implements UserService {
 		}
 		//清除session
 		request.getSession().removeAttribute("user");
-		//清除cookie
-		CookieUtil.deleteCookie(request,response,"user_name");
-		CookieUtil.deleteCookie(request,response,"user_password");
 		return BaseResult.success();
 	}
 

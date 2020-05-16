@@ -6,6 +6,8 @@
     <result column="user_name" jdbcType="VARCHAR" property="userName" />
     <result column="user_password" jdbcType="VARCHAR" property="userPassword" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="phone_num" jdbcType="VARCHAR" property="phoneNum" />
+    <result column="head_image" jdbcType="VARCHAR" property="headImage" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -66,7 +68,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    user_id, user_name, user_password, create_time
+    user_id, user_name, user_password, create_time, phone_num, head_image
   </sql>
   <select id="selectByExample" parameterType="com.music.manager.pojo.UserExample" resultMap="BaseResultMap">
     select
@@ -74,7 +76,7 @@
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from user
+    from m_user
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -85,27 +87,29 @@
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from user
+    from m_user
     where user_id = #{userId,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from user
+    delete from m_user
     where user_id = #{userId,jdbcType=INTEGER}
   </delete>
   <delete id="deleteByExample" parameterType="com.music.manager.pojo.UserExample">
-    delete from user
+    delete from m_user
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
   <insert id="insert" parameterType="com.music.manager.pojo.User">
-    insert into user (user_id, user_name, user_password,
-      create_time)
+    insert into m_user (user_id, user_name, user_password, 
+      create_time, phone_num, head_image
+      )
     values (#{userId,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{userPassword,jdbcType=VARCHAR}, 
-      #{createTime,jdbcType=TIMESTAMP})
+      #{createTime,jdbcType=TIMESTAMP}, #{phoneNum,jdbcType=VARCHAR}, #{headImage,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.music.manager.pojo.User">
-    insert into user
+    insert into m_user
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="userId != null">
         user_id,
@@ -118,6 +122,12 @@
       </if>
       <if test="createTime != null">
         create_time,
+      </if>
+      <if test="phoneNum != null">
+        phone_num,
+      </if>
+      <if test="headImage != null">
+        head_image,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -133,16 +143,22 @@
       <if test="createTime != null">
         #{createTime,jdbcType=TIMESTAMP},
       </if>
+      <if test="phoneNum != null">
+        #{phoneNum,jdbcType=VARCHAR},
+      </if>
+      <if test="headImage != null">
+        #{headImage,jdbcType=VARCHAR},
+      </if>
     </trim>
   </insert>
   <select id="countByExample" parameterType="com.music.manager.pojo.UserExample" resultType="java.lang.Long">
-    select count(*) from user
+    select count(*) from m_user
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update user
+    update m_user
     <set>
       <if test="record.userId != null">
         user_id = #{record.userId,jdbcType=INTEGER},
@@ -156,23 +172,31 @@
       <if test="record.createTime != null">
         create_time = #{record.createTime,jdbcType=TIMESTAMP},
       </if>
+      <if test="record.phoneNum != null">
+        phone_num = #{record.phoneNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.headImage != null">
+        head_image = #{record.headImage,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update user
+    update m_user
     set user_id = #{record.userId,jdbcType=INTEGER},
       user_name = #{record.userName,jdbcType=VARCHAR},
       user_password = #{record.userPassword,jdbcType=VARCHAR},
-      create_time = #{record.createTime,jdbcType=TIMESTAMP}
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      phone_num = #{record.phoneNum,jdbcType=VARCHAR},
+      head_image = #{record.headImage,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
   <update id="updateByPrimaryKeySelective" parameterType="com.music.manager.pojo.User">
-    update user
+    update m_user
     <set>
       <if test="userName != null">
         user_name = #{userName,jdbcType=VARCHAR},
@@ -183,14 +207,22 @@
       <if test="createTime != null">
         create_time = #{createTime,jdbcType=TIMESTAMP},
       </if>
+      <if test="phoneNum != null">
+        phone_num = #{phoneNum,jdbcType=VARCHAR},
+      </if>
+      <if test="headImage != null">
+        head_image = #{headImage,jdbcType=VARCHAR},
+      </if>
     </set>
     where user_id = #{userId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.music.manager.pojo.User">
-    update user
+    update m_user
     set user_name = #{userName,jdbcType=VARCHAR},
       user_password = #{userPassword,jdbcType=VARCHAR},
-      create_time = #{createTime,jdbcType=TIMESTAMP}
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      phone_num = #{phoneNum,jdbcType=VARCHAR},
+      head_image = #{headImage,jdbcType=VARCHAR}
     where user_id = #{userId,jdbcType=INTEGER}
   </update>
 </mapper>

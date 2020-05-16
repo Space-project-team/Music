@@ -5,29 +5,39 @@ import java.util.Date;
 
 /**
  * @author zhoubin 
- * @create 2020-05-10
+ * @create 2020-05-16
  * @since 1.0.0
  */
 public class User implements Serializable {
     /**
-     * 
+     * id主键
      */
     private Integer userId;
 
     /**
-     * 
+     * 用花名称
      */
     private String userName;
 
     /**
-     * 
+     * 用户密码
      */
     private String userPassword;
 
     /**
-     * 
+     * 创建时间
      */
     private Date createTime;
+
+    /**
+     * 手机号码
+     */
+    private String phoneNum;
+
+    /**
+     * 头像
+     */
+    private String headImage;
 
     /**
      * m_user
@@ -66,6 +76,22 @@ public class User implements Serializable {
         this.createTime = createTime;
     }
 
+    public String getPhoneNum() {
+        return phoneNum;
+    }
+
+    public void setPhoneNum(String phoneNum) {
+        this.phoneNum = phoneNum == null ? null : phoneNum.trim();
+    }
+
+    public String getHeadImage() {
+        return headImage;
+    }
+
+    public void setHeadImage(String headImage) {
+        this.headImage = headImage == null ? null : headImage.trim();
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -76,6 +102,8 @@ public class User implements Serializable {
         sb.append(", userName=").append(userName);
         sb.append(", userPassword=").append(userPassword);
         sb.append(", createTime=").append(createTime);
+        sb.append(", phoneNum=").append(phoneNum);
+        sb.append(", headImage=").append(headImage);
         sb.append("]");
         return sb.toString();
     }

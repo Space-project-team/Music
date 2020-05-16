@@ -342,8 +342,7 @@
 					//动态生成表格
 					var box= '';
 					box +='<tbody>';
-					box+='<tr class="active">';
-					box+='</tr>';
+
 					/* data.data.list.length对应respon.map.list.length */
 					for (var i = 0; i < data.pageInfo.list.length; i++) {
 						var a = i + 1;
@@ -367,9 +366,15 @@
 									+'</div>'
 						}
 						if(a>20){
+							if(a%3==0){
+								box+='<tr class="active">';
 
+							}
 							box+='<td>'+a+ '<img src="${ctx}/images/上升.png"> <a href="#">'+data.pageInfo.list[i].singername+'</a></td>';
+							if(a%3==2){
 
+								box+='</tr>';
+							}
 						}
 						}
 
@@ -415,8 +420,7 @@
 					//动态生成表格
 					var box= '';
 					box +='<tbody>';
-					box+='<tr class="active">';
-					box+='</tr>';
+
 					/* data.data.list.length对应respon.map.list.length */
 					for (var i = 0; i < data.pageInfo.list.length; i++) {
 						var a = i + 1;
@@ -440,9 +444,15 @@
 									+'</div>'
 						}
 						if(a>20){
+							if(a%3==0){
+								box+='<tr class="active">';
 
+							}
 							box+='<td>'+a+ '<img src="${ctx}/images/上升.png"> <a href="#">'+data.pageInfo.list[i].singername+'</a></td>';
+							if(a%3==2){
 
+								box+='</tr>';
+							}
 						}
 					}
 					//layui分页
@@ -486,8 +496,7 @@
 					//动态生成表格
 					var box= '';
 					box +='<tbody>';
-					box+='<tr class="active">';
-					box+='</tr>';
+
 					/* data.data.list.length对应respon.map.list.length */
 					for (var i = 0; i < data.pageInfo.list.length; i++) {
 						var a = i + 1;
@@ -511,9 +520,15 @@
 									+'</div>'
 						}
 						if(a>20){
+							if(a%3==0){
+								box+='<tr class="active">';
 
+							}
 							box+='<td>'+a+ '<img src="${ctx}/images/上升.png"> <a href="#">'+data.pageInfo.list[i].singername+'</a></td>';
+							if(a%3==2){
 
+								box+='</tr>';
+							}
 						}
 					}
 					//layui分页
@@ -555,8 +570,7 @@
 					//动态生成表格
 					var box= '';
 					box +='<tbody>';
-					box+='<tr class="active">';
-					box+='</tr>';
+
 					/* data.data.list.length对应respon.map.list.length */
 					for (var i = 0; i < data.pageInfo.list.length; i++) {
 						var a = i + 1;
@@ -580,9 +594,15 @@
 									+'</div>'
 						}
 						if(a>20){
+							if(a%3==0){
+								box+='<tr class="active">';
 
+							}
 							box+='<td>'+a+ '<img src="${ctx}/images/上升.png"> <a href="#">'+data.pageInfo.list[i].singername+'</a></td>';
+							if(a%3==2){
 
+								box+='</tr>';
+							}
 						}
 					}
 					//layui分页

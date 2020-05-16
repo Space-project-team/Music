@@ -199,7 +199,7 @@
 </div>
 <div class="content">
     <div class="contentnav">
-        <a href="#" class="Cnava">歌曲&nbsp;651</a>
+        <a href="#" class="Cnava">歌曲&nbsp;99</a>
         <a href="#" class="Cnava">歌单&nbsp;166</a>
         <a href="#" class="Cnava">专辑&nbsp;61</a>
         <a href="#" class="Cnava">视频&nbsp;45</a>
@@ -283,11 +283,10 @@
     }
 
     $('#test').validate({
-        submitHandler: function (form) {
+        submitHandler: function () {
             denglu($('#test').attr("action"), $('#test').serialize());//调用tools文件里的denglu方法，详情见tools
         }
     });
-    $("#user_number").html($.cookie("user_id"));
 
     //第一次加载
     $(document).ready(function () {
@@ -341,7 +340,6 @@
                     }
 
                     function fn(j) {//
-                        console.log(data.pageInfo.list[j].myId);
                         $.cookie("my_id", data.pageInfo.list[j].myId, {expires: 7, path: "/"});
                         $.cookie("song_link", data.pageInfo.list[j].mySonglink, {expires: 7, path: "/"});//
                         $.cookie("song_name", data.pageInfo.list[j].mySongname, {expires: 7, path: "/"});//   保存后台传入的相关信息和链接进入cookie，在播放页面直接将cookie的值调用出来，
@@ -396,7 +394,7 @@
 
             },
             error: function (data) {
-                alert(JSON.stringify(data));//连接失败弹窗
+                alert("该网站正在更新,非常抱歉!");//连接失败弹窗
             }
         })
     }
