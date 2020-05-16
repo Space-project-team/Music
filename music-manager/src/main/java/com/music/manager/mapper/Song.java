@@ -1,4 +1,4 @@
-package com.music.manager.pojo;
+package com.music.manager.mapper;
 
 import java.io.Serializable;
 import java.util.Date;

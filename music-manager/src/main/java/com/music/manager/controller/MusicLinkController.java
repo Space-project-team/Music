@@ -179,4 +179,15 @@ public class MusicLinkController {
 		return musicLinkService.ModuleMusic(pageNum,pageSize,"国风美少年","2");
 	}
 
+	/**
+	 * 中国梦之声榜
+	 * @param pageNum
+	 * @param pageSize
+	 * @return
+	 */
+	@RequestMapping(value = "ChineseIdol",method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public BaseResult ChineseIdol(Integer pageNum,Integer pageSize){
+		return musicLinkService.ModuleMusic(pageNum,pageSize,"中国梦之声","2");
+	}
 }

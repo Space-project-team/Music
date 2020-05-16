@@ -8,7 +8,8 @@
     <title>我的音乐</title>
 
     <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="${ctx}/css/index.css">
+    <#--<link rel="stylesheet" href="${ctx}/css/index.css">-->
+    <link rel="stylesheet" type="text/css" href="${ctx}/css/index.css">
     <link rel="stylesheet" type="text/css" href="${ctx}/css/mymusic.css">
     <link rel="shortcut icon" type="image/x-icon" href="${ctx}/images/logo1.png">
     <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
@@ -289,7 +290,18 @@
 
     //第一次加载
     $(document).ready(function () {
+        //获取用户的id值
+        $.ajax({
+            type: "post",
+            url: ctx+"/user/getUser",
+            success: function (data) {
+                if(data!=null){
+                    userId = data.userId;
+                }
+            }
+        })
         getList(1,10);
+
     });
 
     /*
