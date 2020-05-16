@@ -276,6 +276,7 @@
 <script type="text/javascript" src="${ctx}/js/vue.min.js"></script>
 <script type="text/javascript">
 
+    //默认打开首页加载一次
     $(function () {
         showRecord(1,10);
     });
