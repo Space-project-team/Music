@@ -276,6 +276,9 @@
 <script type="text/javascript" src="${ctx}/js/vue.min.js"></script>
 <script type="text/javascript">
 
+    $(function () {
+        showRecord(1,10);
+    });
 
     //加载总页数
     var totals;
