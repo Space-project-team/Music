@@ -546,7 +546,7 @@
                     $.cookie("song_name", data.pageInfo.list[j].songname, {expires: 7, path: "/"});
                     $.cookie("song_singer", data.pageInfo.list[j].singerName, {expires: 7, path: "/"});
                     $.cookie("song_photo", data.pageInfo.list[j].photoimage, {expires: 7, path: "/"});
-                    window.location.href = "http://localhost:9091/music-manager/QQmusic.html";
+                    window.location.href = "http://localhost:9091/music-manager/QQmusic";
                 }
 
             }
