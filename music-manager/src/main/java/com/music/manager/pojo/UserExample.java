@@ -1,11 +1,10 @@
 package com.music.manager.pojo;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class UserExample implements Serializable {
+public class UserExample {
     /**
      * m_user
      */
@@ -77,7 +76,7 @@ public class UserExample implements Serializable {
     /**
     /* 
      * @author zhoubin 
-     * @create 2020-05-10
+     * @create 2020-05-16
      * @since 1.0.0
      */
     protected abstract static class GeneratedCriteria {
@@ -380,12 +379,152 @@ public class UserExample implements Serializable {
             addCriterion("create_time not between", value1, value2, "createTime");
             return (Criteria) this;
         }
+
+        public Criteria andPhoneNumIsNull() {
+            addCriterion("phone_num is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhoneNumIsNotNull() {
+            addCriterion("phone_num is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhoneNumEqualTo(String value) {
+            addCriterion("phone_num =", value, "phoneNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhoneNumNotEqualTo(String value) {
+            addCriterion("phone_num <>", value, "phoneNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhoneNumGreaterThan(String value) {
+            addCriterion("phone_num >", value, "phoneNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhoneNumGreaterThanOrEqualTo(String value) {
+            addCriterion("phone_num >=", value, "phoneNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhoneNumLessThan(String value) {
+            addCriterion("phone_num <", value, "phoneNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhoneNumLessThanOrEqualTo(String value) {
+            addCriterion("phone_num <=", value, "phoneNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhoneNumLike(String value) {
+            addCriterion("phone_num like", value, "phoneNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhoneNumNotLike(String value) {
+            addCriterion("phone_num not like", value, "phoneNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhoneNumIn(List<String> values) {
+            addCriterion("phone_num in", values, "phoneNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhoneNumNotIn(List<String> values) {
+            addCriterion("phone_num not in", values, "phoneNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhoneNumBetween(String value1, String value2) {
+            addCriterion("phone_num between", value1, value2, "phoneNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhoneNumNotBetween(String value1, String value2) {
+            addCriterion("phone_num not between", value1, value2, "phoneNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andHeadImageIsNull() {
+            addCriterion("head_image is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andHeadImageIsNotNull() {
+            addCriterion("head_image is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andHeadImageEqualTo(String value) {
+            addCriterion("head_image =", value, "headImage");
+            return (Criteria) this;
+        }
+
+        public Criteria andHeadImageNotEqualTo(String value) {
+            addCriterion("head_image <>", value, "headImage");
+            return (Criteria) this;
+        }
+
+        public Criteria andHeadImageGreaterThan(String value) {
+            addCriterion("head_image >", value, "headImage");
+            return (Criteria) this;
+        }
+
+        public Criteria andHeadImageGreaterThanOrEqualTo(String value) {
+            addCriterion("head_image >=", value, "headImage");
+            return (Criteria) this;
+        }
+
+        public Criteria andHeadImageLessThan(String value) {
+            addCriterion("head_image <", value, "headImage");
+            return (Criteria) this;
+        }
+
+        public Criteria andHeadImageLessThanOrEqualTo(String value) {
+            addCriterion("head_image <=", value, "headImage");
+            return (Criteria) this;
+        }
+
+        public Criteria andHeadImageLike(String value) {
+            addCriterion("head_image like", value, "headImage");
+            return (Criteria) this;
+        }
+
+        public Criteria andHeadImageNotLike(String value) {
+            addCriterion("head_image not like", value, "headImage");
+            return (Criteria) this;
+        }
+
+        public Criteria andHeadImageIn(List<String> values) {
+            addCriterion("head_image in", values, "headImage");
+            return (Criteria) this;
+        }
+
+        public Criteria andHeadImageNotIn(List<String> values) {
+            addCriterion("head_image not in", values, "headImage");
+            return (Criteria) this;
+        }
+
+        public Criteria andHeadImageBetween(String value1, String value2) {
+            addCriterion("head_image between", value1, value2, "headImage");
+            return (Criteria) this;
+        }
+
+        public Criteria andHeadImageNotBetween(String value1, String value2) {
+            addCriterion("head_image not between", value1, value2, "headImage");
+            return (Criteria) this;
+        }
     }
 
     /**
     /* 
      * @author zhoubin 
-     * @create 2020-05-10
+     * @create 2020-05-16
      * @since 1.0.0
      */
     public static class Criteria extends GeneratedCriteria {
@@ -398,7 +537,7 @@ public class UserExample implements Serializable {
     /**
     /* 
      * @author zhoubin 
-     * @create 2020-05-10
+     * @create 2020-05-16
      * @since 1.0.0
      */
     public static class Criterion {

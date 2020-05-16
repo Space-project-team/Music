@@ -28,4 +28,6 @@ public interface IMyMusicService {
      * @return
      */
     Integer getCount(Integer uid);
+
+
 }

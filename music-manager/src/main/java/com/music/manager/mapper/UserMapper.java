@@ -4,7 +4,6 @@ package com.music.manager.mapper;
 import com.music.manager.pojo.User;
 import com.music.manager.pojo.UserExample;
 import org.apache.ibatis.annotations.Param;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

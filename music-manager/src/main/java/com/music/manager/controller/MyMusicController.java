@@ -34,8 +34,9 @@ public class MyMusicController {
     public BaseResult getMyMusicList(String userName, Integer pageNum, Integer pageSize, HttpServletRequest request){
         User user = (User) request.getSession().getAttribute("user");
         if(StringUtils.isEmpty(user)){
-            request.setAttribute("MyMusicCount",iMyMusicService.getCount(user.getUserId()));
+            return BaseResult.error();
         }
+        request.setAttribute("MyMusicCount",iMyMusicService.getCount(user.getUserId()));
         return iMyMusicService.getMyMusicList(userName,pageNum,pageSize);
     }
 

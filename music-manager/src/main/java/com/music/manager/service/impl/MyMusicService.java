@@ -87,9 +87,7 @@ public class MyMusicService implements IMyMusicService {
             PageInfo<MyMusic> pageInfo=new PageInfo<>(myList);
             //将查询的数据放入Redis
             stringObjectValueOperations.set(myMusicListRedisKey, JsonUtil.object2JsonStr(pageInfo));
-            Integer count = getCount(uid);
-
-            pageInfo.setTotal(count);
+            pageInfo.setTotal(getCount(uid));
             //返回结果
             return BaseResult.success(pageInfo);
         }else{
@@ -147,4 +145,6 @@ public class MyMusicService implements IMyMusicService {
         myMusicExample.createCriteria().andUserIdEqualTo(uid);
         return myMusicMapper.selectByExample(myMusicExample).size();
     }
+
+
 }
