@@ -9,6 +9,8 @@ package com.music.manager.service;
 
 import com.music.common.result.BaseResult;
 
+import javax.servlet.http.HttpServletRequest;
+
 public interface IMyMusicService {
     /**
      * 用户歌曲信息列表-分页
@@ -20,4 +22,10 @@ public interface IMyMusicService {
      */
     int deleteMyMusic(Integer mid,String userName);
 
+    /**
+     * 获取用户歌曲总数
+     * @param uid
+     * @return
+     */
+    Integer getCount(Integer uid);
 }

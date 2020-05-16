@@ -23,6 +23,7 @@ import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -86,7 +87,9 @@ public class MyMusicService implements IMyMusicService {
             PageInfo<MyMusic> pageInfo=new PageInfo<>(myList);
             //将查询的数据放入Redis
             stringObjectValueOperations.set(myMusicListRedisKey, JsonUtil.object2JsonStr(pageInfo));
-            pageInfo.setTotal(getCount(uid));
+            Integer count = getCount(uid);
+
+            pageInfo.setTotal(count);
             //返回结果
             return BaseResult.success(pageInfo);
         }else{
@@ -134,6 +137,11 @@ public class MyMusicService implements IMyMusicService {
         return 0;
     }
 
+    /**
+     * 获取个人歌曲总数
+     * @param uid
+     * @return
+     */
     public Integer getCount(Integer uid){
         MyMusicExample myMusicExample = new MyMusicExample();
         myMusicExample.createCriteria().andUserIdEqualTo(uid);

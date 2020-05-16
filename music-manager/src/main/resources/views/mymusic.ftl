@@ -198,7 +198,7 @@
 </div>
 <div class="content">
     <div class="contentnav">
-        <a href="#" class="Cnava">歌曲&nbsp;651</a>
+        <a href="#" class="Cnava">歌曲&nbsp;${MyMusicCount!}</a>
         <a href="#" class="Cnava">歌单&nbsp;166</a>
         <a href="#" class="Cnava">专辑&nbsp;61</a>
         <a href="#" class="Cnava">视频&nbsp;45</a>
