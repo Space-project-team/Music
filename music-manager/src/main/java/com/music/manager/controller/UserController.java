@@ -57,10 +57,8 @@ public class UserController {
 	@ResponseBody
 	public BaseResult loginCon(AdminQuery adminQuery, HttpServletRequest request, HttpServletResponse response) {
 
-		/*return  userService.login(adminQuery, request, response);*/
-		BaseResult login = userService.login(adminQuery, request, response);
 
-		return login;
+		return userService.login(adminQuery, request, response);
 	}
 
 

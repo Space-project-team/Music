@@ -109,12 +109,14 @@
     </div>
 </div>
 <div class="mask_bg">
-    <img class="song_img" src="${ctx}/images/touxiang2.jpg" alt="" width="100%" height="100%">
+    <img class="song_img" id="userheadImage" src="" alt="" width="100%" height="100%">
 </div>
 <div class="mask"></div>
 <audio id="audio" src=""></audio>
 <script src="${ctx}/js/index.js"></script>
 <script>
+
+    $("#userheadImage").attr("src",""+$.cookie("user_headImage"));
 
     var userName = getCookie("user_name");
     //工作原理代码见index.js

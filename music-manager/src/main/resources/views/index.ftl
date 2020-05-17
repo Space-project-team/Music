@@ -1,20 +1,17 @@
 <!-- 设置项目根路径全局变量 -->
 <#assign ctx=request.contextPath/>
-<#assign user = Session["user"]?exists>
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>我们敲代码滴不懂音乐</title>
-    <link rel="stylesheet" href="${ctx}/css/fileinput.min.css"></link>
+
     <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="${ctx}/css/index.css">
     <link rel="shortcut icon" type="image/x-icon" href="${ctx}/images/logo1.png">
     <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-
 
 </head>
 <script>
@@ -22,8 +19,8 @@
 </script>
 <body style="user-select: none">
 <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---
- 
-                                                      模态框（Modal） 
+
+                                                      模态框（Modal）
 
 --><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
@@ -85,38 +82,9 @@
 </div>
 <!-- /.modal -->
 
-
-
-
-
-<#--     图片模态框    -->
-
-<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title" id="myModalLabel">修改头像</h4>
-            </div>
-            <div class="modal-body">
-                <div class="form-group">
-                    <label class="control-label col-sm-2">上传图片</label>
-                    <input type="hidden" id="image" name="image"/>
-                    <form enctype="multipart/form-data">
-                        <input id="file-goods-category" class="file" name="file" type="file"
-                               data-min-file-count="1">
-                    </form>
-                </div>
-            </div>
-
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal -->
-</div>
-
-
 <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---
- 
-                                                     首页头部 
+
+                                                     首页头部
 
 --><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---->
 <div style="width: 100%;height: 80px; background-color:#fff;position: relative;">
@@ -151,16 +119,13 @@
             </div>
             <!-- 图标加上搜索框结束 -->
             <div id="col10" class="dengluzhuce">
-                <!--隐藏域-->
-                <input id="user_id" name="user_id">
                 <a class="mymusic" href="${ctx}/mymusic" target="_blank">我的音乐</a>
                 <a class="mymusic" href="${ctx}/mymusic" target="_blank">您是第<span
                         id="user_number" style="font-size:20px;color:red;text-align:center;padding:0;">  &nbsp</span>位用户</a>
                 <span class="mymusic">|</span>
-                <button id="display2" data-toggle="modal" data-target="#myModal2" style="width: 40px;height: 40px;border:0;border-radius: 40px;">
-                    <img id="touxiang" src="${ctx}/images/touxiang.png"
-                         style="display: inline-block; width: 40px;height: 40px;border:0;border-radius: 40px;margin-bottom: 5px;">
-                </button> <!--触发模态框按钮--> <a id="userName" style="cursor: pointer;" class="mymusic" href="">
+                <img id="touxiang" src="${ctx}/images/touxiang.png" width="40px" height="40px"
+                     style="display: inline-block; width: 40px;height: 40px;border:0;border-radius: 40px;margin-bottom: 5px;">
+                <a id="userName" style="cursor: pointer;" class="mymusic" href="">
                     未登录</a>
                 <a id="zhuXiao" onclick="zhuXiao();location.reload();" href="#">
                 </a>
@@ -482,31 +447,24 @@
 <script src="${ctx}/js/tools.js"></script>
 <script src="${ctx}/js/jquery.cookie.js"></script>
 <script type="text/javascript" src="${ctx}/js/vue.min.js"></script>
-<script type="text/javascript" src="${ctx}/js/fileinput.js"></script>
-<!-- 对中文的支持 -->
-<script type="text/javascript" src="${ctx}/js/fileinput_locale_zh.js"></script>
 
 <script type="text/javascript">
-
 
     if ($.cookie("user_name") != undefined && $.cookie("user_name") != "1") {
         $("#userName").text("账号：" + $.cookie("user_name"));
         $("#userName").attr("href", "${ctx}/resetpassword");
         $("#zhuXiao").text("注销");
-        document.getElementById("touxiang").src = "${ctx}/images/touxiang2.jpg";
+        document.getElementById("touxiang").src = ""+$.cookie("user_headImage");
         $("#display1").attr("style", "display:none;");
     }//已在mymusic中注释
 
     $('#test').validate({
         submitHandler: function () {
-            denglu($('#test').attr("action"), $('#test').serialize())
+            denglu($('#test').attr("action"), $('#test').serialize());
 
         }
     });//已在mymusic中注释
 
-    //文件上传
-    modifyImages();
-    document.getElementById("touxiang").src=($.cookie("head_image"));
 
    //
     //

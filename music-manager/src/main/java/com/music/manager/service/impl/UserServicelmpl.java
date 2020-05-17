@@ -25,6 +25,7 @@ import org.springframework.util.StringUtils;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -77,7 +78,10 @@ public class UserServicelmpl implements UserService {
 				//3.2两次密码相同,该用户存在并信息正确
 				//将user信息存储到session中
 				request.getSession().setAttribute("user",user);
+
+
 				System.out.println(request.getSession().getAttribute("user"));
+
 				/**
 				 * 把用户头像存入cookie
 				 */
@@ -88,6 +92,8 @@ public class UserServicelmpl implements UserService {
 				myCookie.setHttpOnly(false);
 				myCookie.setMaxAge(60*60*24*7);//七天
 				response.addCookie(myCookie);
+
+
 				return BaseResult.success();
 			}else{
 				result = new BaseResult();
