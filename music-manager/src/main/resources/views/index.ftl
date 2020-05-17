@@ -149,10 +149,10 @@
                 <a class="mymusic" href="${ctx}/mymusic" target="_blank">您是第<span
                         id="user_number" style="font-size:20px;color:red;text-align:center;padding:0;">  &nbsp</span>位用户</a>
                 <span class="mymusic">|</span>
-                <button id="display2" data-toggle="modal" data-target="#myModal2" style="width: 40px;height: 40px;border:0;border-radius: 40px;"/>
-                <img id="touxiang" src="${ctx}/images/touxiang.png" width="40px" height="40px"
-                     style="display: inline-block; width: 40px;height: 40px;border:0;border-radius: 40px;margin-bottom: 5px;">
-                <a id="userName" style="cursor: pointer;" class="mymusic" href="">
+                <button id="display2" data-toggle="modal" data-target="#myModal2" style="width: 40px;height: 40px;border:0;border-radius: 40px;">
+                    <img id="touxiang" src="${ctx}/images/touxiang.png" width="40px" height="40px"
+                         style="display: inline-block; width: 40px;height: 40px;border:0;border-radius: 40px;margin-bottom: 5px;">
+                </button> <!--触发模态框按钮--><a id="userName" style="cursor: pointer;" class="mymusic" href="">
                     未登录</a>
                 <a id="zhuXiao" onclick="zhuXiao();location.reload();" href="#">
                 </a>
@@ -475,16 +475,17 @@
 <script src="${ctx}/js/tools.js"></script>
 <script src="${ctx}/js/jquery.cookie.js"></script>
 <script type="text/javascript" src="${ctx}/js/vue.min.js"></script>
+<script type="text/javascript" src="${ctx}/js/fileinput.js"></script>
 <!-- 对中文的支持 -->
 <script type="text/javascript" src="${ctx}/js/fileinput_locale_zh.js"></script>
-<script type="text/javascript" src="${ctx}/js/fileinput.js"></script>
+
 <script type="text/javascript">
 
     if ($.cookie("user_name") != undefined && $.cookie("user_name") != "1") {
         $("#userName").text("账号：" + $.cookie("user_name"));
         $("#userName").attr("href", "${ctx}/resetpassword");
         $("#zhuXiao").text("注销");
-        document.getElementById("touxiang").src = ""+$.cookie("user_headImage");
+        document.getElementById("touxiang").src =$.cookie("user_headImage");
         $("#display1").attr("style", "display:none;");
     }//已在mymusic中注释
 
@@ -498,7 +499,7 @@
 
     //文件上传
     modifyImages();
-    document.getElementById("touxiang").src=($.cookie("user_headImage"));
+
 
 
 
