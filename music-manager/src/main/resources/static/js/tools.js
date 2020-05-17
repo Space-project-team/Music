@@ -118,7 +118,7 @@ function denglu(url, data) {                                                 //u
                 $.cookie("user_id", 208, {expires: 7, path: "/"});  //      将登录成功后后台返回的用户id保存到cookie中
                 $("#userName").text("账号：" + $.cookie("user_name"));       //      将登录之前右上方的未登录3个字替换为用户名
                 $("#zhuXiao").text("注销");                                              //在用户名后面添加注销接口
-                document.getElementById("touxiang").src = "https://0509music.oss-cn-shanghai.aliyuncs.com/head/96%E7%8C%AB.jpg"/*ctx+"images/touxiang2.jpg"*/;       //改变登录前的用户头像
+                document.getElementById("touxiang").src = ""/*ctx+"images/touxiang2.jpg"*/;       //改变登录前的用户头像
                 window.location.reload();                                               //刷新页面
             } else {  //返回其他值执行的方法
                 alert(" " + data.message);

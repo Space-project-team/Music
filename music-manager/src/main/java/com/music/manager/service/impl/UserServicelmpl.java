@@ -76,7 +76,7 @@ public class UserServicelmpl implements UserService {
 				//3.2两次密码相同,该用户存在并信息正确
 				//将user信息存储到session中
 				request.getSession().setAttribute("user",user);
-				/*System.out.println(request.getSession().getAttribute("user"));*/
+				System.out.println(request.getSession().getAttribute("user"));
 				return BaseResult.success();
 			}else{
 				result = new BaseResult();

@@ -63,6 +63,7 @@ spring:
       # 5.使用自定义异常类实现TemplateExceptionHandler重写handleTemplateException方法
       template_exception_handler: html_debug
 
+
   # redis 缓存
   redis:
     timeout: 10000                          # 连接超时时间

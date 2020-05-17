@@ -5,6 +5,7 @@ import com.music.manager.pojo.User;
 import com.music.manager.service.UploadService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -39,6 +40,7 @@ public class UploadController {
 		String date = DateTimeFormatter.ofPattern("yyyy/MM/dd/").format(LocalDateTime.now());
 		filename = date + System.currentTimeMillis() + filename.substring(filename.lastIndexOf("."));
 		User user=(User)request.getSession().getAttribute("user");
+		System.out.println(user);
 		return uploadService.upload(file.getInputStream(), filename,user,request,response);
 	}
 
