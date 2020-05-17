@@ -56,9 +56,9 @@ public class UserController {
 	@RequestMapping(value = "/loginPage", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public BaseResult loginCon(AdminQuery adminQuery, HttpServletRequest request, HttpServletResponse response) {
-		BaseResult login = userService.login(adminQuery, request, response);
 
-		return login;
+
+		return userService.login(adminQuery, request, response);
 	}
 
 
