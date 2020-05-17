@@ -87,7 +87,16 @@ public class UserServicelmpl implements UserService {
 				 */
 				User userImage= (User) request.getSession().getAttribute("user");
 				String userHeadImage=userImage.getHeadImage();
-				Cookie myCookie=new Cookie("user_headImage",userHeadImage);
+                Cookie[] cookies = request.getCookies();
+                if(cookies!=null){
+                    for (Cookie cookie : cookies){
+                        if("user_headImage".equals(cookie.getName())){
+                            //如果相同
+                            
+                        }
+                    }
+                }
+                Cookie myCookie=new Cookie("user_headImage",userHeadImage);
 				myCookie.setPath("/");//("/")表示的是访问当前工程下的所有webApp都会产生cookie
 				myCookie.setHttpOnly(false);
 				myCookie.setMaxAge(60*60*24*7);//七天
