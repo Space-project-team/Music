@@ -117,7 +117,7 @@ function denglu(url, data) {                                                 //u
                 var pwd = document.getElementById("user_password").value;   //      获取密码输入框的值，并将它赋值给pwd
                 pwd=md5(pwd);
                 $.cookie("user_password", pwd, {expires: 7, path: "/"});    //      将获取到的密码保存的cookie中
-                $.cookie("user_id", 208, {expires: 7, path: "/"});  //      将登录成功后后台返回的用户id保存到cookie中
+                //$.cookie("user_id", 208, {expires: 7, path: "/"});  //      将登录成功后后台返回的用户id保存到cookie中
                 $("#userName").text("账号：" + $.cookie("user_name"));       //      将登录之前右上方的未登录3个字替换为用户名
                 $("#zhuXiao").text("注销");                                              //在用户名后面添加注销接口
                 document.getElementById("touxiang").src = ""+$.cookie("user_headImage");       //改变登录前的用户头像
@@ -143,7 +143,7 @@ function denglu(url, data) {                                                 //u
 function zhuXiao() {
 
     //把用户头像换成默认头像
-    $("#userheadImage").attr("src","http://q94ans1zi.bkt.clouddn.com/touxiang.png");
+    $("#touxiang").attr("src","http://q94ans1zi.bkt.clouddn.com/touxiang.png");
 
     $.cookie("user_name", "", {expires: -1, path: "/"});        // 调用该方法时将用户名的cookie值重置
     $.cookie("user_id", "", {expires: -1, path: "/"});          // 调用该方法时将用户id的cookie值删除
@@ -204,7 +204,8 @@ function modifyImages(){
         console.log(data.response.fileUrl);
         $("#image").val(data.response.fileUrl);
         //文件上传图片路径
-        $.cookie("head_image",data.response.fileUrl);
+       // $.cookie("user_headImage", "", {expires: -1, path: "/"});
+        $.cookie("user_headImage",data.response.fileUrl);
         window.location.reload();
         console.log('File uploaded triggered');
     });
