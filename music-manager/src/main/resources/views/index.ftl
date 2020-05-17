@@ -1,5 +1,6 @@
 <!-- 设置项目根路径全局变量 -->
 <#assign ctx=request.contextPath/>
+<#assign user = Session["user"]?exists>
 <!DOCTYPE html>
 <html>
 <head>
@@ -150,12 +151,14 @@
             </div>
             <!-- 图标加上搜索框结束 -->
             <div id="col10" class="dengluzhuce">
+                <!--隐藏域-->
+                <input id="user_id" name="user_id">
                 <a class="mymusic" href="${ctx}/mymusic" target="_blank">我的音乐</a>
                 <a class="mymusic" href="${ctx}/mymusic" target="_blank">您是第<span
                         id="user_number" style="font-size:20px;color:red;text-align:center;padding:0;">  &nbsp</span>位用户</a>
                 <span class="mymusic">|</span>
                 <button id="display2" data-toggle="modal" data-target="#myModal2" style="width: 40px;height: 40px;border:0;border-radius: 40px;">
-                    <img id="touxiang" src="${ctx}/images/touxiang.png" width="40px" height="40px"
+                    <img id="touxiang" src="${ctx}/images/touxiang.png"
                          style="display: inline-block; width: 40px;height: 40px;border:0;border-radius: 40px;margin-bottom: 5px;">
                 </button> <!--触发模态框按钮--> <a id="userName" style="cursor: pointer;" class="mymusic" href="">
                     未登录</a>
@@ -496,7 +499,7 @@
 
     $('#test').validate({
         submitHandler: function () {
-            denglu($('#test').attr("action"), $('#test').serialize());
+            denglu($('#test').attr("action"), $('#test').serialize())
 
         }
     });//已在mymusic中注释

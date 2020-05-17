@@ -22,6 +22,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
@@ -77,6 +78,16 @@ public class UserServicelmpl implements UserService {
 				//将user信息存储到session中
 				request.getSession().setAttribute("user",user);
 				System.out.println(request.getSession().getAttribute("user"));
+				/**
+				 * 把用户头像存入cookie
+				 */
+				User userImage= (User) request.getSession().getAttribute("user");
+				String userHeadImage=userImage.getHeadImage();
+				Cookie myCookie=new Cookie("user_headImage",userHeadImage);
+				myCookie.setPath("/");//("/")表示的是访问当前工程下的所有webApp都会产生cookie
+				myCookie.setHttpOnly(false);
+				myCookie.setMaxAge(60*60*24*7);//七天
+				response.addCookie(myCookie);
 				return BaseResult.success();
 			}else{
 				result = new BaseResult();

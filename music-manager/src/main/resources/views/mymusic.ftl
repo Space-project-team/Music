@@ -286,7 +286,7 @@
         $("#userName").text("账号：" + $.cookie("user_name"));//将未登录3个字替换为用户名
         $("#zhuXiao").text("注销");//将注销加在用户名后方
         $(".mingzijuzhong").text("用户: " + $.cookie("user_name"));//替换大头像下面的用户名
-        document.getElementById("touxiang").src = " ${Session["user"].headImage}";//替换原始头像
+        document.getElementById("touxiang").src = "";//替换原始头像
         $("#display1").attr("style", "display:none;");//隐藏登录按钮
     }
 
