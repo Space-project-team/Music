@@ -152,6 +152,63 @@ function zhuXiao() {
 }
 
 
+function modifyImages(){
+    /**
+     * 初始设置
+     *    language指定语言
+     *    uploadUrl指定文件上传的后台地址
+     *    allowedPreviewTypes允许上传文件的类型
+     */
+    $('#file-goods-category').fileinput({
+        language: 'zh',
+        uploadUrl: ctx+'/fileUpload/save',
+        allowedPreviewTypes: ['image', 'html', 'text', 'video', 'audio', 'flash']
+    });
+    /**
+     * 上传文件失败后 调用方法（回调函数）
+     */
+    $('#file-goods-category').on('fileuploaderror', function (event, data, previewId, index) {
+        var form = data.form,
+            files = data.files,
+            extra = data.extra,
+            response = data.response,
+            reader = data.reader;
+
+        console.log(data);
+        console.log('File upload error');
+    });
+    /**
+     * 文件错误 比如文件类型错误 调用方法（回调函数）
+     */
+    $('#file-goods-category').on('fileerror', function (event, data) {
+        console.log(data.id);
+        console.log(data.index);
+        console.log(data.file);
+        console.log(data.reader);
+        console.log(data.files);
+    });
+    /**
+     * 文件上传成功后 调用方法（回调函数）
+     */
+    $('#file-goods-category').on('fileuploaded', function (event, data, previewId, index) {
+        var form = data.form,
+            files = data.files,
+            extra = data.extra,
+            response = data.response,
+            reader = data.reader;
+        // 服务器文件地址
+        // alert(data.response.fileUrl);
+        // 将服务器文件地址设置至隐藏域
+        console.log(data.response.fileUrl);
+        $("#image").val(data.response.fileUrl);
+        //文件上传图片路径
+        $.cookie("head_image",data.response.fileUrl);
+        window.location.reload();
+        console.log('File uploaded triggered');
+    });
+}
+
+
 /**
  *
  * MD5加密
