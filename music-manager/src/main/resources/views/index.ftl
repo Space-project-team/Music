@@ -450,12 +450,11 @@
 
 <script type="text/javascript">
 
-
     if ($.cookie("user_name") != undefined && $.cookie("user_name") != "1") {
         $("#userName").text("账号：" + $.cookie("user_name"));
         $("#userName").attr("href", "${ctx}/resetpassword");
         $("#zhuXiao").text("注销");
-        document.getElementById("touxiang").src = "${ctx}/images/touxiang2.jpg";
+        document.getElementById("touxiang").src = ""+$.cookie("user_headImage");
         $("#display1").attr("style", "display:none;");
     }//已在mymusic中注释
 

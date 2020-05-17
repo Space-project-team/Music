@@ -250,7 +250,7 @@
         $("#zhuXiao").text("注销");
 
 
-        document.getElementById("touxiang").src="${ctx}/images/touxiang2.jpg";
+        document.getElementById("touxiang").src=""+$.cookie("user_headImage");
         $("#display1").attr("style","display:none;");
     }
 

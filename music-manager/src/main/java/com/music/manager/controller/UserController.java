@@ -1,6 +1,7 @@
 package com.music.manager.controller;
 
 import javax.annotation.Resource;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -55,7 +56,9 @@ public class UserController {
 	@RequestMapping(value = "/loginPage", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public BaseResult loginCon(AdminQuery adminQuery, HttpServletRequest request, HttpServletResponse response) {
-		return  userService.login(adminQuery, request, response);
+		BaseResult login = userService.login(adminQuery, request, response);
+
+		return login;
 	}
 
 

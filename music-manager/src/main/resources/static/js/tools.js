@@ -105,6 +105,8 @@ function denglu(url, data) {                                                 //u
         data: data,                                                         //      下方为登录成功后实现的功能
         success: function (data) {
             if (data.code == "200") {
+                //登录成功，替换用户头像
+
                 $("#display1").attr("style", "display:none;");              //      隐藏按钮
                 $("#myModal").attr("style", "display:none;");               //      隐藏模态框
                 $(".modal-backdrop.fade").attr("style", "display:none;");   //      隐藏模态框背景颜色
@@ -118,7 +120,7 @@ function denglu(url, data) {                                                 //u
                 $.cookie("user_id", 208, {expires: 7, path: "/"});  //      将登录成功后后台返回的用户id保存到cookie中
                 $("#userName").text("账号：" + $.cookie("user_name"));       //      将登录之前右上方的未登录3个字替换为用户名
                 $("#zhuXiao").text("注销");                                              //在用户名后面添加注销接口
-                document.getElementById("touxiang").src = "https://0509music.oss-cn-shanghai.aliyuncs.com/head/96%E7%8C%AB.jpg"/*ctx+"images/touxiang2.jpg"*/;       //改变登录前的用户头像
+                document.getElementById("touxiang").src = ""+$.cookie("user_headImage");       //改变登录前的用户头像
                 window.location.reload();                                               //刷新页面
             } else {  //返回其他值执行的方法
                 alert(" " + data.message);
@@ -139,10 +141,14 @@ function denglu(url, data) {                                                 //u
 *
 * */
 function zhuXiao() {
+
+    //把用户头像换成默认头像
+    $("#userheadImage").attr("src","http://q94ans1zi.bkt.clouddn.com/touxiang.png");
+
     $.cookie("user_name", "", {expires: -1, path: "/"});        // 调用该方法时将用户名的cookie值重置
     $.cookie("user_id", "", {expires: -1, path: "/"});          // 调用该方法时将用户id的cookie值删除
     $.cookie("user_password", "", {expires: -1, path: "/"});          // 调用该方法时将用户密码的cookie值删除
-
+    $.cookie("user_headImage", "", {expires: -1, path: "/"});   //调用该方法时将用户头像的cookie值删除
 }
 
 
