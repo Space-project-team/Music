@@ -5,7 +5,7 @@ import java.util.Date;
 
 /**
  * @author zhoubin 
- * @create 2020-05-16
+ * @create 2020-05-19
  * @since 1.0.0
  */
 public class User implements Serializable {

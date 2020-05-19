@@ -622,7 +622,7 @@
                 }
             },
             error: function (data) {
-                alert(JSON.stringify(data));
+                alert("该网站正在更新,非常抱歉!");
             }
         })
     }//已在mymusic中注释

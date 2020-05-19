@@ -13,6 +13,7 @@ import com.qiniu.util.Auth;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.InputStream;
@@ -62,6 +63,18 @@ public class UploadServiceImpl implements UploadService {
 						fileResult.setMessage("用户未登录");
 						return fileResult;
 					}
+					//上传时判断cookie,避免重复cookie以及替换cookie
+					Cookie[] cookies = request.getCookies();
+					if(cookies!=null){
+						for (Cookie cookie : cookies){
+							if("user_headImage".equals(cookie.getName())){
+								//如果相同,将该cookie删除
+								cookie.setValue(null);
+								cookie.setMaxAge(0);
+							}
+						}
+					}
+
 					fileResult.setSuccess("success");
 					fileResult.setMessage("上传成功");
 					fileResult.setFileUrl("http://qafbatitv.bkt.clouddn.com/"+fileName);

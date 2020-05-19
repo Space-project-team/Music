@@ -76,7 +76,7 @@ public class UserExample {
     /**
     /* 
      * @author zhoubin 
-     * @create 2020-05-16
+     * @create 2020-05-19
      * @since 1.0.0
      */
     protected abstract static class GeneratedCriteria {
@@ -524,7 +524,7 @@ public class UserExample {
     /**
     /* 
      * @author zhoubin 
-     * @create 2020-05-16
+     * @create 2020-05-19
      * @since 1.0.0
      */
     public static class Criteria extends GeneratedCriteria {
@@ -537,7 +537,7 @@ public class UserExample {
     /**
     /* 
      * @author zhoubin 
-     * @create 2020-05-16
+     * @create 2020-05-19
      * @since 1.0.0
      */
     public static class Criterion {

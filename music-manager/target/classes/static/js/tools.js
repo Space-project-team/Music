@@ -117,6 +117,7 @@ function denglu(url, data) {                                                 //u
                 var pwd = document.getElementById("user_password").value;   //      获取密码输入框的值，并将它赋值给pwd
                 pwd=md5(pwd);
                 $.cookie("user_password", pwd, {expires: 7, path: "/"});    //      将获取到的密码保存的cookie中
+                $.cookie("user_id", $.cookie("user_id"), {expires: 7, path: "/"});  //      将登录成功后后台返回的用户id保存到cookie中
                 //$.cookie("user_id", 208, {expires: 7, path: "/"});  //      将登录成功后后台返回的用户id保存到cookie中
                 $("#userName").text("账号：" + $.cookie("user_name"));       //      将登录之前右上方的未登录3个字替换为用户名
                 $("#zhuXiao").text("注销");                                              //在用户名后面添加注销接口

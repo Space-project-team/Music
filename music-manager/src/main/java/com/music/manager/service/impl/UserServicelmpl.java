@@ -8,10 +8,7 @@ package com.music.manager.service.impl;
 
 import com.github.pagehelper.PageInfo;
 import com.music.common.result.BaseResult;
-import com.music.common.util.CodeUtil;
-import com.music.common.util.CookieUtil;
-import com.music.common.util.Md5Util;
-import com.music.common.util.RandomUtil;
+import com.music.common.util.*;
 import com.music.manager.mapper.UserMapper;
 import com.music.manager.pojo.User;
 import com.music.manager.pojo.UserExample;
@@ -30,7 +27,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
-
+import java.io.*;
 
 @Service
 public class UserServicelmpl implements UserService {
@@ -87,15 +84,6 @@ public class UserServicelmpl implements UserService {
 				 */
 				User userImage= (User) request.getSession().getAttribute("user");
 				String userHeadImage=userImage.getHeadImage();
-                Cookie[] cookies = request.getCookies();
-                if(cookies!=null){
-                    for (Cookie cookie : cookies){
-                        if("user_headImage".equals(cookie.getName())){
-                            //如果相同
-                            
-                        }
-                    }
-                }
                 Cookie myCookie=new Cookie("user_headImage",userHeadImage);
 				myCookie.setPath("/");//("/")表示的是访问当前工程下的所有webApp都会产生cookie
 				myCookie.setHttpOnly(false);
@@ -149,9 +137,11 @@ public class UserServicelmpl implements UserService {
 			user.setUserPassword(Md5Util.getMD5String(adminQuery.getUser_password()));
 			Date date = new Date();
 			user.setCreateTime(date);
-			userMapper.insertSelective(user);
-			//将user信息存储到session中
-			request.getSession().setAttribute("user",user);
+			if(userMapper.insertSelective(user)>1){
+				//将user信息存储到session中
+				request.getSession().setAttribute("user",user);
+			}
+
 			return BaseResult.success();
 		}
 		result = new BaseResult();
@@ -250,6 +240,8 @@ public class UserServicelmpl implements UserService {
 				user.setUserName(adminQuery.getUser_name());
 				user.setPhoneNum(adminQuery.getPhoneNum());
 				user.setUserPassword(Md5Util.getMD5String(adminQuery.getUser_password()));
+				//将图片转为二进制
+				user.setHeadImage("http://q94ans1zi.bkt.clouddn.com/gerentouxianag.jpg");
 				Date date = new Date();
 				user.setCreateTime(date);
 				int row = userMapper.insertSelective(user);
@@ -275,6 +267,5 @@ public class UserServicelmpl implements UserService {
 		result.setMessage("验证码错误!");
 		return result;
 	}
-
 
 }

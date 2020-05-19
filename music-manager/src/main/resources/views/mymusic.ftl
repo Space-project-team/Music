@@ -12,6 +12,7 @@
     <link rel="stylesheet" type="text/css" href="${ctx}/css/index.css">
     <link rel="stylesheet" type="text/css" href="${ctx}/css/mymusic.css">
     <link rel="shortcut icon" type="image/x-icon" href="${ctx}/images/logo1.png">
+    <link rel="stylesheet" href="${ctx}/css/fileinput.min.css"/>
     <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script type="text/javascript"
@@ -86,6 +87,29 @@
 </div>
 <!-- /.modal -->
 
+
+<#--     图片模态框    -->
+<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">修改头像</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label class="control-label col-sm-2">上传图片</label>
+                    <input type="hidden" id="image" name="image"/>
+                    <form enctype="multipart/form-data">
+                        <input id="file-goods-category" class="file" name="file" type="file"
+                               data-min-file-count="1">
+                    </form>
+                </div>
+            </div>
+
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
 <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---
 
                                                      首页头部
@@ -119,12 +143,14 @@
             </div>
             <!-- 图标加上搜索框结束 -->
             <div id="col10" class="dengluzhuce">
-                <a class="mymusic" href="#">我的音乐</a>
-                <a class="mymusic" href="/huiyuanzhongxin.html ">会员中心</a>
+                <a class="mymusic" href="${ctx}/mymusic" target="_blank">我的音乐</a>
+                <a class="mymusic" href="${ctx}/mymusic" target="_blank">您是第<span
+                            id="user_number" style="font-size:20px;color:red;text-align:center;padding:0;">  &nbsp</span>位用户</a>
                 <span class="mymusic">|</span>
-                <img id="touxiang" src="${ctx}/images/touxiang.png" width="40px" height="40px"
-                     style="display: inline-block; width: 40px;height: 40px;border:0;border-radius: 40px;margin-bottom: 5px;">
-                <a id="userName" style="cursor: pointer;" class="mymusic" href="#">
+                <button id="display2" data-toggle="modal" data-target="#myModal2" style="width: 40px;height: 40px;border:0;border-radius: 40px;">
+                    <img id="touxiang" src="${ctx}/images/touxiang.png" width="40px" height="40px"
+                         style="display: inline-block; width: 40px;height: 40px;border:0;border-radius: 40px;margin-bottom: 5px;">
+                </button> <!--触发模态框按钮--><a id="userName" style="cursor: pointer;" class="mymusic" href="">
                     未登录</a>
                 <a id="zhuXiao" onclick="zhuXiao();location.reload();" href="#">
                 </a>
@@ -271,7 +297,13 @@
 <script src="${ctx}/layui-v2.5.5/layui/layui.js"></script>
 <script type="text/javascript" src="${ctx}/js/jquery.pagination.js"></script>
 <script type="text/javascript" src="${ctx}/js/vue.min.js"></script>
+<script type="text/javascript" src="${ctx}/js/fileinput.js"></script>
+<!-- 对中文的支持 -->
+<script type="text/javascript" src="${ctx}/js/fileinput_locale_zh.js"></script>
 <script type="text/javascript">
+
+    //文件上传
+    modifyImages();
 
     //加载总页数
     var totals;
